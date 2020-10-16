@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+package proto;
+
+option go_package = "internal/grpc/proto";
+
+import "internal/grpc/proto/common.proto";
+import "internal/grpc/proto/competition.proto";
+import "internal/grpc/proto/requests.proto";
+import "internal/grpc/proto/round.proto";
+import "internal/grpc/proto/season.proto";
+import "internal/grpc/proto/team.proto";
+import "internal/grpc/proto/venue.proto";
+
+service FixtureService {
+    rpc ListSeasonFixtures(SeasonFixtureRequest) returns (stream Fixture) {}
+    rpc FixtureByID(FixtureRequest) returns (Fixture) {}
+    rpc Search(FixtureSearchRequest) returns (stream Fixture) {}
+}
+
+message Fixture {
+    int64 id = 1;
+    Competition competition = 2;
+    Season season = 3;
+    Team home_team = 4;
+    Team away_team = 5;
+    Round round = 6;
+    Venue venue = 7;
+    Date date_time = 8;
+}

@@ -1,16 +1,16 @@
 syntax = "proto3";
 
-package proto;
+package statistico_proto;
 
-option go_package = "internal/grpc/proto";
+option go_package = "github.com/statistico/statistico_proto";
 
 import "google/protobuf/wrappers.proto";
-import "internal/grpc/proto/common.proto";
-import "internal/grpc/proto/requests.proto";
-import "internal/grpc/proto/round.proto";
-import "internal/grpc/proto/season.proto";
-import "internal/grpc/proto/team.proto";
-import "internal/grpc/proto/venue.proto";
+import "common.proto";
+import "requests.proto";
+import "round.proto";
+import "season.proto";
+import "team.proto";
+import "venue.proto";
 
 service ResultService {
     rpc GetById(ResultRequest) returns (Result) {}

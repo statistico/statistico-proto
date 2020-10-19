@@ -1,8 +1,8 @@
 syntax = "proto3";
 
-package proto;
+package statistico_proto;
 
-option go_package = "internal/grpc/proto";
+option go_package = "github.com/statistico/statistico_proto";
 
 import "google/protobuf/wrappers.proto";
 
@@ -54,14 +54,6 @@ message SeasonCompetitionRequest {
     uint64 competition_id = 1;
     // Order the name column to return seasons in specific order
     google.protobuf.StringValue sort = 2;
-}
-
-message SeasonFixtureRequest {
-    uint64 season_id = 1;
-    // RFC3339 formatted string i.e. "2006-01-02T15:04:05Z07:00"
-    string date_from = 2;
-    // RFC3339 formatted string i.e "2006-01-02T15:04:05Z07:00"
-    string date_to = 3;
 }
 
 message SeasonRequest {

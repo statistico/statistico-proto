@@ -1,3 +1,3 @@
-module github.com/statistico/statistico_proto_data
+module github.com/statistico/statistico-proto-data
 
 go 1.13

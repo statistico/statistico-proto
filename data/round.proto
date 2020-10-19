@@ -1,8 +1,6 @@
 syntax = "proto3";
 
-package statistico_proto;
-
-option go_package = "github.com/statistico/statistico_proto";
+package statistico_proto_data;
 
 message Round {
     uint64 id = 1;

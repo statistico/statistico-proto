@@ -1,8 +1,6 @@
 syntax = "proto3";
 
-package proto;
-
-option go_package = "internal/grpc/proto";
+package statistico_proto_odds_compiler;
 
 service OddsCompilerService {
     // Returns market for a given event

@@ -10,10 +10,11 @@ workflows:
 
 jobs:
   build-release:
-    working_directory: ~/go/src/github.com/statistico/statistico-proto
-    machine: true
-    environment:
-      GOPATH: /home/circleci/go
+    docker:
+      - image: circleci/golang:1.12
+        auth:
+          username: $DOCKERHUB_USERNAME
+          password: $DOCKERHUB_PASSWORD
     steps:
       - checkout
       - artifactory/install

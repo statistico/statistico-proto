@@ -10,18 +10,24 @@ workflows:
 
 jobs:
   build-release:
-    docker:
-      - image: circleci/golang:1.12
-        auth:
-          username: $DOCKERHUB_USERNAME
-          password: $DOCKERHUB_PASSWORD
+    working_directory: ~/go/src/github.com/statistico/statistico-proto
+    machine: true
+    environment:
+      GOPATH: /home/circleci/go
     steps:
       - checkout
       - artifactory/install
       - artifactory/configure
       - run:
-          name: Enable Go modules
-          command: go version
+          name: Update Go version
+          command: |
+            sudo apt-get remove golang-go
+            sudo apt-get remove --auto-remove golang-go
+            sudo rm -rvf /usr/local/go
+            wget https://dl.google.com/go/go1.14.linux-amd64.tar.gz
+            sudo tar -xvf go1.14.linux-amd64.tar.gz
+            sudo mv go /usr/local
+            go version
       - run:
           name: Generate code from proto files
           command: |

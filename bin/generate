@@ -2,12 +2,5 @@
 
 echo "[INFO] Generating Statistico Data Service Files";
 docker run -v `pwd`:/defs namely/protoc-all -i ./data/go -d ./data -o ./data/go -l go
-docker run -v `pwd`:/defs namely/protoc-all -i ./data/python -d ./data -o ./data/python -l python
-rm -rf ./data/__init__.py
-echo "[COMPLETE]";
-
-echo "[INFO] Generating Statistico Odds Compiler Service Files";
 docker run -v `pwd`:/defs namely/protoc-all -i ./odds_compiler/go -d ./odds_compiler -o ./odds_compiler/go -l go
-docker run -v `pwd`:/defs namely/protoc-all -i ./odds_compiler/python -d ./odds_compiler -o ./odds_compiler/python -l python
-rm -rf ./odds_compiler/__init__.py
 echo "[COMPLETE]";

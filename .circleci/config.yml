@@ -6,7 +6,7 @@ workflows:
   version: 2
   build-release:
     jobs:
-      - build-realse:
+      - build-release:
           filters:
             branches:
               only: master
@@ -30,12 +30,12 @@ jobs:
           command: |
             mkdir ./data/go && cd ./data/go
             go mod init github.com/statistico/statistico-proto-data
-            jfrog rt go-publish v1.0.0 --build-name=statistico-proto-data-go --build-number=1
-            jfrog rt build-publish statistico-proto-data-go 1
+            jfrog rt go-publish v1.0.0 --build-name=statistico-proto-data-go --build-number=${CIRCLE_SHA1}
+            jfrog rt build-publish statistico-proto-data-go ${CIRCLE_SHA1}
       - run:
           name: Release statistico-odds-compiler Go package
           command: |
             mkdir ./odds_compiler/go && cd ./odds_compiler/go
             go mod init github.com/statistico/statistico-proto-odds-compiler
-            jfrog rt go-publish v1.0.0 --build-name=statistico-proto-odds-compiler-go --build-number=1
-            jfrog rt build-publish statistico-proto-odds-compiler-go 1
+            jfrog rt go-publish v1.0.0 --build-name=statistico-proto-odds-compiler-go --build-number=${CIRCLE_SHA1}
+            jfrog rt build-publish statistico-proto-odds-compiler-go ${CIRCLE_SHA1}

@@ -26,11 +26,11 @@ jobs:
           name: Release statistico-data Go package
           command: |
             cd ./data/go
-            jfrog rt go-publish v1.0.0 --build-name=statistico-proto-data-go --build-number=${CIRCLE_SHA1}
+            jfrog rt go-publish go v1.0.0 --build-name=statistico-proto-data-go --build-number=${CIRCLE_SHA1}
             jfrog rt build-publish statistico-proto-data-go ${CIRCLE_SHA1}
       - run:
           name: Release statistico-odds-compiler Go package
           command: |
             cd ./odds_compiler/go
-            jfrog rt go-publish v1.0.0 --build-name=statistico-proto-odds-compiler-go --build-number=${CIRCLE_SHA1}
+            jfrog rt go-publish go v1.0.0 --build-name=statistico-proto-odds-compiler-go --build-number=${CIRCLE_SHA1}
             jfrog rt build-publish statistico-proto-odds-compiler-go ${CIRCLE_SHA1}

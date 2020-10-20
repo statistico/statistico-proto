@@ -19,16 +19,6 @@ jobs:
       - artifactory/install
       - artifactory/configure
       - run:
-          name: Update Go version
-          command: |
-            sudo apt-get remove golang-go
-            sudo apt-get remove --auto-remove golang-go
-            sudo rm -rvf /usr/local/go
-            wget https://dl.google.com/go/go1.14.linux-amd64.tar.gz
-            sudo tar -xvf go1.14.linux-amd64.tar.gz
-            sudo mv go /usr/local
-            go version
-      - run:
           name: Generate code from proto files
           command: |
             ./bin/generate

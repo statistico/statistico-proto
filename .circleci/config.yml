@@ -1,6 +1,6 @@
 version: 2.1
 orbs:
-  artifactory-orb: jfrog/artifactory-orb@1.0.1
+  artifactory-orb: circleci/artifactory-orb@1.0.1
 
 workflows:
   version: 2

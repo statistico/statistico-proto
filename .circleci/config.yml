@@ -7,9 +7,9 @@ workflows:
   build-release:
     jobs:
       - build-release:
-          filters:
-            branches:
-              only: master
+#          filters:
+#            branches:
+#              only: main
 
 jobs:
   build-release:

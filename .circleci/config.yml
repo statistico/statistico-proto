@@ -14,9 +14,9 @@ workflows:
 jobs:
   build-release:
     working_directory: ~/go/src/github.com/statistico/statistico-proto
-      machine: true
-      environment:
-        GOPATH: /home/circleci/go
+    machine: true
+    environment:
+      GOPATH: /home/circleci/go
     steps:
       - checkout
       - artifactory/install

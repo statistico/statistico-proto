@@ -20,7 +20,7 @@ jobs:
       - artifactory/configure
       - run:
           name: Enable Go modules
-          command: export GO111MODULE=on
+          command: go version
       - run:
           name: Generate code from proto files
           command: |

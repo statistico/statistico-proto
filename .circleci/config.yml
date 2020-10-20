@@ -6,7 +6,10 @@ workflows:
   version: 2
   build-release-packages:
     jobs:
-      - build-release
+      - build-release:
+          filters:
+            tags:
+              only: /^v.*/
 
 jobs:
   build-release:

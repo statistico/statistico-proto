@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package statistico_data;
+package statisticodata;
 
 message Round {
     uint64 id = 1;

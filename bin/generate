@@ -2,5 +2,4 @@
 
 echo "[INFO] Generating Statistico Data Service Files";
 docker run -v `pwd`:/defs namely/protoc-all -i ./data/go -d ./data -o ./data/go -l go
-docker run -v `pwd`:/defs namely/protoc-all -i ./odds_compiler/go -d ./odds_compiler -o ./odds_compiler/go -l go
 echo "[COMPLETE]";

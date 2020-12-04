@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package statisticodata;
+package statisticoproto;
 
 message Date {
   int64 utc = 1;

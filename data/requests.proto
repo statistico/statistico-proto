@@ -88,6 +88,8 @@ message TeamResultRequest {
     repeated uint64 season_ids = 6;
     // Order the date column to return results in specific order
     google.protobuf.StringValue sort = 7;
+    // Enrich the results response by including detailed match stats for each team
+    bool include_team_stats = 8;
 }
 
 message TeamSeasonsRequest {

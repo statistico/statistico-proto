@@ -26,7 +26,7 @@ jobs:
           command: |
             ./bin/generate
       - run:
-          name: Release statistico-data Go package
+          name: Release statistico-statistico-data Go package
           command: |
             mkdir ./data/go && cd ./data/go
             go mod init github.com/statistico/statistico-proto-data

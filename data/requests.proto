@@ -54,6 +54,14 @@ message SeasonCompetitionRequest {
     google.protobuf.StringValue sort = 2;
 }
 
+message SeasonFixtureRequest {
+    uint64 season_id = 1;
+    // RFC3339 formatted string i.e. "2006-01-02T15:04:05Z07:00"
+    string date_from = 2;
+    // RFC3339 formatted string i.e "2006-01-02T15:04:05Z07:00"
+    string date_to = 3;
+}
+
 message SeasonRequest {
     // The Season ID that the Result set relates to
     int64 season_id = 1;
@@ -88,8 +96,6 @@ message TeamResultRequest {
     repeated uint64 season_ids = 6;
     // Order the date column to return results in specific order
     google.protobuf.StringValue sort = 7;
-    // Enrich the results response by including detailed match stats for each team
-    bool include_team_stats = 8;
 }
 
 message TeamSeasonsRequest {

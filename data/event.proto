@@ -1,11 +1,9 @@
 syntax = "proto3";
 
-package proto;
-
-option go_package = "internal/app/grpc/proto";
+package statisticoproto;
 
 import "google/protobuf/wrappers.proto";
-import "internal/app/grpc/proto/requests.proto";
+import "requests.proto";
 
 service EventService {
     rpc FixtureEvents(FixtureRequest) returns (FixtureEventsResponse) {}

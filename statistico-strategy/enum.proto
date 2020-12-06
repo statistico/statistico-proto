@@ -1,0 +1,50 @@
+syntax = "proto3";
+
+package statisticoproto;
+
+enum Action {
+  FOR = 0;
+  AGAINST = 1;
+}
+
+enum Line {
+  CLOSING = 0;
+  MAX = 1;
+}
+
+enum Measure {
+  TOTAL = 0;
+  AVG = 1;
+}
+
+enum Metric {
+  GTE = 0;
+  LTE = 1;
+}
+
+enum Result {
+  WIN = 0;
+  LOSE = 1;
+  DRAW = 2;
+}
+
+enum Stat {
+  GOALS = 0;
+  SHOTS_ON_GOAL = 1;
+  XG = 2;
+}
+
+enum Team {
+  HOME_TEAM = 0;
+  AWAY_TEAM = 1;
+}
+enum TradeResult {
+  SUCCESS = 0;
+  FAIL = 1;
+}
+
+enum Venue {
+  HOME = 0;
+  AWAY = 1;
+  HOME_AWAY = 2;
+}

@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+package statisticoproto;
+
+import "enum.proto";
+
+message ResultFilter {
+  Team team = 1;
+  Result result = 2;
+  uint32 games = 3;
+  Metric metric = 4;
+  int32 value = 5;
+  Venue venue = 6;
+}
+
+message StatFilter {
+  Team team = 1;
+  Action action = 2;
+  uint32 games = 3;
+  Measure measure = 4;
+  Metric metric = 5;
+  Stat stat = 6;
+  float value = 7;
+  Venue venue = 8;
+}
+
+message SelectionFilter {
+  string name = 1;
+  Line line = 2;
+  repeated MetricOperator operators = 3;
+}
+
+message MetricOperator {
+  Metric metric = 1;
+  float value = 2;
+}

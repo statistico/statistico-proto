@@ -40,13 +40,13 @@ message MarketRunner {
   string market_id = 1;
   string market_name = 2;
   string runner_name = 3;
-  uint64 event_id = 5;
-  uint64 competition_id = 6;
-  uint64 season_id = 7;
-  string event_date = 8;
-  string side = 9;
-  string exchange = 10;
-  repeated Price prices = 11;
+  uint64 event_id = 4;
+  uint64 competition_id = 5;
+  uint64 season_id = 6;
+  string event_date = 7;
+  string side = 8;
+  string exchange = 9;
+  repeated Price prices = 10;
 }
 
 message Price {

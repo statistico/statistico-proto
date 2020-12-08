@@ -2,6 +2,7 @@ syntax = "proto3";
 
 package statisticoproto;
 
+import "filter.proto";
 import "google/protobuf/wrappers.proto";
 
 service MarketService {
@@ -15,25 +16,6 @@ message MarketRunnerRequest {
   repeated uint64 season_ids = 4;
   google.protobuf.StringValue dateFrom = 5;
   google.protobuf.StringValue dateTo = 6;
-}
-
-message RunnerFilter {
-  string name = 1;
-  enum Line {
-    CLOSING = 0;
-    MAX = 1;
-  }
-  Line line = 2;
-  repeated FilterOperator operators = 3;
-}
-
-message FilterOperator {
-  enum Operator {
-    GTE = 0;
-    LTE = 1;
-  };
-  Operator operator = 3;
-  float value = 4;
 }
 
 message MarketRunner {

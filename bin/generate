@@ -1,12 +1,5 @@
 #!/bin/bash
 
-echo "[INFO] Generating Statistico Data Service Files";
-docker run -v `pwd`:/defs namely/protoc-all -d ./statistico-data -o ./statistico-data/go -l go
-
-echo "[INFO] Generating Statistico Odds Warehouse Service Files";
-docker run -v `pwd`:/defs namely/protoc-all -i ./common -d ./statistico-odds-warehouse -o ./statistico-odds-warehouse/go -l go
-
-echo "[INFO] Generating Statistico Strategy Service Files";
-docker run -v `pwd`:/defs namely/protoc-all -i ./common -d ./statistico-strategy -o ./statistico-strategy/go -l go
-
+echo "[INFO] Generating Go Service Files";
+docker run -v `pwd`:/defs namely/protoc-all -d . -o ./go -l go
 echo "[COMPLETE]";

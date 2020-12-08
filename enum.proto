@@ -22,7 +22,7 @@ enum Metric {
   LTE = 1;
 }
 
-enum Result {
+enum ResultEnum {
   WIN = 0;
   LOSE = 1;
   DRAW = 2;
@@ -30,13 +30,13 @@ enum Result {
   LOSE_DRAW = 4;
 }
 
-enum Stat {
+enum StatEnum {
   GOALS = 0;
   SHOTS_ON_GOAL = 1;
   XG = 2;
 }
 
-enum Team {
+enum TeamEnum {
   HOME_TEAM = 0;
   AWAY_TEAM = 1;
 }
@@ -45,7 +45,7 @@ enum TradeResult {
   FAIL = 1;
 }
 
-enum Venue {
+enum VenueEnum {
   HOME = 0;
   AWAY = 1;
   HOME_AWAY = 2;

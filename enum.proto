@@ -2,22 +2,22 @@ syntax = "proto3";
 
 package statisticoproto;
 
-enum Action {
+enum ActionEnum {
   FOR = 0;
   AGAINST = 1;
 }
 
-enum Line {
+enum LineEnum {
   CLOSING = 0;
   MAX = 1;
 }
 
-enum Measure {
+enum MeasureEnum {
   TOTAL = 0;
   AVG = 1;
 }
 
-enum Metric {
+enum MetricEnum {
   GTE = 0;
   LTE = 1;
 }
@@ -40,7 +40,7 @@ enum TeamEnum {
   HOME_TEAM = 0;
   AWAY_TEAM = 1;
 }
-enum TradeResult {
+enum TradeResultEnum {
   SUCCESS = 0;
   FAIL = 1;
 }

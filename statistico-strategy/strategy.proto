@@ -12,7 +12,7 @@ service StrategyService {
 
 message StrategyTradeSearchRequest {
   string market = 1;
-  SelectionFilter selection_filter = 2;
+  MarketRunnerFilter market_runner_filter = 2;
   repeated uint64 competition_ids = 3;
   repeated uint64 season_ids = 4;
   google.protobuf.StringValue dateFrom = 5;
@@ -23,8 +23,8 @@ message StrategyTradeSearchRequest {
 
 message StrategyTrade {
   string market_name = 1;
-  string selection_name = 2;
-  float selection_price = 3;
+  string runner_name = 2;
+  float runner_price = 3;
   uint64 event_id = 4;
   uint64 competition_id = 5;
   uint64 season_id = 6;

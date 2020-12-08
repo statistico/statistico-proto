@@ -26,6 +26,8 @@ enum Result {
   WIN = 0;
   LOSE = 1;
   DRAW = 2;
+  WIN_DRAW = 3;
+  LOSE_DRAW = 4;
 }
 
 enum Stat {

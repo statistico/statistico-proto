@@ -8,23 +8,21 @@ message ResultFilter {
   Team team = 1;
   Result result = 2;
   uint32 games = 3;
-  Metric metric = 4;
-  int32 value = 5;
-  Venue venue = 6;
+  Venue venue = 4;
 }
 
 message StatFilter {
-  Team team = 1;
-  Action action = 2;
-  uint32 games = 3;
-  Measure measure = 4;
-  Metric metric = 5;
-  Stat stat = 6;
+  Stat stat = 1;
+  Team team = 2;
+  Action action = 3;
+  uint32 games = 4;
+  Measure measure = 5;
+  Metric metric = 6;
   float value = 7;
   Venue venue = 8;
 }
 
-message SelectionFilter {
+message MarketRunnerFilter {
   string name = 1;
   Line line = 2;
   repeated MetricOperator operators = 3;

@@ -29,5 +29,5 @@ message StrategyTrade {
   uint64 competition_id = 5;
   uint64 season_id = 6;
   string event_date = 7;
-  TradeResult result = 8;
+  TradeResultEnum result = 8;
 }

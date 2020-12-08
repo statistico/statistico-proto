@@ -5,30 +5,30 @@ package statisticoproto;
 import "enum.proto";
 
 message ResultFilter {
-  Team team = 1;
-  Result result = 2;
+  TeamEnum team = 1;
+  ResultEnum result = 2;
   uint32 games = 3;
-  Venue venue = 4;
+  VenueEnum venue = 4;
 }
 
 message StatFilter {
-  Stat stat = 1;
-  Team team = 2;
-  Action action = 3;
+  StatEnum stat = 1;
+  TeamEnum team = 2;
+  ActionEnum action = 3;
   uint32 games = 4;
-  Measure measure = 5;
-  Metric metric = 6;
+  MeasureEnum measure = 5;
+  MetricEnum metric = 6;
   float value = 7;
-  Venue venue = 8;
+  VenueEnum venue = 8;
 }
 
 message RunnerFilter {
   string name = 1;
-  Line line = 2;
+  LineEnum line = 2;
   repeated MetricOperator operators = 3;
 }
 
 message MetricOperator {
-  Metric metric = 1;
+  MetricEnum metric = 1;
   float value = 2;
 }

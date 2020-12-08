@@ -22,7 +22,7 @@ message StatFilter {
   Venue venue = 8;
 }
 
-message MarketRunnerFilter {
+message RunnerFilter {
   string name = 1;
   Line line = 2;
   repeated MetricOperator operators = 3;

@@ -12,7 +12,7 @@ service StrategyService {
 
 message StrategyTradeSearchRequest {
   string market = 1;
-  MarketRunnerFilter market_runner_filter = 2;
+  RunnerFilter market_runner_filter = 2;
   repeated uint64 competition_ids = 3;
   repeated uint64 season_ids = 4;
   google.protobuf.StringValue dateFrom = 5;

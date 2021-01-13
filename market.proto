@@ -6,7 +6,7 @@ import "filter.proto";
 import "google/protobuf/timestamp.proto";
 
 service MarketService {
-  rpc MarketRunnerSearch(MarketRunnerRequest) returns (stream MarketRunnerResponse) {}
+  rpc MarketRunnerSearch(MarketRunnerRequest) returns (stream MarketRunner) {}
 }
 
 message MarketRunnerRequest {
@@ -16,10 +16,6 @@ message MarketRunnerRequest {
   repeated uint64 season_ids = 4;
   google.protobuf.Timestamp dateFrom = 5;
   google.protobuf.Timestamp dateTo = 6;
-}
-
-message MarketRunnerResponse {
-  repeated MarketRunner runners = 1;
 }
 
 message MarketRunner {

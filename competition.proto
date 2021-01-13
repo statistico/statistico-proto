@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package statistico_proto_data;
+package statisticoproto;
 
 import "requests.proto";
 

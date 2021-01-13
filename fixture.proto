@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package statistico_proto_data;
+package statisticoproto;
 
 import "common.proto";
 import "competition.proto";
@@ -11,6 +11,7 @@ import "team.proto";
 import "venue.proto";
 
 service FixtureService {
+    rpc ListSeasonFixtures(SeasonFixtureRequest) returns (stream Fixture) {}
     rpc FixtureByID(FixtureRequest) returns (Fixture) {}
     rpc Search(FixtureSearchRequest) returns (stream Fixture) {}
 }

@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package statistico_proto_data;
+package statisticoproto;
 
 message Venue {
     uint64 id = 1;

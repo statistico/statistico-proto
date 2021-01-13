@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+package statisticoproto;
+
+import "enum.proto";
+import "filter.proto";
+import "google/protobuf/wrappers.proto";
+
+service StrategyService {
+  rpc StrategyTradeSearch(StrategyTradeSearchRequest) returns (stream StrategyTrade) {}
+}
+
+message StrategyTradeSearchRequest {
+  string market = 1;
+  RunnerFilter market_runner_filter = 2;
+  repeated uint64 competition_ids = 3;
+  repeated uint64 season_ids = 4;
+  google.protobuf.StringValue dateFrom = 5;
+  google.protobuf.StringValue dateTo = 6;
+  repeated ResultFilter result_filters = 7;
+  repeated StatFilter stat_filters = 8;
+}
+
+message StrategyTrade {
+  string market_name = 1;
+  string runner_name = 2;
+  float runner_price = 3;
+  uint64 event_id = 4;
+  uint64 competition_id = 5;
+  uint64 season_id = 6;
+  string event_date = 7;
+  TradeResultEnum result = 8;
+}

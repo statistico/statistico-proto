@@ -40,3 +40,4 @@ jobs:
 #            cd ./odds_compiler/go
 #            jfrog rt go-publish go v1.0.0 --build-name=statistico-proto-odds-compiler-go --build-number=${CIRCLE_SHA1}
 #            jfrog rt build-publish statistico-proto-odds-compiler-go ${CIRCLE_SHA1}
+

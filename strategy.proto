@@ -7,7 +7,7 @@ import "filter.proto";
 import "google/protobuf/timestamp.proto";
 
 service StrategyService {
-  rpc StrategyTradeSearch(StrategyTradeSearchRequest) returns (stream StrategyTradeResponse) {}
+  rpc StrategyTradeSearch(StrategyTradeSearchRequest) returns (stream StrategyTrade) {}
 }
 
 message StrategyTradeSearchRequest {
@@ -19,10 +19,6 @@ message StrategyTradeSearchRequest {
   google.protobuf.Timestamp dateTo = 6;
   repeated ResultFilter result_filters = 7;
   repeated StatFilter stat_filters = 8;
-}
-
-message StrategyTradeResponse {
-  repeated StrategyTrade trades = 1;
 }
 
 message StrategyTrade {

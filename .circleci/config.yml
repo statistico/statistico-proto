@@ -1,15 +1,12 @@
 version: 2.1
-orbs:
-  artifactory: jfrog/artifactory-orb@1.0.1
-
 workflows:
   version: 2
-  build-release:
+  build-release-packages:
     jobs:
       - build-release:
           filters:
-            branches:
-              only: master
+            tags:
+              only: /^v.*/
 
 jobs:
   build-release:
@@ -19,23 +16,6 @@ jobs:
       GOPATH: /home/circleci/go
     steps:
       - checkout
-      - artifactory/install
-      - artifactory/configure
       - run:
-          name: Generate code from proto files
-          command: |
-            ./bin/generate
-      - run:
-          name: Release statistico-statistico-data Go package
-          command: |
-            mkdir ./data/go && cd ./data/go
-            go mod init github.com/statistico/statistico-proto-data
-            jfrog rt go-publish v1.0.0 --build-name=statistico-proto-data-go --build-number=${CIRCLE_SHA1}
-            jfrog rt build-publish statistico-proto-data-go ${CIRCLE_SHA1}
-      - run:
-          name: Release statistico-odds-compiler Go package
-          command: |
-            mkdir ./odds_compiler/go && cd ./odds_compiler/go
-            go mod init github.com/statistico/statistico-proto-odds-compiler
-            jfrog rt go-publish v1.0.0 --build-name=statistico-proto-odds-compiler-go --build-number=${CIRCLE_SHA1}
-            jfrog rt build-publish statistico-proto-odds-compiler-go ${CIRCLE_SHA1}
+          name: Git tag echo
+          command: echo $CIRCLE_TAG

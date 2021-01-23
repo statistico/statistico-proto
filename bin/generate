@@ -1,5 +1,0 @@
-#!/bin/bash
-
-echo "[INFO] Generating Go Service Files";
-docker run -v `pwd`:/defs namely/protoc-all -d . -o ./go -l go
-echo "[COMPLETE]";

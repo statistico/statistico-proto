@@ -1,6 +1,8 @@
 syntax = "proto3";
 
-package statisticoproto;
+package statistico;
+
+option go_package = "github.com/statistico/statistico-proto;statistico";
 
 message Venue {
     uint64 id = 1;

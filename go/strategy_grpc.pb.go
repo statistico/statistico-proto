@@ -17,7 +17,7 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type StrategyServiceClient interface {
-	StrategyTradeSearch(ctx context.Context, in *StrategyTradeSearchRequest, opts ...grpc.CallOption) (StrategyService_StrategyTradeSearchClient, error)
+	StrategyTradeSearch(ctx context.Context, in *StrategyTradeSearchRequest, opts ...grpc.CallOption) (*StrategyTradeResponse, error)
 }
 
 type strategyServiceClient struct {
@@ -28,43 +28,20 @@ func NewStrategyServiceClient(cc grpc.ClientConnInterface) StrategyServiceClient
 	return &strategyServiceClient{cc}
 }
 
-func (c *strategyServiceClient) StrategyTradeSearch(ctx context.Context, in *StrategyTradeSearchRequest, opts ...grpc.CallOption) (StrategyService_StrategyTradeSearchClient, error) {
-	stream, err := c.cc.NewStream(ctx, &_StrategyService_serviceDesc.Streams[0], "/statistico.StrategyService/StrategyTradeSearch", opts...)
+func (c *strategyServiceClient) StrategyTradeSearch(ctx context.Context, in *StrategyTradeSearchRequest, opts ...grpc.CallOption) (*StrategyTradeResponse, error) {
+	out := new(StrategyTradeResponse)
+	err := c.cc.Invoke(ctx, "/statistico.StrategyService/StrategyTradeSearch", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
-	x := &strategyServiceStrategyTradeSearchClient{stream}
-	if err := x.ClientStream.SendMsg(in); err != nil {
-		return nil, err
-	}
-	if err := x.ClientStream.CloseSend(); err != nil {
-		return nil, err
-	}
-	return x, nil
-}
-
-type StrategyService_StrategyTradeSearchClient interface {
-	Recv() (*StrategyTrade, error)
-	grpc.ClientStream
-}
-
-type strategyServiceStrategyTradeSearchClient struct {
-	grpc.ClientStream
-}
-
-func (x *strategyServiceStrategyTradeSearchClient) Recv() (*StrategyTrade, error) {
-	m := new(StrategyTrade)
-	if err := x.ClientStream.RecvMsg(m); err != nil {
-		return nil, err
-	}
-	return m, nil
+	return out, nil
 }
 
 // StrategyServiceServer is the server API for StrategyService service.
 // All implementations must embed UnimplementedStrategyServiceServer
 // for forward compatibility
 type StrategyServiceServer interface {
-	StrategyTradeSearch(*StrategyTradeSearchRequest, StrategyService_StrategyTradeSearchServer) error
+	StrategyTradeSearch(context.Context, *StrategyTradeSearchRequest) (*StrategyTradeResponse, error)
 	mustEmbedUnimplementedStrategyServiceServer()
 }
 
@@ -72,8 +49,8 @@ type StrategyServiceServer interface {
 type UnimplementedStrategyServiceServer struct {
 }
 
-func (UnimplementedStrategyServiceServer) StrategyTradeSearch(*StrategyTradeSearchRequest, StrategyService_StrategyTradeSearchServer) error {
-	return status.Errorf(codes.Unimplemented, "method StrategyTradeSearch not implemented")
+func (UnimplementedStrategyServiceServer) StrategyTradeSearch(context.Context, *StrategyTradeSearchRequest) (*StrategyTradeResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method StrategyTradeSearch not implemented")
 }
 func (UnimplementedStrategyServiceServer) mustEmbedUnimplementedStrategyServiceServer() {}
 
@@ -88,37 +65,33 @@ func RegisterStrategyServiceServer(s grpc.ServiceRegistrar, srv StrategyServiceS
 	s.RegisterService(&_StrategyService_serviceDesc, srv)
 }
 
-func _StrategyService_StrategyTradeSearch_Handler(srv interface{}, stream grpc.ServerStream) error {
-	m := new(StrategyTradeSearchRequest)
-	if err := stream.RecvMsg(m); err != nil {
-		return err
+func _StrategyService_StrategyTradeSearch_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(StrategyTradeSearchRequest)
+	if err := dec(in); err != nil {
+		return nil, err
 	}
-	return srv.(StrategyServiceServer).StrategyTradeSearch(m, &strategyServiceStrategyTradeSearchServer{stream})
-}
-
-type StrategyService_StrategyTradeSearchServer interface {
-	Send(*StrategyTrade) error
-	grpc.ServerStream
-}
-
-type strategyServiceStrategyTradeSearchServer struct {
-	grpc.ServerStream
-}
-
-func (x *strategyServiceStrategyTradeSearchServer) Send(m *StrategyTrade) error {
-	return x.ServerStream.SendMsg(m)
+	if interceptor == nil {
+		return srv.(StrategyServiceServer).StrategyTradeSearch(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/statistico.StrategyService/StrategyTradeSearch",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(StrategyServiceServer).StrategyTradeSearch(ctx, req.(*StrategyTradeSearchRequest))
+	}
+	return interceptor(ctx, in, info, handler)
 }
 
 var _StrategyService_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "statistico.StrategyService",
 	HandlerType: (*StrategyServiceServer)(nil),
-	Methods:     []grpc.MethodDesc{},
-	Streams: []grpc.StreamDesc{
+	Methods: []grpc.MethodDesc{
 		{
-			StreamName:    "StrategyTradeSearch",
-			Handler:       _StrategyService_StrategyTradeSearch_Handler,
-			ServerStreams: true,
+			MethodName: "StrategyTradeSearch",
+			Handler:    _StrategyService_StrategyTradeSearch_Handler,
 		},
 	},
+	Streams:  []grpc.StreamDesc{},
 	Metadata: "strategy.proto",
 }

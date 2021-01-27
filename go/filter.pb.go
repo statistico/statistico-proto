@@ -199,124 +199,6 @@ func (x *StatFilter) GetVenue() VenueEnum {
 	return VenueEnum_HOME
 }
 
-type RunnerFilter struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	Name      string            `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	Line      LineEnum          `protobuf:"varint,2,opt,name=line,proto3,enum=statistico.LineEnum" json:"line,omitempty"`
-	Operators []*MetricOperator `protobuf:"bytes,3,rep,name=operators,proto3" json:"operators,omitempty"`
-}
-
-func (x *RunnerFilter) Reset() {
-	*x = RunnerFilter{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_filter_proto_msgTypes[2]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *RunnerFilter) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*RunnerFilter) ProtoMessage() {}
-
-func (x *RunnerFilter) ProtoReflect() protoreflect.Message {
-	mi := &file_filter_proto_msgTypes[2]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use RunnerFilter.ProtoReflect.Descriptor instead.
-func (*RunnerFilter) Descriptor() ([]byte, []int) {
-	return file_filter_proto_rawDescGZIP(), []int{2}
-}
-
-func (x *RunnerFilter) GetName() string {
-	if x != nil {
-		return x.Name
-	}
-	return ""
-}
-
-func (x *RunnerFilter) GetLine() LineEnum {
-	if x != nil {
-		return x.Line
-	}
-	return LineEnum_CLOSING
-}
-
-func (x *RunnerFilter) GetOperators() []*MetricOperator {
-	if x != nil {
-		return x.Operators
-	}
-	return nil
-}
-
-type MetricOperator struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	Metric MetricEnum `protobuf:"varint,1,opt,name=metric,proto3,enum=statistico.MetricEnum" json:"metric,omitempty"`
-	Value  float32    `protobuf:"fixed32,2,opt,name=value,proto3" json:"value,omitempty"`
-}
-
-func (x *MetricOperator) Reset() {
-	*x = MetricOperator{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_filter_proto_msgTypes[3]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *MetricOperator) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*MetricOperator) ProtoMessage() {}
-
-func (x *MetricOperator) ProtoReflect() protoreflect.Message {
-	mi := &file_filter_proto_msgTypes[3]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use MetricOperator.ProtoReflect.Descriptor instead.
-func (*MetricOperator) Descriptor() ([]byte, []int) {
-	return file_filter_proto_rawDescGZIP(), []int{3}
-}
-
-func (x *MetricOperator) GetMetric() MetricEnum {
-	if x != nil {
-		return x.Metric
-	}
-	return MetricEnum_GTE
-}
-
-func (x *MetricOperator) GetValue() float32 {
-	if x != nil {
-		return x.Value
-	}
-	return 0
-}
-
 var File_filter_proto protoreflect.FileDescriptor
 
 var file_filter_proto_rawDesc = []byte{
@@ -354,25 +236,10 @@ var file_filter_proto_rawDesc = []byte{
 	0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x12, 0x2b, 0x0a, 0x05, 0x76, 0x65, 0x6e, 0x75, 0x65, 0x18,
 	0x08, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x15, 0x2e, 0x73, 0x74, 0x61, 0x74, 0x69, 0x73, 0x74, 0x69,
 	0x63, 0x6f, 0x2e, 0x56, 0x65, 0x6e, 0x75, 0x65, 0x45, 0x6e, 0x75, 0x6d, 0x52, 0x05, 0x76, 0x65,
-	0x6e, 0x75, 0x65, 0x22, 0x86, 0x01, 0x0a, 0x0c, 0x52, 0x75, 0x6e, 0x6e, 0x65, 0x72, 0x46, 0x69,
-	0x6c, 0x74, 0x65, 0x72, 0x12, 0x12, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01,
-	0x28, 0x09, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x12, 0x28, 0x0a, 0x04, 0x6c, 0x69, 0x6e, 0x65,
-	0x18, 0x02, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x14, 0x2e, 0x73, 0x74, 0x61, 0x74, 0x69, 0x73, 0x74,
-	0x69, 0x63, 0x6f, 0x2e, 0x4c, 0x69, 0x6e, 0x65, 0x45, 0x6e, 0x75, 0x6d, 0x52, 0x04, 0x6c, 0x69,
-	0x6e, 0x65, 0x12, 0x38, 0x0a, 0x09, 0x6f, 0x70, 0x65, 0x72, 0x61, 0x74, 0x6f, 0x72, 0x73, 0x18,
-	0x03, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x1a, 0x2e, 0x73, 0x74, 0x61, 0x74, 0x69, 0x73, 0x74, 0x69,
-	0x63, 0x6f, 0x2e, 0x4d, 0x65, 0x74, 0x72, 0x69, 0x63, 0x4f, 0x70, 0x65, 0x72, 0x61, 0x74, 0x6f,
-	0x72, 0x52, 0x09, 0x6f, 0x70, 0x65, 0x72, 0x61, 0x74, 0x6f, 0x72, 0x73, 0x22, 0x56, 0x0a, 0x0e,
-	0x4d, 0x65, 0x74, 0x72, 0x69, 0x63, 0x4f, 0x70, 0x65, 0x72, 0x61, 0x74, 0x6f, 0x72, 0x12, 0x2e,
-	0x0a, 0x06, 0x6d, 0x65, 0x74, 0x72, 0x69, 0x63, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x16,
-	0x2e, 0x73, 0x74, 0x61, 0x74, 0x69, 0x73, 0x74, 0x69, 0x63, 0x6f, 0x2e, 0x4d, 0x65, 0x74, 0x72,
-	0x69, 0x63, 0x45, 0x6e, 0x75, 0x6d, 0x52, 0x06, 0x6d, 0x65, 0x74, 0x72, 0x69, 0x63, 0x12, 0x14,
-	0x0a, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x02, 0x52, 0x05, 0x76,
-	0x61, 0x6c, 0x75, 0x65, 0x42, 0x33, 0x5a, 0x31, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63,
-	0x6f, 0x6d, 0x2f, 0x73, 0x74, 0x61, 0x74, 0x69, 0x73, 0x74, 0x69, 0x63, 0x6f, 0x2f, 0x73, 0x74,
-	0x61, 0x74, 0x69, 0x73, 0x74, 0x69, 0x63, 0x6f, 0x2d, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x3b, 0x73,
-	0x74, 0x61, 0x74, 0x69, 0x73, 0x74, 0x69, 0x63, 0x6f, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f,
-	0x33,
+	0x6e, 0x75, 0x65, 0x42, 0x33, 0x5a, 0x31, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f,
+	0x6d, 0x2f, 0x73, 0x74, 0x61, 0x74, 0x69, 0x73, 0x74, 0x69, 0x63, 0x6f, 0x2f, 0x73, 0x74, 0x61,
+	0x74, 0x69, 0x73, 0x74, 0x69, 0x63, 0x6f, 0x2d, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x3b, 0x73, 0x74,
+	0x61, 0x74, 0x69, 0x73, 0x74, 0x69, 0x63, 0x6f, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -387,39 +254,33 @@ func file_filter_proto_rawDescGZIP() []byte {
 	return file_filter_proto_rawDescData
 }
 
-var file_filter_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
+var file_filter_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
 var file_filter_proto_goTypes = []interface{}{
-	(*ResultFilter)(nil),   // 0: statistico.ResultFilter
-	(*StatFilter)(nil),     // 1: statistico.StatFilter
-	(*RunnerFilter)(nil),   // 2: statistico.RunnerFilter
-	(*MetricOperator)(nil), // 3: statistico.MetricOperator
-	(TeamEnum)(0),          // 4: statistico.TeamEnum
-	(ResultEnum)(0),        // 5: statistico.ResultEnum
-	(VenueEnum)(0),         // 6: statistico.VenueEnum
-	(StatEnum)(0),          // 7: statistico.StatEnum
-	(ActionEnum)(0),        // 8: statistico.ActionEnum
-	(MeasureEnum)(0),       // 9: statistico.MeasureEnum
-	(MetricEnum)(0),        // 10: statistico.MetricEnum
-	(LineEnum)(0),          // 11: statistico.LineEnum
+	(*ResultFilter)(nil), // 0: statistico.ResultFilter
+	(*StatFilter)(nil),   // 1: statistico.StatFilter
+	(TeamEnum)(0),        // 2: statistico.TeamEnum
+	(ResultEnum)(0),      // 3: statistico.ResultEnum
+	(VenueEnum)(0),       // 4: statistico.VenueEnum
+	(StatEnum)(0),        // 5: statistico.StatEnum
+	(ActionEnum)(0),      // 6: statistico.ActionEnum
+	(MeasureEnum)(0),     // 7: statistico.MeasureEnum
+	(MetricEnum)(0),      // 8: statistico.MetricEnum
 }
 var file_filter_proto_depIdxs = []int32{
-	4,  // 0: statistico.ResultFilter.team:type_name -> statistico.TeamEnum
-	5,  // 1: statistico.ResultFilter.result:type_name -> statistico.ResultEnum
-	6,  // 2: statistico.ResultFilter.venue:type_name -> statistico.VenueEnum
-	7,  // 3: statistico.StatFilter.stat:type_name -> statistico.StatEnum
-	4,  // 4: statistico.StatFilter.team:type_name -> statistico.TeamEnum
-	8,  // 5: statistico.StatFilter.action:type_name -> statistico.ActionEnum
-	9,  // 6: statistico.StatFilter.measure:type_name -> statistico.MeasureEnum
-	10, // 7: statistico.StatFilter.metric:type_name -> statistico.MetricEnum
-	6,  // 8: statistico.StatFilter.venue:type_name -> statistico.VenueEnum
-	11, // 9: statistico.RunnerFilter.line:type_name -> statistico.LineEnum
-	3,  // 10: statistico.RunnerFilter.operators:type_name -> statistico.MetricOperator
-	10, // 11: statistico.MetricOperator.metric:type_name -> statistico.MetricEnum
-	12, // [12:12] is the sub-list for method output_type
-	12, // [12:12] is the sub-list for method input_type
-	12, // [12:12] is the sub-list for extension type_name
-	12, // [12:12] is the sub-list for extension extendee
-	0,  // [0:12] is the sub-list for field type_name
+	2, // 0: statistico.ResultFilter.team:type_name -> statistico.TeamEnum
+	3, // 1: statistico.ResultFilter.result:type_name -> statistico.ResultEnum
+	4, // 2: statistico.ResultFilter.venue:type_name -> statistico.VenueEnum
+	5, // 3: statistico.StatFilter.stat:type_name -> statistico.StatEnum
+	2, // 4: statistico.StatFilter.team:type_name -> statistico.TeamEnum
+	6, // 5: statistico.StatFilter.action:type_name -> statistico.ActionEnum
+	7, // 6: statistico.StatFilter.measure:type_name -> statistico.MeasureEnum
+	8, // 7: statistico.StatFilter.metric:type_name -> statistico.MetricEnum
+	4, // 8: statistico.StatFilter.venue:type_name -> statistico.VenueEnum
+	9, // [9:9] is the sub-list for method output_type
+	9, // [9:9] is the sub-list for method input_type
+	9, // [9:9] is the sub-list for extension type_name
+	9, // [9:9] is the sub-list for extension extendee
+	0, // [0:9] is the sub-list for field type_name
 }
 
 func init() { file_filter_proto_init() }
@@ -453,30 +314,6 @@ func file_filter_proto_init() {
 				return nil
 			}
 		}
-		file_filter_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*RunnerFilter); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_filter_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*MetricOperator); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
@@ -484,7 +321,7 @@ func file_filter_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_filter_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   4,
+			NumMessages:   2,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

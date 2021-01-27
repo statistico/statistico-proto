@@ -23,14 +23,3 @@ message StatFilter {
   float value = 7;
   VenueEnum venue = 8;
 }
-
-message RunnerFilter {
-  string name = 1;
-  LineEnum line = 2;
-  repeated MetricOperator operators = 3;
-}
-
-message MetricOperator {
-  MetricEnum metric = 1;
-  float value = 2;
-}

@@ -4,20 +4,22 @@ package statistico;
 
 option go_package = "github.com/statistico/statistico-proto;statistico";
 
-import "filter.proto";
 import "google/protobuf/timestamp.proto";
+import "google/protobuf/wrappers.proto";
 
 service MarketService {
   rpc MarketRunnerSearch(MarketRunnerRequest) returns (stream MarketRunner) {}
 }
 
 message MarketRunnerRequest {
-  string name = 1;
-  RunnerFilter runner_filter = 2;
-  repeated uint64 competition_ids = 3;
-  repeated uint64 season_ids = 4;
-  google.protobuf.Timestamp dateFrom = 5;
-  google.protobuf.Timestamp dateTo = 6;
+  string market = 1;
+  string runner = 2;
+  google.protobuf.FloatValue min_odds = 3;
+  google.protobuf.FloatValue max_odds = 4;
+  repeated uint64 competition_ids = 5;
+  repeated uint64 season_ids = 6;
+  google.protobuf.Timestamp dateFrom = 7;
+  google.protobuf.Timestamp dateTo = 8;
 }
 
 message MarketRunner {

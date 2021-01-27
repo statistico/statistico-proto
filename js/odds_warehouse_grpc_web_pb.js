@@ -20,7 +20,7 @@ var google_protobuf_timestamp_pb = require('google-protobuf/google/protobuf/time
 
 var google_protobuf_wrappers_pb = require('google-protobuf/google/protobuf/wrappers_pb.js')
 const proto = {};
-proto.statistico = require('./market_pb.js');
+proto.statistico = require('./odds_warehouse_pb.js');
 
 /**
  * @param {string} hostname
@@ -30,7 +30,7 @@ proto.statistico = require('./market_pb.js');
  * @struct
  * @final
  */
-proto.statistico.MarketServiceClient =
+proto.statistico.OddsWarehouseServiceClient =
     function(hostname, credentials, options) {
   if (!options) options = {};
   options['format'] = 'text';
@@ -56,7 +56,7 @@ proto.statistico.MarketServiceClient =
  * @struct
  * @final
  */
-proto.statistico.MarketServicePromiseClient =
+proto.statistico.OddsWarehouseServicePromiseClient =
     function(hostname, credentials, options) {
   if (!options) options = {};
   options['format'] = 'text';
@@ -80,8 +80,8 @@ proto.statistico.MarketServicePromiseClient =
  *   !proto.statistico.MarketRunnerRequest,
  *   !proto.statistico.MarketRunner>}
  */
-const methodDescriptor_MarketService_MarketRunnerSearch = new grpc.web.MethodDescriptor(
-  '/statistico.MarketService/MarketRunnerSearch',
+const methodDescriptor_OddsWarehouseService_MarketRunnerSearch = new grpc.web.MethodDescriptor(
+  '/statistico.OddsWarehouseService/MarketRunnerSearch',
   grpc.web.MethodType.SERVER_STREAMING,
   proto.statistico.MarketRunnerRequest,
   proto.statistico.MarketRunner,
@@ -102,7 +102,7 @@ const methodDescriptor_MarketService_MarketRunnerSearch = new grpc.web.MethodDes
  *   !proto.statistico.MarketRunnerRequest,
  *   !proto.statistico.MarketRunner>}
  */
-const methodInfo_MarketService_MarketRunnerSearch = new grpc.web.AbstractClientBase.MethodInfo(
+const methodInfo_OddsWarehouseService_MarketRunnerSearch = new grpc.web.AbstractClientBase.MethodInfo(
   proto.statistico.MarketRunner,
   /**
    * @param {!proto.statistico.MarketRunnerRequest} request
@@ -122,13 +122,13 @@ const methodInfo_MarketService_MarketRunnerSearch = new grpc.web.AbstractClientB
  * @return {!grpc.web.ClientReadableStream<!proto.statistico.MarketRunner>}
  *     The XHR Node Readable Stream
  */
-proto.statistico.MarketServiceClient.prototype.marketRunnerSearch =
+proto.statistico.OddsWarehouseServiceClient.prototype.marketRunnerSearch =
     function(request, metadata) {
   return this.client_.serverStreaming(this.hostname_ +
-      '/statistico.MarketService/MarketRunnerSearch',
+      '/statistico.OddsWarehouseService/MarketRunnerSearch',
       request,
       metadata || {},
-      methodDescriptor_MarketService_MarketRunnerSearch);
+      methodDescriptor_OddsWarehouseService_MarketRunnerSearch);
 };
 
 
@@ -139,13 +139,13 @@ proto.statistico.MarketServiceClient.prototype.marketRunnerSearch =
  * @return {!grpc.web.ClientReadableStream<!proto.statistico.MarketRunner>}
  *     The XHR Node Readable Stream
  */
-proto.statistico.MarketServicePromiseClient.prototype.marketRunnerSearch =
+proto.statistico.OddsWarehouseServicePromiseClient.prototype.marketRunnerSearch =
     function(request, metadata) {
   return this.client_.serverStreaming(this.hostname_ +
-      '/statistico.MarketService/MarketRunnerSearch',
+      '/statistico.OddsWarehouseService/MarketRunnerSearch',
       request,
       metadata || {},
-      methodDescriptor_MarketService_MarketRunnerSearch);
+      methodDescriptor_OddsWarehouseService_MarketRunnerSearch);
 };
 
 

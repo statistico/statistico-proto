@@ -18,12 +18,13 @@ message StrategyTradeSearchRequest {
   string runner = 2;
   google.protobuf.FloatValue min_odds = 3;
   google.protobuf.FloatValue max_odds = 4;
-  repeated uint64 competition_ids = 5;
-  repeated uint64 season_ids = 6;
-  google.protobuf.Timestamp dateFrom = 7;
-  google.protobuf.Timestamp dateTo = 8;
-  repeated ResultFilter result_filters = 9;
-  repeated StatFilter stat_filters = 10;
+  string line = 5;
+  repeated uint64 competition_ids = 6;
+  repeated uint64 season_ids = 7;
+  google.protobuf.Timestamp dateFrom = 8;
+  google.protobuf.Timestamp dateTo = 9;
+  repeated ResultFilter result_filters = 10;
+  repeated StatFilter stat_filters = 11;
 }
 
 message StrategyTrade {

@@ -40,7 +40,7 @@ if (goog.DEBUG && !COMPILED) {
  * @private {!Array<number>}
  * @const
  */
-proto.statistico.StrategyTradeSearchRequest.repeatedFields_ = [5,6,9,10];
+proto.statistico.StrategyTradeSearchRequest.repeatedFields_ = [6,7,10,11];
 
 
 
@@ -75,8 +75,9 @@ proto.statistico.StrategyTradeSearchRequest.toObject = function(includeInstance,
     runner: jspb.Message.getFieldWithDefault(msg, 2, ""),
     minOdds: (f = msg.getMinOdds()) && google_protobuf_wrappers_pb.FloatValue.toObject(includeInstance, f),
     maxOdds: (f = msg.getMaxOdds()) && google_protobuf_wrappers_pb.FloatValue.toObject(includeInstance, f),
-    competitionIdsList: jspb.Message.getRepeatedField(msg, 5),
-    seasonIdsList: jspb.Message.getRepeatedField(msg, 6),
+    line: jspb.Message.getFieldWithDefault(msg, 5, ""),
+    competitionIdsList: jspb.Message.getRepeatedField(msg, 6),
+    seasonIdsList: jspb.Message.getRepeatedField(msg, 7),
     datefrom: (f = msg.getDatefrom()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
     dateto: (f = msg.getDateto()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
     resultFiltersList: jspb.Message.toObjectList(msg.getResultFiltersList(),
@@ -138,29 +139,33 @@ proto.statistico.StrategyTradeSearchRequest.deserializeBinaryFromReader = functi
       msg.setMaxOdds(value);
       break;
     case 5:
-      var value = /** @type {!Array<number>} */ (reader.readPackedUint64());
-      msg.setCompetitionIdsList(value);
+      var value = /** @type {string} */ (reader.readString());
+      msg.setLine(value);
       break;
     case 6:
       var value = /** @type {!Array<number>} */ (reader.readPackedUint64());
-      msg.setSeasonIdsList(value);
+      msg.setCompetitionIdsList(value);
       break;
     case 7:
-      var value = new google_protobuf_timestamp_pb.Timestamp;
-      reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
-      msg.setDatefrom(value);
+      var value = /** @type {!Array<number>} */ (reader.readPackedUint64());
+      msg.setSeasonIdsList(value);
       break;
     case 8:
       var value = new google_protobuf_timestamp_pb.Timestamp;
       reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
-      msg.setDateto(value);
+      msg.setDatefrom(value);
       break;
     case 9:
+      var value = new google_protobuf_timestamp_pb.Timestamp;
+      reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
+      msg.setDateto(value);
+      break;
+    case 10:
       var value = new filter_pb.ResultFilter;
       reader.readMessage(value,filter_pb.ResultFilter.deserializeBinaryFromReader);
       msg.addResultFilters(value);
       break;
-    case 10:
+    case 11:
       var value = new filter_pb.StatFilter;
       reader.readMessage(value,filter_pb.StatFilter.deserializeBinaryFromReader);
       msg.addStatFilters(value);
@@ -224,29 +229,28 @@ proto.statistico.StrategyTradeSearchRequest.serializeBinaryToWriter = function(m
       google_protobuf_wrappers_pb.FloatValue.serializeBinaryToWriter
     );
   }
-  f = message.getCompetitionIdsList();
+  f = message.getLine();
   if (f.length > 0) {
-    writer.writePackedUint64(
+    writer.writeString(
       5,
       f
     );
   }
-  f = message.getSeasonIdsList();
+  f = message.getCompetitionIdsList();
   if (f.length > 0) {
     writer.writePackedUint64(
       6,
       f
     );
   }
-  f = message.getDatefrom();
-  if (f != null) {
-    writer.writeMessage(
+  f = message.getSeasonIdsList();
+  if (f.length > 0) {
+    writer.writePackedUint64(
       7,
-      f,
-      google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
+      f
     );
   }
-  f = message.getDateto();
+  f = message.getDatefrom();
   if (f != null) {
     writer.writeMessage(
       8,
@@ -254,10 +258,18 @@ proto.statistico.StrategyTradeSearchRequest.serializeBinaryToWriter = function(m
       google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
     );
   }
+  f = message.getDateto();
+  if (f != null) {
+    writer.writeMessage(
+      9,
+      f,
+      google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
+    );
+  }
   f = message.getResultFiltersList();
   if (f.length > 0) {
     writer.writeRepeatedMessage(
-      9,
+      10,
       f,
       filter_pb.ResultFilter.serializeBinaryToWriter
     );
@@ -265,7 +277,7 @@ proto.statistico.StrategyTradeSearchRequest.serializeBinaryToWriter = function(m
   f = message.getStatFiltersList();
   if (f.length > 0) {
     writer.writeRepeatedMessage(
-      10,
+      11,
       f,
       filter_pb.StatFilter.serializeBinaryToWriter
     );
@@ -364,17 +376,32 @@ proto.statistico.StrategyTradeSearchRequest.prototype.hasMaxOdds = function() {
 
 
 /**
- * repeated uint64 competition_ids = 5;
+ * optional string line = 5;
+ * @return {string}
+ */
+proto.statistico.StrategyTradeSearchRequest.prototype.getLine = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
+};
+
+
+/** @param {string} value */
+proto.statistico.StrategyTradeSearchRequest.prototype.setLine = function(value) {
+  jspb.Message.setProto3StringField(this, 5, value);
+};
+
+
+/**
+ * repeated uint64 competition_ids = 6;
  * @return {!Array<number>}
  */
 proto.statistico.StrategyTradeSearchRequest.prototype.getCompetitionIdsList = function() {
-  return /** @type {!Array<number>} */ (jspb.Message.getRepeatedField(this, 5));
+  return /** @type {!Array<number>} */ (jspb.Message.getRepeatedField(this, 6));
 };
 
 
 /** @param {!Array<number>} value */
 proto.statistico.StrategyTradeSearchRequest.prototype.setCompetitionIdsList = function(value) {
-  jspb.Message.setField(this, 5, value || []);
+  jspb.Message.setField(this, 6, value || []);
 };
 
 
@@ -383,7 +410,7 @@ proto.statistico.StrategyTradeSearchRequest.prototype.setCompetitionIdsList = fu
  * @param {number=} opt_index
  */
 proto.statistico.StrategyTradeSearchRequest.prototype.addCompetitionIds = function(value, opt_index) {
-  jspb.Message.addToRepeatedField(this, 5, value, opt_index);
+  jspb.Message.addToRepeatedField(this, 6, value, opt_index);
 };
 
 
@@ -393,17 +420,17 @@ proto.statistico.StrategyTradeSearchRequest.prototype.clearCompetitionIdsList = 
 
 
 /**
- * repeated uint64 season_ids = 6;
+ * repeated uint64 season_ids = 7;
  * @return {!Array<number>}
  */
 proto.statistico.StrategyTradeSearchRequest.prototype.getSeasonIdsList = function() {
-  return /** @type {!Array<number>} */ (jspb.Message.getRepeatedField(this, 6));
+  return /** @type {!Array<number>} */ (jspb.Message.getRepeatedField(this, 7));
 };
 
 
 /** @param {!Array<number>} value */
 proto.statistico.StrategyTradeSearchRequest.prototype.setSeasonIdsList = function(value) {
-  jspb.Message.setField(this, 6, value || []);
+  jspb.Message.setField(this, 7, value || []);
 };
 
 
@@ -412,7 +439,7 @@ proto.statistico.StrategyTradeSearchRequest.prototype.setSeasonIdsList = functio
  * @param {number=} opt_index
  */
 proto.statistico.StrategyTradeSearchRequest.prototype.addSeasonIds = function(value, opt_index) {
-  jspb.Message.addToRepeatedField(this, 6, value, opt_index);
+  jspb.Message.addToRepeatedField(this, 7, value, opt_index);
 };
 
 
@@ -422,18 +449,18 @@ proto.statistico.StrategyTradeSearchRequest.prototype.clearSeasonIdsList = funct
 
 
 /**
- * optional google.protobuf.Timestamp dateFrom = 7;
+ * optional google.protobuf.Timestamp dateFrom = 8;
  * @return {?proto.google.protobuf.Timestamp}
  */
 proto.statistico.StrategyTradeSearchRequest.prototype.getDatefrom = function() {
   return /** @type{?proto.google.protobuf.Timestamp} */ (
-    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 7));
+    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 8));
 };
 
 
 /** @param {?proto.google.protobuf.Timestamp|undefined} value */
 proto.statistico.StrategyTradeSearchRequest.prototype.setDatefrom = function(value) {
-  jspb.Message.setWrapperField(this, 7, value);
+  jspb.Message.setWrapperField(this, 8, value);
 };
 
 
@@ -447,23 +474,23 @@ proto.statistico.StrategyTradeSearchRequest.prototype.clearDatefrom = function()
  * @return {!boolean}
  */
 proto.statistico.StrategyTradeSearchRequest.prototype.hasDatefrom = function() {
-  return jspb.Message.getField(this, 7) != null;
+  return jspb.Message.getField(this, 8) != null;
 };
 
 
 /**
- * optional google.protobuf.Timestamp dateTo = 8;
+ * optional google.protobuf.Timestamp dateTo = 9;
  * @return {?proto.google.protobuf.Timestamp}
  */
 proto.statistico.StrategyTradeSearchRequest.prototype.getDateto = function() {
   return /** @type{?proto.google.protobuf.Timestamp} */ (
-    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 8));
+    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 9));
 };
 
 
 /** @param {?proto.google.protobuf.Timestamp|undefined} value */
 proto.statistico.StrategyTradeSearchRequest.prototype.setDateto = function(value) {
-  jspb.Message.setWrapperField(this, 8, value);
+  jspb.Message.setWrapperField(this, 9, value);
 };
 
 
@@ -477,23 +504,23 @@ proto.statistico.StrategyTradeSearchRequest.prototype.clearDateto = function() {
  * @return {!boolean}
  */
 proto.statistico.StrategyTradeSearchRequest.prototype.hasDateto = function() {
-  return jspb.Message.getField(this, 8) != null;
+  return jspb.Message.getField(this, 9) != null;
 };
 
 
 /**
- * repeated ResultFilter result_filters = 9;
+ * repeated ResultFilter result_filters = 10;
  * @return {!Array<!proto.statistico.ResultFilter>}
  */
 proto.statistico.StrategyTradeSearchRequest.prototype.getResultFiltersList = function() {
   return /** @type{!Array<!proto.statistico.ResultFilter>} */ (
-    jspb.Message.getRepeatedWrapperField(this, filter_pb.ResultFilter, 9));
+    jspb.Message.getRepeatedWrapperField(this, filter_pb.ResultFilter, 10));
 };
 
 
 /** @param {!Array<!proto.statistico.ResultFilter>} value */
 proto.statistico.StrategyTradeSearchRequest.prototype.setResultFiltersList = function(value) {
-  jspb.Message.setRepeatedWrapperField(this, 9, value);
+  jspb.Message.setRepeatedWrapperField(this, 10, value);
 };
 
 
@@ -503,7 +530,7 @@ proto.statistico.StrategyTradeSearchRequest.prototype.setResultFiltersList = fun
  * @return {!proto.statistico.ResultFilter}
  */
 proto.statistico.StrategyTradeSearchRequest.prototype.addResultFilters = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(this, 9, opt_value, proto.statistico.ResultFilter, opt_index);
+  return jspb.Message.addToRepeatedWrapperField(this, 10, opt_value, proto.statistico.ResultFilter, opt_index);
 };
 
 
@@ -513,18 +540,18 @@ proto.statistico.StrategyTradeSearchRequest.prototype.clearResultFiltersList = f
 
 
 /**
- * repeated StatFilter stat_filters = 10;
+ * repeated StatFilter stat_filters = 11;
  * @return {!Array<!proto.statistico.StatFilter>}
  */
 proto.statistico.StrategyTradeSearchRequest.prototype.getStatFiltersList = function() {
   return /** @type{!Array<!proto.statistico.StatFilter>} */ (
-    jspb.Message.getRepeatedWrapperField(this, filter_pb.StatFilter, 10));
+    jspb.Message.getRepeatedWrapperField(this, filter_pb.StatFilter, 11));
 };
 
 
 /** @param {!Array<!proto.statistico.StatFilter>} value */
 proto.statistico.StrategyTradeSearchRequest.prototype.setStatFiltersList = function(value) {
-  jspb.Message.setRepeatedWrapperField(this, 10, value);
+  jspb.Message.setRepeatedWrapperField(this, 11, value);
 };
 
 
@@ -534,7 +561,7 @@ proto.statistico.StrategyTradeSearchRequest.prototype.setStatFiltersList = funct
  * @return {!proto.statistico.StatFilter}
  */
 proto.statistico.StrategyTradeSearchRequest.prototype.addStatFilters = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(this, 10, opt_value, proto.statistico.StatFilter, opt_index);
+  return jspb.Message.addToRepeatedWrapperField(this, 11, opt_value, proto.statistico.StatFilter, opt_index);
 };
 
 

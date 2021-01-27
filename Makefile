@@ -1,7 +1,10 @@
 build:
-	protoc -I${GOPATH}/src/github.com/grpc-ecosystem/grpc-gateway \
-		-I${GOPATH}/src/github.com/grpc-ecosystem/grpc-gateway/third_party/googleapis \
-		--go_out go --go_opt paths=source_relative \
-       --go-grpc_out go --go-grpc_opt paths=source_relative \
-       --proto_path=. \
-       ./*.proto
+	protoc --proto_path=./proto \
+		--go_out=paths=source_relative:go \
+       --go-grpc_out=paths=source_relative:go \
+       ./proto/*.proto
+
+	protoc --proto_path=./proto \
+		--js_out=import_style=commonjs,binary:js \
+	   --grpc-web_out=import_style=commonjs,mode=grpcwebtext:js \
+	   ./proto/*.proto

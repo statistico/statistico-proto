@@ -44,8 +44,8 @@ enum TeamEnum {
   AWAY_TEAM = 1;
 }
 enum TradeResultEnum {
-  SUCCESS = 0;
-  FAIL = 1;
+  FAIL = 0;
+  SUCCESS = 1;
 }
 
 enum VenueEnum {

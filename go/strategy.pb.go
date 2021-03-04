@@ -254,7 +254,7 @@ func (x *StrategyTrade) GetResult() TradeResultEnum {
 	if x != nil {
 		return x.Result
 	}
-	return TradeResultEnum_SUCCESS
+	return TradeResultEnum_FAIL
 }
 
 var File_strategy_proto protoreflect.FileDescriptor

@@ -16,6 +16,7 @@ goog.exportSymbol('proto.statistico.LineEnum', null, global);
 goog.exportSymbol('proto.statistico.MeasureEnum', null, global);
 goog.exportSymbol('proto.statistico.MetricEnum', null, global);
 goog.exportSymbol('proto.statistico.ResultEnum', null, global);
+goog.exportSymbol('proto.statistico.SideEnum', null, global);
 goog.exportSymbol('proto.statistico.StatEnum', null, global);
 goog.exportSymbol('proto.statistico.TeamEnum', null, global);
 goog.exportSymbol('proto.statistico.TradeResultEnum', null, global);
@@ -61,6 +62,14 @@ proto.statistico.ResultEnum = {
   DRAW: 2,
   WIN_DRAW: 3,
   LOSE_DRAW: 4
+};
+
+/**
+ * @enum {number}
+ */
+proto.statistico.SideEnum = {
+  BACK: 0,
+  LAY: 1
 };
 
 /**

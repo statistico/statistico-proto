@@ -19,21 +19,23 @@ message StrategyTradeSearchRequest {
   google.protobuf.FloatValue min_odds = 3;
   google.protobuf.FloatValue max_odds = 4;
   string line = 5;
-  repeated uint64 competition_ids = 6;
-  repeated uint64 season_ids = 7;
-  google.protobuf.Timestamp dateFrom = 8;
-  google.protobuf.Timestamp dateTo = 9;
-  repeated ResultFilter result_filters = 10;
-  repeated StatFilter stat_filters = 11;
+  SideEnum side = 6;
+  repeated uint64 competition_ids = 7;
+  repeated uint64 season_ids = 8;
+  google.protobuf.Timestamp dateFrom = 9;
+  google.protobuf.Timestamp dateTo = 10;
+  repeated ResultFilter result_filters = 11;
+  repeated StatFilter stat_filters = 12;
 }
 
 message StrategyTrade {
   string market_name = 1;
   string runner_name = 2;
   float runner_price = 3;
-  uint64 event_id = 4;
-  uint64 competition_id = 5;
-  uint64 season_id = 6;
-  google.protobuf.Timestamp event_date = 7;
-  TradeResultEnum result = 8;
+  SideEnum side = 4;
+  uint64 event_id = 5;
+  uint64 competition_id = 6;
+  uint64 season_id = 7;
+  google.protobuf.Timestamp event_date = 8;
+  TradeResultEnum result = 9;
 }

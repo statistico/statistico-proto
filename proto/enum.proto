@@ -4,7 +4,6 @@ package statistico;
 
 option go_package = "github.com/statistico/statistico-proto;statistico";
 
-
 enum ActionEnum {
   FOR = 0;
   AGAINST = 1;
@@ -31,6 +30,11 @@ enum ResultEnum {
   DRAW = 2;
   WIN_DRAW = 3;
   LOSE_DRAW = 4;
+}
+
+enum SideEnum {
+  BACK = 0;
+  LAY = 1;
 }
 
 enum StatEnum {

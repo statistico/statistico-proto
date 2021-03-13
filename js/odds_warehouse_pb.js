@@ -11,6 +11,7 @@ var jspb = require('google-protobuf');
 var goog = jspb;
 var global = Function('return this')();
 
+var enum_pb = require('./enum_pb.js');
 var google_protobuf_timestamp_pb = require('google-protobuf/google/protobuf/timestamp_pb.js');
 var google_protobuf_wrappers_pb = require('google-protobuf/google/protobuf/wrappers_pb.js');
 goog.exportSymbol('proto.statistico.MarketRunner', null, global);
@@ -39,7 +40,7 @@ if (goog.DEBUG && !COMPILED) {
  * @private {!Array<number>}
  * @const
  */
-proto.statistico.MarketRunnerRequest.repeatedFields_ = [6,7];
+proto.statistico.MarketRunnerRequest.repeatedFields_ = [7,8];
 
 
 
@@ -75,8 +76,9 @@ proto.statistico.MarketRunnerRequest.toObject = function(includeInstance, msg) {
     minOdds: (f = msg.getMinOdds()) && google_protobuf_wrappers_pb.FloatValue.toObject(includeInstance, f),
     maxOdds: (f = msg.getMaxOdds()) && google_protobuf_wrappers_pb.FloatValue.toObject(includeInstance, f),
     line: jspb.Message.getFieldWithDefault(msg, 5, ""),
-    competitionIdsList: jspb.Message.getRepeatedField(msg, 6),
-    seasonIdsList: jspb.Message.getRepeatedField(msg, 7),
+    side: jspb.Message.getFieldWithDefault(msg, 6, 0),
+    competitionIdsList: jspb.Message.getRepeatedField(msg, 7),
+    seasonIdsList: jspb.Message.getRepeatedField(msg, 8),
     datefrom: (f = msg.getDatefrom()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
     dateto: (f = msg.getDateto()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
   };
@@ -138,19 +140,23 @@ proto.statistico.MarketRunnerRequest.deserializeBinaryFromReader = function(msg,
       msg.setLine(value);
       break;
     case 6:
-      var value = /** @type {!Array<number>} */ (reader.readPackedUint64());
-      msg.setCompetitionIdsList(value);
+      var value = /** @type {!proto.statistico.SideEnum} */ (reader.readEnum());
+      msg.setSide(value);
       break;
     case 7:
       var value = /** @type {!Array<number>} */ (reader.readPackedUint64());
-      msg.setSeasonIdsList(value);
+      msg.setCompetitionIdsList(value);
       break;
     case 8:
+      var value = /** @type {!Array<number>} */ (reader.readPackedUint64());
+      msg.setSeasonIdsList(value);
+      break;
+    case 9:
       var value = new google_protobuf_timestamp_pb.Timestamp;
       reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
       msg.setDatefrom(value);
       break;
-    case 9:
+    case 10:
       var value = new google_protobuf_timestamp_pb.Timestamp;
       reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
       msg.setDateto(value);
@@ -221,24 +227,31 @@ proto.statistico.MarketRunnerRequest.serializeBinaryToWriter = function(message,
       f
     );
   }
-  f = message.getCompetitionIdsList();
-  if (f.length > 0) {
-    writer.writePackedUint64(
+  f = message.getSide();
+  if (f !== 0.0) {
+    writer.writeEnum(
       6,
       f
     );
   }
-  f = message.getSeasonIdsList();
+  f = message.getCompetitionIdsList();
   if (f.length > 0) {
     writer.writePackedUint64(
       7,
       f
     );
   }
+  f = message.getSeasonIdsList();
+  if (f.length > 0) {
+    writer.writePackedUint64(
+      8,
+      f
+    );
+  }
   f = message.getDatefrom();
   if (f != null) {
     writer.writeMessage(
-      8,
+      9,
       f,
       google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
     );
@@ -246,7 +259,7 @@ proto.statistico.MarketRunnerRequest.serializeBinaryToWriter = function(message,
   f = message.getDateto();
   if (f != null) {
     writer.writeMessage(
-      9,
+      10,
       f,
       google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
     );
@@ -360,17 +373,32 @@ proto.statistico.MarketRunnerRequest.prototype.setLine = function(value) {
 
 
 /**
- * repeated uint64 competition_ids = 6;
+ * optional SideEnum side = 6;
+ * @return {!proto.statistico.SideEnum}
+ */
+proto.statistico.MarketRunnerRequest.prototype.getSide = function() {
+  return /** @type {!proto.statistico.SideEnum} */ (jspb.Message.getFieldWithDefault(this, 6, 0));
+};
+
+
+/** @param {!proto.statistico.SideEnum} value */
+proto.statistico.MarketRunnerRequest.prototype.setSide = function(value) {
+  jspb.Message.setProto3EnumField(this, 6, value);
+};
+
+
+/**
+ * repeated uint64 competition_ids = 7;
  * @return {!Array<number>}
  */
 proto.statistico.MarketRunnerRequest.prototype.getCompetitionIdsList = function() {
-  return /** @type {!Array<number>} */ (jspb.Message.getRepeatedField(this, 6));
+  return /** @type {!Array<number>} */ (jspb.Message.getRepeatedField(this, 7));
 };
 
 
 /** @param {!Array<number>} value */
 proto.statistico.MarketRunnerRequest.prototype.setCompetitionIdsList = function(value) {
-  jspb.Message.setField(this, 6, value || []);
+  jspb.Message.setField(this, 7, value || []);
 };
 
 
@@ -379,7 +407,7 @@ proto.statistico.MarketRunnerRequest.prototype.setCompetitionIdsList = function(
  * @param {number=} opt_index
  */
 proto.statistico.MarketRunnerRequest.prototype.addCompetitionIds = function(value, opt_index) {
-  jspb.Message.addToRepeatedField(this, 6, value, opt_index);
+  jspb.Message.addToRepeatedField(this, 7, value, opt_index);
 };
 
 
@@ -389,17 +417,17 @@ proto.statistico.MarketRunnerRequest.prototype.clearCompetitionIdsList = functio
 
 
 /**
- * repeated uint64 season_ids = 7;
+ * repeated uint64 season_ids = 8;
  * @return {!Array<number>}
  */
 proto.statistico.MarketRunnerRequest.prototype.getSeasonIdsList = function() {
-  return /** @type {!Array<number>} */ (jspb.Message.getRepeatedField(this, 7));
+  return /** @type {!Array<number>} */ (jspb.Message.getRepeatedField(this, 8));
 };
 
 
 /** @param {!Array<number>} value */
 proto.statistico.MarketRunnerRequest.prototype.setSeasonIdsList = function(value) {
-  jspb.Message.setField(this, 7, value || []);
+  jspb.Message.setField(this, 8, value || []);
 };
 
 
@@ -408,7 +436,7 @@ proto.statistico.MarketRunnerRequest.prototype.setSeasonIdsList = function(value
  * @param {number=} opt_index
  */
 proto.statistico.MarketRunnerRequest.prototype.addSeasonIds = function(value, opt_index) {
-  jspb.Message.addToRepeatedField(this, 7, value, opt_index);
+  jspb.Message.addToRepeatedField(this, 8, value, opt_index);
 };
 
 
@@ -418,18 +446,18 @@ proto.statistico.MarketRunnerRequest.prototype.clearSeasonIdsList = function() {
 
 
 /**
- * optional google.protobuf.Timestamp dateFrom = 8;
+ * optional google.protobuf.Timestamp dateFrom = 9;
  * @return {?proto.google.protobuf.Timestamp}
  */
 proto.statistico.MarketRunnerRequest.prototype.getDatefrom = function() {
   return /** @type{?proto.google.protobuf.Timestamp} */ (
-    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 8));
+    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 9));
 };
 
 
 /** @param {?proto.google.protobuf.Timestamp|undefined} value */
 proto.statistico.MarketRunnerRequest.prototype.setDatefrom = function(value) {
-  jspb.Message.setWrapperField(this, 8, value);
+  jspb.Message.setWrapperField(this, 9, value);
 };
 
 
@@ -443,23 +471,23 @@ proto.statistico.MarketRunnerRequest.prototype.clearDatefrom = function() {
  * @return {!boolean}
  */
 proto.statistico.MarketRunnerRequest.prototype.hasDatefrom = function() {
-  return jspb.Message.getField(this, 8) != null;
+  return jspb.Message.getField(this, 9) != null;
 };
 
 
 /**
- * optional google.protobuf.Timestamp dateTo = 9;
+ * optional google.protobuf.Timestamp dateTo = 10;
  * @return {?proto.google.protobuf.Timestamp}
  */
 proto.statistico.MarketRunnerRequest.prototype.getDateto = function() {
   return /** @type{?proto.google.protobuf.Timestamp} */ (
-    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 9));
+    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 10));
 };
 
 
 /** @param {?proto.google.protobuf.Timestamp|undefined} value */
 proto.statistico.MarketRunnerRequest.prototype.setDateto = function(value) {
-  jspb.Message.setWrapperField(this, 9, value);
+  jspb.Message.setWrapperField(this, 10, value);
 };
 
 
@@ -473,7 +501,7 @@ proto.statistico.MarketRunnerRequest.prototype.clearDateto = function() {
  * @return {!boolean}
  */
 proto.statistico.MarketRunnerRequest.prototype.hasDateto = function() {
-  return jspb.Message.getField(this, 9) != null;
+  return jspb.Message.getField(this, 10) != null;
 };
 
 

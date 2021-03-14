@@ -517,19 +517,12 @@ proto.statistico.MarketRunnerRequest.prototype.hasDateto = function() {
  * @constructor
  */
 proto.statistico.MarketRunner = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, proto.statistico.MarketRunner.repeatedFields_, null);
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
 goog.inherits(proto.statistico.MarketRunner, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   proto.statistico.MarketRunner.displayName = 'proto.statistico.MarketRunner';
 }
-/**
- * List of repeated fields within this message type.
- * @private {!Array<number>}
- * @const
- */
-proto.statistico.MarketRunner.repeatedFields_ = [9];
-
 
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
@@ -567,8 +560,7 @@ proto.statistico.MarketRunner.toObject = function(includeInstance, msg) {
     seasonId: jspb.Message.getFieldWithDefault(msg, 6, 0),
     eventDate: (f = msg.getEventDate()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
     exchange: jspb.Message.getFieldWithDefault(msg, 8, ""),
-    pricesList: jspb.Message.toObjectList(msg.getPricesList(),
-    proto.statistico.Price.toObject, includeInstance)
+    price: (f = msg.getPrice()) && proto.statistico.Price.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -641,7 +633,7 @@ proto.statistico.MarketRunner.deserializeBinaryFromReader = function(msg, reader
     case 9:
       var value = new proto.statistico.Price;
       reader.readMessage(value,proto.statistico.Price.deserializeBinaryFromReader);
-      msg.addPrices(value);
+      msg.setPrice(value);
       break;
     default:
       reader.skipField();
@@ -729,9 +721,9 @@ proto.statistico.MarketRunner.serializeBinaryToWriter = function(message, writer
       f
     );
   }
-  f = message.getPricesList();
-  if (f.length > 0) {
-    writer.writeRepeatedMessage(
+  f = message.getPrice();
+  if (f != null) {
+    writer.writeMessage(
       9,
       f,
       proto.statistico.Price.serializeBinaryToWriter
@@ -876,33 +868,32 @@ proto.statistico.MarketRunner.prototype.setExchange = function(value) {
 
 
 /**
- * repeated Price prices = 9;
- * @return {!Array<!proto.statistico.Price>}
+ * optional Price price = 9;
+ * @return {?proto.statistico.Price}
  */
-proto.statistico.MarketRunner.prototype.getPricesList = function() {
-  return /** @type{!Array<!proto.statistico.Price>} */ (
-    jspb.Message.getRepeatedWrapperField(this, proto.statistico.Price, 9));
+proto.statistico.MarketRunner.prototype.getPrice = function() {
+  return /** @type{?proto.statistico.Price} */ (
+    jspb.Message.getWrapperField(this, proto.statistico.Price, 9));
 };
 
 
-/** @param {!Array<!proto.statistico.Price>} value */
-proto.statistico.MarketRunner.prototype.setPricesList = function(value) {
-  jspb.Message.setRepeatedWrapperField(this, 9, value);
+/** @param {?proto.statistico.Price|undefined} value */
+proto.statistico.MarketRunner.prototype.setPrice = function(value) {
+  jspb.Message.setWrapperField(this, 9, value);
+};
+
+
+proto.statistico.MarketRunner.prototype.clearPrice = function() {
+  this.setPrice(undefined);
 };
 
 
 /**
- * @param {!proto.statistico.Price=} opt_value
- * @param {number=} opt_index
- * @return {!proto.statistico.Price}
+ * Returns whether this field is set.
+ * @return {!boolean}
  */
-proto.statistico.MarketRunner.prototype.addPrices = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(this, 9, opt_value, proto.statistico.Price, opt_index);
-};
-
-
-proto.statistico.MarketRunner.prototype.clearPricesList = function() {
-  this.setPricesList([]);
+proto.statistico.MarketRunner.prototype.hasPrice = function() {
+  return jspb.Message.getField(this, 9) != null;
 };
 
 

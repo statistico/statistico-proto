@@ -33,8 +33,8 @@ message MarketRunner {
   uint64 competition_id = 5;
   uint64 season_id = 6;
   google.protobuf.Timestamp event_date = 7;
-  string exchange = 9;
-  repeated Price prices = 10;
+  string exchange = 8;
+  repeated Price prices = 9;
 }
 
 message Price {

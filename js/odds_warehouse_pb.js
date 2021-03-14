@@ -566,7 +566,6 @@ proto.statistico.MarketRunner.toObject = function(includeInstance, msg) {
     competitionId: jspb.Message.getFieldWithDefault(msg, 5, 0),
     seasonId: jspb.Message.getFieldWithDefault(msg, 6, 0),
     eventDate: (f = msg.getEventDate()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    side: jspb.Message.getFieldWithDefault(msg, 8, ""),
     exchange: jspb.Message.getFieldWithDefault(msg, 9, ""),
     pricesList: jspb.Message.toObjectList(msg.getPricesList(),
     proto.statistico.Price.toObject, includeInstance)
@@ -634,10 +633,6 @@ proto.statistico.MarketRunner.deserializeBinaryFromReader = function(msg, reader
       var value = new google_protobuf_timestamp_pb.Timestamp;
       reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
       msg.setEventDate(value);
-      break;
-    case 8:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setSide(value);
       break;
     case 9:
       var value = /** @type {string} */ (reader.readString());
@@ -725,13 +720,6 @@ proto.statistico.MarketRunner.serializeBinaryToWriter = function(message, writer
       7,
       f,
       google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
-    );
-  }
-  f = message.getSide();
-  if (f.length > 0) {
-    writer.writeString(
-      8,
-      f
     );
   }
   f = message.getExchange();
@@ -873,21 +861,6 @@ proto.statistico.MarketRunner.prototype.hasEventDate = function() {
 
 
 /**
- * optional string side = 8;
- * @return {string}
- */
-proto.statistico.MarketRunner.prototype.getSide = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 8, ""));
-};
-
-
-/** @param {string} value */
-proto.statistico.MarketRunner.prototype.setSide = function(value) {
-  jspb.Message.setProto3StringField(this, 8, value);
-};
-
-
-/**
  * optional string exchange = 9;
  * @return {string}
  */
@@ -982,7 +955,8 @@ proto.statistico.Price.toObject = function(includeInstance, msg) {
   var f, obj = {
     value: +jspb.Message.getFieldWithDefault(msg, 1, 0.0),
     size: +jspb.Message.getFieldWithDefault(msg, 2, 0.0),
-    timestamp: jspb.Message.getFieldWithDefault(msg, 3, 0)
+    side: jspb.Message.getFieldWithDefault(msg, 3, 0),
+    timestamp: jspb.Message.getFieldWithDefault(msg, 4, 0)
   };
 
   if (includeInstance) {
@@ -1028,6 +1002,10 @@ proto.statistico.Price.deserializeBinaryFromReader = function(msg, reader) {
       msg.setSize(value);
       break;
     case 3:
+      var value = /** @type {!proto.statistico.SideEnum} */ (reader.readEnum());
+      msg.setSide(value);
+      break;
+    case 4:
       var value = /** @type {number} */ (reader.readInt64());
       msg.setTimestamp(value);
       break;
@@ -1074,10 +1052,17 @@ proto.statistico.Price.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
+  f = message.getSide();
+  if (f !== 0.0) {
+    writer.writeEnum(
+      3,
+      f
+    );
+  }
   f = message.getTimestamp();
   if (f !== 0) {
     writer.writeInt64(
-      3,
+      4,
       f
     );
   }
@@ -1115,17 +1100,32 @@ proto.statistico.Price.prototype.setSize = function(value) {
 
 
 /**
- * optional int64 timestamp = 3;
+ * optional SideEnum side = 3;
+ * @return {!proto.statistico.SideEnum}
+ */
+proto.statistico.Price.prototype.getSide = function() {
+  return /** @type {!proto.statistico.SideEnum} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
+};
+
+
+/** @param {!proto.statistico.SideEnum} value */
+proto.statistico.Price.prototype.setSide = function(value) {
+  jspb.Message.setProto3EnumField(this, 3, value);
+};
+
+
+/**
+ * optional int64 timestamp = 4;
  * @return {number}
  */
 proto.statistico.Price.prototype.getTimestamp = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 4, 0));
 };
 
 
 /** @param {number} value */
 proto.statistico.Price.prototype.setTimestamp = function(value) {
-  jspb.Message.setProto3IntField(this, 3, value);
+  jspb.Message.setProto3IntField(this, 4, value);
 };
 
 

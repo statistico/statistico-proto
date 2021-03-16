@@ -4,6 +4,9 @@ package statistico;
 
 option go_package = "github.com/statistico/statistico-proto;statistico";
 
+import "enum.proto";
+import "filter.proto";
+import "google/protobuf/timestamp.proto";
 import "google/protobuf/wrappers.proto";
 
 message CompetitionRequest {
@@ -13,6 +16,21 @@ message CompetitionRequest {
     google.protobuf.StringValue sort = 2;
     // A filter to limit the competitions returned depending on if they are a cup competition or not
     google.protobuf.BoolValue is_cup = 3;
+}
+
+message CreateStrategyRequest {
+    string name = 1;
+    string description = 2;
+    string user_id = 3;
+    string market = 4;
+    string runner = 5;
+    google.protobuf.FloatValue min_odds = 6;
+    google.protobuf.FloatValue max_odds = 7;
+    SideEnum side = 8;
+    repeated uint64 competition_ids = 9;
+    repeated ResultFilter result_filters = 10;
+    repeated StatFilter stat_filters = 11;
+    VisibilityEnum visibility = 12;
 }
 
 message FixtureRequest {
@@ -46,6 +64,10 @@ message HistoricalResultRequest {
     string date_before = 4;
 }
 
+message ListUserStrategiesRequest {
+    string user_id = 1;
+}
+
 message ResultRequest {
     uint64 fixture_id = 1;
 }
@@ -74,6 +96,21 @@ message SeasonRequest {
 
 message SeasonTeamsRequest {
     uint64 season_id = 1;
+}
+
+message StrategyTradeSearchRequest {
+    string market = 1;
+    string runner = 2;
+    google.protobuf.FloatValue min_odds = 3;
+    google.protobuf.FloatValue max_odds = 4;
+    string line = 5;
+    SideEnum side = 6;
+    repeated uint64 competition_ids = 7;
+    repeated uint64 season_ids = 8;
+    google.protobuf.Timestamp dateFrom = 9;
+    google.protobuf.Timestamp dateTo = 10;
+    repeated ResultFilter result_filters = 11;
+    repeated StatFilter stat_filters = 12;
 }
 
 message TeamRequest {

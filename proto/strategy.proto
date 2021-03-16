@@ -6,26 +6,32 @@ option go_package = "github.com/statistico/statistico-proto;statistico";
 
 import "enum.proto";
 import "filter.proto";
+import "requests.proto";
 import "google/protobuf/timestamp.proto";
 import "google/protobuf/wrappers.proto";
 
 service StrategyService {
   rpc StrategyTradeSearch(StrategyTradeSearchRequest) returns (stream StrategyTrade) {}
+  rpc CreateStrategy(CreateStrategyRequest) returns (Strategy) {}
+  rpc ListUserStrategies(ListUserStrategiesRequest) returns (stream Strategy) {}
 }
 
-message StrategyTradeSearchRequest {
-  string market = 1;
-  string runner = 2;
-  google.protobuf.FloatValue min_odds = 3;
-  google.protobuf.FloatValue max_odds = 4;
-  string line = 5;
-  SideEnum side = 6;
-  repeated uint64 competition_ids = 7;
-  repeated uint64 season_ids = 8;
-  google.protobuf.Timestamp dateFrom = 9;
-  google.protobuf.Timestamp dateTo = 10;
+message Strategy {
+  string id = 1;
+  string name = 2;
+  string description = 3;
+  string user_id = 4;
+  string market = 5;
+  string runner = 6;
+  google.protobuf.FloatValue min_odds = 7;
+  google.protobuf.FloatValue max_odds = 8;
+  SideEnum side = 9;
+  repeated uint64 competition_ids = 10;
   repeated ResultFilter result_filters = 11;
   repeated StatFilter stat_filters = 12;
+  VisibilityEnum visibility = 13;
+  google.protobuf.Timestamp created_at = 14;
+  google.protobuf.Timestamp updated_at = 15;
 }
 
 message StrategyTrade {

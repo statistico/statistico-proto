@@ -21,6 +21,7 @@ goog.exportSymbol('proto.statistico.StatEnum', null, global);
 goog.exportSymbol('proto.statistico.TeamEnum', null, global);
 goog.exportSymbol('proto.statistico.TradeResultEnum', null, global);
 goog.exportSymbol('proto.statistico.VenueEnum', null, global);
+goog.exportSymbol('proto.statistico.VisibilityEnum', null, global);
 /**
  * @enum {number}
  */
@@ -105,6 +106,14 @@ proto.statistico.VenueEnum = {
   HOME: 0,
   AWAY: 1,
   HOME_AWAY: 2
+};
+
+/**
+ * @enum {number}
+ */
+proto.statistico.VisibilityEnum = {
+  PUBLIC: 0,
+  PRIVATE: 1
 };
 
 goog.object.extend(exports, proto.statistico);

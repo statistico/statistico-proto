@@ -11,6 +11,7 @@ import (
 
 // This is a compile-time assertion to ensure that this generated file
 // is compatible with the grpc package it is being compiled against.
+// Requires gRPC-Go v1.32.0 or later.
 const _ = grpc.SupportPackageIsVersion7
 
 // FixtureServiceClient is the client API for FixtureService service.
@@ -31,7 +32,7 @@ func NewFixtureServiceClient(cc grpc.ClientConnInterface) FixtureServiceClient {
 }
 
 func (c *fixtureServiceClient) ListSeasonFixtures(ctx context.Context, in *SeasonFixtureRequest, opts ...grpc.CallOption) (FixtureService_ListSeasonFixturesClient, error) {
-	stream, err := c.cc.NewStream(ctx, &_FixtureService_serviceDesc.Streams[0], "/statistico.FixtureService/ListSeasonFixtures", opts...)
+	stream, err := c.cc.NewStream(ctx, &FixtureService_ServiceDesc.Streams[0], "/statistico.FixtureService/ListSeasonFixtures", opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -72,7 +73,7 @@ func (c *fixtureServiceClient) FixtureByID(ctx context.Context, in *FixtureReque
 }
 
 func (c *fixtureServiceClient) Search(ctx context.Context, in *FixtureSearchRequest, opts ...grpc.CallOption) (FixtureService_SearchClient, error) {
-	stream, err := c.cc.NewStream(ctx, &_FixtureService_serviceDesc.Streams[1], "/statistico.FixtureService/Search", opts...)
+	stream, err := c.cc.NewStream(ctx, &FixtureService_ServiceDesc.Streams[1], "/statistico.FixtureService/Search", opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -136,7 +137,7 @@ type UnsafeFixtureServiceServer interface {
 }
 
 func RegisterFixtureServiceServer(s grpc.ServiceRegistrar, srv FixtureServiceServer) {
-	s.RegisterService(&_FixtureService_serviceDesc, srv)
+	s.RegisterService(&FixtureService_ServiceDesc, srv)
 }
 
 func _FixtureService_ListSeasonFixtures_Handler(srv interface{}, stream grpc.ServerStream) error {
@@ -199,7 +200,10 @@ func (x *fixtureServiceSearchServer) Send(m *Fixture) error {
 	return x.ServerStream.SendMsg(m)
 }
 
-var _FixtureService_serviceDesc = grpc.ServiceDesc{
+// FixtureService_ServiceDesc is the grpc.ServiceDesc for FixtureService service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var FixtureService_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "statistico.FixtureService",
 	HandlerType: (*FixtureServiceServer)(nil),
 	Methods: []grpc.MethodDesc{

@@ -1,3 +1,4 @@
+// source: enum.proto
 /**
  * @fileoverview
  * @enhanceable
@@ -6,6 +7,8 @@
  * @public
  */
 // GENERATED CODE -- DO NOT EDIT!
+/* eslint-disable */
+// @ts-nocheck
 
 var jspb = require('google-protobuf');
 var goog = jspb;
@@ -18,6 +21,7 @@ goog.exportSymbol('proto.statistico.MetricEnum', null, global);
 goog.exportSymbol('proto.statistico.ResultEnum', null, global);
 goog.exportSymbol('proto.statistico.SideEnum', null, global);
 goog.exportSymbol('proto.statistico.StatEnum', null, global);
+goog.exportSymbol('proto.statistico.StrategyStatusEnum', null, global);
 goog.exportSymbol('proto.statistico.TeamEnum', null, global);
 goog.exportSymbol('proto.statistico.TradeResultEnum', null, global);
 goog.exportSymbol('proto.statistico.VenueEnum', null, global);
@@ -81,6 +85,14 @@ proto.statistico.SideEnum = {
 proto.statistico.StatEnum = {
   GOALS: 0,
   SHOTS_ON_GOAL: 1
+};
+
+/**
+ * @enum {number}
+ */
+proto.statistico.StrategyStatusEnum = {
+  ARCHIVED: 0,
+  ACTIVE: 1
 };
 
 /**

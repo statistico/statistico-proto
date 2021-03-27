@@ -11,6 +11,7 @@ import (
 
 // This is a compile-time assertion to ensure that this generated file
 // is compatible with the grpc package it is being compiled against.
+// Requires gRPC-Go v1.32.0 or later.
 const _ = grpc.SupportPackageIsVersion7
 
 // PlayerStatsServiceClient is the client API for PlayerStatsService service.
@@ -76,7 +77,7 @@ type UnsafePlayerStatsServiceServer interface {
 }
 
 func RegisterPlayerStatsServiceServer(s grpc.ServiceRegistrar, srv PlayerStatsServiceServer) {
-	s.RegisterService(&_PlayerStatsService_serviceDesc, srv)
+	s.RegisterService(&PlayerStatsService_ServiceDesc, srv)
 }
 
 func _PlayerStatsService_GetPlayerStatsForFixture_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -115,7 +116,10 @@ func _PlayerStatsService_GetLineUpForFixture_Handler(srv interface{}, ctx contex
 	return interceptor(ctx, in, info, handler)
 }
 
-var _PlayerStatsService_serviceDesc = grpc.ServiceDesc{
+// PlayerStatsService_ServiceDesc is the grpc.ServiceDesc for PlayerStatsService service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var PlayerStatsService_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "statistico.PlayerStatsService",
 	HandlerType: (*PlayerStatsServiceServer)(nil),
 	Methods: []grpc.MethodDesc{

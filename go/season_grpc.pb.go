@@ -11,6 +11,7 @@ import (
 
 // This is a compile-time assertion to ensure that this generated file
 // is compatible with the grpc package it is being compiled against.
+// Requires gRPC-Go v1.32.0 or later.
 const _ = grpc.SupportPackageIsVersion7
 
 // SeasonServiceClient is the client API for SeasonService service.
@@ -30,7 +31,7 @@ func NewSeasonServiceClient(cc grpc.ClientConnInterface) SeasonServiceClient {
 }
 
 func (c *seasonServiceClient) GetSeasonsForCompetition(ctx context.Context, in *SeasonCompetitionRequest, opts ...grpc.CallOption) (SeasonService_GetSeasonsForCompetitionClient, error) {
-	stream, err := c.cc.NewStream(ctx, &_SeasonService_serviceDesc.Streams[0], "/statistico.SeasonService/GetSeasonsForCompetition", opts...)
+	stream, err := c.cc.NewStream(ctx, &SeasonService_ServiceDesc.Streams[0], "/statistico.SeasonService/GetSeasonsForCompetition", opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -62,7 +63,7 @@ func (x *seasonServiceGetSeasonsForCompetitionClient) Recv() (*Season, error) {
 }
 
 func (c *seasonServiceClient) GetSeasonsForTeam(ctx context.Context, in *TeamSeasonsRequest, opts ...grpc.CallOption) (SeasonService_GetSeasonsForTeamClient, error) {
-	stream, err := c.cc.NewStream(ctx, &_SeasonService_serviceDesc.Streams[1], "/statistico.SeasonService/GetSeasonsForTeam", opts...)
+	stream, err := c.cc.NewStream(ctx, &SeasonService_ServiceDesc.Streams[1], "/statistico.SeasonService/GetSeasonsForTeam", opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -122,7 +123,7 @@ type UnsafeSeasonServiceServer interface {
 }
 
 func RegisterSeasonServiceServer(s grpc.ServiceRegistrar, srv SeasonServiceServer) {
-	s.RegisterService(&_SeasonService_serviceDesc, srv)
+	s.RegisterService(&SeasonService_ServiceDesc, srv)
 }
 
 func _SeasonService_GetSeasonsForCompetition_Handler(srv interface{}, stream grpc.ServerStream) error {
@@ -167,7 +168,10 @@ func (x *seasonServiceGetSeasonsForTeamServer) Send(m *Season) error {
 	return x.ServerStream.SendMsg(m)
 }
 
-var _SeasonService_serviceDesc = grpc.ServiceDesc{
+// SeasonService_ServiceDesc is the grpc.ServiceDesc for SeasonService service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var SeasonService_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "statistico.SeasonService",
 	HandlerType: (*SeasonServiceServer)(nil),
 	Methods:     []grpc.MethodDesc{},

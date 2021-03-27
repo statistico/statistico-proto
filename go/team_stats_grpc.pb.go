@@ -11,6 +11,7 @@ import (
 
 // This is a compile-time assertion to ensure that this generated file
 // is compatible with the grpc package it is being compiled against.
+// Requires gRPC-Go v1.32.0 or later.
 const _ = grpc.SupportPackageIsVersion7
 
 // TeamStatsServiceClient is the client API for TeamStatsService service.
@@ -39,7 +40,7 @@ func (c *teamStatsServiceClient) GetTeamStatsForFixture(ctx context.Context, in 
 }
 
 func (c *teamStatsServiceClient) GetStatForTeam(ctx context.Context, in *TeamStatRequest, opts ...grpc.CallOption) (TeamStatsService_GetStatForTeamClient, error) {
-	stream, err := c.cc.NewStream(ctx, &_TeamStatsService_serviceDesc.Streams[0], "/statistico.TeamStatsService/GetStatForTeam", opts...)
+	stream, err := c.cc.NewStream(ctx, &TeamStatsService_ServiceDesc.Streams[0], "/statistico.TeamStatsService/GetStatForTeam", opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -99,7 +100,7 @@ type UnsafeTeamStatsServiceServer interface {
 }
 
 func RegisterTeamStatsServiceServer(s grpc.ServiceRegistrar, srv TeamStatsServiceServer) {
-	s.RegisterService(&_TeamStatsService_serviceDesc, srv)
+	s.RegisterService(&TeamStatsService_ServiceDesc, srv)
 }
 
 func _TeamStatsService_GetTeamStatsForFixture_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -141,7 +142,10 @@ func (x *teamStatsServiceGetStatForTeamServer) Send(m *TeamStat) error {
 	return x.ServerStream.SendMsg(m)
 }
 
-var _TeamStatsService_serviceDesc = grpc.ServiceDesc{
+// TeamStatsService_ServiceDesc is the grpc.ServiceDesc for TeamStatsService service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var TeamStatsService_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "statistico.TeamStatsService",
 	HandlerType: (*TeamStatsServiceServer)(nil),
 	Methods: []grpc.MethodDesc{

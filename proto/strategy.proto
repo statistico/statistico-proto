@@ -11,8 +11,8 @@ import "google/protobuf/timestamp.proto";
 import "google/protobuf/wrappers.proto";
 
 service StrategyService {
-  rpc StrategyTradeSearch(StrategyTradeSearchRequest) returns (stream StrategyTrade) {}
-  rpc CreateStrategy(CreateStrategyRequest) returns (Strategy) {}
+  rpc BuildStrategy(StrategyTradeSearchRequest) returns (stream StrategyTrade) {}
+  rpc SaveStrategy(CreateStrategyRequest) returns (Strategy) {}
   rpc ListUserStrategies(ListUserStrategiesRequest) returns (stream Strategy) {}
 }
 
@@ -25,13 +25,14 @@ message Strategy {
   string runner = 6;
   google.protobuf.FloatValue min_odds = 7;
   google.protobuf.FloatValue max_odds = 8;
-  SideEnum side = 9;
-  repeated uint64 competition_ids = 10;
-  repeated ResultFilter result_filters = 11;
-  repeated StatFilter stat_filters = 12;
-  VisibilityEnum visibility = 13;
-  google.protobuf.Timestamp created_at = 14;
-  google.protobuf.Timestamp updated_at = 15;
+  repeated uint64 competition_ids = 9;
+  SideEnum side = 10;
+  VisibilityEnum visibility = 11;
+  StrategyStatusEnum status = 12;
+  repeated ResultFilter result_filters = 13;
+  repeated StatFilter stat_filters = 14;
+  google.protobuf.Timestamp created_at = 15;
+  google.protobuf.Timestamp updated_at = 16;
 }
 
 message StrategyTrade {

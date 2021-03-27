@@ -11,6 +11,7 @@ import (
 
 // This is a compile-time assertion to ensure that this generated file
 // is compatible with the grpc package it is being compiled against.
+// Requires gRPC-Go v1.32.0 or later.
 const _ = grpc.SupportPackageIsVersion7
 
 // TeamServiceClient is the client API for TeamService service.
@@ -39,7 +40,7 @@ func (c *teamServiceClient) GetTeamByID(ctx context.Context, in *TeamRequest, op
 }
 
 func (c *teamServiceClient) GetTeamsBySeasonId(ctx context.Context, in *SeasonTeamsRequest, opts ...grpc.CallOption) (TeamService_GetTeamsBySeasonIdClient, error) {
-	stream, err := c.cc.NewStream(ctx, &_TeamService_serviceDesc.Streams[0], "/statistico.TeamService/GetTeamsBySeasonId", opts...)
+	stream, err := c.cc.NewStream(ctx, &TeamService_ServiceDesc.Streams[0], "/statistico.TeamService/GetTeamsBySeasonId", opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -99,7 +100,7 @@ type UnsafeTeamServiceServer interface {
 }
 
 func RegisterTeamServiceServer(s grpc.ServiceRegistrar, srv TeamServiceServer) {
-	s.RegisterService(&_TeamService_serviceDesc, srv)
+	s.RegisterService(&TeamService_ServiceDesc, srv)
 }
 
 func _TeamService_GetTeamByID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -141,7 +142,10 @@ func (x *teamServiceGetTeamsBySeasonIdServer) Send(m *Team) error {
 	return x.ServerStream.SendMsg(m)
 }
 
-var _TeamService_serviceDesc = grpc.ServiceDesc{
+// TeamService_ServiceDesc is the grpc.ServiceDesc for TeamService service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var TeamService_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "statistico.TeamService",
 	HandlerType: (*TeamServiceServer)(nil),
 	Methods: []grpc.MethodDesc{

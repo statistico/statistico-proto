@@ -44,6 +44,11 @@ enum StatEnum {
   SHOTS_ON_GOAL = 1;
 }
 
+enum StrategyStatusEnum {
+  ARCHIVED = 0;
+  ACTIVE = 1;
+}
+
 enum TeamEnum {
   HOME_TEAM = 0;
   AWAY_TEAM = 1;

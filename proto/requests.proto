@@ -18,21 +18,6 @@ message CompetitionRequest {
     google.protobuf.BoolValue is_cup = 3;
 }
 
-message CreateStrategyRequest {
-    string name = 1;
-    string description = 2;
-    string user_id = 3;
-    string market = 4;
-    string runner = 5;
-    google.protobuf.FloatValue min_odds = 6;
-    google.protobuf.FloatValue max_odds = 7;
-    SideEnum side = 8;
-    repeated uint64 competition_ids = 9;
-    repeated ResultFilter result_filters = 10;
-    repeated StatFilter stat_filters = 11;
-    VisibilityEnum visibility = 12;
-}
-
 message FixtureRequest {
     uint64 fixture_id = 1;
 }
@@ -72,6 +57,21 @@ message ResultRequest {
     uint64 fixture_id = 1;
 }
 
+message SaveStrategyRequest {
+    string name = 1;
+    string description = 2;
+    string user_id = 3;
+    string market = 4;
+    string runner = 5;
+    google.protobuf.FloatValue min_odds = 6;
+    google.protobuf.FloatValue max_odds = 7;
+    SideEnum side = 8;
+    repeated uint64 competition_ids = 9;
+    repeated ResultFilter result_filters = 10;
+    repeated StatFilter stat_filters = 11;
+    VisibilityEnum visibility = 12;
+}
+
 message SeasonCompetitionRequest {
     uint64 competition_id = 1;
     // Order the name column to return seasons in specific order
@@ -98,7 +98,7 @@ message SeasonTeamsRequest {
     uint64 season_id = 1;
 }
 
-message StrategyTradeSearchRequest {
+message BuildStrategyRequest {
     string market = 1;
     string runner = 2;
     google.protobuf.FloatValue min_odds = 3;

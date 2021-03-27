@@ -11,6 +11,7 @@ import (
 
 // This is a compile-time assertion to ensure that this generated file
 // is compatible with the grpc package it is being compiled against.
+// Requires gRPC-Go v1.32.0 or later.
 const _ = grpc.SupportPackageIsVersion7
 
 // ResultServiceClient is the client API for ResultService service.
@@ -41,7 +42,7 @@ func (c *resultServiceClient) GetById(ctx context.Context, in *ResultRequest, op
 }
 
 func (c *resultServiceClient) GetHistoricalResultsForFixture(ctx context.Context, in *HistoricalResultRequest, opts ...grpc.CallOption) (ResultService_GetHistoricalResultsForFixtureClient, error) {
-	stream, err := c.cc.NewStream(ctx, &_ResultService_serviceDesc.Streams[0], "/statistico.ResultService/GetHistoricalResultsForFixture", opts...)
+	stream, err := c.cc.NewStream(ctx, &ResultService_ServiceDesc.Streams[0], "/statistico.ResultService/GetHistoricalResultsForFixture", opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -73,7 +74,7 @@ func (x *resultServiceGetHistoricalResultsForFixtureClient) Recv() (*Result, err
 }
 
 func (c *resultServiceClient) GetResultsForSeason(ctx context.Context, in *SeasonRequest, opts ...grpc.CallOption) (ResultService_GetResultsForSeasonClient, error) {
-	stream, err := c.cc.NewStream(ctx, &_ResultService_serviceDesc.Streams[1], "/statistico.ResultService/GetResultsForSeason", opts...)
+	stream, err := c.cc.NewStream(ctx, &ResultService_ServiceDesc.Streams[1], "/statistico.ResultService/GetResultsForSeason", opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -105,7 +106,7 @@ func (x *resultServiceGetResultsForSeasonClient) Recv() (*Result, error) {
 }
 
 func (c *resultServiceClient) GetResultsForTeam(ctx context.Context, in *TeamResultRequest, opts ...grpc.CallOption) (ResultService_GetResultsForTeamClient, error) {
-	stream, err := c.cc.NewStream(ctx, &_ResultService_serviceDesc.Streams[2], "/statistico.ResultService/GetResultsForTeam", opts...)
+	stream, err := c.cc.NewStream(ctx, &ResultService_ServiceDesc.Streams[2], "/statistico.ResultService/GetResultsForTeam", opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -173,7 +174,7 @@ type UnsafeResultServiceServer interface {
 }
 
 func RegisterResultServiceServer(s grpc.ServiceRegistrar, srv ResultServiceServer) {
-	s.RegisterService(&_ResultService_serviceDesc, srv)
+	s.RegisterService(&ResultService_ServiceDesc, srv)
 }
 
 func _ResultService_GetById_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -257,7 +258,10 @@ func (x *resultServiceGetResultsForTeamServer) Send(m *Result) error {
 	return x.ServerStream.SendMsg(m)
 }
 
-var _ResultService_serviceDesc = grpc.ServiceDesc{
+// ResultService_ServiceDesc is the grpc.ServiceDesc for ResultService service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var ResultService_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "statistico.ResultService",
 	HandlerType: (*ResultServiceServer)(nil),
 	Methods: []grpc.MethodDesc{

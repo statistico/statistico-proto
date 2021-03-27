@@ -11,14 +11,15 @@ import (
 
 // This is a compile-time assertion to ensure that this generated file
 // is compatible with the grpc package it is being compiled against.
+// Requires gRPC-Go v1.32.0 or later.
 const _ = grpc.SupportPackageIsVersion7
 
 // StrategyServiceClient is the client API for StrategyService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type StrategyServiceClient interface {
-	StrategyTradeSearch(ctx context.Context, in *StrategyTradeSearchRequest, opts ...grpc.CallOption) (StrategyService_StrategyTradeSearchClient, error)
-	CreateStrategy(ctx context.Context, in *CreateStrategyRequest, opts ...grpc.CallOption) (*Strategy, error)
+	BuildStrategy(ctx context.Context, in *StrategyTradeSearchRequest, opts ...grpc.CallOption) (StrategyService_BuildStrategyClient, error)
+	SaveStrategy(ctx context.Context, in *CreateStrategyRequest, opts ...grpc.CallOption) (*Strategy, error)
 	ListUserStrategies(ctx context.Context, in *ListUserStrategiesRequest, opts ...grpc.CallOption) (StrategyService_ListUserStrategiesClient, error)
 }
 
@@ -30,12 +31,12 @@ func NewStrategyServiceClient(cc grpc.ClientConnInterface) StrategyServiceClient
 	return &strategyServiceClient{cc}
 }
 
-func (c *strategyServiceClient) StrategyTradeSearch(ctx context.Context, in *StrategyTradeSearchRequest, opts ...grpc.CallOption) (StrategyService_StrategyTradeSearchClient, error) {
-	stream, err := c.cc.NewStream(ctx, &_StrategyService_serviceDesc.Streams[0], "/statistico.StrategyService/StrategyTradeSearch", opts...)
+func (c *strategyServiceClient) BuildStrategy(ctx context.Context, in *StrategyTradeSearchRequest, opts ...grpc.CallOption) (StrategyService_BuildStrategyClient, error) {
+	stream, err := c.cc.NewStream(ctx, &StrategyService_ServiceDesc.Streams[0], "/statistico.StrategyService/BuildStrategy", opts...)
 	if err != nil {
 		return nil, err
 	}
-	x := &strategyServiceStrategyTradeSearchClient{stream}
+	x := &strategyServiceBuildStrategyClient{stream}
 	if err := x.ClientStream.SendMsg(in); err != nil {
 		return nil, err
 	}
@@ -45,26 +46,26 @@ func (c *strategyServiceClient) StrategyTradeSearch(ctx context.Context, in *Str
 	return x, nil
 }
 
-type StrategyService_StrategyTradeSearchClient interface {
-	Recv() (*StrategyTrade, error)
+type StrategyService_BuildStrategyClient interface {
+	Recv() (*Trade, error)
 	grpc.ClientStream
 }
 
-type strategyServiceStrategyTradeSearchClient struct {
+type strategyServiceBuildStrategyClient struct {
 	grpc.ClientStream
 }
 
-func (x *strategyServiceStrategyTradeSearchClient) Recv() (*StrategyTrade, error) {
-	m := new(StrategyTrade)
+func (x *strategyServiceBuildStrategyClient) Recv() (*Trade, error) {
+	m := new(Trade)
 	if err := x.ClientStream.RecvMsg(m); err != nil {
 		return nil, err
 	}
 	return m, nil
 }
 
-func (c *strategyServiceClient) CreateStrategy(ctx context.Context, in *CreateStrategyRequest, opts ...grpc.CallOption) (*Strategy, error) {
+func (c *strategyServiceClient) SaveStrategy(ctx context.Context, in *CreateStrategyRequest, opts ...grpc.CallOption) (*Strategy, error) {
 	out := new(Strategy)
-	err := c.cc.Invoke(ctx, "/statistico.StrategyService/CreateStrategy", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/statistico.StrategyService/SaveStrategy", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -72,7 +73,7 @@ func (c *strategyServiceClient) CreateStrategy(ctx context.Context, in *CreateSt
 }
 
 func (c *strategyServiceClient) ListUserStrategies(ctx context.Context, in *ListUserStrategiesRequest, opts ...grpc.CallOption) (StrategyService_ListUserStrategiesClient, error) {
-	stream, err := c.cc.NewStream(ctx, &_StrategyService_serviceDesc.Streams[1], "/statistico.StrategyService/ListUserStrategies", opts...)
+	stream, err := c.cc.NewStream(ctx, &StrategyService_ServiceDesc.Streams[1], "/statistico.StrategyService/ListUserStrategies", opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -107,8 +108,8 @@ func (x *strategyServiceListUserStrategiesClient) Recv() (*Strategy, error) {
 // All implementations must embed UnimplementedStrategyServiceServer
 // for forward compatibility
 type StrategyServiceServer interface {
-	StrategyTradeSearch(*StrategyTradeSearchRequest, StrategyService_StrategyTradeSearchServer) error
-	CreateStrategy(context.Context, *CreateStrategyRequest) (*Strategy, error)
+	BuildStrategy(*StrategyTradeSearchRequest, StrategyService_BuildStrategyServer) error
+	SaveStrategy(context.Context, *CreateStrategyRequest) (*Strategy, error)
 	ListUserStrategies(*ListUserStrategiesRequest, StrategyService_ListUserStrategiesServer) error
 	mustEmbedUnimplementedStrategyServiceServer()
 }
@@ -117,11 +118,11 @@ type StrategyServiceServer interface {
 type UnimplementedStrategyServiceServer struct {
 }
 
-func (UnimplementedStrategyServiceServer) StrategyTradeSearch(*StrategyTradeSearchRequest, StrategyService_StrategyTradeSearchServer) error {
-	return status.Errorf(codes.Unimplemented, "method StrategyTradeSearch not implemented")
+func (UnimplementedStrategyServiceServer) BuildStrategy(*StrategyTradeSearchRequest, StrategyService_BuildStrategyServer) error {
+	return status.Errorf(codes.Unimplemented, "method BuildStrategy not implemented")
 }
-func (UnimplementedStrategyServiceServer) CreateStrategy(context.Context, *CreateStrategyRequest) (*Strategy, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateStrategy not implemented")
+func (UnimplementedStrategyServiceServer) SaveStrategy(context.Context, *CreateStrategyRequest) (*Strategy, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SaveStrategy not implemented")
 }
 func (UnimplementedStrategyServiceServer) ListUserStrategies(*ListUserStrategiesRequest, StrategyService_ListUserStrategiesServer) error {
 	return status.Errorf(codes.Unimplemented, "method ListUserStrategies not implemented")
@@ -136,44 +137,44 @@ type UnsafeStrategyServiceServer interface {
 }
 
 func RegisterStrategyServiceServer(s grpc.ServiceRegistrar, srv StrategyServiceServer) {
-	s.RegisterService(&_StrategyService_serviceDesc, srv)
+	s.RegisterService(&StrategyService_ServiceDesc, srv)
 }
 
-func _StrategyService_StrategyTradeSearch_Handler(srv interface{}, stream grpc.ServerStream) error {
+func _StrategyService_BuildStrategy_Handler(srv interface{}, stream grpc.ServerStream) error {
 	m := new(StrategyTradeSearchRequest)
 	if err := stream.RecvMsg(m); err != nil {
 		return err
 	}
-	return srv.(StrategyServiceServer).StrategyTradeSearch(m, &strategyServiceStrategyTradeSearchServer{stream})
+	return srv.(StrategyServiceServer).BuildStrategy(m, &strategyServiceBuildStrategyServer{stream})
 }
 
-type StrategyService_StrategyTradeSearchServer interface {
-	Send(*StrategyTrade) error
+type StrategyService_BuildStrategyServer interface {
+	Send(*Trade) error
 	grpc.ServerStream
 }
 
-type strategyServiceStrategyTradeSearchServer struct {
+type strategyServiceBuildStrategyServer struct {
 	grpc.ServerStream
 }
 
-func (x *strategyServiceStrategyTradeSearchServer) Send(m *StrategyTrade) error {
+func (x *strategyServiceBuildStrategyServer) Send(m *Trade) error {
 	return x.ServerStream.SendMsg(m)
 }
 
-func _StrategyService_CreateStrategy_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _StrategyService_SaveStrategy_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(CreateStrategyRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(StrategyServiceServer).CreateStrategy(ctx, in)
+		return srv.(StrategyServiceServer).SaveStrategy(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/statistico.StrategyService/CreateStrategy",
+		FullMethod: "/statistico.StrategyService/SaveStrategy",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(StrategyServiceServer).CreateStrategy(ctx, req.(*CreateStrategyRequest))
+		return srv.(StrategyServiceServer).SaveStrategy(ctx, req.(*CreateStrategyRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -199,19 +200,22 @@ func (x *strategyServiceListUserStrategiesServer) Send(m *Strategy) error {
 	return x.ServerStream.SendMsg(m)
 }
 
-var _StrategyService_serviceDesc = grpc.ServiceDesc{
+// StrategyService_ServiceDesc is the grpc.ServiceDesc for StrategyService service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var StrategyService_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "statistico.StrategyService",
 	HandlerType: (*StrategyServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "CreateStrategy",
-			Handler:    _StrategyService_CreateStrategy_Handler,
+			MethodName: "SaveStrategy",
+			Handler:    _StrategyService_SaveStrategy_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{
 		{
-			StreamName:    "StrategyTradeSearch",
-			Handler:       _StrategyService_StrategyTradeSearch_Handler,
+			StreamName:    "BuildStrategy",
+			Handler:       _StrategyService_BuildStrategy_Handler,
 			ServerStreams: true,
 		},
 		{

@@ -11,6 +11,7 @@ import (
 
 // This is a compile-time assertion to ensure that this generated file
 // is compatible with the grpc package it is being compiled against.
+// Requires gRPC-Go v1.32.0 or later.
 const _ = grpc.SupportPackageIsVersion7
 
 // CompetitionServiceClient is the client API for CompetitionService service.
@@ -29,7 +30,7 @@ func NewCompetitionServiceClient(cc grpc.ClientConnInterface) CompetitionService
 }
 
 func (c *competitionServiceClient) ListCompetitions(ctx context.Context, in *CompetitionRequest, opts ...grpc.CallOption) (CompetitionService_ListCompetitionsClient, error) {
-	stream, err := c.cc.NewStream(ctx, &_CompetitionService_serviceDesc.Streams[0], "/statistico.CompetitionService/ListCompetitions", opts...)
+	stream, err := c.cc.NewStream(ctx, &CompetitionService_ServiceDesc.Streams[0], "/statistico.CompetitionService/ListCompetitions", opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -85,7 +86,7 @@ type UnsafeCompetitionServiceServer interface {
 }
 
 func RegisterCompetitionServiceServer(s grpc.ServiceRegistrar, srv CompetitionServiceServer) {
-	s.RegisterService(&_CompetitionService_serviceDesc, srv)
+	s.RegisterService(&CompetitionService_ServiceDesc, srv)
 }
 
 func _CompetitionService_ListCompetitions_Handler(srv interface{}, stream grpc.ServerStream) error {
@@ -109,7 +110,10 @@ func (x *competitionServiceListCompetitionsServer) Send(m *Competition) error {
 	return x.ServerStream.SendMsg(m)
 }
 
-var _CompetitionService_serviceDesc = grpc.ServiceDesc{
+// CompetitionService_ServiceDesc is the grpc.ServiceDesc for CompetitionService service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var CompetitionService_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "statistico.CompetitionService",
 	HandlerType: (*CompetitionServiceServer)(nil),
 	Methods:     []grpc.MethodDesc{},

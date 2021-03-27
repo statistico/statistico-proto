@@ -11,8 +11,8 @@ import "google/protobuf/timestamp.proto";
 import "google/protobuf/wrappers.proto";
 
 service StrategyService {
-  rpc BuildStrategy(StrategyTradeSearchRequest) returns (stream StrategyTrade) {}
-  rpc SaveStrategy(CreateStrategyRequest) returns (Strategy) {}
+  rpc BuildStrategy(BuildStrategyRequest) returns (stream StrategyTrade) {}
+  rpc SaveStrategy(SaveStrategyRequest) returns (Strategy) {}
   rpc ListUserStrategies(ListUserStrategiesRequest) returns (stream Strategy) {}
 }
 

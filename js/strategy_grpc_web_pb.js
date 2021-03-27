@@ -83,16 +83,16 @@ proto.statistico.StrategyServicePromiseClient =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.statistico.StrategyTradeSearchRequest,
+ *   !proto.statistico.BuildStrategyRequest,
  *   !proto.statistico.StrategyTrade>}
  */
 const methodDescriptor_StrategyService_BuildStrategy = new grpc.web.MethodDescriptor(
   '/statistico.StrategyService/BuildStrategy',
   grpc.web.MethodType.SERVER_STREAMING,
-  requests_pb.StrategyTradeSearchRequest,
+  requests_pb.BuildStrategyRequest,
   proto.statistico.StrategyTrade,
   /**
-   * @param {!proto.statistico.StrategyTradeSearchRequest} request
+   * @param {!proto.statistico.BuildStrategyRequest} request
    * @return {!Uint8Array}
    */
   function(request) {
@@ -105,13 +105,13 @@ const methodDescriptor_StrategyService_BuildStrategy = new grpc.web.MethodDescri
 /**
  * @const
  * @type {!grpc.web.AbstractClientBase.MethodInfo<
- *   !proto.statistico.StrategyTradeSearchRequest,
+ *   !proto.statistico.BuildStrategyRequest,
  *   !proto.statistico.StrategyTrade>}
  */
 const methodInfo_StrategyService_BuildStrategy = new grpc.web.AbstractClientBase.MethodInfo(
   proto.statistico.StrategyTrade,
   /**
-   * @param {!proto.statistico.StrategyTradeSearchRequest} request
+   * @param {!proto.statistico.BuildStrategyRequest} request
    * @return {!Uint8Array}
    */
   function(request) {
@@ -122,7 +122,7 @@ const methodInfo_StrategyService_BuildStrategy = new grpc.web.AbstractClientBase
 
 
 /**
- * @param {!proto.statistico.StrategyTradeSearchRequest} request The request proto
+ * @param {!proto.statistico.BuildStrategyRequest} request The request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
  * @return {!grpc.web.ClientReadableStream<!proto.statistico.StrategyTrade>}
@@ -139,7 +139,7 @@ proto.statistico.StrategyServiceClient.prototype.buildStrategy =
 
 
 /**
- * @param {!proto.statistico.StrategyTradeSearchRequest} request The request proto
+ * @param {!proto.statistico.BuildStrategyRequest} request The request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
  * @return {!grpc.web.ClientReadableStream<!proto.statistico.StrategyTrade>}
@@ -158,16 +158,16 @@ proto.statistico.StrategyServicePromiseClient.prototype.buildStrategy =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.statistico.CreateStrategyRequest,
+ *   !proto.statistico.SaveStrategyRequest,
  *   !proto.statistico.Strategy>}
  */
 const methodDescriptor_StrategyService_SaveStrategy = new grpc.web.MethodDescriptor(
   '/statistico.StrategyService/SaveStrategy',
   grpc.web.MethodType.UNARY,
-  requests_pb.CreateStrategyRequest,
+  requests_pb.SaveStrategyRequest,
   proto.statistico.Strategy,
   /**
-   * @param {!proto.statistico.CreateStrategyRequest} request
+   * @param {!proto.statistico.SaveStrategyRequest} request
    * @return {!Uint8Array}
    */
   function(request) {
@@ -180,13 +180,13 @@ const methodDescriptor_StrategyService_SaveStrategy = new grpc.web.MethodDescrip
 /**
  * @const
  * @type {!grpc.web.AbstractClientBase.MethodInfo<
- *   !proto.statistico.CreateStrategyRequest,
+ *   !proto.statistico.SaveStrategyRequest,
  *   !proto.statistico.Strategy>}
  */
 const methodInfo_StrategyService_SaveStrategy = new grpc.web.AbstractClientBase.MethodInfo(
   proto.statistico.Strategy,
   /**
-   * @param {!proto.statistico.CreateStrategyRequest} request
+   * @param {!proto.statistico.SaveStrategyRequest} request
    * @return {!Uint8Array}
    */
   function(request) {
@@ -197,7 +197,7 @@ const methodInfo_StrategyService_SaveStrategy = new grpc.web.AbstractClientBase.
 
 
 /**
- * @param {!proto.statistico.CreateStrategyRequest} request The
+ * @param {!proto.statistico.SaveStrategyRequest} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
@@ -218,7 +218,7 @@ proto.statistico.StrategyServiceClient.prototype.saveStrategy =
 
 
 /**
- * @param {!proto.statistico.CreateStrategyRequest} request The
+ * @param {!proto.statistico.SaveStrategyRequest} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata

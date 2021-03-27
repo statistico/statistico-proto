@@ -84,13 +84,13 @@ proto.statistico.StrategyServicePromiseClient =
  * @const
  * @type {!grpc.web.MethodDescriptor<
  *   !proto.statistico.StrategyTradeSearchRequest,
- *   !proto.statistico.Trade>}
+ *   !proto.statistico.StrategyTrade>}
  */
 const methodDescriptor_StrategyService_BuildStrategy = new grpc.web.MethodDescriptor(
   '/statistico.StrategyService/BuildStrategy',
   grpc.web.MethodType.SERVER_STREAMING,
   requests_pb.StrategyTradeSearchRequest,
-  proto.statistico.Trade,
+  proto.statistico.StrategyTrade,
   /**
    * @param {!proto.statistico.StrategyTradeSearchRequest} request
    * @return {!Uint8Array}
@@ -98,7 +98,7 @@ const methodDescriptor_StrategyService_BuildStrategy = new grpc.web.MethodDescri
   function(request) {
     return request.serializeBinary();
   },
-  proto.statistico.Trade.deserializeBinary
+  proto.statistico.StrategyTrade.deserializeBinary
 );
 
 
@@ -106,10 +106,10 @@ const methodDescriptor_StrategyService_BuildStrategy = new grpc.web.MethodDescri
  * @const
  * @type {!grpc.web.AbstractClientBase.MethodInfo<
  *   !proto.statistico.StrategyTradeSearchRequest,
- *   !proto.statistico.Trade>}
+ *   !proto.statistico.StrategyTrade>}
  */
 const methodInfo_StrategyService_BuildStrategy = new grpc.web.AbstractClientBase.MethodInfo(
-  proto.statistico.Trade,
+  proto.statistico.StrategyTrade,
   /**
    * @param {!proto.statistico.StrategyTradeSearchRequest} request
    * @return {!Uint8Array}
@@ -117,7 +117,7 @@ const methodInfo_StrategyService_BuildStrategy = new grpc.web.AbstractClientBase
   function(request) {
     return request.serializeBinary();
   },
-  proto.statistico.Trade.deserializeBinary
+  proto.statistico.StrategyTrade.deserializeBinary
 );
 
 
@@ -125,7 +125,7 @@ const methodInfo_StrategyService_BuildStrategy = new grpc.web.AbstractClientBase
  * @param {!proto.statistico.StrategyTradeSearchRequest} request The request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @return {!grpc.web.ClientReadableStream<!proto.statistico.Trade>}
+ * @return {!grpc.web.ClientReadableStream<!proto.statistico.StrategyTrade>}
  *     The XHR Node Readable Stream
  */
 proto.statistico.StrategyServiceClient.prototype.buildStrategy =
@@ -142,7 +142,7 @@ proto.statistico.StrategyServiceClient.prototype.buildStrategy =
  * @param {!proto.statistico.StrategyTradeSearchRequest} request The request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @return {!grpc.web.ClientReadableStream<!proto.statistico.Trade>}
+ * @return {!grpc.web.ClientReadableStream<!proto.statistico.StrategyTrade>}
  *     The XHR Node Readable Stream
  */
 proto.statistico.StrategyServicePromiseClient.prototype.buildStrategy =

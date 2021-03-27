@@ -11,7 +11,7 @@ import "google/protobuf/timestamp.proto";
 import "google/protobuf/wrappers.proto";
 
 service StrategyService {
-  rpc BuildStrategy(StrategyTradeSearchRequest) returns (stream Trade) {}
+  rpc BuildStrategy(StrategyTradeSearchRequest) returns (stream StrategyTrade) {}
   rpc SaveStrategy(CreateStrategyRequest) returns (Strategy) {}
   rpc ListUserStrategies(ListUserStrategiesRequest) returns (stream Strategy) {}
 }
@@ -35,7 +35,7 @@ message Strategy {
   google.protobuf.Timestamp updated_at = 16;
 }
 
-message Trade {
+message StrategyTrade {
   string market_name = 1;
   string runner_name = 2;
   float runner_price = 3;

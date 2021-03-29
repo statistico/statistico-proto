@@ -6,7 +6,7 @@ package statistico
 import (
 	fmt "fmt"
 	proto "github.com/golang/protobuf/proto"
-	wrapperspb "google.golang.org/protobuf/types/known/wrapperspb"
+	wrappers "github.com/golang/protobuf/ptypes/wrappers"
 	math "math"
 )
 
@@ -22,17 +22,17 @@ var _ = math.Inf
 const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 
 type Team struct {
-	Id                   uint64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	Name                 string                  `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	ShortCode            *wrapperspb.StringValue `protobuf:"bytes,3,opt,name=short_code,json=shortCode,proto3" json:"short_code,omitempty"`
-	CountryId            uint64                  `protobuf:"varint,4,opt,name=country_id,json=countryId,proto3" json:"country_id,omitempty"`
-	VenueId              uint64                  `protobuf:"varint,5,opt,name=venue_id,json=venueId,proto3" json:"venue_id,omitempty"`
-	IsNationalTeam       *wrapperspb.BoolValue   `protobuf:"bytes,6,opt,name=is_national_team,json=isNationalTeam,proto3" json:"is_national_team,omitempty"`
-	Founded              *wrapperspb.UInt64Value `protobuf:"bytes,7,opt,name=founded,proto3" json:"founded,omitempty"`
-	Logo                 *wrapperspb.StringValue `protobuf:"bytes,8,opt,name=logo,proto3" json:"logo,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}                `json:"-"`
-	XXX_unrecognized     []byte                  `json:"-"`
-	XXX_sizecache        int32                   `json:"-"`
+	Id                   uint64                `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Name                 string                `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	ShortCode            *wrappers.StringValue `protobuf:"bytes,3,opt,name=short_code,json=shortCode,proto3" json:"short_code,omitempty"`
+	CountryId            uint64                `protobuf:"varint,4,opt,name=country_id,json=countryId,proto3" json:"country_id,omitempty"`
+	VenueId              uint64                `protobuf:"varint,5,opt,name=venue_id,json=venueId,proto3" json:"venue_id,omitempty"`
+	IsNationalTeam       *wrappers.BoolValue   `protobuf:"bytes,6,opt,name=is_national_team,json=isNationalTeam,proto3" json:"is_national_team,omitempty"`
+	Founded              *wrappers.UInt64Value `protobuf:"bytes,7,opt,name=founded,proto3" json:"founded,omitempty"`
+	Logo                 *wrappers.StringValue `protobuf:"bytes,8,opt,name=logo,proto3" json:"logo,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}              `json:"-"`
+	XXX_unrecognized     []byte                `json:"-"`
+	XXX_sizecache        int32                 `json:"-"`
 }
 
 func (m *Team) Reset()         { *m = Team{} }
@@ -74,7 +74,7 @@ func (m *Team) GetName() string {
 	return ""
 }
 
-func (m *Team) GetShortCode() *wrapperspb.StringValue {
+func (m *Team) GetShortCode() *wrappers.StringValue {
 	if m != nil {
 		return m.ShortCode
 	}
@@ -95,21 +95,21 @@ func (m *Team) GetVenueId() uint64 {
 	return 0
 }
 
-func (m *Team) GetIsNationalTeam() *wrapperspb.BoolValue {
+func (m *Team) GetIsNationalTeam() *wrappers.BoolValue {
 	if m != nil {
 		return m.IsNationalTeam
 	}
 	return nil
 }
 
-func (m *Team) GetFounded() *wrapperspb.UInt64Value {
+func (m *Team) GetFounded() *wrappers.UInt64Value {
 	if m != nil {
 		return m.Founded
 	}
 	return nil
 }
 
-func (m *Team) GetLogo() *wrapperspb.StringValue {
+func (m *Team) GetLogo() *wrappers.StringValue {
 	if m != nil {
 		return m.Logo
 	}

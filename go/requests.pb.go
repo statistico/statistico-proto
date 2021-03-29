@@ -6,8 +6,8 @@ package statistico
 import (
 	fmt "fmt"
 	proto "github.com/golang/protobuf/proto"
-	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
-	wrapperspb "google.golang.org/protobuf/types/known/wrapperspb"
+	_ "github.com/golang/protobuf/ptypes/timestamp"
+	wrappers "github.com/golang/protobuf/ptypes/wrappers"
 	math "math"
 )
 
@@ -26,12 +26,12 @@ type CompetitionRequest struct {
 	// A filter to limit the competitions returned associated to a specific countries
 	CountryIds []uint64 `protobuf:"varint,1,rep,packed,name=country_ids,json=countryIds,proto3" json:"country_ids,omitempty"`
 	// Order the ID column to return competitions in specific order
-	Sort *wrapperspb.StringValue `protobuf:"bytes,2,opt,name=sort,proto3" json:"sort,omitempty"`
+	Sort *wrappers.StringValue `protobuf:"bytes,2,opt,name=sort,proto3" json:"sort,omitempty"`
 	// A filter to limit the competitions returned depending on if they are a cup competition or not
-	IsCup                *wrapperspb.BoolValue `protobuf:"bytes,3,opt,name=is_cup,json=isCup,proto3" json:"is_cup,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}              `json:"-"`
-	XXX_unrecognized     []byte                `json:"-"`
-	XXX_sizecache        int32                 `json:"-"`
+	IsCup                *wrappers.BoolValue `protobuf:"bytes,3,opt,name=is_cup,json=isCup,proto3" json:"is_cup,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}            `json:"-"`
+	XXX_unrecognized     []byte              `json:"-"`
+	XXX_sizecache        int32               `json:"-"`
 }
 
 func (m *CompetitionRequest) Reset()         { *m = CompetitionRequest{} }
@@ -66,14 +66,14 @@ func (m *CompetitionRequest) GetCountryIds() []uint64 {
 	return nil
 }
 
-func (m *CompetitionRequest) GetSort() *wrapperspb.StringValue {
+func (m *CompetitionRequest) GetSort() *wrappers.StringValue {
 	if m != nil {
 		return m.Sort
 	}
 	return nil
 }
 
-func (m *CompetitionRequest) GetIsCup() *wrapperspb.BoolValue {
+func (m *CompetitionRequest) GetIsCup() *wrappers.BoolValue {
 	if m != nil {
 		return m.IsCup
 	}
@@ -123,18 +123,18 @@ type FixtureSearchRequest struct {
 	// A filter to limit the results returned associated to a specific season
 	SeasonIds []uint64 `protobuf:"varint,1,rep,packed,name=season_ids,json=seasonIds,proto3" json:"season_ids,omitempty"`
 	// The number of results to return.
-	Limit *wrapperspb.UInt64Value `protobuf:"bytes,2,opt,name=limit,proto3" json:"limit,omitempty"`
+	Limit *wrappers.UInt64Value `protobuf:"bytes,2,opt,name=limit,proto3" json:"limit,omitempty"`
 	// A filter to return Results before a specific date
 	// RFC3339 formatted string i.e "2006-01-02T15:04:05Z07:00"
-	DateBefore *wrapperspb.StringValue `protobuf:"bytes,3,opt,name=date_before,json=dateBefore,proto3" json:"date_before,omitempty"`
+	DateBefore *wrappers.StringValue `protobuf:"bytes,3,opt,name=date_before,json=dateBefore,proto3" json:"date_before,omitempty"`
 	// A filter to return Results after a specific date
 	// RFC3339 formatted string i.e "2006-01-02T15:04:05Z07:00"
-	DateAfter *wrapperspb.StringValue `protobuf:"bytes,4,opt,name=date_after,json=dateAfter,proto3" json:"date_after,omitempty"`
+	DateAfter *wrappers.StringValue `protobuf:"bytes,4,opt,name=date_after,json=dateAfter,proto3" json:"date_after,omitempty"`
 	// Order the date column to return results in specific order
-	Sort                 *wrapperspb.StringValue `protobuf:"bytes,5,opt,name=sort,proto3" json:"sort,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}                `json:"-"`
-	XXX_unrecognized     []byte                  `json:"-"`
-	XXX_sizecache        int32                   `json:"-"`
+	Sort                 *wrappers.StringValue `protobuf:"bytes,5,opt,name=sort,proto3" json:"sort,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}              `json:"-"`
+	XXX_unrecognized     []byte                `json:"-"`
+	XXX_sizecache        int32                 `json:"-"`
 }
 
 func (m *FixtureSearchRequest) Reset()         { *m = FixtureSearchRequest{} }
@@ -169,28 +169,28 @@ func (m *FixtureSearchRequest) GetSeasonIds() []uint64 {
 	return nil
 }
 
-func (m *FixtureSearchRequest) GetLimit() *wrapperspb.UInt64Value {
+func (m *FixtureSearchRequest) GetLimit() *wrappers.UInt64Value {
 	if m != nil {
 		return m.Limit
 	}
 	return nil
 }
 
-func (m *FixtureSearchRequest) GetDateBefore() *wrapperspb.StringValue {
+func (m *FixtureSearchRequest) GetDateBefore() *wrappers.StringValue {
 	if m != nil {
 		return m.DateBefore
 	}
 	return nil
 }
 
-func (m *FixtureSearchRequest) GetDateAfter() *wrapperspb.StringValue {
+func (m *FixtureSearchRequest) GetDateAfter() *wrappers.StringValue {
 	if m != nil {
 		return m.DateAfter
 	}
 	return nil
 }
 
-func (m *FixtureSearchRequest) GetSort() *wrapperspb.StringValue {
+func (m *FixtureSearchRequest) GetSort() *wrappers.StringValue {
 	if m != nil {
 		return m.Sort
 	}
@@ -265,45 +265,6 @@ func (m *HistoricalResultRequest) GetDateBefore() string {
 	return ""
 }
 
-type ListUserStrategiesRequest struct {
-	UserId               string   `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *ListUserStrategiesRequest) Reset()         { *m = ListUserStrategiesRequest{} }
-func (m *ListUserStrategiesRequest) String() string { return proto.CompactTextString(m) }
-func (*ListUserStrategiesRequest) ProtoMessage()    {}
-func (*ListUserStrategiesRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_9c9ccec99da7c9b4, []int{4}
-}
-
-func (m *ListUserStrategiesRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_ListUserStrategiesRequest.Unmarshal(m, b)
-}
-func (m *ListUserStrategiesRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_ListUserStrategiesRequest.Marshal(b, m, deterministic)
-}
-func (m *ListUserStrategiesRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ListUserStrategiesRequest.Merge(m, src)
-}
-func (m *ListUserStrategiesRequest) XXX_Size() int {
-	return xxx_messageInfo_ListUserStrategiesRequest.Size(m)
-}
-func (m *ListUserStrategiesRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_ListUserStrategiesRequest.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_ListUserStrategiesRequest proto.InternalMessageInfo
-
-func (m *ListUserStrategiesRequest) GetUserId() string {
-	if m != nil {
-		return m.UserId
-	}
-	return ""
-}
-
 type ResultRequest struct {
 	FixtureId            uint64   `protobuf:"varint,1,opt,name=fixture_id,json=fixtureId,proto3" json:"fixture_id,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
@@ -315,7 +276,7 @@ func (m *ResultRequest) Reset()         { *m = ResultRequest{} }
 func (m *ResultRequest) String() string { return proto.CompactTextString(m) }
 func (*ResultRequest) ProtoMessage()    {}
 func (*ResultRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_9c9ccec99da7c9b4, []int{5}
+	return fileDescriptor_9c9ccec99da7c9b4, []int{4}
 }
 
 func (m *ResultRequest) XXX_Unmarshal(b []byte) error {
@@ -343,147 +304,20 @@ func (m *ResultRequest) GetFixtureId() uint64 {
 	return 0
 }
 
-type SaveStrategyRequest struct {
-	Name                 string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	Description          string                 `protobuf:"bytes,2,opt,name=description,proto3" json:"description,omitempty"`
-	UserId               string                 `protobuf:"bytes,3,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
-	Market               string                 `protobuf:"bytes,4,opt,name=market,proto3" json:"market,omitempty"`
-	Runner               string                 `protobuf:"bytes,5,opt,name=runner,proto3" json:"runner,omitempty"`
-	MinOdds              *wrapperspb.FloatValue `protobuf:"bytes,6,opt,name=min_odds,json=minOdds,proto3" json:"min_odds,omitempty"`
-	MaxOdds              *wrapperspb.FloatValue `protobuf:"bytes,7,opt,name=max_odds,json=maxOdds,proto3" json:"max_odds,omitempty"`
-	Side                 SideEnum               `protobuf:"varint,8,opt,name=side,proto3,enum=statistico.SideEnum" json:"side,omitempty"`
-	CompetitionIds       []uint64               `protobuf:"varint,9,rep,packed,name=competition_ids,json=competitionIds,proto3" json:"competition_ids,omitempty"`
-	ResultFilters        []*ResultFilter        `protobuf:"bytes,10,rep,name=result_filters,json=resultFilters,proto3" json:"result_filters,omitempty"`
-	StatFilters          []*StatFilter          `protobuf:"bytes,11,rep,name=stat_filters,json=statFilters,proto3" json:"stat_filters,omitempty"`
-	Visibility           VisibilityEnum         `protobuf:"varint,12,opt,name=visibility,proto3,enum=statistico.VisibilityEnum" json:"visibility,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}               `json:"-"`
-	XXX_unrecognized     []byte                 `json:"-"`
-	XXX_sizecache        int32                  `json:"-"`
-}
-
-func (m *SaveStrategyRequest) Reset()         { *m = SaveStrategyRequest{} }
-func (m *SaveStrategyRequest) String() string { return proto.CompactTextString(m) }
-func (*SaveStrategyRequest) ProtoMessage()    {}
-func (*SaveStrategyRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_9c9ccec99da7c9b4, []int{6}
-}
-
-func (m *SaveStrategyRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_SaveStrategyRequest.Unmarshal(m, b)
-}
-func (m *SaveStrategyRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_SaveStrategyRequest.Marshal(b, m, deterministic)
-}
-func (m *SaveStrategyRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_SaveStrategyRequest.Merge(m, src)
-}
-func (m *SaveStrategyRequest) XXX_Size() int {
-	return xxx_messageInfo_SaveStrategyRequest.Size(m)
-}
-func (m *SaveStrategyRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_SaveStrategyRequest.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_SaveStrategyRequest proto.InternalMessageInfo
-
-func (m *SaveStrategyRequest) GetName() string {
-	if m != nil {
-		return m.Name
-	}
-	return ""
-}
-
-func (m *SaveStrategyRequest) GetDescription() string {
-	if m != nil {
-		return m.Description
-	}
-	return ""
-}
-
-func (m *SaveStrategyRequest) GetUserId() string {
-	if m != nil {
-		return m.UserId
-	}
-	return ""
-}
-
-func (m *SaveStrategyRequest) GetMarket() string {
-	if m != nil {
-		return m.Market
-	}
-	return ""
-}
-
-func (m *SaveStrategyRequest) GetRunner() string {
-	if m != nil {
-		return m.Runner
-	}
-	return ""
-}
-
-func (m *SaveStrategyRequest) GetMinOdds() *wrapperspb.FloatValue {
-	if m != nil {
-		return m.MinOdds
-	}
-	return nil
-}
-
-func (m *SaveStrategyRequest) GetMaxOdds() *wrapperspb.FloatValue {
-	if m != nil {
-		return m.MaxOdds
-	}
-	return nil
-}
-
-func (m *SaveStrategyRequest) GetSide() SideEnum {
-	if m != nil {
-		return m.Side
-	}
-	return SideEnum_BACK
-}
-
-func (m *SaveStrategyRequest) GetCompetitionIds() []uint64 {
-	if m != nil {
-		return m.CompetitionIds
-	}
-	return nil
-}
-
-func (m *SaveStrategyRequest) GetResultFilters() []*ResultFilter {
-	if m != nil {
-		return m.ResultFilters
-	}
-	return nil
-}
-
-func (m *SaveStrategyRequest) GetStatFilters() []*StatFilter {
-	if m != nil {
-		return m.StatFilters
-	}
-	return nil
-}
-
-func (m *SaveStrategyRequest) GetVisibility() VisibilityEnum {
-	if m != nil {
-		return m.Visibility
-	}
-	return VisibilityEnum_PUBLIC
-}
-
 type SeasonCompetitionRequest struct {
 	CompetitionId uint64 `protobuf:"varint,1,opt,name=competition_id,json=competitionId,proto3" json:"competition_id,omitempty"`
 	// Order the name column to return seasons in specific order
-	Sort                 *wrapperspb.StringValue `protobuf:"bytes,2,opt,name=sort,proto3" json:"sort,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}                `json:"-"`
-	XXX_unrecognized     []byte                  `json:"-"`
-	XXX_sizecache        int32                   `json:"-"`
+	Sort                 *wrappers.StringValue `protobuf:"bytes,2,opt,name=sort,proto3" json:"sort,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}              `json:"-"`
+	XXX_unrecognized     []byte                `json:"-"`
+	XXX_sizecache        int32                 `json:"-"`
 }
 
 func (m *SeasonCompetitionRequest) Reset()         { *m = SeasonCompetitionRequest{} }
 func (m *SeasonCompetitionRequest) String() string { return proto.CompactTextString(m) }
 func (*SeasonCompetitionRequest) ProtoMessage()    {}
 func (*SeasonCompetitionRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_9c9ccec99da7c9b4, []int{7}
+	return fileDescriptor_9c9ccec99da7c9b4, []int{5}
 }
 
 func (m *SeasonCompetitionRequest) XXX_Unmarshal(b []byte) error {
@@ -511,7 +345,7 @@ func (m *SeasonCompetitionRequest) GetCompetitionId() uint64 {
 	return 0
 }
 
-func (m *SeasonCompetitionRequest) GetSort() *wrapperspb.StringValue {
+func (m *SeasonCompetitionRequest) GetSort() *wrappers.StringValue {
 	if m != nil {
 		return m.Sort
 	}
@@ -533,7 +367,7 @@ func (m *SeasonFixtureRequest) Reset()         { *m = SeasonFixtureRequest{} }
 func (m *SeasonFixtureRequest) String() string { return proto.CompactTextString(m) }
 func (*SeasonFixtureRequest) ProtoMessage()    {}
 func (*SeasonFixtureRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_9c9ccec99da7c9b4, []int{8}
+	return fileDescriptor_9c9ccec99da7c9b4, []int{6}
 }
 
 func (m *SeasonFixtureRequest) XXX_Unmarshal(b []byte) error {
@@ -590,7 +424,7 @@ func (m *SeasonRequest) Reset()         { *m = SeasonRequest{} }
 func (m *SeasonRequest) String() string { return proto.CompactTextString(m) }
 func (*SeasonRequest) ProtoMessage()    {}
 func (*SeasonRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_9c9ccec99da7c9b4, []int{9}
+	return fileDescriptor_9c9ccec99da7c9b4, []int{7}
 }
 
 func (m *SeasonRequest) XXX_Unmarshal(b []byte) error {
@@ -636,7 +470,7 @@ func (m *SeasonTeamsRequest) Reset()         { *m = SeasonTeamsRequest{} }
 func (m *SeasonTeamsRequest) String() string { return proto.CompactTextString(m) }
 func (*SeasonTeamsRequest) ProtoMessage()    {}
 func (*SeasonTeamsRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_9c9ccec99da7c9b4, []int{10}
+	return fileDescriptor_9c9ccec99da7c9b4, []int{8}
 }
 
 func (m *SeasonTeamsRequest) XXX_Unmarshal(b []byte) error {
@@ -664,133 +498,6 @@ func (m *SeasonTeamsRequest) GetSeasonId() uint64 {
 	return 0
 }
 
-type BuildStrategyRequest struct {
-	Market               string                 `protobuf:"bytes,1,opt,name=market,proto3" json:"market,omitempty"`
-	Runner               string                 `protobuf:"bytes,2,opt,name=runner,proto3" json:"runner,omitempty"`
-	MinOdds              *wrapperspb.FloatValue `protobuf:"bytes,3,opt,name=min_odds,json=minOdds,proto3" json:"min_odds,omitempty"`
-	MaxOdds              *wrapperspb.FloatValue `protobuf:"bytes,4,opt,name=max_odds,json=maxOdds,proto3" json:"max_odds,omitempty"`
-	Line                 string                 `protobuf:"bytes,5,opt,name=line,proto3" json:"line,omitempty"`
-	Side                 SideEnum               `protobuf:"varint,6,opt,name=side,proto3,enum=statistico.SideEnum" json:"side,omitempty"`
-	CompetitionIds       []uint64               `protobuf:"varint,7,rep,packed,name=competition_ids,json=competitionIds,proto3" json:"competition_ids,omitempty"`
-	SeasonIds            []uint64               `protobuf:"varint,8,rep,packed,name=season_ids,json=seasonIds,proto3" json:"season_ids,omitempty"`
-	DateFrom             *timestamppb.Timestamp `protobuf:"bytes,9,opt,name=dateFrom,proto3" json:"dateFrom,omitempty"`
-	DateTo               *timestamppb.Timestamp `protobuf:"bytes,10,opt,name=dateTo,proto3" json:"dateTo,omitempty"`
-	ResultFilters        []*ResultFilter        `protobuf:"bytes,11,rep,name=result_filters,json=resultFilters,proto3" json:"result_filters,omitempty"`
-	StatFilters          []*StatFilter          `protobuf:"bytes,12,rep,name=stat_filters,json=statFilters,proto3" json:"stat_filters,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}               `json:"-"`
-	XXX_unrecognized     []byte                 `json:"-"`
-	XXX_sizecache        int32                  `json:"-"`
-}
-
-func (m *BuildStrategyRequest) Reset()         { *m = BuildStrategyRequest{} }
-func (m *BuildStrategyRequest) String() string { return proto.CompactTextString(m) }
-func (*BuildStrategyRequest) ProtoMessage()    {}
-func (*BuildStrategyRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_9c9ccec99da7c9b4, []int{11}
-}
-
-func (m *BuildStrategyRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_BuildStrategyRequest.Unmarshal(m, b)
-}
-func (m *BuildStrategyRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_BuildStrategyRequest.Marshal(b, m, deterministic)
-}
-func (m *BuildStrategyRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_BuildStrategyRequest.Merge(m, src)
-}
-func (m *BuildStrategyRequest) XXX_Size() int {
-	return xxx_messageInfo_BuildStrategyRequest.Size(m)
-}
-func (m *BuildStrategyRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_BuildStrategyRequest.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_BuildStrategyRequest proto.InternalMessageInfo
-
-func (m *BuildStrategyRequest) GetMarket() string {
-	if m != nil {
-		return m.Market
-	}
-	return ""
-}
-
-func (m *BuildStrategyRequest) GetRunner() string {
-	if m != nil {
-		return m.Runner
-	}
-	return ""
-}
-
-func (m *BuildStrategyRequest) GetMinOdds() *wrapperspb.FloatValue {
-	if m != nil {
-		return m.MinOdds
-	}
-	return nil
-}
-
-func (m *BuildStrategyRequest) GetMaxOdds() *wrapperspb.FloatValue {
-	if m != nil {
-		return m.MaxOdds
-	}
-	return nil
-}
-
-func (m *BuildStrategyRequest) GetLine() string {
-	if m != nil {
-		return m.Line
-	}
-	return ""
-}
-
-func (m *BuildStrategyRequest) GetSide() SideEnum {
-	if m != nil {
-		return m.Side
-	}
-	return SideEnum_BACK
-}
-
-func (m *BuildStrategyRequest) GetCompetitionIds() []uint64 {
-	if m != nil {
-		return m.CompetitionIds
-	}
-	return nil
-}
-
-func (m *BuildStrategyRequest) GetSeasonIds() []uint64 {
-	if m != nil {
-		return m.SeasonIds
-	}
-	return nil
-}
-
-func (m *BuildStrategyRequest) GetDateFrom() *timestamppb.Timestamp {
-	if m != nil {
-		return m.DateFrom
-	}
-	return nil
-}
-
-func (m *BuildStrategyRequest) GetDateTo() *timestamppb.Timestamp {
-	if m != nil {
-		return m.DateTo
-	}
-	return nil
-}
-
-func (m *BuildStrategyRequest) GetResultFilters() []*ResultFilter {
-	if m != nil {
-		return m.ResultFilters
-	}
-	return nil
-}
-
-func (m *BuildStrategyRequest) GetStatFilters() []*StatFilter {
-	if m != nil {
-		return m.StatFilters
-	}
-	return nil
-}
-
 type TeamRequest struct {
 	TeamId               uint64   `protobuf:"varint,1,opt,name=team_id,json=teamId,proto3" json:"team_id,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
@@ -802,7 +509,7 @@ func (m *TeamRequest) Reset()         { *m = TeamRequest{} }
 func (m *TeamRequest) String() string { return proto.CompactTextString(m) }
 func (*TeamRequest) ProtoMessage()    {}
 func (*TeamRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_9c9ccec99da7c9b4, []int{12}
+	return fileDescriptor_9c9ccec99da7c9b4, []int{9}
 }
 
 func (m *TeamRequest) XXX_Unmarshal(b []byte) error {
@@ -835,29 +542,29 @@ type TeamResultRequest struct {
 	TeamId uint64 `protobuf:"varint,1,opt,name=team_id,json=teamId,proto3" json:"team_id,omitempty"`
 	// The number of results to return. If limit is not set the whole Result set for the Team
 	// will be returned
-	Limit *wrapperspb.UInt64Value `protobuf:"bytes,2,opt,name=limit,proto3" json:"limit,omitempty"`
+	Limit *wrappers.UInt64Value `protobuf:"bytes,2,opt,name=limit,proto3" json:"limit,omitempty"`
 	// A filter to return Results before a specific date
 	// RFC3339 formatted string i.e "2006-01-02T15:04:05Z07:00"
-	DateBefore *wrapperspb.StringValue `protobuf:"bytes,3,opt,name=date_before,json=dateBefore,proto3" json:"date_before,omitempty"`
+	DateBefore *wrappers.StringValue `protobuf:"bytes,3,opt,name=date_before,json=dateBefore,proto3" json:"date_before,omitempty"`
 	// A filter to return Results after a specific date
 	// RFC3339 formatted string i.e "2006-01-02T15:04:05Z07:00"
-	DateAfter *wrapperspb.StringValue `protobuf:"bytes,4,opt,name=date_after,json=dateAfter,proto3" json:"date_after,omitempty"`
+	DateAfter *wrappers.StringValue `protobuf:"bytes,4,opt,name=date_after,json=dateAfter,proto3" json:"date_after,omitempty"`
 	// A filter to return based limited to either home or away results
-	Venue *wrapperspb.StringValue `protobuf:"bytes,5,opt,name=venue,proto3" json:"venue,omitempty"`
+	Venue *wrappers.StringValue `protobuf:"bytes,5,opt,name=venue,proto3" json:"venue,omitempty"`
 	// A filter to limit the results returned associated to a specific season
 	SeasonIds []uint64 `protobuf:"varint,6,rep,packed,name=season_ids,json=seasonIds,proto3" json:"season_ids,omitempty"`
 	// Order the date column to return results in specific order
-	Sort                 *wrapperspb.StringValue `protobuf:"bytes,7,opt,name=sort,proto3" json:"sort,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}                `json:"-"`
-	XXX_unrecognized     []byte                  `json:"-"`
-	XXX_sizecache        int32                   `json:"-"`
+	Sort                 *wrappers.StringValue `protobuf:"bytes,7,opt,name=sort,proto3" json:"sort,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}              `json:"-"`
+	XXX_unrecognized     []byte                `json:"-"`
+	XXX_sizecache        int32                 `json:"-"`
 }
 
 func (m *TeamResultRequest) Reset()         { *m = TeamResultRequest{} }
 func (m *TeamResultRequest) String() string { return proto.CompactTextString(m) }
 func (*TeamResultRequest) ProtoMessage()    {}
 func (*TeamResultRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_9c9ccec99da7c9b4, []int{13}
+	return fileDescriptor_9c9ccec99da7c9b4, []int{10}
 }
 
 func (m *TeamResultRequest) XXX_Unmarshal(b []byte) error {
@@ -885,28 +592,28 @@ func (m *TeamResultRequest) GetTeamId() uint64 {
 	return 0
 }
 
-func (m *TeamResultRequest) GetLimit() *wrapperspb.UInt64Value {
+func (m *TeamResultRequest) GetLimit() *wrappers.UInt64Value {
 	if m != nil {
 		return m.Limit
 	}
 	return nil
 }
 
-func (m *TeamResultRequest) GetDateBefore() *wrapperspb.StringValue {
+func (m *TeamResultRequest) GetDateBefore() *wrappers.StringValue {
 	if m != nil {
 		return m.DateBefore
 	}
 	return nil
 }
 
-func (m *TeamResultRequest) GetDateAfter() *wrapperspb.StringValue {
+func (m *TeamResultRequest) GetDateAfter() *wrappers.StringValue {
 	if m != nil {
 		return m.DateAfter
 	}
 	return nil
 }
 
-func (m *TeamResultRequest) GetVenue() *wrapperspb.StringValue {
+func (m *TeamResultRequest) GetVenue() *wrappers.StringValue {
 	if m != nil {
 		return m.Venue
 	}
@@ -920,7 +627,7 @@ func (m *TeamResultRequest) GetSeasonIds() []uint64 {
 	return nil
 }
 
-func (m *TeamResultRequest) GetSort() *wrapperspb.StringValue {
+func (m *TeamResultRequest) GetSort() *wrappers.StringValue {
 	if m != nil {
 		return m.Sort
 	}
@@ -930,17 +637,17 @@ func (m *TeamResultRequest) GetSort() *wrapperspb.StringValue {
 type TeamSeasonsRequest struct {
 	TeamId uint64 `protobuf:"varint,1,opt,name=team_id,json=teamId,proto3" json:"team_id,omitempty"`
 	// Order the name column to return seasons in specific order
-	Sort                 *wrapperspb.StringValue `protobuf:"bytes,2,opt,name=sort,proto3" json:"sort,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}                `json:"-"`
-	XXX_unrecognized     []byte                  `json:"-"`
-	XXX_sizecache        int32                   `json:"-"`
+	Sort                 *wrappers.StringValue `protobuf:"bytes,2,opt,name=sort,proto3" json:"sort,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}              `json:"-"`
+	XXX_unrecognized     []byte                `json:"-"`
+	XXX_sizecache        int32                 `json:"-"`
 }
 
 func (m *TeamSeasonsRequest) Reset()         { *m = TeamSeasonsRequest{} }
 func (m *TeamSeasonsRequest) String() string { return proto.CompactTextString(m) }
 func (*TeamSeasonsRequest) ProtoMessage()    {}
 func (*TeamSeasonsRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_9c9ccec99da7c9b4, []int{14}
+	return fileDescriptor_9c9ccec99da7c9b4, []int{11}
 }
 
 func (m *TeamSeasonsRequest) XXX_Unmarshal(b []byte) error {
@@ -968,7 +675,7 @@ func (m *TeamSeasonsRequest) GetTeamId() uint64 {
 	return 0
 }
 
-func (m *TeamSeasonsRequest) GetSort() *wrapperspb.StringValue {
+func (m *TeamSeasonsRequest) GetSort() *wrappers.StringValue {
 	if m != nil {
 		return m.Sort
 	}
@@ -981,31 +688,31 @@ type TeamStatRequest struct {
 	TeamId uint64 `protobuf:"varint,2,opt,name=team_id,json=teamId,proto3" json:"team_id,omitempty"`
 	// The number of results to return. If limit is not set the whole Result set for the Team
 	// will be returned
-	Limit *wrapperspb.UInt64Value `protobuf:"bytes,3,opt,name=limit,proto3" json:"limit,omitempty"`
+	Limit *wrappers.UInt64Value `protobuf:"bytes,3,opt,name=limit,proto3" json:"limit,omitempty"`
 	// A filter to return stats before a specific date
 	// RFC3339 formatted string i.e "2006-01-02T15:04:05Z07:00"
-	DateBefore *wrapperspb.StringValue `protobuf:"bytes,4,opt,name=date_before,json=dateBefore,proto3" json:"date_before,omitempty"`
+	DateBefore *wrappers.StringValue `protobuf:"bytes,4,opt,name=date_before,json=dateBefore,proto3" json:"date_before,omitempty"`
 	// A filter to return stats after a specific date
 	// RFC3339 formatted string i.e "2006-01-02T15:04:05Z07:00"
-	DateAfter *wrapperspb.StringValue `protobuf:"bytes,5,opt,name=date_after,json=dateAfter,proto3" json:"date_after,omitempty"`
+	DateAfter *wrappers.StringValue `protobuf:"bytes,5,opt,name=date_after,json=dateAfter,proto3" json:"date_after,omitempty"`
 	// A filter to return based stats limited to match being played either home or away
-	Venue *wrapperspb.StringValue `protobuf:"bytes,6,opt,name=venue,proto3" json:"venue,omitempty"`
+	Venue *wrappers.StringValue `protobuf:"bytes,6,opt,name=venue,proto3" json:"venue,omitempty"`
 	// A filter to limit the results returned associated to a specific season
 	SeasonIds []uint64 `protobuf:"varint,7,rep,packed,name=season_ids,json=seasonIds,proto3" json:"season_ids,omitempty"`
 	// Order the date column to return stats in specific order
-	Sort *wrapperspb.StringValue `protobuf:"bytes,8,opt,name=sort,proto3" json:"sort,omitempty"`
+	Sort *wrappers.StringValue `protobuf:"bytes,8,opt,name=sort,proto3" json:"sort,omitempty"`
 	// Return stats for opposing team
-	Opponent             *wrapperspb.BoolValue `protobuf:"bytes,9,opt,name=opponent,proto3" json:"opponent,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}              `json:"-"`
-	XXX_unrecognized     []byte                `json:"-"`
-	XXX_sizecache        int32                 `json:"-"`
+	Opponent             *wrappers.BoolValue `protobuf:"bytes,9,opt,name=opponent,proto3" json:"opponent,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}            `json:"-"`
+	XXX_unrecognized     []byte              `json:"-"`
+	XXX_sizecache        int32               `json:"-"`
 }
 
 func (m *TeamStatRequest) Reset()         { *m = TeamStatRequest{} }
 func (m *TeamStatRequest) String() string { return proto.CompactTextString(m) }
 func (*TeamStatRequest) ProtoMessage()    {}
 func (*TeamStatRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_9c9ccec99da7c9b4, []int{15}
+	return fileDescriptor_9c9ccec99da7c9b4, []int{12}
 }
 
 func (m *TeamStatRequest) XXX_Unmarshal(b []byte) error {
@@ -1040,28 +747,28 @@ func (m *TeamStatRequest) GetTeamId() uint64 {
 	return 0
 }
 
-func (m *TeamStatRequest) GetLimit() *wrapperspb.UInt64Value {
+func (m *TeamStatRequest) GetLimit() *wrappers.UInt64Value {
 	if m != nil {
 		return m.Limit
 	}
 	return nil
 }
 
-func (m *TeamStatRequest) GetDateBefore() *wrapperspb.StringValue {
+func (m *TeamStatRequest) GetDateBefore() *wrappers.StringValue {
 	if m != nil {
 		return m.DateBefore
 	}
 	return nil
 }
 
-func (m *TeamStatRequest) GetDateAfter() *wrapperspb.StringValue {
+func (m *TeamStatRequest) GetDateAfter() *wrappers.StringValue {
 	if m != nil {
 		return m.DateAfter
 	}
 	return nil
 }
 
-func (m *TeamStatRequest) GetVenue() *wrapperspb.StringValue {
+func (m *TeamStatRequest) GetVenue() *wrappers.StringValue {
 	if m != nil {
 		return m.Venue
 	}
@@ -1075,14 +782,14 @@ func (m *TeamStatRequest) GetSeasonIds() []uint64 {
 	return nil
 }
 
-func (m *TeamStatRequest) GetSort() *wrapperspb.StringValue {
+func (m *TeamStatRequest) GetSort() *wrappers.StringValue {
 	if m != nil {
 		return m.Sort
 	}
 	return nil
 }
 
-func (m *TeamStatRequest) GetOpponent() *wrapperspb.BoolValue {
+func (m *TeamStatRequest) GetOpponent() *wrappers.BoolValue {
 	if m != nil {
 		return m.Opponent
 	}
@@ -1094,14 +801,11 @@ func init() {
 	proto.RegisterType((*FixtureRequest)(nil), "statistico.FixtureRequest")
 	proto.RegisterType((*FixtureSearchRequest)(nil), "statistico.FixtureSearchRequest")
 	proto.RegisterType((*HistoricalResultRequest)(nil), "statistico.HistoricalResultRequest")
-	proto.RegisterType((*ListUserStrategiesRequest)(nil), "statistico.ListUserStrategiesRequest")
 	proto.RegisterType((*ResultRequest)(nil), "statistico.ResultRequest")
-	proto.RegisterType((*SaveStrategyRequest)(nil), "statistico.SaveStrategyRequest")
 	proto.RegisterType((*SeasonCompetitionRequest)(nil), "statistico.SeasonCompetitionRequest")
 	proto.RegisterType((*SeasonFixtureRequest)(nil), "statistico.SeasonFixtureRequest")
 	proto.RegisterType((*SeasonRequest)(nil), "statistico.SeasonRequest")
 	proto.RegisterType((*SeasonTeamsRequest)(nil), "statistico.SeasonTeamsRequest")
-	proto.RegisterType((*BuildStrategyRequest)(nil), "statistico.BuildStrategyRequest")
 	proto.RegisterType((*TeamRequest)(nil), "statistico.TeamRequest")
 	proto.RegisterType((*TeamResultRequest)(nil), "statistico.TeamResultRequest")
 	proto.RegisterType((*TeamSeasonsRequest)(nil), "statistico.TeamSeasonsRequest")
@@ -1111,68 +815,47 @@ func init() {
 func init() { proto.RegisterFile("requests.proto", fileDescriptor_9c9ccec99da7c9b4) }
 
 var fileDescriptor_9c9ccec99da7c9b4 = []byte{
-	// 994 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xd4, 0x56, 0x4f, 0x6f, 0xe3, 0x44,
-	0x14, 0x57, 0x12, 0xe7, 0x8f, 0x9f, 0x93, 0xac, 0x30, 0xd1, 0xae, 0xe9, 0x02, 0x1b, 0x59, 0x02,
-	0x72, 0x21, 0xa5, 0xd9, 0x55, 0x25, 0x58, 0x21, 0x44, 0x57, 0x54, 0x44, 0x02, 0x21, 0x39, 0xdd,
-	0x3d, 0x70, 0xb1, 0x26, 0xf1, 0x24, 0x1d, 0x61, 0x7b, 0xcc, 0xcc, 0xb8, 0xdb, 0x7e, 0x0a, 0x2e,
-	0x48, 0x48, 0x9c, 0xb9, 0xf1, 0xa9, 0xf8, 0x26, 0x68, 0xc6, 0x63, 0x67, 0x92, 0x36, 0x34, 0xcd,
-	0x9e, 0xb8, 0xcd, 0x3c, 0xff, 0xde, 0xbc, 0xbf, 0xbf, 0xf7, 0x0c, 0x7d, 0x86, 0x7f, 0xcd, 0x31,
-	0x17, 0x7c, 0x9c, 0x31, 0x2a, 0xa8, 0x0b, 0x5c, 0x20, 0x41, 0xb8, 0x20, 0x0b, 0x7a, 0x04, 0x38,
-	0xcd, 0x93, 0x42, 0x7e, 0xd4, 0x5d, 0x92, 0x58, 0x60, 0xa6, 0x6f, 0xcf, 0x56, 0x94, 0xae, 0x62,
-	0x7c, 0xac, 0x6e, 0xf3, 0x7c, 0x79, 0x2c, 0x48, 0x82, 0xb9, 0x40, 0x49, 0xa6, 0x01, 0x1f, 0x6f,
-	0x03, 0xde, 0x32, 0x94, 0x65, 0x98, 0x69, 0x33, 0xfe, 0x9f, 0x35, 0x70, 0x5f, 0xd1, 0x24, 0xc3,
-	0x82, 0x08, 0x42, 0xd3, 0xa0, 0x70, 0xc2, 0x7d, 0x06, 0xce, 0x82, 0xe6, 0xa9, 0x60, 0x37, 0x21,
-	0x89, 0xb8, 0x57, 0x1b, 0x36, 0x46, 0x56, 0x00, 0x5a, 0x34, 0x8d, 0xb8, 0xfb, 0x05, 0x58, 0x9c,
-	0x32, 0xe1, 0xd5, 0x87, 0xb5, 0x91, 0x33, 0xf9, 0x70, 0x5c, 0x98, 0x19, 0x97, 0x66, 0xc6, 0x33,
-	0xc1, 0x48, 0xba, 0x7a, 0x83, 0xe2, 0x1c, 0x07, 0x0a, 0xe9, 0x9e, 0x40, 0x8b, 0xf0, 0x70, 0x91,
-	0x67, 0x5e, 0x43, 0xe9, 0x1c, 0xdd, 0xd2, 0x39, 0xa3, 0x34, 0x2e, 0x34, 0x9a, 0x84, 0xbf, 0xca,
-	0x33, 0xff, 0x18, 0xfa, 0xe7, 0xe4, 0x5a, 0xe4, 0x0c, 0x97, 0x7e, 0x7d, 0x04, 0xb0, 0x2c, 0x24,
-	0x21, 0x89, 0xbc, 0xda, 0xb0, 0x36, 0xb2, 0x02, 0x5b, 0x4b, 0xa6, 0x91, 0xff, 0x47, 0x1d, 0x06,
-	0x5a, 0x63, 0x86, 0x11, 0x5b, 0x5c, 0x1a, 0x7a, 0x1c, 0x23, 0x4e, 0x53, 0x23, 0x1c, 0xbb, 0x90,
-	0xc8, 0x68, 0x26, 0xd0, 0x8c, 0x49, 0x42, 0x76, 0x87, 0xf3, 0x7a, 0x9a, 0x8a, 0xd3, 0x17, 0xda,
-	0x39, 0x05, 0x75, 0xbf, 0x06, 0x27, 0x42, 0x02, 0x87, 0x73, 0xbc, 0xa4, 0x0c, 0xeb, 0xa0, 0xfe,
-	0x3b, 0x11, 0x20, 0x15, 0xce, 0x14, 0xde, 0x7d, 0x09, 0xea, 0x16, 0xa2, 0xa5, 0xc0, 0xcc, 0xb3,
-	0xf6, 0xd0, 0xb6, 0x25, 0xfe, 0x5b, 0x09, 0xaf, 0xb2, 0xdf, 0xdc, 0x37, 0xfb, 0xfe, 0xef, 0x35,
-	0x78, 0xf2, 0x3d, 0xe1, 0x82, 0x32, 0xb2, 0x40, 0x71, 0x80, 0x79, 0x1e, 0x8b, 0x32, 0x39, 0x43,
-	0xe8, 0x5e, 0xd2, 0x04, 0x87, 0x02, 0xa3, 0x64, 0x9d, 0x56, 0x90, 0xb2, 0x0b, 0x8c, 0x92, 0x69,
-	0x24, 0x11, 0xe8, 0x2d, 0xba, 0xa9, 0x10, 0xf5, 0x02, 0x21, 0x65, 0x1a, 0x31, 0x28, 0x33, 0x28,
-	0xf3, 0xd0, 0x2b, 0x73, 0xf4, 0x6c, 0x33, 0x47, 0x32, 0x4a, 0xdb, 0xcc, 0x82, 0xff, 0x02, 0x3e,
-	0xf8, 0x81, 0x70, 0xf1, 0x9a, 0x63, 0x36, 0x13, 0x0c, 0x09, 0xbc, 0x22, 0x98, 0x97, 0x7e, 0x3d,
-	0x81, 0x76, 0xce, 0x31, 0x2b, 0x5d, 0xb2, 0x83, 0x96, 0xbc, 0x4e, 0x23, 0x7f, 0x0c, 0xbd, 0xcd,
-	0x08, 0xee, 0x69, 0x8b, 0xdf, 0x2c, 0x78, 0x7f, 0x86, 0xae, 0xb0, 0x36, 0x71, 0x53, 0xaa, 0xb9,
-	0x60, 0xa5, 0x28, 0xc1, 0xfa, 0x75, 0x75, 0x76, 0x87, 0xe0, 0x44, 0x98, 0x2f, 0x18, 0xc9, 0x24,
-	0x1f, 0x54, 0xa4, 0x76, 0x60, 0x8a, 0x4c, 0xb7, 0x1a, 0xa6, 0x5b, 0xee, 0x63, 0x68, 0x25, 0x88,
-	0xfd, 0x82, 0x85, 0x0e, 0x54, 0xdf, 0xa4, 0x9c, 0xe5, 0x69, 0x8a, 0x99, 0xaa, 0x97, 0x1d, 0xe8,
-	0x9b, 0x7b, 0x0a, 0x9d, 0x84, 0xa4, 0x21, 0x8d, 0x22, 0xee, 0xb5, 0x54, 0x25, 0x9f, 0xde, 0xaa,
-	0xe4, 0x79, 0x4c, 0x91, 0x28, 0x0a, 0xd9, 0x4e, 0x48, 0xfa, 0x53, 0x14, 0x71, 0xa5, 0x87, 0xae,
-	0x0b, 0xbd, 0xf6, 0x3e, 0x7a, 0xe8, 0x5a, 0xe9, 0x8d, 0xc0, 0xe2, 0x24, 0xc2, 0x5e, 0x67, 0x58,
-	0x1b, 0xf5, 0x27, 0x83, 0xf1, 0x7a, 0xc2, 0x8c, 0x67, 0x24, 0xc2, 0xdf, 0xa5, 0x79, 0x12, 0x28,
-	0x84, 0xfb, 0x19, 0x3c, 0x5a, 0xac, 0x87, 0x82, 0xe2, 0x8c, 0xad, 0x38, 0xd3, 0x37, 0xc4, 0x92,
-	0x38, 0xdf, 0xc8, 0xb9, 0x25, 0x2b, 0x11, 0x16, 0x63, 0x89, 0x7b, 0x30, 0x6c, 0x8c, 0x9c, 0x89,
-	0x67, 0x3e, 0x5e, 0xd4, 0xea, 0x5c, 0x01, 0x82, 0x1e, 0x33, 0x6e, 0xdc, 0xfd, 0x12, 0xba, 0x12,
-	0x59, 0xa9, 0x3b, 0x4a, 0xfd, 0xf1, 0x86, 0x6f, 0x02, 0x95, 0xca, 0x0e, 0xaf, 0xce, 0xdc, 0xfd,
-	0x0a, 0xe0, 0x8a, 0x70, 0x32, 0x27, 0x31, 0x11, 0x37, 0x5e, 0x57, 0x05, 0x75, 0x64, 0x2a, 0xbe,
-	0xa9, 0xbe, 0xaa, 0xd0, 0x0c, 0xb4, 0xcf, 0xc1, 0x9b, 0x29, 0xf6, 0xdf, 0x31, 0xfb, 0x3e, 0x81,
-	0xfe, 0x66, 0xf0, 0xba, 0xa1, 0x7a, 0x1b, 0xb1, 0x3f, 0x7c, 0x02, 0xfa, 0x04, 0x06, 0x85, 0xd1,
-	0xad, 0xa1, 0xf6, 0x14, 0xec, 0x6a, 0x38, 0x69, 0x5b, 0x9d, 0x72, 0x36, 0xc9, 0x8f, 0x8a, 0x42,
-	0x4b, 0x46, 0x13, 0xdd, 0x8d, 0x1d, 0x29, 0x38, 0x67, 0x34, 0x91, 0xad, 0xa8, 0x3e, 0x0a, 0x5a,
-	0xb6, 0xa2, 0xbc, 0x5e, 0x50, 0xff, 0x47, 0xe8, 0x15, 0xa6, 0x76, 0xda, 0x68, 0x18, 0x36, 0xb6,
-	0x68, 0x5a, 0xbf, 0x45, 0xd3, 0x13, 0x70, 0x8b, 0xe7, 0x24, 0xdb, 0xf9, 0x3e, 0x7e, 0xfb, 0x7f,
-	0x59, 0x30, 0x38, 0xcb, 0x49, 0x1c, 0x6d, 0x93, 0x6e, 0xcd, 0x92, 0xda, 0x0e, 0x96, 0xd4, 0x77,
-	0xb2, 0xa4, 0x71, 0x20, 0x4b, 0xac, 0x07, 0xb0, 0xc4, 0x05, 0x2b, 0x26, 0x29, 0xd6, 0x5c, 0x55,
-	0xe7, 0x8a, 0x39, 0xad, 0x43, 0x98, 0xd3, 0xbe, 0x93, 0x39, 0x9b, 0x1b, 0xa9, 0xb3, 0xbd, 0x91,
-	0x4e, 0xa1, 0xaa, 0xb2, 0x67, 0xef, 0xd8, 0x97, 0x17, 0xe5, 0xae, 0x37, 0x3a, 0x62, 0x02, 0xba,
-	0x05, 0x3c, 0xb8, 0x57, 0x4b, 0x23, 0xef, 0x20, 0xb1, 0xf3, 0x6e, 0x24, 0xee, 0xee, 0x4d, 0x62,
-	0xff, 0x53, 0x70, 0x64, 0x4f, 0x19, 0x23, 0x7f, 0x73, 0x0b, 0xb5, 0x84, 0xda, 0x2f, 0xfe, 0x3f,
-	0x75, 0x78, 0xaf, 0x00, 0x9a, 0x73, 0x7f, 0x17, 0xfc, 0x7f, 0xb7, 0xd0, 0x27, 0xd0, 0xbc, 0xc2,
-	0x69, 0x8e, 0xf7, 0xda, 0xe8, 0x05, 0x74, 0xab, 0x83, 0x5a, 0xdb, 0x1d, 0x54, 0xce, 0xa7, 0xf6,
-	0xde, 0xf3, 0x29, 0x04, 0x57, 0xa6, 0xb8, 0x60, 0x3a, 0xbf, 0x37, 0xc7, 0x0f, 0x1f, 0x80, 0x7f,
-	0x37, 0xe0, 0x91, 0xb2, 0x20, 0x90, 0x30, 0x76, 0xb0, 0xec, 0x87, 0x72, 0x07, 0xcb, 0xb3, 0x69,
-	0xb2, 0x7e, 0x77, 0x59, 0x1b, 0x07, 0x97, 0xd5, 0x7a, 0xa7, 0xb2, 0x36, 0x0f, 0x2c, 0x6b, 0xeb,
-	0xd0, 0xb2, 0xb6, 0x77, 0x95, 0xb5, 0xb3, 0xf7, 0x8f, 0xf7, 0x29, 0x74, 0x68, 0x96, 0xd1, 0x14,
-	0xa7, 0x62, 0xe7, 0x28, 0x59, 0xff, 0x7a, 0x57, 0xd8, 0xb3, 0xe7, 0x3f, 0x9f, 0xac, 0x88, 0xb8,
-	0xcc, 0xe7, 0xe3, 0x05, 0x4d, 0x8e, 0xd7, 0x5c, 0x36, 0x8e, 0x9f, 0xab, 0x07, 0x5e, 0xae, 0x05,
-	0xf3, 0x96, 0x92, 0x3c, 0xff, 0x37, 0x00, 0x00, 0xff, 0xff, 0xf9, 0x1d, 0x63, 0xb0, 0xcf, 0x0c,
-	0x00, 0x00,
+	// 663 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xd4, 0x56, 0xcb, 0x6e, 0xd3, 0x40,
+	0x14, 0x55, 0xde, 0xf1, 0x4d, 0x53, 0x84, 0x55, 0xa9, 0x56, 0x79, 0x34, 0xb2, 0x04, 0xea, 0x86,
+	0x84, 0xb6, 0xa8, 0x9b, 0x8a, 0x05, 0xad, 0x54, 0x91, 0x05, 0x1b, 0xb7, 0xb0, 0x60, 0x63, 0x4d,
+	0xec, 0x49, 0x3a, 0x92, 0xed, 0x31, 0x33, 0xd7, 0x94, 0xfe, 0x07, 0x12, 0x12, 0xbf, 0xc0, 0x57,
+	0xf1, 0x27, 0x68, 0x66, 0xec, 0xc4, 0x4d, 0x1b, 0xea, 0x86, 0x15, 0xbb, 0xcc, 0xf1, 0xb9, 0x73,
+	0xe6, 0x9e, 0x73, 0xed, 0x09, 0x6c, 0x0a, 0xfa, 0x25, 0xa3, 0x12, 0xe5, 0x30, 0x15, 0x1c, 0xb9,
+	0x0d, 0x12, 0x09, 0x32, 0x89, 0x2c, 0xe0, 0x3b, 0x40, 0x93, 0x2c, 0x36, 0xf8, 0xce, 0xc6, 0x94,
+	0x45, 0x48, 0x45, 0xbe, 0xda, 0x9d, 0x71, 0x3e, 0x8b, 0xe8, 0x48, 0xaf, 0x26, 0xd9, 0x74, 0x84,
+	0x2c, 0xa6, 0x12, 0x49, 0x9c, 0xe6, 0x84, 0xe7, 0xcb, 0x84, 0x2b, 0x41, 0xd2, 0x94, 0x8a, 0x5c,
+	0xc6, 0xfd, 0x59, 0x03, 0xfb, 0x94, 0xc7, 0x29, 0x45, 0x86, 0x8c, 0x27, 0x9e, 0x39, 0x84, 0xbd,
+	0x0b, 0xbd, 0x80, 0x67, 0x09, 0x8a, 0x6b, 0x9f, 0x85, 0xd2, 0xa9, 0x0d, 0x1a, 0x7b, 0x4d, 0x0f,
+	0x72, 0x68, 0x1c, 0x4a, 0xfb, 0x35, 0x34, 0x25, 0x17, 0xe8, 0xd4, 0x07, 0xb5, 0xbd, 0xde, 0xc1,
+	0xd3, 0xa1, 0x91, 0x19, 0x16, 0x32, 0xc3, 0x73, 0x14, 0x2c, 0x99, 0x7d, 0x22, 0x51, 0x46, 0x3d,
+	0xcd, 0xb4, 0xf7, 0xa1, 0xcd, 0xa4, 0x1f, 0x64, 0xa9, 0xd3, 0xd0, 0x35, 0x3b, 0xb7, 0x6a, 0x4e,
+	0x38, 0x8f, 0x4c, 0x45, 0x8b, 0xc9, 0xd3, 0x2c, 0x75, 0x47, 0xb0, 0x79, 0xc6, 0xbe, 0x61, 0x26,
+	0x68, 0x71, 0xae, 0x67, 0x00, 0x53, 0x83, 0xf8, 0x2c, 0x74, 0x6a, 0x83, 0xda, 0x5e, 0xd3, 0xb3,
+	0x72, 0x64, 0x1c, 0xba, 0x3f, 0xea, 0xb0, 0x95, 0x57, 0x9c, 0x53, 0x22, 0x82, 0xcb, 0x52, 0x9d,
+	0xa4, 0x44, 0xf2, 0xa4, 0xd4, 0x8e, 0x65, 0x10, 0xd5, 0xcd, 0x01, 0xb4, 0x22, 0x16, 0xb3, 0xd5,
+	0xed, 0x7c, 0x1c, 0x27, 0x78, 0xf4, 0x26, 0x3f, 0x9c, 0xa6, 0xda, 0x6f, 0xa1, 0x17, 0x12, 0xa4,
+	0xfe, 0x84, 0x4e, 0xb9, 0xa0, 0x79, 0x53, 0x7f, 0x37, 0x02, 0x54, 0xc1, 0x89, 0xe6, 0xdb, 0xc7,
+	0xa0, 0x57, 0x3e, 0x99, 0x22, 0x15, 0x4e, 0xb3, 0x42, 0xb5, 0xa5, 0xf8, 0xef, 0x14, 0x7d, 0xee,
+	0x7e, 0xab, 0xaa, 0xfb, 0xee, 0xf7, 0x1a, 0x6c, 0xbf, 0x67, 0x12, 0xb9, 0x60, 0x01, 0x89, 0x3c,
+	0x2a, 0xb3, 0x08, 0x0b, 0x73, 0x06, 0xb0, 0x71, 0xc9, 0x63, 0xea, 0x23, 0x25, 0xf1, 0xc2, 0x56,
+	0x50, 0xd8, 0x05, 0x25, 0xf1, 0x38, 0x54, 0x0c, 0x72, 0x45, 0xae, 0xe7, 0x8c, 0xba, 0x61, 0x28,
+	0x2c, 0x67, 0x6c, 0x15, 0x0e, 0x2a, 0x1f, 0xfa, 0x85, 0x47, 0xbb, 0x37, 0x3d, 0x52, 0x5d, 0x5a,
+	0x65, 0x17, 0xdc, 0x21, 0xf4, 0x6f, 0x9e, 0xe5, 0x9e, 0x80, 0x25, 0x38, 0xe7, 0x3a, 0xb5, 0x3b,
+	0x66, 0xf6, 0x05, 0x6c, 0x06, 0x0b, 0x74, 0x51, 0xde, 0x2f, 0xa1, 0xe3, 0xf0, 0xe1, 0x93, 0xeb,
+	0x32, 0xd8, 0x32, 0xa2, 0x4b, 0xc3, 0xf8, 0x04, 0xac, 0xf9, 0x50, 0xe5, 0x5a, 0xdd, 0x62, 0xa6,
+	0xd4, 0x43, 0xdd, 0xfa, 0x54, 0xf0, 0x58, 0x6b, 0x59, 0x5e, 0x57, 0x01, 0x67, 0x82, 0xc7, 0xf6,
+	0x36, 0x74, 0xf4, 0x43, 0xe4, 0xda, 0x2f, 0xcb, 0x6b, 0xab, 0xe5, 0x05, 0x77, 0x3f, 0x40, 0xdf,
+	0x48, 0xad, 0xd4, 0x68, 0x94, 0x34, 0x96, 0xec, 0xad, 0xdf, 0xb2, 0x77, 0x1f, 0x6c, 0xb3, 0x9d,
+	0x4a, 0x49, 0x56, 0x39, 0xb7, 0xfb, 0x12, 0x7a, 0x8a, 0x5c, 0x70, 0xb7, 0xa1, 0x73, 0x73, 0x2c,
+	0xda, 0xa8, 0x03, 0x77, 0x7f, 0xd7, 0xe1, 0xb1, 0x21, 0x96, 0xe3, 0x5b, 0x45, 0xff, 0xef, 0xde,
+	0xb0, 0x03, 0x68, 0x7d, 0xa5, 0x49, 0x46, 0x2b, 0xbd, 0x62, 0x86, 0xba, 0xf4, 0x91, 0x69, 0x2f,
+	0x7f, 0x64, 0x8a, 0xc1, 0xeb, 0x54, 0x1e, 0x3c, 0x1f, 0x6c, 0x65, 0xb1, 0x89, 0x50, 0xde, 0xeb,
+	0xf1, 0xc3, 0x27, 0xfb, 0x57, 0x03, 0x1e, 0x69, 0x05, 0x24, 0xf3, 0x08, 0x6d, 0x68, 0xaa, 0xab,
+	0x47, 0xef, 0x6d, 0x79, 0xfa, 0x77, 0x59, 0xb2, 0x7e, 0x77, 0xac, 0x8d, 0xb5, 0x63, 0x6d, 0xfe,
+	0x53, 0xac, 0xad, 0x35, 0x63, 0x6d, 0xaf, 0x1b, 0x6b, 0x67, 0x55, 0xac, 0xdd, 0xca, 0x37, 0xe1,
+	0x11, 0x74, 0x79, 0x9a, 0xf2, 0x84, 0x26, 0xe8, 0x58, 0xf7, 0xde, 0x85, 0x73, 0xee, 0xc9, 0xe1,
+	0xe7, 0xfd, 0x19, 0xc3, 0xcb, 0x6c, 0x32, 0x0c, 0x78, 0x3c, 0x5a, 0xfc, 0x3f, 0x28, 0xfd, 0x7c,
+	0xa5, 0x37, 0x38, 0x5e, 0x00, 0x93, 0xb6, 0x46, 0x0e, 0xff, 0x04, 0x00, 0x00, 0xff, 0xff, 0x60,
+	0x4c, 0x18, 0xa5, 0x60, 0x08, 0x00, 0x00,
 }

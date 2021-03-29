@@ -6,7 +6,7 @@ package statistico
 import (
 	fmt "fmt"
 	proto "github.com/golang/protobuf/proto"
-	wrapperspb "google.golang.org/protobuf/types/known/wrapperspb"
+	wrappers "github.com/golang/protobuf/ptypes/wrappers"
 	math "math"
 )
 
@@ -133,25 +133,25 @@ func (m *Result) GetAwayTeamStats() *TeamStats {
 }
 
 type MatchStats struct {
-	Pitch                *wrapperspb.StringValue `protobuf:"bytes,1,opt,name=pitch,proto3" json:"pitch,omitempty"`
-	HomeFormation        *wrapperspb.StringValue `protobuf:"bytes,2,opt,name=home_formation,json=homeFormation,proto3" json:"home_formation,omitempty"`
-	AwayFormation        *wrapperspb.StringValue `protobuf:"bytes,3,opt,name=away_formation,json=awayFormation,proto3" json:"away_formation,omitempty"`
-	HomeScore            *wrapperspb.UInt32Value `protobuf:"bytes,4,opt,name=home_score,json=homeScore,proto3" json:"home_score,omitempty"`
-	AwayScore            *wrapperspb.UInt32Value `protobuf:"bytes,5,opt,name=away_score,json=awayScore,proto3" json:"away_score,omitempty"`
-	HomePenScore         *wrapperspb.UInt32Value `protobuf:"bytes,6,opt,name=home_pen_score,json=homePenScore,proto3" json:"home_pen_score,omitempty"`
-	AwayPenScore         *wrapperspb.UInt32Value `protobuf:"bytes,7,opt,name=away_pen_score,json=awayPenScore,proto3" json:"away_pen_score,omitempty"`
-	HalfTimeScore        *wrapperspb.StringValue `protobuf:"bytes,8,opt,name=half_time_score,json=halfTimeScore,proto3" json:"half_time_score,omitempty"`
-	FullTimeScore        *wrapperspb.StringValue `protobuf:"bytes,9,opt,name=full_time_score,json=fullTimeScore,proto3" json:"full_time_score,omitempty"`
-	ExtraTimeScore       *wrapperspb.StringValue `protobuf:"bytes,10,opt,name=extra_time_score,json=extraTimeScore,proto3" json:"extra_time_score,omitempty"`
-	HomeLeaguePosition   *wrapperspb.UInt32Value `protobuf:"bytes,11,opt,name=home_league_position,json=homeLeaguePosition,proto3" json:"home_league_position,omitempty"`
-	AwayLeaguePosition   *wrapperspb.UInt32Value `protobuf:"bytes,12,opt,name=away_league_position,json=awayLeaguePosition,proto3" json:"away_league_position,omitempty"`
-	Minutes              *wrapperspb.UInt32Value `protobuf:"bytes,13,opt,name=minutes,proto3" json:"minutes,omitempty"`
-	AddedTime            *wrapperspb.UInt32Value `protobuf:"bytes,15,opt,name=added_time,json=addedTime,proto3" json:"added_time,omitempty"`
-	ExtraTime            *wrapperspb.UInt32Value `protobuf:"bytes,16,opt,name=extra_time,json=extraTime,proto3" json:"extra_time,omitempty"`
-	InjuryTime           *wrapperspb.UInt32Value `protobuf:"bytes,17,opt,name=injury_time,json=injuryTime,proto3" json:"injury_time,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}                `json:"-"`
-	XXX_unrecognized     []byte                  `json:"-"`
-	XXX_sizecache        int32                   `json:"-"`
+	Pitch                *wrappers.StringValue `protobuf:"bytes,1,opt,name=pitch,proto3" json:"pitch,omitempty"`
+	HomeFormation        *wrappers.StringValue `protobuf:"bytes,2,opt,name=home_formation,json=homeFormation,proto3" json:"home_formation,omitempty"`
+	AwayFormation        *wrappers.StringValue `protobuf:"bytes,3,opt,name=away_formation,json=awayFormation,proto3" json:"away_formation,omitempty"`
+	HomeScore            *wrappers.UInt32Value `protobuf:"bytes,4,opt,name=home_score,json=homeScore,proto3" json:"home_score,omitempty"`
+	AwayScore            *wrappers.UInt32Value `protobuf:"bytes,5,opt,name=away_score,json=awayScore,proto3" json:"away_score,omitempty"`
+	HomePenScore         *wrappers.UInt32Value `protobuf:"bytes,6,opt,name=home_pen_score,json=homePenScore,proto3" json:"home_pen_score,omitempty"`
+	AwayPenScore         *wrappers.UInt32Value `protobuf:"bytes,7,opt,name=away_pen_score,json=awayPenScore,proto3" json:"away_pen_score,omitempty"`
+	HalfTimeScore        *wrappers.StringValue `protobuf:"bytes,8,opt,name=half_time_score,json=halfTimeScore,proto3" json:"half_time_score,omitempty"`
+	FullTimeScore        *wrappers.StringValue `protobuf:"bytes,9,opt,name=full_time_score,json=fullTimeScore,proto3" json:"full_time_score,omitempty"`
+	ExtraTimeScore       *wrappers.StringValue `protobuf:"bytes,10,opt,name=extra_time_score,json=extraTimeScore,proto3" json:"extra_time_score,omitempty"`
+	HomeLeaguePosition   *wrappers.UInt32Value `protobuf:"bytes,11,opt,name=home_league_position,json=homeLeaguePosition,proto3" json:"home_league_position,omitempty"`
+	AwayLeaguePosition   *wrappers.UInt32Value `protobuf:"bytes,12,opt,name=away_league_position,json=awayLeaguePosition,proto3" json:"away_league_position,omitempty"`
+	Minutes              *wrappers.UInt32Value `protobuf:"bytes,13,opt,name=minutes,proto3" json:"minutes,omitempty"`
+	AddedTime            *wrappers.UInt32Value `protobuf:"bytes,15,opt,name=added_time,json=addedTime,proto3" json:"added_time,omitempty"`
+	ExtraTime            *wrappers.UInt32Value `protobuf:"bytes,16,opt,name=extra_time,json=extraTime,proto3" json:"extra_time,omitempty"`
+	InjuryTime           *wrappers.UInt32Value `protobuf:"bytes,17,opt,name=injury_time,json=injuryTime,proto3" json:"injury_time,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}              `json:"-"`
+	XXX_unrecognized     []byte                `json:"-"`
+	XXX_sizecache        int32                 `json:"-"`
 }
 
 func (m *MatchStats) Reset()         { *m = MatchStats{} }
@@ -179,112 +179,112 @@ func (m *MatchStats) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_MatchStats proto.InternalMessageInfo
 
-func (m *MatchStats) GetPitch() *wrapperspb.StringValue {
+func (m *MatchStats) GetPitch() *wrappers.StringValue {
 	if m != nil {
 		return m.Pitch
 	}
 	return nil
 }
 
-func (m *MatchStats) GetHomeFormation() *wrapperspb.StringValue {
+func (m *MatchStats) GetHomeFormation() *wrappers.StringValue {
 	if m != nil {
 		return m.HomeFormation
 	}
 	return nil
 }
 
-func (m *MatchStats) GetAwayFormation() *wrapperspb.StringValue {
+func (m *MatchStats) GetAwayFormation() *wrappers.StringValue {
 	if m != nil {
 		return m.AwayFormation
 	}
 	return nil
 }
 
-func (m *MatchStats) GetHomeScore() *wrapperspb.UInt32Value {
+func (m *MatchStats) GetHomeScore() *wrappers.UInt32Value {
 	if m != nil {
 		return m.HomeScore
 	}
 	return nil
 }
 
-func (m *MatchStats) GetAwayScore() *wrapperspb.UInt32Value {
+func (m *MatchStats) GetAwayScore() *wrappers.UInt32Value {
 	if m != nil {
 		return m.AwayScore
 	}
 	return nil
 }
 
-func (m *MatchStats) GetHomePenScore() *wrapperspb.UInt32Value {
+func (m *MatchStats) GetHomePenScore() *wrappers.UInt32Value {
 	if m != nil {
 		return m.HomePenScore
 	}
 	return nil
 }
 
-func (m *MatchStats) GetAwayPenScore() *wrapperspb.UInt32Value {
+func (m *MatchStats) GetAwayPenScore() *wrappers.UInt32Value {
 	if m != nil {
 		return m.AwayPenScore
 	}
 	return nil
 }
 
-func (m *MatchStats) GetHalfTimeScore() *wrapperspb.StringValue {
+func (m *MatchStats) GetHalfTimeScore() *wrappers.StringValue {
 	if m != nil {
 		return m.HalfTimeScore
 	}
 	return nil
 }
 
-func (m *MatchStats) GetFullTimeScore() *wrapperspb.StringValue {
+func (m *MatchStats) GetFullTimeScore() *wrappers.StringValue {
 	if m != nil {
 		return m.FullTimeScore
 	}
 	return nil
 }
 
-func (m *MatchStats) GetExtraTimeScore() *wrapperspb.StringValue {
+func (m *MatchStats) GetExtraTimeScore() *wrappers.StringValue {
 	if m != nil {
 		return m.ExtraTimeScore
 	}
 	return nil
 }
 
-func (m *MatchStats) GetHomeLeaguePosition() *wrapperspb.UInt32Value {
+func (m *MatchStats) GetHomeLeaguePosition() *wrappers.UInt32Value {
 	if m != nil {
 		return m.HomeLeaguePosition
 	}
 	return nil
 }
 
-func (m *MatchStats) GetAwayLeaguePosition() *wrapperspb.UInt32Value {
+func (m *MatchStats) GetAwayLeaguePosition() *wrappers.UInt32Value {
 	if m != nil {
 		return m.AwayLeaguePosition
 	}
 	return nil
 }
 
-func (m *MatchStats) GetMinutes() *wrapperspb.UInt32Value {
+func (m *MatchStats) GetMinutes() *wrappers.UInt32Value {
 	if m != nil {
 		return m.Minutes
 	}
 	return nil
 }
 
-func (m *MatchStats) GetAddedTime() *wrapperspb.UInt32Value {
+func (m *MatchStats) GetAddedTime() *wrappers.UInt32Value {
 	if m != nil {
 		return m.AddedTime
 	}
 	return nil
 }
 
-func (m *MatchStats) GetExtraTime() *wrapperspb.UInt32Value {
+func (m *MatchStats) GetExtraTime() *wrappers.UInt32Value {
 	if m != nil {
 		return m.ExtraTime
 	}
 	return nil
 }
 
-func (m *MatchStats) GetInjuryTime() *wrapperspb.UInt32Value {
+func (m *MatchStats) GetInjuryTime() *wrappers.UInt32Value {
 	if m != nil {
 		return m.InjuryTime
 	}

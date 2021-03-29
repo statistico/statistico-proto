@@ -6,7 +6,7 @@ package statistico
 import (
 	fmt "fmt"
 	proto "github.com/golang/protobuf/proto"
-	wrapperspb "google.golang.org/protobuf/types/known/wrapperspb"
+	wrappers "github.com/golang/protobuf/ptypes/wrappers"
 	math "math"
 )
 
@@ -148,15 +148,15 @@ func (m *CardEvent) GetMinute() uint32 {
 }
 
 type GoalEvent struct {
-	Id                   uint64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	TeamId               uint64                  `protobuf:"varint,2,opt,name=team_id,json=teamId,proto3" json:"team_id,omitempty"`
-	PlayerId             uint64                  `protobuf:"varint,3,opt,name=player_id,json=playerId,proto3" json:"player_id,omitempty"`
-	PlayerAssistId       *wrapperspb.UInt64Value `protobuf:"bytes,4,opt,name=player_assist_id,json=playerAssistId,proto3" json:"player_assist_id,omitempty"`
-	Minute               uint32                  `protobuf:"varint,5,opt,name=minute,proto3" json:"minute,omitempty"`
-	Score                string                  `protobuf:"bytes,6,opt,name=score,proto3" json:"score,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}                `json:"-"`
-	XXX_unrecognized     []byte                  `json:"-"`
-	XXX_sizecache        int32                   `json:"-"`
+	Id                   uint64                `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	TeamId               uint64                `protobuf:"varint,2,opt,name=team_id,json=teamId,proto3" json:"team_id,omitempty"`
+	PlayerId             uint64                `protobuf:"varint,3,opt,name=player_id,json=playerId,proto3" json:"player_id,omitempty"`
+	PlayerAssistId       *wrappers.UInt64Value `protobuf:"bytes,4,opt,name=player_assist_id,json=playerAssistId,proto3" json:"player_assist_id,omitempty"`
+	Minute               uint32                `protobuf:"varint,5,opt,name=minute,proto3" json:"minute,omitempty"`
+	Score                string                `protobuf:"bytes,6,opt,name=score,proto3" json:"score,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}              `json:"-"`
+	XXX_unrecognized     []byte                `json:"-"`
+	XXX_sizecache        int32                 `json:"-"`
 }
 
 func (m *GoalEvent) Reset()         { *m = GoalEvent{} }
@@ -205,7 +205,7 @@ func (m *GoalEvent) GetPlayerId() uint64 {
 	return 0
 }
 
-func (m *GoalEvent) GetPlayerAssistId() *wrapperspb.UInt64Value {
+func (m *GoalEvent) GetPlayerAssistId() *wrappers.UInt64Value {
 	if m != nil {
 		return m.PlayerAssistId
 	}

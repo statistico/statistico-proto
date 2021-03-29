@@ -6,7 +6,7 @@ package statistico
 import (
 	fmt "fmt"
 	proto "github.com/golang/protobuf/proto"
-	wrapperspb "google.golang.org/protobuf/types/known/wrapperspb"
+	wrappers "github.com/golang/protobuf/ptypes/wrappers"
 	math "math"
 )
 
@@ -22,12 +22,12 @@ var _ = math.Inf
 const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 
 type Season struct {
-	Id                   uint64                `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	Name                 string                `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	IsCurrent            *wrapperspb.BoolValue `protobuf:"bytes,3,opt,name=is_current,json=isCurrent,proto3" json:"is_current,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}              `json:"-"`
-	XXX_unrecognized     []byte                `json:"-"`
-	XXX_sizecache        int32                 `json:"-"`
+	Id                   uint64              `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Name                 string              `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	IsCurrent            *wrappers.BoolValue `protobuf:"bytes,3,opt,name=is_current,json=isCurrent,proto3" json:"is_current,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}            `json:"-"`
+	XXX_unrecognized     []byte              `json:"-"`
+	XXX_sizecache        int32               `json:"-"`
 }
 
 func (m *Season) Reset()         { *m = Season{} }
@@ -69,7 +69,7 @@ func (m *Season) GetName() string {
 	return ""
 }
 
-func (m *Season) GetIsCurrent() *wrapperspb.BoolValue {
+func (m *Season) GetIsCurrent() *wrappers.BoolValue {
 	if m != nil {
 		return m.IsCurrent
 	}

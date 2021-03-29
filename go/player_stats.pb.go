@@ -6,7 +6,7 @@ package statistico
 import (
 	fmt "fmt"
 	proto "github.com/golang/protobuf/proto"
-	wrapperspb "google.golang.org/protobuf/types/known/wrapperspb"
+	wrappers "github.com/golang/protobuf/ptypes/wrappers"
 	math "math"
 )
 
@@ -116,15 +116,15 @@ func (m *LineupResponse) GetAwayTeam() *Lineup {
 }
 
 type PlayerStats struct {
-	PlayerId             uint64                 `protobuf:"varint,1,opt,name=player_id,json=playerId,proto3" json:"player_id,omitempty"`
-	ShotsTotal           *wrapperspb.Int32Value `protobuf:"bytes,2,opt,name=shots_total,json=shotsTotal,proto3" json:"shots_total,omitempty"`
-	ShotsOnGoal          *wrapperspb.Int32Value `protobuf:"bytes,3,opt,name=shots_on_goal,json=shotsOnGoal,proto3" json:"shots_on_goal,omitempty"`
-	GoalsScored          *wrapperspb.Int32Value `protobuf:"bytes,4,opt,name=goals_scored,json=goalsScored,proto3" json:"goals_scored,omitempty"`
-	GoalsConceded        *wrapperspb.Int32Value `protobuf:"bytes,5,opt,name=goals_conceded,json=goalsConceded,proto3" json:"goals_conceded,omitempty"`
-	Assists              *wrapperspb.Int32Value `protobuf:"bytes,6,opt,name=assists,proto3" json:"assists,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}               `json:"-"`
-	XXX_unrecognized     []byte                 `json:"-"`
-	XXX_sizecache        int32                  `json:"-"`
+	PlayerId             uint64               `protobuf:"varint,1,opt,name=player_id,json=playerId,proto3" json:"player_id,omitempty"`
+	ShotsTotal           *wrappers.Int32Value `protobuf:"bytes,2,opt,name=shots_total,json=shotsTotal,proto3" json:"shots_total,omitempty"`
+	ShotsOnGoal          *wrappers.Int32Value `protobuf:"bytes,3,opt,name=shots_on_goal,json=shotsOnGoal,proto3" json:"shots_on_goal,omitempty"`
+	GoalsScored          *wrappers.Int32Value `protobuf:"bytes,4,opt,name=goals_scored,json=goalsScored,proto3" json:"goals_scored,omitempty"`
+	GoalsConceded        *wrappers.Int32Value `protobuf:"bytes,5,opt,name=goals_conceded,json=goalsConceded,proto3" json:"goals_conceded,omitempty"`
+	Assists              *wrappers.Int32Value `protobuf:"bytes,6,opt,name=assists,proto3" json:"assists,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
+	XXX_unrecognized     []byte               `json:"-"`
+	XXX_sizecache        int32                `json:"-"`
 }
 
 func (m *PlayerStats) Reset()         { *m = PlayerStats{} }
@@ -159,35 +159,35 @@ func (m *PlayerStats) GetPlayerId() uint64 {
 	return 0
 }
 
-func (m *PlayerStats) GetShotsTotal() *wrapperspb.Int32Value {
+func (m *PlayerStats) GetShotsTotal() *wrappers.Int32Value {
 	if m != nil {
 		return m.ShotsTotal
 	}
 	return nil
 }
 
-func (m *PlayerStats) GetShotsOnGoal() *wrapperspb.Int32Value {
+func (m *PlayerStats) GetShotsOnGoal() *wrappers.Int32Value {
 	if m != nil {
 		return m.ShotsOnGoal
 	}
 	return nil
 }
 
-func (m *PlayerStats) GetGoalsScored() *wrapperspb.Int32Value {
+func (m *PlayerStats) GetGoalsScored() *wrappers.Int32Value {
 	if m != nil {
 		return m.GoalsScored
 	}
 	return nil
 }
 
-func (m *PlayerStats) GetGoalsConceded() *wrapperspb.Int32Value {
+func (m *PlayerStats) GetGoalsConceded() *wrappers.Int32Value {
 	if m != nil {
 		return m.GoalsConceded
 	}
 	return nil
 }
 
-func (m *PlayerStats) GetAssists() *wrapperspb.Int32Value {
+func (m *PlayerStats) GetAssists() *wrappers.Int32Value {
 	if m != nil {
 		return m.Assists
 	}
@@ -242,13 +242,13 @@ func (m *Lineup) GetBench() []*LineupPlayer {
 }
 
 type LineupPlayer struct {
-	PlayerId             uint64                  `protobuf:"varint,1,opt,name=player_id,json=playerId,proto3" json:"player_id,omitempty"`
-	Position             string                  `protobuf:"bytes,2,opt,name=position,proto3" json:"position,omitempty"`
-	FormationPosition    *wrapperspb.UInt32Value `protobuf:"bytes,3,opt,name=formation_position,json=formationPosition,proto3" json:"formation_position,omitempty"`
-	IsSubstitute         bool                    `protobuf:"varint,4,opt,name=is_substitute,json=isSubstitute,proto3" json:"is_substitute,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}                `json:"-"`
-	XXX_unrecognized     []byte                  `json:"-"`
-	XXX_sizecache        int32                   `json:"-"`
+	PlayerId             uint64                `protobuf:"varint,1,opt,name=player_id,json=playerId,proto3" json:"player_id,omitempty"`
+	Position             string                `protobuf:"bytes,2,opt,name=position,proto3" json:"position,omitempty"`
+	FormationPosition    *wrappers.UInt32Value `protobuf:"bytes,3,opt,name=formation_position,json=formationPosition,proto3" json:"formation_position,omitempty"`
+	IsSubstitute         bool                  `protobuf:"varint,4,opt,name=is_substitute,json=isSubstitute,proto3" json:"is_substitute,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}              `json:"-"`
+	XXX_unrecognized     []byte                `json:"-"`
+	XXX_sizecache        int32                 `json:"-"`
 }
 
 func (m *LineupPlayer) Reset()         { *m = LineupPlayer{} }
@@ -290,7 +290,7 @@ func (m *LineupPlayer) GetPosition() string {
 	return ""
 }
 
-func (m *LineupPlayer) GetFormationPosition() *wrapperspb.UInt32Value {
+func (m *LineupPlayer) GetFormationPosition() *wrappers.UInt32Value {
 	if m != nil {
 		return m.FormationPosition
 	}

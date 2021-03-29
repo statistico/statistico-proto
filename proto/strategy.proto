@@ -6,7 +6,6 @@ option go_package = "github.com/statistico/statistico-proto;statistico";
 
 import "enum.proto";
 import "filter.proto";
-import "requests.proto";
 import "google/protobuf/timestamp.proto";
 import "google/protobuf/wrappers.proto";
 
@@ -14,6 +13,41 @@ service StrategyService {
   rpc BuildStrategy(BuildStrategyRequest) returns (stream StrategyTrade) {}
   rpc SaveStrategy(SaveStrategyRequest) returns (Strategy) {}
   rpc ListUserStrategies(ListUserStrategiesRequest) returns (stream Strategy) {}
+}
+
+message BuildStrategyRequest {
+    string market = 1;
+    string runner = 2;
+    google.protobuf.FloatValue min_odds = 3;
+    google.protobuf.FloatValue max_odds = 4;
+    string line = 5;
+    SideEnum side = 6;
+    repeated uint64 competition_ids = 7;
+    repeated uint64 season_ids = 8;
+    google.protobuf.Timestamp dateFrom = 9;
+    google.protobuf.Timestamp dateTo = 10;
+    repeated ResultFilter result_filters = 11;
+    repeated StatFilter stat_filters = 12;
+}
+
+message ListUserStrategiesRequest {
+    string user_id = 1;
+}
+
+message SaveStrategyRequest {
+    string name = 1;
+    string description = 2;
+    string user_id = 3;
+    string market = 4;
+    string runner = 5;
+    google.protobuf.FloatValue min_odds = 6;
+    google.protobuf.FloatValue max_odds = 7;
+    SideEnum side = 8;
+    repeated uint64 competition_ids = 9;
+    repeated ResultFilter result_filters = 10;
+    repeated StatFilter stat_filters = 11;
+    VisibilityEnum visibility = 12;
+    StakingPlan staking_plan = 13;
 }
 
 message Strategy {
@@ -29,10 +63,11 @@ message Strategy {
   SideEnum side = 10;
   VisibilityEnum visibility = 11;
   StrategyStatusEnum status = 12;
-  repeated ResultFilter result_filters = 13;
-  repeated StatFilter stat_filters = 14;
-  google.protobuf.Timestamp created_at = 15;
-  google.protobuf.Timestamp updated_at = 16;
+  StakingPlan staking_plan = 13;
+  repeated ResultFilter result_filters = 14;
+  repeated StatFilter stat_filters = 15;
+  google.protobuf.Timestamp created_at = 16;
+  google.protobuf.Timestamp updated_at = 17;
 }
 
 message StrategyTrade {
@@ -45,4 +80,9 @@ message StrategyTrade {
   uint64 season_id = 7;
   google.protobuf.Timestamp event_date = 8;
   TradeResultEnum result = 9;
+}
+
+message StakingPlan {
+  string name = 1;
+  float value = 2;
 }

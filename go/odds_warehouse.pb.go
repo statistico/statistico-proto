@@ -6,8 +6,8 @@ package statistico
 import (
 	fmt "fmt"
 	proto "github.com/golang/protobuf/proto"
-	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
-	wrapperspb "google.golang.org/protobuf/types/known/wrapperspb"
+	timestamp "github.com/golang/protobuf/ptypes/timestamp"
+	wrappers "github.com/golang/protobuf/ptypes/wrappers"
 	math "math"
 )
 
@@ -23,19 +23,19 @@ var _ = math.Inf
 const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 
 type MarketRunnerRequest struct {
-	Market               string                 `protobuf:"bytes,1,opt,name=market,proto3" json:"market,omitempty"`
-	Runner               string                 `protobuf:"bytes,2,opt,name=runner,proto3" json:"runner,omitempty"`
-	MinOdds              *wrapperspb.FloatValue `protobuf:"bytes,3,opt,name=min_odds,json=minOdds,proto3" json:"min_odds,omitempty"`
-	MaxOdds              *wrapperspb.FloatValue `protobuf:"bytes,4,opt,name=max_odds,json=maxOdds,proto3" json:"max_odds,omitempty"`
-	Line                 string                 `protobuf:"bytes,5,opt,name=line,proto3" json:"line,omitempty"`
-	Side                 SideEnum               `protobuf:"varint,6,opt,name=side,proto3,enum=statistico.SideEnum" json:"side,omitempty"`
-	CompetitionIds       []uint64               `protobuf:"varint,7,rep,packed,name=competition_ids,json=competitionIds,proto3" json:"competition_ids,omitempty"`
-	SeasonIds            []uint64               `protobuf:"varint,8,rep,packed,name=season_ids,json=seasonIds,proto3" json:"season_ids,omitempty"`
-	DateFrom             *timestamppb.Timestamp `protobuf:"bytes,9,opt,name=dateFrom,proto3" json:"dateFrom,omitempty"`
-	DateTo               *timestamppb.Timestamp `protobuf:"bytes,10,opt,name=dateTo,proto3" json:"dateTo,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}               `json:"-"`
-	XXX_unrecognized     []byte                 `json:"-"`
-	XXX_sizecache        int32                  `json:"-"`
+	Market               string               `protobuf:"bytes,1,opt,name=market,proto3" json:"market,omitempty"`
+	Runner               string               `protobuf:"bytes,2,opt,name=runner,proto3" json:"runner,omitempty"`
+	MinOdds              *wrappers.FloatValue `protobuf:"bytes,3,opt,name=min_odds,json=minOdds,proto3" json:"min_odds,omitempty"`
+	MaxOdds              *wrappers.FloatValue `protobuf:"bytes,4,opt,name=max_odds,json=maxOdds,proto3" json:"max_odds,omitempty"`
+	Line                 string               `protobuf:"bytes,5,opt,name=line,proto3" json:"line,omitempty"`
+	Side                 SideEnum             `protobuf:"varint,6,opt,name=side,proto3,enum=statistico.SideEnum" json:"side,omitempty"`
+	CompetitionIds       []uint64             `protobuf:"varint,7,rep,packed,name=competition_ids,json=competitionIds,proto3" json:"competition_ids,omitempty"`
+	SeasonIds            []uint64             `protobuf:"varint,8,rep,packed,name=season_ids,json=seasonIds,proto3" json:"season_ids,omitempty"`
+	DateFrom             *timestamp.Timestamp `protobuf:"bytes,9,opt,name=dateFrom,proto3" json:"dateFrom,omitempty"`
+	DateTo               *timestamp.Timestamp `protobuf:"bytes,10,opt,name=dateTo,proto3" json:"dateTo,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
+	XXX_unrecognized     []byte               `json:"-"`
+	XXX_sizecache        int32                `json:"-"`
 }
 
 func (m *MarketRunnerRequest) Reset()         { *m = MarketRunnerRequest{} }
@@ -77,14 +77,14 @@ func (m *MarketRunnerRequest) GetRunner() string {
 	return ""
 }
 
-func (m *MarketRunnerRequest) GetMinOdds() *wrapperspb.FloatValue {
+func (m *MarketRunnerRequest) GetMinOdds() *wrappers.FloatValue {
 	if m != nil {
 		return m.MinOdds
 	}
 	return nil
 }
 
-func (m *MarketRunnerRequest) GetMaxOdds() *wrapperspb.FloatValue {
+func (m *MarketRunnerRequest) GetMaxOdds() *wrappers.FloatValue {
 	if m != nil {
 		return m.MaxOdds
 	}
@@ -119,14 +119,14 @@ func (m *MarketRunnerRequest) GetSeasonIds() []uint64 {
 	return nil
 }
 
-func (m *MarketRunnerRequest) GetDateFrom() *timestamppb.Timestamp {
+func (m *MarketRunnerRequest) GetDateFrom() *timestamp.Timestamp {
 	if m != nil {
 		return m.DateFrom
 	}
 	return nil
 }
 
-func (m *MarketRunnerRequest) GetDateTo() *timestamppb.Timestamp {
+func (m *MarketRunnerRequest) GetDateTo() *timestamp.Timestamp {
 	if m != nil {
 		return m.DateTo
 	}
@@ -134,18 +134,18 @@ func (m *MarketRunnerRequest) GetDateTo() *timestamppb.Timestamp {
 }
 
 type MarketRunner struct {
-	MarketId             string                 `protobuf:"bytes,1,opt,name=market_id,json=marketId,proto3" json:"market_id,omitempty"`
-	MarketName           string                 `protobuf:"bytes,2,opt,name=market_name,json=marketName,proto3" json:"market_name,omitempty"`
-	RunnerName           string                 `protobuf:"bytes,3,opt,name=runner_name,json=runnerName,proto3" json:"runner_name,omitempty"`
-	EventId              uint64                 `protobuf:"varint,4,opt,name=event_id,json=eventId,proto3" json:"event_id,omitempty"`
-	CompetitionId        uint64                 `protobuf:"varint,5,opt,name=competition_id,json=competitionId,proto3" json:"competition_id,omitempty"`
-	SeasonId             uint64                 `protobuf:"varint,6,opt,name=season_id,json=seasonId,proto3" json:"season_id,omitempty"`
-	EventDate            *timestamppb.Timestamp `protobuf:"bytes,7,opt,name=event_date,json=eventDate,proto3" json:"event_date,omitempty"`
-	Exchange             string                 `protobuf:"bytes,8,opt,name=exchange,proto3" json:"exchange,omitempty"`
-	Price                *Price                 `protobuf:"bytes,9,opt,name=price,proto3" json:"price,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}               `json:"-"`
-	XXX_unrecognized     []byte                 `json:"-"`
-	XXX_sizecache        int32                  `json:"-"`
+	MarketId             string               `protobuf:"bytes,1,opt,name=market_id,json=marketId,proto3" json:"market_id,omitempty"`
+	MarketName           string               `protobuf:"bytes,2,opt,name=market_name,json=marketName,proto3" json:"market_name,omitempty"`
+	RunnerName           string               `protobuf:"bytes,3,opt,name=runner_name,json=runnerName,proto3" json:"runner_name,omitempty"`
+	EventId              uint64               `protobuf:"varint,4,opt,name=event_id,json=eventId,proto3" json:"event_id,omitempty"`
+	CompetitionId        uint64               `protobuf:"varint,5,opt,name=competition_id,json=competitionId,proto3" json:"competition_id,omitempty"`
+	SeasonId             uint64               `protobuf:"varint,6,opt,name=season_id,json=seasonId,proto3" json:"season_id,omitempty"`
+	EventDate            *timestamp.Timestamp `protobuf:"bytes,7,opt,name=event_date,json=eventDate,proto3" json:"event_date,omitempty"`
+	Exchange             string               `protobuf:"bytes,8,opt,name=exchange,proto3" json:"exchange,omitempty"`
+	Price                *Price               `protobuf:"bytes,9,opt,name=price,proto3" json:"price,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
+	XXX_unrecognized     []byte               `json:"-"`
+	XXX_sizecache        int32                `json:"-"`
 }
 
 func (m *MarketRunner) Reset()         { *m = MarketRunner{} }
@@ -215,7 +215,7 @@ func (m *MarketRunner) GetSeasonId() uint64 {
 	return 0
 }
 
-func (m *MarketRunner) GetEventDate() *timestamppb.Timestamp {
+func (m *MarketRunner) GetEventDate() *timestamp.Timestamp {
 	if m != nil {
 		return m.EventDate
 	}

@@ -6,7 +6,7 @@ package statistico
 import (
 	fmt "fmt"
 	proto "github.com/golang/protobuf/proto"
-	wrapperspb "google.golang.org/protobuf/types/known/wrapperspb"
+	wrappers "github.com/golang/protobuf/ptypes/wrappers"
 	math "math"
 )
 
@@ -77,12 +77,12 @@ func (m *TeamStatsResponse) GetTeamXg() *TeamXG {
 }
 
 type TeamStat struct {
-	FixtureId            uint64                  `protobuf:"varint,1,opt,name=fixture_id,json=fixtureId,proto3" json:"fixture_id,omitempty"`
-	Stat                 string                  `protobuf:"bytes,2,opt,name=stat,proto3" json:"stat,omitempty"`
-	Value                *wrapperspb.UInt32Value `protobuf:"bytes,3,opt,name=value,proto3" json:"value,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}                `json:"-"`
-	XXX_unrecognized     []byte                  `json:"-"`
-	XXX_sizecache        int32                   `json:"-"`
+	FixtureId            uint64                `protobuf:"varint,1,opt,name=fixture_id,json=fixtureId,proto3" json:"fixture_id,omitempty"`
+	Stat                 string                `protobuf:"bytes,2,opt,name=stat,proto3" json:"stat,omitempty"`
+	Value                *wrappers.UInt32Value `protobuf:"bytes,3,opt,name=value,proto3" json:"value,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}              `json:"-"`
+	XXX_unrecognized     []byte                `json:"-"`
+	XXX_sizecache        int32                 `json:"-"`
 }
 
 func (m *TeamStat) Reset()         { *m = TeamStat{} }
@@ -124,7 +124,7 @@ func (m *TeamStat) GetStat() string {
 	return ""
 }
 
-func (m *TeamStat) GetValue() *wrapperspb.UInt32Value {
+func (m *TeamStat) GetValue() *wrappers.UInt32Value {
 	if m != nil {
 		return m.Value
 	}
@@ -132,34 +132,34 @@ func (m *TeamStat) GetValue() *wrapperspb.UInt32Value {
 }
 
 type TeamStats struct {
-	TeamId               uint64                  `protobuf:"varint,1,opt,name=team_id,json=teamId,proto3" json:"team_id,omitempty"`
-	ShotsTotal           *wrapperspb.UInt32Value `protobuf:"bytes,2,opt,name=shots_total,json=shotsTotal,proto3" json:"shots_total,omitempty"`
-	ShotsOnGoal          *wrapperspb.UInt32Value `protobuf:"bytes,3,opt,name=shots_on_goal,json=shotsOnGoal,proto3" json:"shots_on_goal,omitempty"`
-	ShotsOffGoal         *wrapperspb.UInt32Value `protobuf:"bytes,4,opt,name=shots_off_goal,json=shotsOffGoal,proto3" json:"shots_off_goal,omitempty"`
-	ShotsBlocked         *wrapperspb.UInt32Value `protobuf:"bytes,5,opt,name=shots_blocked,json=shotsBlocked,proto3" json:"shots_blocked,omitempty"`
-	ShotsInsideBox       *wrapperspb.UInt32Value `protobuf:"bytes,6,opt,name=shots_inside_box,json=shotsInsideBox,proto3" json:"shots_inside_box,omitempty"`
-	ShotsOutsideBox      *wrapperspb.UInt32Value `protobuf:"bytes,7,opt,name=shots_outside_box,json=shotsOutsideBox,proto3" json:"shots_outside_box,omitempty"`
-	PassesTotal          *wrapperspb.UInt32Value `protobuf:"bytes,8,opt,name=passes_total,json=passesTotal,proto3" json:"passes_total,omitempty"`
-	PassesAccuracy       *wrapperspb.UInt32Value `protobuf:"bytes,9,opt,name=passes_accuracy,json=passesAccuracy,proto3" json:"passes_accuracy,omitempty"`
-	PassesPercentage     *wrapperspb.UInt32Value `protobuf:"bytes,10,opt,name=passes_percentage,json=passesPercentage,proto3" json:"passes_percentage,omitempty"`
-	AttacksTotal         *wrapperspb.UInt32Value `protobuf:"bytes,11,opt,name=attacks_total,json=attacksTotal,proto3" json:"attacks_total,omitempty"`
-	AttacksDangerous     *wrapperspb.UInt32Value `protobuf:"bytes,12,opt,name=attacks_dangerous,json=attacksDangerous,proto3" json:"attacks_dangerous,omitempty"`
-	Goals                *wrapperspb.UInt32Value `protobuf:"bytes,13,opt,name=goals,proto3" json:"goals,omitempty"`
-	Fouls                *wrapperspb.UInt32Value `protobuf:"bytes,14,opt,name=fouls,proto3" json:"fouls,omitempty"`
-	Corners              *wrapperspb.UInt32Value `protobuf:"bytes,15,opt,name=corners,proto3" json:"corners,omitempty"`
-	Offsides             *wrapperspb.UInt32Value `protobuf:"bytes,16,opt,name=offsides,proto3" json:"offsides,omitempty"`
-	Possession           *wrapperspb.UInt32Value `protobuf:"bytes,17,opt,name=possession,proto3" json:"possession,omitempty"`
-	YellowCards          *wrapperspb.UInt32Value `protobuf:"bytes,18,opt,name=yellow_cards,json=yellowCards,proto3" json:"yellow_cards,omitempty"`
-	RedCards             *wrapperspb.UInt32Value `protobuf:"bytes,19,opt,name=red_cards,json=redCards,proto3" json:"red_cards,omitempty"`
-	Saves                *wrapperspb.UInt32Value `protobuf:"bytes,20,opt,name=saves,proto3" json:"saves,omitempty"`
-	Substitutions        *wrapperspb.UInt32Value `protobuf:"bytes,21,opt,name=substitutions,proto3" json:"substitutions,omitempty"`
-	GoalKicks            *wrapperspb.UInt32Value `protobuf:"bytes,22,opt,name=goal_kicks,json=goalKicks,proto3" json:"goal_kicks,omitempty"`
-	GoalAttempts         *wrapperspb.UInt32Value `protobuf:"bytes,23,opt,name=goal_attempts,json=goalAttempts,proto3" json:"goal_attempts,omitempty"`
-	FreeKicks            *wrapperspb.UInt32Value `protobuf:"bytes,24,opt,name=free_kicks,json=freeKicks,proto3" json:"free_kicks,omitempty"`
-	ThrowIns             *wrapperspb.UInt32Value `protobuf:"bytes,25,opt,name=throw_ins,json=throwIns,proto3" json:"throw_ins,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}                `json:"-"`
-	XXX_unrecognized     []byte                  `json:"-"`
-	XXX_sizecache        int32                   `json:"-"`
+	TeamId               uint64                `protobuf:"varint,1,opt,name=team_id,json=teamId,proto3" json:"team_id,omitempty"`
+	ShotsTotal           *wrappers.UInt32Value `protobuf:"bytes,2,opt,name=shots_total,json=shotsTotal,proto3" json:"shots_total,omitempty"`
+	ShotsOnGoal          *wrappers.UInt32Value `protobuf:"bytes,3,opt,name=shots_on_goal,json=shotsOnGoal,proto3" json:"shots_on_goal,omitempty"`
+	ShotsOffGoal         *wrappers.UInt32Value `protobuf:"bytes,4,opt,name=shots_off_goal,json=shotsOffGoal,proto3" json:"shots_off_goal,omitempty"`
+	ShotsBlocked         *wrappers.UInt32Value `protobuf:"bytes,5,opt,name=shots_blocked,json=shotsBlocked,proto3" json:"shots_blocked,omitempty"`
+	ShotsInsideBox       *wrappers.UInt32Value `protobuf:"bytes,6,opt,name=shots_inside_box,json=shotsInsideBox,proto3" json:"shots_inside_box,omitempty"`
+	ShotsOutsideBox      *wrappers.UInt32Value `protobuf:"bytes,7,opt,name=shots_outside_box,json=shotsOutsideBox,proto3" json:"shots_outside_box,omitempty"`
+	PassesTotal          *wrappers.UInt32Value `protobuf:"bytes,8,opt,name=passes_total,json=passesTotal,proto3" json:"passes_total,omitempty"`
+	PassesAccuracy       *wrappers.UInt32Value `protobuf:"bytes,9,opt,name=passes_accuracy,json=passesAccuracy,proto3" json:"passes_accuracy,omitempty"`
+	PassesPercentage     *wrappers.UInt32Value `protobuf:"bytes,10,opt,name=passes_percentage,json=passesPercentage,proto3" json:"passes_percentage,omitempty"`
+	AttacksTotal         *wrappers.UInt32Value `protobuf:"bytes,11,opt,name=attacks_total,json=attacksTotal,proto3" json:"attacks_total,omitempty"`
+	AttacksDangerous     *wrappers.UInt32Value `protobuf:"bytes,12,opt,name=attacks_dangerous,json=attacksDangerous,proto3" json:"attacks_dangerous,omitempty"`
+	Goals                *wrappers.UInt32Value `protobuf:"bytes,13,opt,name=goals,proto3" json:"goals,omitempty"`
+	Fouls                *wrappers.UInt32Value `protobuf:"bytes,14,opt,name=fouls,proto3" json:"fouls,omitempty"`
+	Corners              *wrappers.UInt32Value `protobuf:"bytes,15,opt,name=corners,proto3" json:"corners,omitempty"`
+	Offsides             *wrappers.UInt32Value `protobuf:"bytes,16,opt,name=offsides,proto3" json:"offsides,omitempty"`
+	Possession           *wrappers.UInt32Value `protobuf:"bytes,17,opt,name=possession,proto3" json:"possession,omitempty"`
+	YellowCards          *wrappers.UInt32Value `protobuf:"bytes,18,opt,name=yellow_cards,json=yellowCards,proto3" json:"yellow_cards,omitempty"`
+	RedCards             *wrappers.UInt32Value `protobuf:"bytes,19,opt,name=red_cards,json=redCards,proto3" json:"red_cards,omitempty"`
+	Saves                *wrappers.UInt32Value `protobuf:"bytes,20,opt,name=saves,proto3" json:"saves,omitempty"`
+	Substitutions        *wrappers.UInt32Value `protobuf:"bytes,21,opt,name=substitutions,proto3" json:"substitutions,omitempty"`
+	GoalKicks            *wrappers.UInt32Value `protobuf:"bytes,22,opt,name=goal_kicks,json=goalKicks,proto3" json:"goal_kicks,omitempty"`
+	GoalAttempts         *wrappers.UInt32Value `protobuf:"bytes,23,opt,name=goal_attempts,json=goalAttempts,proto3" json:"goal_attempts,omitempty"`
+	FreeKicks            *wrappers.UInt32Value `protobuf:"bytes,24,opt,name=free_kicks,json=freeKicks,proto3" json:"free_kicks,omitempty"`
+	ThrowIns             *wrappers.UInt32Value `protobuf:"bytes,25,opt,name=throw_ins,json=throwIns,proto3" json:"throw_ins,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}              `json:"-"`
+	XXX_unrecognized     []byte                `json:"-"`
+	XXX_sizecache        int32                 `json:"-"`
 }
 
 func (m *TeamStats) Reset()         { *m = TeamStats{} }
@@ -194,168 +194,168 @@ func (m *TeamStats) GetTeamId() uint64 {
 	return 0
 }
 
-func (m *TeamStats) GetShotsTotal() *wrapperspb.UInt32Value {
+func (m *TeamStats) GetShotsTotal() *wrappers.UInt32Value {
 	if m != nil {
 		return m.ShotsTotal
 	}
 	return nil
 }
 
-func (m *TeamStats) GetShotsOnGoal() *wrapperspb.UInt32Value {
+func (m *TeamStats) GetShotsOnGoal() *wrappers.UInt32Value {
 	if m != nil {
 		return m.ShotsOnGoal
 	}
 	return nil
 }
 
-func (m *TeamStats) GetShotsOffGoal() *wrapperspb.UInt32Value {
+func (m *TeamStats) GetShotsOffGoal() *wrappers.UInt32Value {
 	if m != nil {
 		return m.ShotsOffGoal
 	}
 	return nil
 }
 
-func (m *TeamStats) GetShotsBlocked() *wrapperspb.UInt32Value {
+func (m *TeamStats) GetShotsBlocked() *wrappers.UInt32Value {
 	if m != nil {
 		return m.ShotsBlocked
 	}
 	return nil
 }
 
-func (m *TeamStats) GetShotsInsideBox() *wrapperspb.UInt32Value {
+func (m *TeamStats) GetShotsInsideBox() *wrappers.UInt32Value {
 	if m != nil {
 		return m.ShotsInsideBox
 	}
 	return nil
 }
 
-func (m *TeamStats) GetShotsOutsideBox() *wrapperspb.UInt32Value {
+func (m *TeamStats) GetShotsOutsideBox() *wrappers.UInt32Value {
 	if m != nil {
 		return m.ShotsOutsideBox
 	}
 	return nil
 }
 
-func (m *TeamStats) GetPassesTotal() *wrapperspb.UInt32Value {
+func (m *TeamStats) GetPassesTotal() *wrappers.UInt32Value {
 	if m != nil {
 		return m.PassesTotal
 	}
 	return nil
 }
 
-func (m *TeamStats) GetPassesAccuracy() *wrapperspb.UInt32Value {
+func (m *TeamStats) GetPassesAccuracy() *wrappers.UInt32Value {
 	if m != nil {
 		return m.PassesAccuracy
 	}
 	return nil
 }
 
-func (m *TeamStats) GetPassesPercentage() *wrapperspb.UInt32Value {
+func (m *TeamStats) GetPassesPercentage() *wrappers.UInt32Value {
 	if m != nil {
 		return m.PassesPercentage
 	}
 	return nil
 }
 
-func (m *TeamStats) GetAttacksTotal() *wrapperspb.UInt32Value {
+func (m *TeamStats) GetAttacksTotal() *wrappers.UInt32Value {
 	if m != nil {
 		return m.AttacksTotal
 	}
 	return nil
 }
 
-func (m *TeamStats) GetAttacksDangerous() *wrapperspb.UInt32Value {
+func (m *TeamStats) GetAttacksDangerous() *wrappers.UInt32Value {
 	if m != nil {
 		return m.AttacksDangerous
 	}
 	return nil
 }
 
-func (m *TeamStats) GetGoals() *wrapperspb.UInt32Value {
+func (m *TeamStats) GetGoals() *wrappers.UInt32Value {
 	if m != nil {
 		return m.Goals
 	}
 	return nil
 }
 
-func (m *TeamStats) GetFouls() *wrapperspb.UInt32Value {
+func (m *TeamStats) GetFouls() *wrappers.UInt32Value {
 	if m != nil {
 		return m.Fouls
 	}
 	return nil
 }
 
-func (m *TeamStats) GetCorners() *wrapperspb.UInt32Value {
+func (m *TeamStats) GetCorners() *wrappers.UInt32Value {
 	if m != nil {
 		return m.Corners
 	}
 	return nil
 }
 
-func (m *TeamStats) GetOffsides() *wrapperspb.UInt32Value {
+func (m *TeamStats) GetOffsides() *wrappers.UInt32Value {
 	if m != nil {
 		return m.Offsides
 	}
 	return nil
 }
 
-func (m *TeamStats) GetPossession() *wrapperspb.UInt32Value {
+func (m *TeamStats) GetPossession() *wrappers.UInt32Value {
 	if m != nil {
 		return m.Possession
 	}
 	return nil
 }
 
-func (m *TeamStats) GetYellowCards() *wrapperspb.UInt32Value {
+func (m *TeamStats) GetYellowCards() *wrappers.UInt32Value {
 	if m != nil {
 		return m.YellowCards
 	}
 	return nil
 }
 
-func (m *TeamStats) GetRedCards() *wrapperspb.UInt32Value {
+func (m *TeamStats) GetRedCards() *wrappers.UInt32Value {
 	if m != nil {
 		return m.RedCards
 	}
 	return nil
 }
 
-func (m *TeamStats) GetSaves() *wrapperspb.UInt32Value {
+func (m *TeamStats) GetSaves() *wrappers.UInt32Value {
 	if m != nil {
 		return m.Saves
 	}
 	return nil
 }
 
-func (m *TeamStats) GetSubstitutions() *wrapperspb.UInt32Value {
+func (m *TeamStats) GetSubstitutions() *wrappers.UInt32Value {
 	if m != nil {
 		return m.Substitutions
 	}
 	return nil
 }
 
-func (m *TeamStats) GetGoalKicks() *wrapperspb.UInt32Value {
+func (m *TeamStats) GetGoalKicks() *wrappers.UInt32Value {
 	if m != nil {
 		return m.GoalKicks
 	}
 	return nil
 }
 
-func (m *TeamStats) GetGoalAttempts() *wrapperspb.UInt32Value {
+func (m *TeamStats) GetGoalAttempts() *wrappers.UInt32Value {
 	if m != nil {
 		return m.GoalAttempts
 	}
 	return nil
 }
 
-func (m *TeamStats) GetFreeKicks() *wrapperspb.UInt32Value {
+func (m *TeamStats) GetFreeKicks() *wrappers.UInt32Value {
 	if m != nil {
 		return m.FreeKicks
 	}
 	return nil
 }
 
-func (m *TeamStats) GetThrowIns() *wrapperspb.UInt32Value {
+func (m *TeamStats) GetThrowIns() *wrappers.UInt32Value {
 	if m != nil {
 		return m.ThrowIns
 	}
@@ -363,11 +363,11 @@ func (m *TeamStats) GetThrowIns() *wrapperspb.UInt32Value {
 }
 
 type TeamXG struct {
-	Home                 *wrapperspb.FloatValue `protobuf:"bytes,1,opt,name=home,proto3" json:"home,omitempty"`
-	Away                 *wrapperspb.FloatValue `protobuf:"bytes,2,opt,name=away,proto3" json:"away,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}               `json:"-"`
-	XXX_unrecognized     []byte                 `json:"-"`
-	XXX_sizecache        int32                  `json:"-"`
+	Home                 *wrappers.FloatValue `protobuf:"bytes,1,opt,name=home,proto3" json:"home,omitempty"`
+	Away                 *wrappers.FloatValue `protobuf:"bytes,2,opt,name=away,proto3" json:"away,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
+	XXX_unrecognized     []byte               `json:"-"`
+	XXX_sizecache        int32                `json:"-"`
 }
 
 func (m *TeamXG) Reset()         { *m = TeamXG{} }
@@ -395,14 +395,14 @@ func (m *TeamXG) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_TeamXG proto.InternalMessageInfo
 
-func (m *TeamXG) GetHome() *wrapperspb.FloatValue {
+func (m *TeamXG) GetHome() *wrappers.FloatValue {
 	if m != nil {
 		return m.Home
 	}
 	return nil
 }
 
-func (m *TeamXG) GetAway() *wrapperspb.FloatValue {
+func (m *TeamXG) GetAway() *wrappers.FloatValue {
 	if m != nil {
 		return m.Away
 	}

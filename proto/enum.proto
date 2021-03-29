@@ -39,6 +39,10 @@ enum SideEnum {
   LAY = 1;
 }
 
+enum StakingPlanEnum {
+  PERCENTAGE = 0;
+}
+
 enum StatEnum {
   GOALS = 0;
   SHOTS_ON_GOAL = 1;

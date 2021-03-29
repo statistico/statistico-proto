@@ -2459,7 +2459,7 @@ proto.statistico.StakingPlan.prototype.toObject = function(opt_includeInstance) 
  */
 proto.statistico.StakingPlan.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    name: jspb.Message.getFieldWithDefault(msg, 1, 0),
     value: +jspb.Message.getFieldWithDefault(msg, 2, 0.0)
   };
 
@@ -2498,7 +2498,7 @@ proto.statistico.StakingPlan.deserializeBinaryFromReader = function(msg, reader)
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {string} */ (reader.readString());
+      var value = /** @type {!proto.statistico.StakingPlanEnum} */ (reader.readEnum());
       msg.setName(value);
       break;
     case 2:
@@ -2535,8 +2535,8 @@ proto.statistico.StakingPlan.prototype.serializeBinary = function() {
 proto.statistico.StakingPlan.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getName();
-  if (f.length > 0) {
-    writer.writeString(
+  if (f !== 0.0) {
+    writer.writeEnum(
       1,
       f
     );
@@ -2552,17 +2552,17 @@ proto.statistico.StakingPlan.serializeBinaryToWriter = function(message, writer)
 
 
 /**
- * optional string name = 1;
- * @return {string}
+ * optional StakingPlanEnum name = 1;
+ * @return {!proto.statistico.StakingPlanEnum}
  */
 proto.statistico.StakingPlan.prototype.getName = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+  return /** @type {!proto.statistico.StakingPlanEnum} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
 };
 
 
-/** @param {string} value */
+/** @param {!proto.statistico.StakingPlanEnum} value */
 proto.statistico.StakingPlan.prototype.setName = function(value) {
-  jspb.Message.setProto3StringField(this, 1, value);
+  jspb.Message.setProto3EnumField(this, 1, value);
 };
 
 

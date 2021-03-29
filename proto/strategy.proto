@@ -83,6 +83,6 @@ message StrategyTrade {
 }
 
 message StakingPlan {
-  string name = 1;
+  StakingPlanEnum name = 1;
   float value = 2;
 }

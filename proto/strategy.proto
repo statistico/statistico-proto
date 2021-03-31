@@ -37,17 +37,16 @@ message ListUserStrategiesRequest {
 message SaveStrategyRequest {
     string name = 1;
     string description = 2;
-    string user_id = 3;
-    string market = 4;
-    string runner = 5;
-    google.protobuf.FloatValue min_odds = 6;
-    google.protobuf.FloatValue max_odds = 7;
-    SideEnum side = 8;
-    repeated uint64 competition_ids = 9;
-    repeated ResultFilter result_filters = 10;
-    repeated StatFilter stat_filters = 11;
-    VisibilityEnum visibility = 12;
-    StakingPlan staking_plan = 13;
+    string market = 3;
+    string runner = 4;
+    google.protobuf.FloatValue min_odds = 5;
+    google.protobuf.FloatValue max_odds = 6;
+    SideEnum side = 7;
+    repeated uint64 competition_ids = 8;
+    repeated ResultFilter result_filters = 9;
+    repeated StatFilter stat_filters = 10;
+    VisibilityEnum visibility = 11;
+    StakingPlan staking_plan = 14;
 }
 
 message Strategy {

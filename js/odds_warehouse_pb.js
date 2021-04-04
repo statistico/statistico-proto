@@ -554,12 +554,13 @@ proto.statistico.MarketRunner.toObject = function(includeInstance, msg) {
   var f, obj = {
     marketId: jspb.Message.getFieldWithDefault(msg, 1, ""),
     marketName: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    runnerName: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    eventId: jspb.Message.getFieldWithDefault(msg, 4, 0),
-    competitionId: jspb.Message.getFieldWithDefault(msg, 5, 0),
-    seasonId: jspb.Message.getFieldWithDefault(msg, 6, 0),
+    runnerId: jspb.Message.getFieldWithDefault(msg, 3, 0),
+    runnerName: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    eventId: jspb.Message.getFieldWithDefault(msg, 5, 0),
+    competitionId: jspb.Message.getFieldWithDefault(msg, 6, 0),
+    seasonId: jspb.Message.getFieldWithDefault(msg, 7, 0),
     eventDate: (f = msg.getEventDate()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    exchange: jspb.Message.getFieldWithDefault(msg, 8, ""),
+    exchange: jspb.Message.getFieldWithDefault(msg, 9, ""),
     price: (f = msg.getPrice()) && proto.statistico.Price.toObject(includeInstance, f)
   };
 
@@ -606,31 +607,35 @@ proto.statistico.MarketRunner.deserializeBinaryFromReader = function(msg, reader
       msg.setMarketName(value);
       break;
     case 3:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setRunnerId(value);
+      break;
+    case 4:
       var value = /** @type {string} */ (reader.readString());
       msg.setRunnerName(value);
       break;
-    case 4:
+    case 5:
       var value = /** @type {number} */ (reader.readUint64());
       msg.setEventId(value);
       break;
-    case 5:
+    case 6:
       var value = /** @type {number} */ (reader.readUint64());
       msg.setCompetitionId(value);
       break;
-    case 6:
+    case 7:
       var value = /** @type {number} */ (reader.readUint64());
       msg.setSeasonId(value);
       break;
-    case 7:
+    case 8:
       var value = new google_protobuf_timestamp_pb.Timestamp;
       reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
       msg.setEventDate(value);
       break;
-    case 8:
+    case 9:
       var value = /** @type {string} */ (reader.readString());
       msg.setExchange(value);
       break;
-    case 9:
+    case 10:
       var value = new proto.statistico.Price;
       reader.readMessage(value,proto.statistico.Price.deserializeBinaryFromReader);
       msg.setPrice(value);
@@ -678,38 +683,45 @@ proto.statistico.MarketRunner.serializeBinaryToWriter = function(message, writer
       f
     );
   }
+  f = message.getRunnerId();
+  if (f !== 0) {
+    writer.writeUint64(
+      3,
+      f
+    );
+  }
   f = message.getRunnerName();
   if (f.length > 0) {
     writer.writeString(
-      3,
+      4,
       f
     );
   }
   f = message.getEventId();
   if (f !== 0) {
     writer.writeUint64(
-      4,
+      5,
       f
     );
   }
   f = message.getCompetitionId();
   if (f !== 0) {
     writer.writeUint64(
-      5,
+      6,
       f
     );
   }
   f = message.getSeasonId();
   if (f !== 0) {
     writer.writeUint64(
-      6,
+      7,
       f
     );
   }
   f = message.getEventDate();
   if (f != null) {
     writer.writeMessage(
-      7,
+      8,
       f,
       google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
     );
@@ -717,14 +729,14 @@ proto.statistico.MarketRunner.serializeBinaryToWriter = function(message, writer
   f = message.getExchange();
   if (f.length > 0) {
     writer.writeString(
-      8,
+      9,
       f
     );
   }
   f = message.getPrice();
   if (f != null) {
     writer.writeMessage(
-      9,
+      10,
       f,
       proto.statistico.Price.serializeBinaryToWriter
     );
@@ -763,78 +775,93 @@ proto.statistico.MarketRunner.prototype.setMarketName = function(value) {
 
 
 /**
- * optional string runner_name = 3;
+ * optional uint64 runner_id = 3;
+ * @return {number}
+ */
+proto.statistico.MarketRunner.prototype.getRunnerId = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
+};
+
+
+/** @param {number} value */
+proto.statistico.MarketRunner.prototype.setRunnerId = function(value) {
+  jspb.Message.setProto3IntField(this, 3, value);
+};
+
+
+/**
+ * optional string runner_name = 4;
  * @return {string}
  */
 proto.statistico.MarketRunner.prototype.getRunnerName = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
 };
 
 
 /** @param {string} value */
 proto.statistico.MarketRunner.prototype.setRunnerName = function(value) {
-  jspb.Message.setProto3StringField(this, 3, value);
+  jspb.Message.setProto3StringField(this, 4, value);
 };
 
 
 /**
- * optional uint64 event_id = 4;
+ * optional uint64 event_id = 5;
  * @return {number}
  */
 proto.statistico.MarketRunner.prototype.getEventId = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 4, 0));
-};
-
-
-/** @param {number} value */
-proto.statistico.MarketRunner.prototype.setEventId = function(value) {
-  jspb.Message.setProto3IntField(this, 4, value);
-};
-
-
-/**
- * optional uint64 competition_id = 5;
- * @return {number}
- */
-proto.statistico.MarketRunner.prototype.getCompetitionId = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 5, 0));
 };
 
 
 /** @param {number} value */
-proto.statistico.MarketRunner.prototype.setCompetitionId = function(value) {
+proto.statistico.MarketRunner.prototype.setEventId = function(value) {
   jspb.Message.setProto3IntField(this, 5, value);
 };
 
 
 /**
- * optional uint64 season_id = 6;
+ * optional uint64 competition_id = 6;
  * @return {number}
  */
-proto.statistico.MarketRunner.prototype.getSeasonId = function() {
+proto.statistico.MarketRunner.prototype.getCompetitionId = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 6, 0));
 };
 
 
 /** @param {number} value */
-proto.statistico.MarketRunner.prototype.setSeasonId = function(value) {
+proto.statistico.MarketRunner.prototype.setCompetitionId = function(value) {
   jspb.Message.setProto3IntField(this, 6, value);
 };
 
 
 /**
- * optional google.protobuf.Timestamp event_date = 7;
+ * optional uint64 season_id = 7;
+ * @return {number}
+ */
+proto.statistico.MarketRunner.prototype.getSeasonId = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 7, 0));
+};
+
+
+/** @param {number} value */
+proto.statistico.MarketRunner.prototype.setSeasonId = function(value) {
+  jspb.Message.setProto3IntField(this, 7, value);
+};
+
+
+/**
+ * optional google.protobuf.Timestamp event_date = 8;
  * @return {?proto.google.protobuf.Timestamp}
  */
 proto.statistico.MarketRunner.prototype.getEventDate = function() {
   return /** @type{?proto.google.protobuf.Timestamp} */ (
-    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 7));
+    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 8));
 };
 
 
 /** @param {?proto.google.protobuf.Timestamp|undefined} value */
 proto.statistico.MarketRunner.prototype.setEventDate = function(value) {
-  jspb.Message.setWrapperField(this, 7, value);
+  jspb.Message.setWrapperField(this, 8, value);
 };
 
 
@@ -848,38 +875,38 @@ proto.statistico.MarketRunner.prototype.clearEventDate = function() {
  * @return {!boolean}
  */
 proto.statistico.MarketRunner.prototype.hasEventDate = function() {
-  return jspb.Message.getField(this, 7) != null;
+  return jspb.Message.getField(this, 8) != null;
 };
 
 
 /**
- * optional string exchange = 8;
+ * optional string exchange = 9;
  * @return {string}
  */
 proto.statistico.MarketRunner.prototype.getExchange = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 8, ""));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 9, ""));
 };
 
 
 /** @param {string} value */
 proto.statistico.MarketRunner.prototype.setExchange = function(value) {
-  jspb.Message.setProto3StringField(this, 8, value);
+  jspb.Message.setProto3StringField(this, 9, value);
 };
 
 
 /**
- * optional Price price = 9;
+ * optional Price price = 10;
  * @return {?proto.statistico.Price}
  */
 proto.statistico.MarketRunner.prototype.getPrice = function() {
   return /** @type{?proto.statistico.Price} */ (
-    jspb.Message.getWrapperField(this, proto.statistico.Price, 9));
+    jspb.Message.getWrapperField(this, proto.statistico.Price, 10));
 };
 
 
 /** @param {?proto.statistico.Price|undefined} value */
 proto.statistico.MarketRunner.prototype.setPrice = function(value) {
-  jspb.Message.setWrapperField(this, 9, value);
+  jspb.Message.setWrapperField(this, 10, value);
 };
 
 
@@ -893,7 +920,7 @@ proto.statistico.MarketRunner.prototype.clearPrice = function() {
  * @return {!boolean}
  */
 proto.statistico.MarketRunner.prototype.hasPrice = function() {
-  return jspb.Message.getField(this, 9) != null;
+  return jspb.Message.getField(this, 10) != null;
 };
 
 

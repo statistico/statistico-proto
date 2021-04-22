@@ -13,6 +13,7 @@ service StrategyService {
   rpc BuildStrategy(BuildStrategyRequest) returns (stream StrategyTrade) {}
   rpc SaveStrategy(SaveStrategyRequest) returns (Strategy) {}
   rpc ListUserStrategies(ListUserStrategiesRequest) returns (stream Strategy) {}
+  rpc HealthCheck(HealthCheckRequest) returns (HealthCheckResponse) {}
 }
 
 message BuildStrategyRequest {
@@ -84,4 +85,12 @@ message StrategyTrade {
 message StakingPlan {
   StakingPlanEnum name = 1;
   float value = 2;
+}
+
+message HealthCheckRequest {
+  string service = 1;
+}
+
+message HealthCheckResponse {
+  string message = 1;
 }

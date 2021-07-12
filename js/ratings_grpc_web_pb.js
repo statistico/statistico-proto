@@ -30,7 +30,7 @@ proto.statistico = require('./ratings_pb.js');
  * @struct
  * @final
  */
-proto.statistico.RatingServiceClient =
+proto.statistico.TeamRatingServiceClient =
     function(hostname, credentials, options) {
   if (!options) options = {};
   options['format'] = 'text';
@@ -56,7 +56,7 @@ proto.statistico.RatingServiceClient =
  * @struct
  * @final
  */
-proto.statistico.RatingServicePromiseClient =
+proto.statistico.TeamRatingServicePromiseClient =
     function(hostname, credentials, options) {
   if (!options) options = {};
   options['format'] = 'text';
@@ -80,8 +80,8 @@ proto.statistico.RatingServicePromiseClient =
  *   !proto.statistico.TeamRatingRequest,
  *   !proto.statistico.TeamRatingResponse>}
  */
-const methodDescriptor_RatingService_GetTeamRatings = new grpc.web.MethodDescriptor(
-  '/statistico.RatingService/GetTeamRatings',
+const methodDescriptor_TeamRatingService_GetTeamRatings = new grpc.web.MethodDescriptor(
+  '/statistico.TeamRatingService/GetTeamRatings',
   grpc.web.MethodType.UNARY,
   proto.statistico.TeamRatingRequest,
   proto.statistico.TeamRatingResponse,
@@ -102,7 +102,7 @@ const methodDescriptor_RatingService_GetTeamRatings = new grpc.web.MethodDescrip
  *   !proto.statistico.TeamRatingRequest,
  *   !proto.statistico.TeamRatingResponse>}
  */
-const methodInfo_RatingService_GetTeamRatings = new grpc.web.AbstractClientBase.MethodInfo(
+const methodInfo_TeamRatingService_GetTeamRatings = new grpc.web.AbstractClientBase.MethodInfo(
   proto.statistico.TeamRatingResponse,
   /**
    * @param {!proto.statistico.TeamRatingRequest} request
@@ -125,13 +125,13 @@ const methodInfo_RatingService_GetTeamRatings = new grpc.web.AbstractClientBase.
  * @return {!grpc.web.ClientReadableStream<!proto.statistico.TeamRatingResponse>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.statistico.RatingServiceClient.prototype.getTeamRatings =
+proto.statistico.TeamRatingServiceClient.prototype.getTeamRatings =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/statistico.RatingService/GetTeamRatings',
+      '/statistico.TeamRatingService/GetTeamRatings',
       request,
       metadata || {},
-      methodDescriptor_RatingService_GetTeamRatings,
+      methodDescriptor_TeamRatingService_GetTeamRatings,
       callback);
 };
 
@@ -144,13 +144,13 @@ proto.statistico.RatingServiceClient.prototype.getTeamRatings =
  * @return {!Promise<!proto.statistico.TeamRatingResponse>}
  *     Promise that resolves to the response
  */
-proto.statistico.RatingServicePromiseClient.prototype.getTeamRatings =
+proto.statistico.TeamRatingServicePromiseClient.prototype.getTeamRatings =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/statistico.RatingService/GetTeamRatings',
+      '/statistico.TeamRatingService/GetTeamRatings',
       request,
       metadata || {},
-      methodDescriptor_RatingService_GetTeamRatings);
+      methodDescriptor_TeamRatingService_GetTeamRatings);
 };
 
 

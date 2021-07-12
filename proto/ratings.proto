@@ -7,7 +7,7 @@ option go_package = "github.com/statistico/statistico-proto;statistico";
 import "google/protobuf/timestamp.proto";
 import "google/protobuf/wrappers.proto";
 
-service RatingService {
+service TeamRatingService {
   rpc GetTeamRatings(TeamRatingRequest) returns (TeamRatingResponse) {}
 }
 

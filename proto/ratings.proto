@@ -1,0 +1,37 @@
+syntax = "proto3";
+
+package statistico;
+
+option go_package = "github.com/statistico/statistico-proto;statistico";
+
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/wrappers.proto";
+
+service TeamRatingService {
+  rpc GetTeamRatings(TeamRatingRequest) returns (TeamRatingResponse) {}
+}
+
+message TeamRatingRequest {
+  uint64 team_id = 1;
+  google.protobuf.UInt64Value season_id = 2;
+  google.protobuf.StringValue date_before = 3;
+  string sort = 4;
+}
+
+message TeamRatingResponse {
+  repeated TeamRating ratings = 1;
+}
+
+message TeamRating {
+  uint64 team_id = 1;
+  uint64 fixture_id = 2;
+  uint64 season_id = 3;
+  Points attack = 4;
+  Points defence = 5;
+  google.protobuf.Timestamp timestamp = 6;
+}
+
+message Points {
+  float points = 1;
+  float difference = 2;
+}

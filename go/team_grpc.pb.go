@@ -19,6 +19,7 @@ const _ = grpc.SupportPackageIsVersion7
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type TeamServiceClient interface {
 	GetTeamByID(ctx context.Context, in *TeamRequest, opts ...grpc.CallOption) (*Team, error)
+	GetTeamsByCompetitionId(ctx context.Context, in *CompetitionTeamsRequest, opts ...grpc.CallOption) (*TeamsResponse, error)
 	GetTeamsBySeasonId(ctx context.Context, in *SeasonTeamsRequest, opts ...grpc.CallOption) (TeamService_GetTeamsBySeasonIdClient, error)
 }
 
@@ -33,6 +34,15 @@ func NewTeamServiceClient(cc grpc.ClientConnInterface) TeamServiceClient {
 func (c *teamServiceClient) GetTeamByID(ctx context.Context, in *TeamRequest, opts ...grpc.CallOption) (*Team, error) {
 	out := new(Team)
 	err := c.cc.Invoke(ctx, "/statistico.TeamService/GetTeamByID", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *teamServiceClient) GetTeamsByCompetitionId(ctx context.Context, in *CompetitionTeamsRequest, opts ...grpc.CallOption) (*TeamsResponse, error) {
+	out := new(TeamsResponse)
+	err := c.cc.Invoke(ctx, "/statistico.TeamService/GetTeamsByCompetitionId", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -76,6 +86,7 @@ func (x *teamServiceGetTeamsBySeasonIdClient) Recv() (*Team, error) {
 // for forward compatibility
 type TeamServiceServer interface {
 	GetTeamByID(context.Context, *TeamRequest) (*Team, error)
+	GetTeamsByCompetitionId(context.Context, *CompetitionTeamsRequest) (*TeamsResponse, error)
 	GetTeamsBySeasonId(*SeasonTeamsRequest, TeamService_GetTeamsBySeasonIdServer) error
 	mustEmbedUnimplementedTeamServiceServer()
 }
@@ -86,6 +97,9 @@ type UnimplementedTeamServiceServer struct {
 
 func (UnimplementedTeamServiceServer) GetTeamByID(context.Context, *TeamRequest) (*Team, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetTeamByID not implemented")
+}
+func (UnimplementedTeamServiceServer) GetTeamsByCompetitionId(context.Context, *CompetitionTeamsRequest) (*TeamsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetTeamsByCompetitionId not implemented")
 }
 func (UnimplementedTeamServiceServer) GetTeamsBySeasonId(*SeasonTeamsRequest, TeamService_GetTeamsBySeasonIdServer) error {
 	return status.Errorf(codes.Unimplemented, "method GetTeamsBySeasonId not implemented")
@@ -121,6 +135,24 @@ func _TeamService_GetTeamByID_Handler(srv interface{}, ctx context.Context, dec 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _TeamService_GetTeamsByCompetitionId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CompetitionTeamsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TeamServiceServer).GetTeamsByCompetitionId(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/statistico.TeamService/GetTeamsByCompetitionId",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TeamServiceServer).GetTeamsByCompetitionId(ctx, req.(*CompetitionTeamsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _TeamService_GetTeamsBySeasonId_Handler(srv interface{}, stream grpc.ServerStream) error {
 	m := new(SeasonTeamsRequest)
 	if err := stream.RecvMsg(m); err != nil {
@@ -152,6 +184,10 @@ var TeamService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetTeamByID",
 			Handler:    _TeamService_GetTeamByID_Handler,
+		},
+		{
+			MethodName: "GetTeamsByCompetitionId",
+			Handler:    _TeamService_GetTeamsByCompetitionId_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{

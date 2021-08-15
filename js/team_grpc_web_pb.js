@@ -157,6 +157,86 @@ proto.statistico.TeamServicePromiseClient.prototype.getTeamByID =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
+ *   !proto.statistico.CompetitionTeamsRequest,
+ *   !proto.statistico.TeamsResponse>}
+ */
+const methodDescriptor_TeamService_GetTeamsByCompetitionId = new grpc.web.MethodDescriptor(
+  '/statistico.TeamService/GetTeamsByCompetitionId',
+  grpc.web.MethodType.UNARY,
+  proto.statistico.CompetitionTeamsRequest,
+  proto.statistico.TeamsResponse,
+  /**
+   * @param {!proto.statistico.CompetitionTeamsRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.statistico.TeamsResponse.deserializeBinary
+);
+
+
+/**
+ * @const
+ * @type {!grpc.web.AbstractClientBase.MethodInfo<
+ *   !proto.statistico.CompetitionTeamsRequest,
+ *   !proto.statistico.TeamsResponse>}
+ */
+const methodInfo_TeamService_GetTeamsByCompetitionId = new grpc.web.AbstractClientBase.MethodInfo(
+  proto.statistico.TeamsResponse,
+  /**
+   * @param {!proto.statistico.CompetitionTeamsRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.statistico.TeamsResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.statistico.CompetitionTeamsRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.Error, ?proto.statistico.TeamsResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.statistico.TeamsResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.statistico.TeamServiceClient.prototype.getTeamsByCompetitionId =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/statistico.TeamService/GetTeamsByCompetitionId',
+      request,
+      metadata || {},
+      methodDescriptor_TeamService_GetTeamsByCompetitionId,
+      callback);
+};
+
+
+/**
+ * @param {!proto.statistico.CompetitionTeamsRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.statistico.TeamsResponse>}
+ *     Promise that resolves to the response
+ */
+proto.statistico.TeamServicePromiseClient.prototype.getTeamsByCompetitionId =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/statistico.TeamService/GetTeamsByCompetitionId',
+      request,
+      metadata || {},
+      methodDescriptor_TeamService_GetTeamsByCompetitionId);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
  *   !proto.statistico.SeasonTeamsRequest,
  *   !proto.statistico.Team>}
  */

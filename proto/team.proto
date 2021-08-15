@@ -25,7 +25,7 @@ message Team {
 }
 
 message CompetitionTeamsRequest {
-    uint64 competition_id = 1;
+    repeated uint64 competition_ids = 1;
 }
 
 message TeamsResponse {

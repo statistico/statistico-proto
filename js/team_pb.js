@@ -427,12 +427,19 @@ proto.statistico.Team.prototype.hasLogo = function() {
  * @constructor
  */
 proto.statistico.CompetitionTeamsRequest = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.statistico.CompetitionTeamsRequest.repeatedFields_, null);
 };
 goog.inherits(proto.statistico.CompetitionTeamsRequest, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   proto.statistico.CompetitionTeamsRequest.displayName = 'proto.statistico.CompetitionTeamsRequest';
 }
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.statistico.CompetitionTeamsRequest.repeatedFields_ = [1];
+
 
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
@@ -462,7 +469,7 @@ proto.statistico.CompetitionTeamsRequest.prototype.toObject = function(opt_inclu
  */
 proto.statistico.CompetitionTeamsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    competitionId: jspb.Message.getFieldWithDefault(msg, 1, 0)
+    competitionIdsList: jspb.Message.getRepeatedField(msg, 1)
   };
 
   if (includeInstance) {
@@ -500,8 +507,8 @@ proto.statistico.CompetitionTeamsRequest.deserializeBinaryFromReader = function(
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {number} */ (reader.readUint64());
-      msg.setCompetitionId(value);
+      var value = /** @type {!Array<number>} */ (reader.readPackedUint64());
+      msg.setCompetitionIdsList(value);
       break;
     default:
       reader.skipField();
@@ -532,9 +539,9 @@ proto.statistico.CompetitionTeamsRequest.prototype.serializeBinary = function() 
  */
 proto.statistico.CompetitionTeamsRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getCompetitionId();
-  if (f !== 0) {
-    writer.writeUint64(
+  f = message.getCompetitionIdsList();
+  if (f.length > 0) {
+    writer.writePackedUint64(
       1,
       f
     );
@@ -543,17 +550,31 @@ proto.statistico.CompetitionTeamsRequest.serializeBinaryToWriter = function(mess
 
 
 /**
- * optional uint64 competition_id = 1;
- * @return {number}
+ * repeated uint64 competition_ids = 1;
+ * @return {!Array<number>}
  */
-proto.statistico.CompetitionTeamsRequest.prototype.getCompetitionId = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
+proto.statistico.CompetitionTeamsRequest.prototype.getCompetitionIdsList = function() {
+  return /** @type {!Array<number>} */ (jspb.Message.getRepeatedField(this, 1));
 };
 
 
-/** @param {number} value */
-proto.statistico.CompetitionTeamsRequest.prototype.setCompetitionId = function(value) {
-  jspb.Message.setProto3IntField(this, 1, value);
+/** @param {!Array<number>} value */
+proto.statistico.CompetitionTeamsRequest.prototype.setCompetitionIdsList = function(value) {
+  jspb.Message.setField(this, 1, value || []);
+};
+
+
+/**
+ * @param {!number} value
+ * @param {number=} opt_index
+ */
+proto.statistico.CompetitionTeamsRequest.prototype.addCompetitionIds = function(value, opt_index) {
+  jspb.Message.addToRepeatedField(this, 1, value, opt_index);
+};
+
+
+proto.statistico.CompetitionTeamsRequest.prototype.clearCompetitionIdsList = function() {
+  this.setCompetitionIdsList([]);
 };
 
 

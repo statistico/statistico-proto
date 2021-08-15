@@ -9,6 +9,7 @@ import "requests.proto";
 
 service TeamService {
     rpc GetTeamByID(TeamRequest) returns (Team) {}
+    rpc GetTeamsByCompetitionId(CompetitionTeamsRequest) returns (TeamsResponse) {}
     rpc GetTeamsBySeasonId(SeasonTeamsRequest) returns (stream Team) {}
 }
 
@@ -21,4 +22,12 @@ message Team {
     google.protobuf.BoolValue is_national_team = 6;
     google.protobuf.UInt64Value founded = 7;
     google.protobuf.StringValue logo = 8;
+}
+
+message CompetitionTeamsRequest {
+    uint64 competition_id = 1;
+}
+
+message TeamsResponse {
+    repeated Team teams = 1;
 }

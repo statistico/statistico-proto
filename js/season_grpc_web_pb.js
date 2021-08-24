@@ -153,13 +153,13 @@ proto.statistico.SeasonServicePromiseClient.prototype.getSeasonsForCompetition =
  * @const
  * @type {!grpc.web.MethodDescriptor<
  *   !proto.statistico.TeamSeasonsRequest,
- *   !proto.statistico.Season>}
+ *   !proto.statistico.TeamSeasonsResponse>}
  */
 const methodDescriptor_SeasonService_GetSeasonsForTeam = new grpc.web.MethodDescriptor(
   '/statistico.SeasonService/GetSeasonsForTeam',
-  grpc.web.MethodType.SERVER_STREAMING,
-  requests_pb.TeamSeasonsRequest,
-  proto.statistico.Season,
+  grpc.web.MethodType.UNARY,
+  proto.statistico.TeamSeasonsRequest,
+  proto.statistico.TeamSeasonsResponse,
   /**
    * @param {!proto.statistico.TeamSeasonsRequest} request
    * @return {!Uint8Array}
@@ -167,7 +167,7 @@ const methodDescriptor_SeasonService_GetSeasonsForTeam = new grpc.web.MethodDesc
   function(request) {
     return request.serializeBinary();
   },
-  proto.statistico.Season.deserializeBinary
+  proto.statistico.TeamSeasonsResponse.deserializeBinary
 );
 
 
@@ -175,10 +175,10 @@ const methodDescriptor_SeasonService_GetSeasonsForTeam = new grpc.web.MethodDesc
  * @const
  * @type {!grpc.web.AbstractClientBase.MethodInfo<
  *   !proto.statistico.TeamSeasonsRequest,
- *   !proto.statistico.Season>}
+ *   !proto.statistico.TeamSeasonsResponse>}
  */
 const methodInfo_SeasonService_GetSeasonsForTeam = new grpc.web.AbstractClientBase.MethodInfo(
-  proto.statistico.Season,
+  proto.statistico.TeamSeasonsResponse,
   /**
    * @param {!proto.statistico.TeamSeasonsRequest} request
    * @return {!Uint8Array}
@@ -186,37 +186,42 @@ const methodInfo_SeasonService_GetSeasonsForTeam = new grpc.web.AbstractClientBa
   function(request) {
     return request.serializeBinary();
   },
-  proto.statistico.Season.deserializeBinary
+  proto.statistico.TeamSeasonsResponse.deserializeBinary
 );
 
 
 /**
- * @param {!proto.statistico.TeamSeasonsRequest} request The request proto
+ * @param {!proto.statistico.TeamSeasonsRequest} request The
+ *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @return {!grpc.web.ClientReadableStream<!proto.statistico.Season>}
+ * @param {function(?grpc.web.Error, ?proto.statistico.TeamSeasonsResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.statistico.TeamSeasonsResponse>|undefined}
  *     The XHR Node Readable Stream
  */
 proto.statistico.SeasonServiceClient.prototype.getSeasonsForTeam =
-    function(request, metadata) {
-  return this.client_.serverStreaming(this.hostname_ +
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
       '/statistico.SeasonService/GetSeasonsForTeam',
       request,
       metadata || {},
-      methodDescriptor_SeasonService_GetSeasonsForTeam);
+      methodDescriptor_SeasonService_GetSeasonsForTeam,
+      callback);
 };
 
 
 /**
- * @param {!proto.statistico.TeamSeasonsRequest} request The request proto
+ * @param {!proto.statistico.TeamSeasonsRequest} request The
+ *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @return {!grpc.web.ClientReadableStream<!proto.statistico.Season>}
- *     The XHR Node Readable Stream
+ * @return {!Promise<!proto.statistico.TeamSeasonsResponse>}
+ *     Promise that resolves to the response
  */
 proto.statistico.SeasonServicePromiseClient.prototype.getSeasonsForTeam =
     function(request, metadata) {
-  return this.client_.serverStreaming(this.hostname_ +
+  return this.client_.unaryCall(this.hostname_ +
       '/statistico.SeasonService/GetSeasonsForTeam',
       request,
       metadata || {},

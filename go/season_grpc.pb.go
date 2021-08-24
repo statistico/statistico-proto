@@ -19,7 +19,7 @@ const _ = grpc.SupportPackageIsVersion7
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type SeasonServiceClient interface {
 	GetSeasonsForCompetition(ctx context.Context, in *SeasonCompetitionRequest, opts ...grpc.CallOption) (SeasonService_GetSeasonsForCompetitionClient, error)
-	GetSeasonsForTeam(ctx context.Context, in *TeamSeasonsRequest, opts ...grpc.CallOption) (SeasonService_GetSeasonsForTeamClient, error)
+	GetSeasonsForTeam(ctx context.Context, in *TeamSeasonsRequest, opts ...grpc.CallOption) (*TeamSeasonsResponse, error)
 }
 
 type seasonServiceClient struct {
@@ -62,36 +62,13 @@ func (x *seasonServiceGetSeasonsForCompetitionClient) Recv() (*Season, error) {
 	return m, nil
 }
 
-func (c *seasonServiceClient) GetSeasonsForTeam(ctx context.Context, in *TeamSeasonsRequest, opts ...grpc.CallOption) (SeasonService_GetSeasonsForTeamClient, error) {
-	stream, err := c.cc.NewStream(ctx, &SeasonService_ServiceDesc.Streams[1], "/statistico.SeasonService/GetSeasonsForTeam", opts...)
+func (c *seasonServiceClient) GetSeasonsForTeam(ctx context.Context, in *TeamSeasonsRequest, opts ...grpc.CallOption) (*TeamSeasonsResponse, error) {
+	out := new(TeamSeasonsResponse)
+	err := c.cc.Invoke(ctx, "/statistico.SeasonService/GetSeasonsForTeam", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
-	x := &seasonServiceGetSeasonsForTeamClient{stream}
-	if err := x.ClientStream.SendMsg(in); err != nil {
-		return nil, err
-	}
-	if err := x.ClientStream.CloseSend(); err != nil {
-		return nil, err
-	}
-	return x, nil
-}
-
-type SeasonService_GetSeasonsForTeamClient interface {
-	Recv() (*Season, error)
-	grpc.ClientStream
-}
-
-type seasonServiceGetSeasonsForTeamClient struct {
-	grpc.ClientStream
-}
-
-func (x *seasonServiceGetSeasonsForTeamClient) Recv() (*Season, error) {
-	m := new(Season)
-	if err := x.ClientStream.RecvMsg(m); err != nil {
-		return nil, err
-	}
-	return m, nil
+	return out, nil
 }
 
 // SeasonServiceServer is the server API for SeasonService service.
@@ -99,7 +76,7 @@ func (x *seasonServiceGetSeasonsForTeamClient) Recv() (*Season, error) {
 // for forward compatibility
 type SeasonServiceServer interface {
 	GetSeasonsForCompetition(*SeasonCompetitionRequest, SeasonService_GetSeasonsForCompetitionServer) error
-	GetSeasonsForTeam(*TeamSeasonsRequest, SeasonService_GetSeasonsForTeamServer) error
+	GetSeasonsForTeam(context.Context, *TeamSeasonsRequest) (*TeamSeasonsResponse, error)
 	mustEmbedUnimplementedSeasonServiceServer()
 }
 
@@ -110,8 +87,8 @@ type UnimplementedSeasonServiceServer struct {
 func (UnimplementedSeasonServiceServer) GetSeasonsForCompetition(*SeasonCompetitionRequest, SeasonService_GetSeasonsForCompetitionServer) error {
 	return status.Errorf(codes.Unimplemented, "method GetSeasonsForCompetition not implemented")
 }
-func (UnimplementedSeasonServiceServer) GetSeasonsForTeam(*TeamSeasonsRequest, SeasonService_GetSeasonsForTeamServer) error {
-	return status.Errorf(codes.Unimplemented, "method GetSeasonsForTeam not implemented")
+func (UnimplementedSeasonServiceServer) GetSeasonsForTeam(context.Context, *TeamSeasonsRequest) (*TeamSeasonsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetSeasonsForTeam not implemented")
 }
 func (UnimplementedSeasonServiceServer) mustEmbedUnimplementedSeasonServiceServer() {}
 
@@ -147,25 +124,22 @@ func (x *seasonServiceGetSeasonsForCompetitionServer) Send(m *Season) error {
 	return x.ServerStream.SendMsg(m)
 }
 
-func _SeasonService_GetSeasonsForTeam_Handler(srv interface{}, stream grpc.ServerStream) error {
-	m := new(TeamSeasonsRequest)
-	if err := stream.RecvMsg(m); err != nil {
-		return err
+func _SeasonService_GetSeasonsForTeam_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TeamSeasonsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
 	}
-	return srv.(SeasonServiceServer).GetSeasonsForTeam(m, &seasonServiceGetSeasonsForTeamServer{stream})
-}
-
-type SeasonService_GetSeasonsForTeamServer interface {
-	Send(*Season) error
-	grpc.ServerStream
-}
-
-type seasonServiceGetSeasonsForTeamServer struct {
-	grpc.ServerStream
-}
-
-func (x *seasonServiceGetSeasonsForTeamServer) Send(m *Season) error {
-	return x.ServerStream.SendMsg(m)
+	if interceptor == nil {
+		return srv.(SeasonServiceServer).GetSeasonsForTeam(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/statistico.SeasonService/GetSeasonsForTeam",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SeasonServiceServer).GetSeasonsForTeam(ctx, req.(*TeamSeasonsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
 }
 
 // SeasonService_ServiceDesc is the grpc.ServiceDesc for SeasonService service.
@@ -174,16 +148,16 @@ func (x *seasonServiceGetSeasonsForTeamServer) Send(m *Season) error {
 var SeasonService_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "statistico.SeasonService",
 	HandlerType: (*SeasonServiceServer)(nil),
-	Methods:     []grpc.MethodDesc{},
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "GetSeasonsForTeam",
+			Handler:    _SeasonService_GetSeasonsForTeam_Handler,
+		},
+	},
 	Streams: []grpc.StreamDesc{
 		{
 			StreamName:    "GetSeasonsForCompetition",
 			Handler:       _SeasonService_GetSeasonsForCompetition_Handler,
-			ServerStreams: true,
-		},
-		{
-			StreamName:    "GetSeasonsForTeam",
-			Handler:       _SeasonService_GetSeasonsForTeam_Handler,
 			ServerStreams: true,
 		},
 	},

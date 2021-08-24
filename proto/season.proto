@@ -9,7 +9,19 @@ import "requests.proto";
 
 service SeasonService {
     rpc GetSeasonsForCompetition(SeasonCompetitionRequest) returns (stream Season) {}
-    rpc GetSeasonsForTeam(TeamSeasonsRequest) returns (stream Season) {}
+    rpc GetSeasonsForTeam(TeamSeasonsRequest) returns (TeamSeasonsResponse) {}
+}
+
+message TeamSeasonsRequest {
+    uint64 team_id = 1;
+    // Order the name column to return seasons in specific order
+    google.protobuf.StringValue sort = 2;
+    // Boolean flag to include seasons for cup competitions in response
+    google.protobuf.BoolValue include_cup = 3;
+}
+
+message TeamSeasonsResponse {
+    repeated Season seasons = 1;
 }
 
 message Season {

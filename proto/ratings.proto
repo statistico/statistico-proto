@@ -28,7 +28,8 @@ message TeamRating {
   uint64 season_id = 3;
   Points attack = 4;
   Points defence = 5;
-  google.protobuf.Timestamp timestamp = 6;
+  google.protobuf.Timestamp fixture_date = 6;
+  google.protobuf.Timestamp timestamp = 7;
 }
 
 message Points {

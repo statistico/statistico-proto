@@ -494,6 +494,7 @@ proto.statistico.TeamRating.toObject = function(includeInstance, msg) {
     seasonId: jspb.Message.getFieldWithDefault(msg, 3, 0),
     attack: (f = msg.getAttack()) && proto.statistico.Points.toObject(includeInstance, f),
     defence: (f = msg.getDefence()) && proto.statistico.Points.toObject(includeInstance, f),
+    fixtureDate: (f = msg.getFixtureDate()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
     timestamp: (f = msg.getTimestamp()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
   };
 
@@ -554,6 +555,11 @@ proto.statistico.TeamRating.deserializeBinaryFromReader = function(msg, reader) 
       msg.setDefence(value);
       break;
     case 6:
+      var value = new google_protobuf_timestamp_pb.Timestamp;
+      reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
+      msg.setFixtureDate(value);
+      break;
+    case 7:
       var value = new google_protobuf_timestamp_pb.Timestamp;
       reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
       msg.setTimestamp(value);
@@ -624,10 +630,18 @@ proto.statistico.TeamRating.serializeBinaryToWriter = function(message, writer) 
       proto.statistico.Points.serializeBinaryToWriter
     );
   }
-  f = message.getTimestamp();
+  f = message.getFixtureDate();
   if (f != null) {
     writer.writeMessage(
       6,
+      f,
+      google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
+    );
+  }
+  f = message.getTimestamp();
+  if (f != null) {
+    writer.writeMessage(
+      7,
       f,
       google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
     );
@@ -741,18 +755,48 @@ proto.statistico.TeamRating.prototype.hasDefence = function() {
 
 
 /**
- * optional google.protobuf.Timestamp timestamp = 6;
+ * optional google.protobuf.Timestamp fixture_date = 6;
  * @return {?proto.google.protobuf.Timestamp}
  */
-proto.statistico.TeamRating.prototype.getTimestamp = function() {
+proto.statistico.TeamRating.prototype.getFixtureDate = function() {
   return /** @type{?proto.google.protobuf.Timestamp} */ (
     jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 6));
 };
 
 
 /** @param {?proto.google.protobuf.Timestamp|undefined} value */
-proto.statistico.TeamRating.prototype.setTimestamp = function(value) {
+proto.statistico.TeamRating.prototype.setFixtureDate = function(value) {
   jspb.Message.setWrapperField(this, 6, value);
+};
+
+
+proto.statistico.TeamRating.prototype.clearFixtureDate = function() {
+  this.setFixtureDate(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.statistico.TeamRating.prototype.hasFixtureDate = function() {
+  return jspb.Message.getField(this, 6) != null;
+};
+
+
+/**
+ * optional google.protobuf.Timestamp timestamp = 7;
+ * @return {?proto.google.protobuf.Timestamp}
+ */
+proto.statistico.TeamRating.prototype.getTimestamp = function() {
+  return /** @type{?proto.google.protobuf.Timestamp} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 7));
+};
+
+
+/** @param {?proto.google.protobuf.Timestamp|undefined} value */
+proto.statistico.TeamRating.prototype.setTimestamp = function(value) {
+  jspb.Message.setWrapperField(this, 7, value);
 };
 
 
@@ -766,7 +810,7 @@ proto.statistico.TeamRating.prototype.clearTimestamp = function() {
  * @return {!boolean}
  */
 proto.statistico.TeamRating.prototype.hasTimestamp = function() {
-  return jspb.Message.getField(this, 6) != null;
+  return jspb.Message.getField(this, 7) != null;
 };
 
 

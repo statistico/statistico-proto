@@ -4,9 +4,6 @@ package statistico;
 
 option go_package = "github.com/statistico/statistico-proto;statistico";
 
-import "enum.proto";
-import "filter.proto";
-import "google/protobuf/timestamp.proto";
 import "google/protobuf/wrappers.proto";
 
 message CompetitionRequest {

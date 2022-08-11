@@ -18,7 +18,8 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type TeamRatingServiceClient interface {
-	GetTeamRatings(ctx context.Context, in *TeamRatingRequest, opts ...grpc.CallOption) (*TeamRatingResponse, error)
+	GetFixtureRatings(ctx context.Context, in *FixtureRatingRequest, opts ...grpc.CallOption) (*RatingResponse, error)
+	GetTeamRatings(ctx context.Context, in *TeamRatingRequest, opts ...grpc.CallOption) (*RatingResponse, error)
 }
 
 type teamRatingServiceClient struct {
@@ -29,8 +30,17 @@ func NewTeamRatingServiceClient(cc grpc.ClientConnInterface) TeamRatingServiceCl
 	return &teamRatingServiceClient{cc}
 }
 
-func (c *teamRatingServiceClient) GetTeamRatings(ctx context.Context, in *TeamRatingRequest, opts ...grpc.CallOption) (*TeamRatingResponse, error) {
-	out := new(TeamRatingResponse)
+func (c *teamRatingServiceClient) GetFixtureRatings(ctx context.Context, in *FixtureRatingRequest, opts ...grpc.CallOption) (*RatingResponse, error) {
+	out := new(RatingResponse)
+	err := c.cc.Invoke(ctx, "/statistico.TeamRatingService/GetFixtureRatings", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *teamRatingServiceClient) GetTeamRatings(ctx context.Context, in *TeamRatingRequest, opts ...grpc.CallOption) (*RatingResponse, error) {
+	out := new(RatingResponse)
 	err := c.cc.Invoke(ctx, "/statistico.TeamRatingService/GetTeamRatings", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -42,7 +52,8 @@ func (c *teamRatingServiceClient) GetTeamRatings(ctx context.Context, in *TeamRa
 // All implementations must embed UnimplementedTeamRatingServiceServer
 // for forward compatibility
 type TeamRatingServiceServer interface {
-	GetTeamRatings(context.Context, *TeamRatingRequest) (*TeamRatingResponse, error)
+	GetFixtureRatings(context.Context, *FixtureRatingRequest) (*RatingResponse, error)
+	GetTeamRatings(context.Context, *TeamRatingRequest) (*RatingResponse, error)
 	mustEmbedUnimplementedTeamRatingServiceServer()
 }
 
@@ -50,7 +61,10 @@ type TeamRatingServiceServer interface {
 type UnimplementedTeamRatingServiceServer struct {
 }
 
-func (UnimplementedTeamRatingServiceServer) GetTeamRatings(context.Context, *TeamRatingRequest) (*TeamRatingResponse, error) {
+func (UnimplementedTeamRatingServiceServer) GetFixtureRatings(context.Context, *FixtureRatingRequest) (*RatingResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetFixtureRatings not implemented")
+}
+func (UnimplementedTeamRatingServiceServer) GetTeamRatings(context.Context, *TeamRatingRequest) (*RatingResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetTeamRatings not implemented")
 }
 func (UnimplementedTeamRatingServiceServer) mustEmbedUnimplementedTeamRatingServiceServer() {}
@@ -64,6 +78,24 @@ type UnsafeTeamRatingServiceServer interface {
 
 func RegisterTeamRatingServiceServer(s grpc.ServiceRegistrar, srv TeamRatingServiceServer) {
 	s.RegisterService(&TeamRatingService_ServiceDesc, srv)
+}
+
+func _TeamRatingService_GetFixtureRatings_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(FixtureRatingRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TeamRatingServiceServer).GetFixtureRatings(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/statistico.TeamRatingService/GetFixtureRatings",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TeamRatingServiceServer).GetFixtureRatings(ctx, req.(*FixtureRatingRequest))
+	}
+	return interceptor(ctx, in, info, handler)
 }
 
 func _TeamRatingService_GetTeamRatings_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -91,6 +123,10 @@ var TeamRatingService_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "statistico.TeamRatingService",
 	HandlerType: (*TeamRatingServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "GetFixtureRatings",
+			Handler:    _TeamRatingService_GetFixtureRatings_Handler,
+		},
 		{
 			MethodName: "GetTeamRatings",
 			Handler:    _TeamRatingService_GetTeamRatings_Handler,

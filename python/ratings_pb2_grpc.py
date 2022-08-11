@@ -14,15 +14,26 @@ class TeamRatingServiceStub(object):
         Args:
             channel: A grpc.Channel.
         """
+        self.GetFixtureRatings = channel.unary_unary(
+                '/statistico.TeamRatingService/GetFixtureRatings',
+                request_serializer=ratings__pb2.FixtureRatingRequest.SerializeToString,
+                response_deserializer=ratings__pb2.RatingResponse.FromString,
+                )
         self.GetTeamRatings = channel.unary_unary(
                 '/statistico.TeamRatingService/GetTeamRatings',
                 request_serializer=ratings__pb2.TeamRatingRequest.SerializeToString,
-                response_deserializer=ratings__pb2.TeamRatingResponse.FromString,
+                response_deserializer=ratings__pb2.RatingResponse.FromString,
                 )
 
 
 class TeamRatingServiceServicer(object):
     """Missing associated documentation comment in .proto file."""
+
+    def GetFixtureRatings(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
 
     def GetTeamRatings(self, request, context):
         """Missing associated documentation comment in .proto file."""
@@ -33,10 +44,15 @@ class TeamRatingServiceServicer(object):
 
 def add_TeamRatingServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
+            'GetFixtureRatings': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetFixtureRatings,
+                    request_deserializer=ratings__pb2.FixtureRatingRequest.FromString,
+                    response_serializer=ratings__pb2.RatingResponse.SerializeToString,
+            ),
             'GetTeamRatings': grpc.unary_unary_rpc_method_handler(
                     servicer.GetTeamRatings,
                     request_deserializer=ratings__pb2.TeamRatingRequest.FromString,
-                    response_serializer=ratings__pb2.TeamRatingResponse.SerializeToString,
+                    response_serializer=ratings__pb2.RatingResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -47,6 +63,23 @@ def add_TeamRatingServiceServicer_to_server(servicer, server):
  # This class is part of an EXPERIMENTAL API.
 class TeamRatingService(object):
     """Missing associated documentation comment in .proto file."""
+
+    @staticmethod
+    def GetFixtureRatings(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/statistico.TeamRatingService/GetFixtureRatings',
+            ratings__pb2.FixtureRatingRequest.SerializeToString,
+            ratings__pb2.RatingResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def GetTeamRatings(request,
@@ -61,6 +94,6 @@ class TeamRatingService(object):
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/statistico.TeamRatingService/GetTeamRatings',
             ratings__pb2.TeamRatingRequest.SerializeToString,
-            ratings__pb2.TeamRatingResponse.FromString,
+            ratings__pb2.RatingResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

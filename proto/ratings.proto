@@ -8,7 +8,12 @@ import "google/protobuf/timestamp.proto";
 import "google/protobuf/wrappers.proto";
 
 service TeamRatingService {
-  rpc GetTeamRatings(TeamRatingRequest) returns (TeamRatingResponse) {}
+  rpc GetFixtureRatings(FixtureRatingRequest) returns (RatingResponse) {}
+  rpc GetTeamRatings(TeamRatingRequest) returns (RatingResponse) {}
+}
+
+message FixtureRatingRequest {
+  uint64 fixture_id = 1;
 }
 
 message TeamRatingRequest {
@@ -18,7 +23,7 @@ message TeamRatingRequest {
   string sort = 4;
 }
 
-message TeamRatingResponse {
+message RatingResponse {
   repeated TeamRating ratings = 1;
 }
 

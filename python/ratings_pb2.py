@@ -16,14 +16,22 @@ from google.protobuf import timestamp_pb2 as google_dot_protobuf_dot_timestamp__
 from google.protobuf import wrappers_pb2 as google_dot_protobuf_dot_wrappers__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\rratings.proto\x12\nstatistico\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1egoogle/protobuf/wrappers.proto\"\x96\x01\n\x11TeamRatingRequest\x12\x0f\n\x07team_id\x18\x01 \x01(\x04\x12/\n\tseason_id\x18\x02 \x01(\x0b\x32\x1c.google.protobuf.UInt64Value\x12\x31\n\x0b\x64\x61te_before\x18\x03 \x01(\x0b\x32\x1c.google.protobuf.StringValue\x12\x0c\n\x04sort\x18\x04 \x01(\t\"=\n\x12TeamRatingResponse\x12\'\n\x07ratings\x18\x01 \x03(\x0b\x32\x16.statistico.TeamRating\"\xee\x01\n\nTeamRating\x12\x0f\n\x07team_id\x18\x01 \x01(\x04\x12\x12\n\nfixture_id\x18\x02 \x01(\x04\x12\x11\n\tseason_id\x18\x03 \x01(\x04\x12\"\n\x06\x61ttack\x18\x04 \x01(\x0b\x32\x12.statistico.Points\x12#\n\x07\x64\x65\x66\x65nce\x18\x05 \x01(\x0b\x32\x12.statistico.Points\x12\x30\n\x0c\x66ixture_date\x18\x06 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12-\n\ttimestamp\x18\x07 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\",\n\x06Points\x12\x0e\n\x06points\x18\x01 \x01(\x02\x12\x12\n\ndifference\x18\x02 \x01(\x02\x32\x66\n\x11TeamRatingService\x12Q\n\x0eGetTeamRatings\x12\x1d.statistico.TeamRatingRequest\x1a\x1e.statistico.TeamRatingResponse\"\x00\x42\x33Z1github.com/statistico/statistico-proto;statisticob\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\rratings.proto\x12\nstatistico\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1egoogle/protobuf/wrappers.proto\"*\n\x14\x46ixtureRatingRequest\x12\x12\n\nfixture_id\x18\x01 \x01(\x04\"\x96\x01\n\x11TeamRatingRequest\x12\x0f\n\x07team_id\x18\x01 \x01(\x04\x12/\n\tseason_id\x18\x02 \x01(\x0b\x32\x1c.google.protobuf.UInt64Value\x12\x31\n\x0b\x64\x61te_before\x18\x03 \x01(\x0b\x32\x1c.google.protobuf.StringValue\x12\x0c\n\x04sort\x18\x04 \x01(\t\"9\n\x0eRatingResponse\x12\'\n\x07ratings\x18\x01 \x03(\x0b\x32\x16.statistico.TeamRating\"\xee\x01\n\nTeamRating\x12\x0f\n\x07team_id\x18\x01 \x01(\x04\x12\x12\n\nfixture_id\x18\x02 \x01(\x04\x12\x11\n\tseason_id\x18\x03 \x01(\x04\x12\"\n\x06\x61ttack\x18\x04 \x01(\x0b\x32\x12.statistico.Points\x12#\n\x07\x64\x65\x66\x65nce\x18\x05 \x01(\x0b\x32\x12.statistico.Points\x12\x30\n\x0c\x66ixture_date\x18\x06 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12-\n\ttimestamp\x18\x07 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\",\n\x06Points\x12\x0e\n\x06points\x18\x01 \x01(\x02\x12\x12\n\ndifference\x18\x02 \x01(\x02\x32\xb7\x01\n\x11TeamRatingService\x12S\n\x11GetFixtureRatings\x12 .statistico.FixtureRatingRequest\x1a\x1a.statistico.RatingResponse\"\x00\x12M\n\x0eGetTeamRatings\x12\x1d.statistico.TeamRatingRequest\x1a\x1a.statistico.RatingResponse\"\x00\x42\x33Z1github.com/statistico/statistico-proto;statisticob\x06proto3')
 
 
 
+_FIXTURERATINGREQUEST = DESCRIPTOR.message_types_by_name['FixtureRatingRequest']
 _TEAMRATINGREQUEST = DESCRIPTOR.message_types_by_name['TeamRatingRequest']
-_TEAMRATINGRESPONSE = DESCRIPTOR.message_types_by_name['TeamRatingResponse']
+_RATINGRESPONSE = DESCRIPTOR.message_types_by_name['RatingResponse']
 _TEAMRATING = DESCRIPTOR.message_types_by_name['TeamRating']
 _POINTS = DESCRIPTOR.message_types_by_name['Points']
+FixtureRatingRequest = _reflection.GeneratedProtocolMessageType('FixtureRatingRequest', (_message.Message,), {
+  'DESCRIPTOR' : _FIXTURERATINGREQUEST,
+  '__module__' : 'ratings_pb2'
+  # @@protoc_insertion_point(class_scope:statistico.FixtureRatingRequest)
+  })
+_sym_db.RegisterMessage(FixtureRatingRequest)
+
 TeamRatingRequest = _reflection.GeneratedProtocolMessageType('TeamRatingRequest', (_message.Message,), {
   'DESCRIPTOR' : _TEAMRATINGREQUEST,
   '__module__' : 'ratings_pb2'
@@ -31,12 +39,12 @@ TeamRatingRequest = _reflection.GeneratedProtocolMessageType('TeamRatingRequest'
   })
 _sym_db.RegisterMessage(TeamRatingRequest)
 
-TeamRatingResponse = _reflection.GeneratedProtocolMessageType('TeamRatingResponse', (_message.Message,), {
-  'DESCRIPTOR' : _TEAMRATINGRESPONSE,
+RatingResponse = _reflection.GeneratedProtocolMessageType('RatingResponse', (_message.Message,), {
+  'DESCRIPTOR' : _RATINGRESPONSE,
   '__module__' : 'ratings_pb2'
-  # @@protoc_insertion_point(class_scope:statistico.TeamRatingResponse)
+  # @@protoc_insertion_point(class_scope:statistico.RatingResponse)
   })
-_sym_db.RegisterMessage(TeamRatingResponse)
+_sym_db.RegisterMessage(RatingResponse)
 
 TeamRating = _reflection.GeneratedProtocolMessageType('TeamRating', (_message.Message,), {
   'DESCRIPTOR' : _TEAMRATING,
@@ -57,14 +65,16 @@ if _descriptor._USE_C_DESCRIPTORS == False:
 
   DESCRIPTOR._options = None
   DESCRIPTOR._serialized_options = b'Z1github.com/statistico/statistico-proto;statistico'
-  _TEAMRATINGREQUEST._serialized_start=95
-  _TEAMRATINGREQUEST._serialized_end=245
-  _TEAMRATINGRESPONSE._serialized_start=247
-  _TEAMRATINGRESPONSE._serialized_end=308
-  _TEAMRATING._serialized_start=311
-  _TEAMRATING._serialized_end=549
-  _POINTS._serialized_start=551
-  _POINTS._serialized_end=595
-  _TEAMRATINGSERVICE._serialized_start=597
-  _TEAMRATINGSERVICE._serialized_end=699
+  _FIXTURERATINGREQUEST._serialized_start=94
+  _FIXTURERATINGREQUEST._serialized_end=136
+  _TEAMRATINGREQUEST._serialized_start=139
+  _TEAMRATINGREQUEST._serialized_end=289
+  _RATINGRESPONSE._serialized_start=291
+  _RATINGRESPONSE._serialized_end=348
+  _TEAMRATING._serialized_start=351
+  _TEAMRATING._serialized_end=589
+  _POINTS._serialized_start=591
+  _POINTS._serialized_end=635
+  _TEAMRATINGSERVICE._serialized_start=638
+  _TEAMRATINGSERVICE._serialized_end=821
 # @@protoc_insertion_point(module_scope)

@@ -638,7 +638,7 @@ proto.statistico.CompetitionRequest.prototype.hasIsCup = function() {
  * @private {!Array<number>}
  * @const
  */
-proto.statistico.CreateStrategyRequest.repeatedFields_ = [6];
+proto.statistico.CreateStrategyRequest.repeatedFields_ = [7];
 
 
 
@@ -672,11 +672,12 @@ proto.statistico.CreateStrategyRequest.prototype.toObject = function(opt_include
 proto.statistico.CreateStrategyRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    market: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    userId: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    market: jspb.Message.getFieldWithDefault(msg, 3, ""),
     minOdds: (f = msg.getMinOdds()) && google_protobuf_wrappers_pb.FloatValue.toObject(includeInstance, f),
     maxOdds: (f = msg.getMaxOdds()) && google_protobuf_wrappers_pb.FloatValue.toObject(includeInstance, f),
-    side: jspb.Message.getFieldWithDefault(msg, 5, 0),
-    competitionIdsList: (f = jspb.Message.getRepeatedField(msg, 6)) == null ? undefined : f
+    side: jspb.Message.getFieldWithDefault(msg, 6, 0),
+    competitionIdsList: (f = jspb.Message.getRepeatedField(msg, 7)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -719,23 +720,27 @@ proto.statistico.CreateStrategyRequest.deserializeBinaryFromReader = function(ms
       break;
     case 2:
       var value = /** @type {string} */ (reader.readString());
-      msg.setMarket(value);
+      msg.setUserId(value);
       break;
     case 3:
-      var value = new google_protobuf_wrappers_pb.FloatValue;
-      reader.readMessage(value,google_protobuf_wrappers_pb.FloatValue.deserializeBinaryFromReader);
-      msg.setMinOdds(value);
+      var value = /** @type {string} */ (reader.readString());
+      msg.setMarket(value);
       break;
     case 4:
       var value = new google_protobuf_wrappers_pb.FloatValue;
       reader.readMessage(value,google_protobuf_wrappers_pb.FloatValue.deserializeBinaryFromReader);
-      msg.setMaxOdds(value);
+      msg.setMinOdds(value);
       break;
     case 5:
+      var value = new google_protobuf_wrappers_pb.FloatValue;
+      reader.readMessage(value,google_protobuf_wrappers_pb.FloatValue.deserializeBinaryFromReader);
+      msg.setMaxOdds(value);
+      break;
+    case 6:
       var value = /** @type {!proto.statistico.SideEnum} */ (reader.readEnum());
       msg.setSide(value);
       break;
-    case 6:
+    case 7:
       var values = /** @type {!Array<number>} */ (reader.isDelimited() ? reader.readPackedUint64() : [reader.readUint64()]);
       for (var i = 0; i < values.length; i++) {
         msg.addCompetitionIds(values[i]);
@@ -777,22 +782,21 @@ proto.statistico.CreateStrategyRequest.serializeBinaryToWriter = function(messag
       f
     );
   }
-  f = message.getMarket();
+  f = message.getUserId();
   if (f.length > 0) {
     writer.writeString(
       2,
       f
     );
   }
-  f = message.getMinOdds();
-  if (f != null) {
-    writer.writeMessage(
+  f = message.getMarket();
+  if (f.length > 0) {
+    writer.writeString(
       3,
-      f,
-      google_protobuf_wrappers_pb.FloatValue.serializeBinaryToWriter
+      f
     );
   }
-  f = message.getMaxOdds();
+  f = message.getMinOdds();
   if (f != null) {
     writer.writeMessage(
       4,
@@ -800,17 +804,25 @@ proto.statistico.CreateStrategyRequest.serializeBinaryToWriter = function(messag
       google_protobuf_wrappers_pb.FloatValue.serializeBinaryToWriter
     );
   }
+  f = message.getMaxOdds();
+  if (f != null) {
+    writer.writeMessage(
+      5,
+      f,
+      google_protobuf_wrappers_pb.FloatValue.serializeBinaryToWriter
+    );
+  }
   f = message.getSide();
   if (f !== 0.0) {
     writer.writeEnum(
-      5,
+      6,
       f
     );
   }
   f = message.getCompetitionIdsList();
   if (f.length > 0) {
     writer.writePackedUint64(
-      6,
+      7,
       f
     );
   }
@@ -836,10 +848,10 @@ proto.statistico.CreateStrategyRequest.prototype.setName = function(value) {
 
 
 /**
- * optional string market = 2;
+ * optional string user_id = 2;
  * @return {string}
  */
-proto.statistico.CreateStrategyRequest.prototype.getMarket = function() {
+proto.statistico.CreateStrategyRequest.prototype.getUserId = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
 
@@ -848,18 +860,36 @@ proto.statistico.CreateStrategyRequest.prototype.getMarket = function() {
  * @param {string} value
  * @return {!proto.statistico.CreateStrategyRequest} returns this
  */
-proto.statistico.CreateStrategyRequest.prototype.setMarket = function(value) {
+proto.statistico.CreateStrategyRequest.prototype.setUserId = function(value) {
   return jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
 /**
- * optional google.protobuf.FloatValue min_odds = 3;
+ * optional string market = 3;
+ * @return {string}
+ */
+proto.statistico.CreateStrategyRequest.prototype.getMarket = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.statistico.CreateStrategyRequest} returns this
+ */
+proto.statistico.CreateStrategyRequest.prototype.setMarket = function(value) {
+  return jspb.Message.setProto3StringField(this, 3, value);
+};
+
+
+/**
+ * optional google.protobuf.FloatValue min_odds = 4;
  * @return {?proto.google.protobuf.FloatValue}
  */
 proto.statistico.CreateStrategyRequest.prototype.getMinOdds = function() {
   return /** @type{?proto.google.protobuf.FloatValue} */ (
-    jspb.Message.getWrapperField(this, google_protobuf_wrappers_pb.FloatValue, 3));
+    jspb.Message.getWrapperField(this, google_protobuf_wrappers_pb.FloatValue, 4));
 };
 
 
@@ -868,7 +898,7 @@ proto.statistico.CreateStrategyRequest.prototype.getMinOdds = function() {
  * @return {!proto.statistico.CreateStrategyRequest} returns this
 */
 proto.statistico.CreateStrategyRequest.prototype.setMinOdds = function(value) {
-  return jspb.Message.setWrapperField(this, 3, value);
+  return jspb.Message.setWrapperField(this, 4, value);
 };
 
 
@@ -886,17 +916,17 @@ proto.statistico.CreateStrategyRequest.prototype.clearMinOdds = function() {
  * @return {boolean}
  */
 proto.statistico.CreateStrategyRequest.prototype.hasMinOdds = function() {
-  return jspb.Message.getField(this, 3) != null;
+  return jspb.Message.getField(this, 4) != null;
 };
 
 
 /**
- * optional google.protobuf.FloatValue max_odds = 4;
+ * optional google.protobuf.FloatValue max_odds = 5;
  * @return {?proto.google.protobuf.FloatValue}
  */
 proto.statistico.CreateStrategyRequest.prototype.getMaxOdds = function() {
   return /** @type{?proto.google.protobuf.FloatValue} */ (
-    jspb.Message.getWrapperField(this, google_protobuf_wrappers_pb.FloatValue, 4));
+    jspb.Message.getWrapperField(this, google_protobuf_wrappers_pb.FloatValue, 5));
 };
 
 
@@ -905,7 +935,7 @@ proto.statistico.CreateStrategyRequest.prototype.getMaxOdds = function() {
  * @return {!proto.statistico.CreateStrategyRequest} returns this
 */
 proto.statistico.CreateStrategyRequest.prototype.setMaxOdds = function(value) {
-  return jspb.Message.setWrapperField(this, 4, value);
+  return jspb.Message.setWrapperField(this, 5, value);
 };
 
 
@@ -923,16 +953,16 @@ proto.statistico.CreateStrategyRequest.prototype.clearMaxOdds = function() {
  * @return {boolean}
  */
 proto.statistico.CreateStrategyRequest.prototype.hasMaxOdds = function() {
-  return jspb.Message.getField(this, 4) != null;
+  return jspb.Message.getField(this, 5) != null;
 };
 
 
 /**
- * optional SideEnum side = 5;
+ * optional SideEnum side = 6;
  * @return {!proto.statistico.SideEnum}
  */
 proto.statistico.CreateStrategyRequest.prototype.getSide = function() {
-  return /** @type {!proto.statistico.SideEnum} */ (jspb.Message.getFieldWithDefault(this, 5, 0));
+  return /** @type {!proto.statistico.SideEnum} */ (jspb.Message.getFieldWithDefault(this, 6, 0));
 };
 
 
@@ -941,16 +971,16 @@ proto.statistico.CreateStrategyRequest.prototype.getSide = function() {
  * @return {!proto.statistico.CreateStrategyRequest} returns this
  */
 proto.statistico.CreateStrategyRequest.prototype.setSide = function(value) {
-  return jspb.Message.setProto3EnumField(this, 5, value);
+  return jspb.Message.setProto3EnumField(this, 6, value);
 };
 
 
 /**
- * repeated uint64 competition_ids = 6;
+ * repeated uint64 competition_ids = 7;
  * @return {!Array<number>}
  */
 proto.statistico.CreateStrategyRequest.prototype.getCompetitionIdsList = function() {
-  return /** @type {!Array<number>} */ (jspb.Message.getRepeatedField(this, 6));
+  return /** @type {!Array<number>} */ (jspb.Message.getRepeatedField(this, 7));
 };
 
 
@@ -959,7 +989,7 @@ proto.statistico.CreateStrategyRequest.prototype.getCompetitionIdsList = functio
  * @return {!proto.statistico.CreateStrategyRequest} returns this
  */
 proto.statistico.CreateStrategyRequest.prototype.setCompetitionIdsList = function(value) {
-  return jspb.Message.setField(this, 6, value || []);
+  return jspb.Message.setField(this, 7, value || []);
 };
 
 
@@ -969,7 +999,7 @@ proto.statistico.CreateStrategyRequest.prototype.setCompetitionIdsList = functio
  * @return {!proto.statistico.CreateStrategyRequest} returns this
  */
 proto.statistico.CreateStrategyRequest.prototype.addCompetitionIds = function(value, opt_index) {
-  return jspb.Message.addToRepeatedField(this, 6, value, opt_index);
+  return jspb.Message.addToRepeatedField(this, 7, value, opt_index);
 };
 
 

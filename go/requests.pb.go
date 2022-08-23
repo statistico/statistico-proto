@@ -99,7 +99,8 @@ type CreateStrategyRequest struct {
 	MinOdds        *wrapperspb.FloatValue `protobuf:"bytes,4,opt,name=min_odds,json=minOdds,proto3" json:"min_odds,omitempty"`
 	MaxOdds        *wrapperspb.FloatValue `protobuf:"bytes,5,opt,name=max_odds,json=maxOdds,proto3" json:"max_odds,omitempty"`
 	Side           SideEnum               `protobuf:"varint,6,opt,name=side,proto3,enum=statistico.SideEnum" json:"side,omitempty"`
-	CompetitionIds []uint64               `protobuf:"varint,7,rep,packed,name=competition_ids,json=competitionIds,proto3" json:"competition_ids,omitempty"`
+	StakingPlan    StakingPlanEnum        `protobuf:"varint,7,opt,name=staking_plan,json=stakingPlan,proto3,enum=statistico.StakingPlanEnum" json:"staking_plan,omitempty"`
+	CompetitionIds []uint64               `protobuf:"varint,8,rep,packed,name=competition_ids,json=competitionIds,proto3" json:"competition_ids,omitempty"`
 }
 
 func (x *CreateStrategyRequest) Reset() {
@@ -174,6 +175,13 @@ func (x *CreateStrategyRequest) GetSide() SideEnum {
 		return x.Side
 	}
 	return SideEnum_BACK
+}
+
+func (x *CreateStrategyRequest) GetStakingPlan() StakingPlanEnum {
+	if x != nil {
+		return x.StakingPlan
+	}
+	return StakingPlanEnum_FLAT_RATE
 }
 
 func (x *CreateStrategyRequest) GetCompetitionIds() []uint64 {
@@ -1147,7 +1155,7 @@ var file_requests_proto_rawDesc = []byte{
 	0x6f, 0x72, 0x74, 0x12, 0x31, 0x0a, 0x06, 0x69, 0x73, 0x5f, 0x63, 0x75, 0x70, 0x18, 0x03, 0x20,
 	0x01, 0x28, 0x0b, 0x32, 0x1a, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f,
 	0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x42, 0x6f, 0x6f, 0x6c, 0x56, 0x61, 0x6c, 0x75, 0x65, 0x52,
-	0x05, 0x69, 0x73, 0x43, 0x75, 0x70, 0x22, 0x9f, 0x02, 0x0a, 0x15, 0x43, 0x72, 0x65, 0x61, 0x74,
+	0x05, 0x69, 0x73, 0x43, 0x75, 0x70, 0x22, 0xdf, 0x02, 0x0a, 0x15, 0x43, 0x72, 0x65, 0x61, 0x74,
 	0x65, 0x53, 0x74, 0x72, 0x61, 0x74, 0x65, 0x67, 0x79, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
 	0x12, 0x12, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04,
 	0x6e, 0x61, 0x6d, 0x65, 0x12, 0x17, 0x0a, 0x07, 0x75, 0x73, 0x65, 0x72, 0x5f, 0x69, 0x64, 0x18,
@@ -1163,8 +1171,12 @@ var file_requests_proto_rawDesc = []byte{
 	0x78, 0x4f, 0x64, 0x64, 0x73, 0x12, 0x28, 0x0a, 0x04, 0x73, 0x69, 0x64, 0x65, 0x18, 0x06, 0x20,
 	0x01, 0x28, 0x0e, 0x32, 0x14, 0x2e, 0x73, 0x74, 0x61, 0x74, 0x69, 0x73, 0x74, 0x69, 0x63, 0x6f,
 	0x2e, 0x53, 0x69, 0x64, 0x65, 0x45, 0x6e, 0x75, 0x6d, 0x52, 0x04, 0x73, 0x69, 0x64, 0x65, 0x12,
+	0x3e, 0x0a, 0x0c, 0x73, 0x74, 0x61, 0x6b, 0x69, 0x6e, 0x67, 0x5f, 0x70, 0x6c, 0x61, 0x6e, 0x18,
+	0x07, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x1b, 0x2e, 0x73, 0x74, 0x61, 0x74, 0x69, 0x73, 0x74, 0x69,
+	0x63, 0x6f, 0x2e, 0x53, 0x74, 0x61, 0x6b, 0x69, 0x6e, 0x67, 0x50, 0x6c, 0x61, 0x6e, 0x45, 0x6e,
+	0x75, 0x6d, 0x52, 0x0b, 0x73, 0x74, 0x61, 0x6b, 0x69, 0x6e, 0x67, 0x50, 0x6c, 0x61, 0x6e, 0x12,
 	0x27, 0x0a, 0x0f, 0x63, 0x6f, 0x6d, 0x70, 0x65, 0x74, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x5f, 0x69,
-	0x64, 0x73, 0x18, 0x07, 0x20, 0x03, 0x28, 0x04, 0x52, 0x0e, 0x63, 0x6f, 0x6d, 0x70, 0x65, 0x74,
+	0x64, 0x73, 0x18, 0x08, 0x20, 0x03, 0x28, 0x04, 0x52, 0x0e, 0x63, 0x6f, 0x6d, 0x70, 0x65, 0x74,
 	0x69, 0x74, 0x69, 0x6f, 0x6e, 0x49, 0x64, 0x73, 0x22, 0x2f, 0x0a, 0x0e, 0x46, 0x69, 0x78, 0x74,
 	0x75, 0x72, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x1d, 0x0a, 0x0a, 0x66, 0x69,
 	0x78, 0x74, 0x75, 0x72, 0x65, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x04, 0x52, 0x09,
@@ -1346,8 +1358,9 @@ var file_requests_proto_goTypes = []interface{}{
 	(*wrapperspb.BoolValue)(nil),      // 17: google.protobuf.BoolValue
 	(*wrapperspb.FloatValue)(nil),     // 18: google.protobuf.FloatValue
 	(SideEnum)(0),                     // 19: statistico.SideEnum
-	(*wrapperspb.UInt64Value)(nil),    // 20: google.protobuf.UInt64Value
-	(*timestamppb.Timestamp)(nil),     // 21: google.protobuf.Timestamp
+	(StakingPlanEnum)(0),              // 20: statistico.StakingPlanEnum
+	(*wrapperspb.UInt64Value)(nil),    // 21: google.protobuf.UInt64Value
+	(*timestamppb.Timestamp)(nil),     // 22: google.protobuf.Timestamp
 }
 var file_requests_proto_depIdxs = []int32{
 	16, // 0: statistico.CompetitionRequest.sort:type_name -> google.protobuf.StringValue
@@ -1355,34 +1368,35 @@ var file_requests_proto_depIdxs = []int32{
 	18, // 2: statistico.CreateStrategyRequest.min_odds:type_name -> google.protobuf.FloatValue
 	18, // 3: statistico.CreateStrategyRequest.max_odds:type_name -> google.protobuf.FloatValue
 	19, // 4: statistico.CreateStrategyRequest.side:type_name -> statistico.SideEnum
-	20, // 5: statistico.FixtureSearchRequest.limit:type_name -> google.protobuf.UInt64Value
-	16, // 6: statistico.FixtureSearchRequest.date_before:type_name -> google.protobuf.StringValue
-	16, // 7: statistico.FixtureSearchRequest.date_after:type_name -> google.protobuf.StringValue
-	16, // 8: statistico.FixtureSearchRequest.sort:type_name -> google.protobuf.StringValue
-	16, // 9: statistico.SearchTradesRequest.strategy_id:type_name -> google.protobuf.StringValue
-	16, // 10: statistico.SearchTradesRequest.market:type_name -> google.protobuf.StringValue
-	20, // 11: statistico.SearchTradesRequest.competition_id:type_name -> google.protobuf.UInt64Value
-	16, // 12: statistico.SearchTradesRequest.status:type_name -> google.protobuf.StringValue
-	16, // 13: statistico.SearchTradesRequest.exchange:type_name -> google.protobuf.StringValue
-	21, // 14: statistico.SearchTradesRequest.date_from:type_name -> google.protobuf.Timestamp
-	21, // 15: statistico.SearchTradesRequest.date_to:type_name -> google.protobuf.Timestamp
-	16, // 16: statistico.SeasonCompetitionRequest.sort:type_name -> google.protobuf.StringValue
-	20, // 17: statistico.TeamResultRequest.limit:type_name -> google.protobuf.UInt64Value
-	16, // 18: statistico.TeamResultRequest.date_before:type_name -> google.protobuf.StringValue
-	16, // 19: statistico.TeamResultRequest.date_after:type_name -> google.protobuf.StringValue
-	16, // 20: statistico.TeamResultRequest.venue:type_name -> google.protobuf.StringValue
-	16, // 21: statistico.TeamResultRequest.sort:type_name -> google.protobuf.StringValue
-	20, // 22: statistico.TeamStatRequest.limit:type_name -> google.protobuf.UInt64Value
-	16, // 23: statistico.TeamStatRequest.date_before:type_name -> google.protobuf.StringValue
-	16, // 24: statistico.TeamStatRequest.date_after:type_name -> google.protobuf.StringValue
-	16, // 25: statistico.TeamStatRequest.venue:type_name -> google.protobuf.StringValue
-	16, // 26: statistico.TeamStatRequest.sort:type_name -> google.protobuf.StringValue
-	17, // 27: statistico.TeamStatRequest.opponent:type_name -> google.protobuf.BoolValue
-	28, // [28:28] is the sub-list for method output_type
-	28, // [28:28] is the sub-list for method input_type
-	28, // [28:28] is the sub-list for extension type_name
-	28, // [28:28] is the sub-list for extension extendee
-	0,  // [0:28] is the sub-list for field type_name
+	20, // 5: statistico.CreateStrategyRequest.staking_plan:type_name -> statistico.StakingPlanEnum
+	21, // 6: statistico.FixtureSearchRequest.limit:type_name -> google.protobuf.UInt64Value
+	16, // 7: statistico.FixtureSearchRequest.date_before:type_name -> google.protobuf.StringValue
+	16, // 8: statistico.FixtureSearchRequest.date_after:type_name -> google.protobuf.StringValue
+	16, // 9: statistico.FixtureSearchRequest.sort:type_name -> google.protobuf.StringValue
+	16, // 10: statistico.SearchTradesRequest.strategy_id:type_name -> google.protobuf.StringValue
+	16, // 11: statistico.SearchTradesRequest.market:type_name -> google.protobuf.StringValue
+	21, // 12: statistico.SearchTradesRequest.competition_id:type_name -> google.protobuf.UInt64Value
+	16, // 13: statistico.SearchTradesRequest.status:type_name -> google.protobuf.StringValue
+	16, // 14: statistico.SearchTradesRequest.exchange:type_name -> google.protobuf.StringValue
+	22, // 15: statistico.SearchTradesRequest.date_from:type_name -> google.protobuf.Timestamp
+	22, // 16: statistico.SearchTradesRequest.date_to:type_name -> google.protobuf.Timestamp
+	16, // 17: statistico.SeasonCompetitionRequest.sort:type_name -> google.protobuf.StringValue
+	21, // 18: statistico.TeamResultRequest.limit:type_name -> google.protobuf.UInt64Value
+	16, // 19: statistico.TeamResultRequest.date_before:type_name -> google.protobuf.StringValue
+	16, // 20: statistico.TeamResultRequest.date_after:type_name -> google.protobuf.StringValue
+	16, // 21: statistico.TeamResultRequest.venue:type_name -> google.protobuf.StringValue
+	16, // 22: statistico.TeamResultRequest.sort:type_name -> google.protobuf.StringValue
+	21, // 23: statistico.TeamStatRequest.limit:type_name -> google.protobuf.UInt64Value
+	16, // 24: statistico.TeamStatRequest.date_before:type_name -> google.protobuf.StringValue
+	16, // 25: statistico.TeamStatRequest.date_after:type_name -> google.protobuf.StringValue
+	16, // 26: statistico.TeamStatRequest.venue:type_name -> google.protobuf.StringValue
+	16, // 27: statistico.TeamStatRequest.sort:type_name -> google.protobuf.StringValue
+	17, // 28: statistico.TeamStatRequest.opponent:type_name -> google.protobuf.BoolValue
+	29, // [29:29] is the sub-list for method output_type
+	29, // [29:29] is the sub-list for method input_type
+	29, // [29:29] is the sub-list for extension type_name
+	29, // [29:29] is the sub-list for extension extendee
+	0,  // [0:29] is the sub-list for field type_name
 }
 
 func init() { file_requests_proto_init() }

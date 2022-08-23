@@ -24,7 +24,8 @@ message CreateStrategyRequest {
     google.protobuf.FloatValue min_odds = 4;
     google.protobuf.FloatValue max_odds = 5;
     SideEnum side = 6;
-    repeated uint64 competition_ids = 7;
+    StakingPlanEnum staking_plan = 7;
+    repeated uint64 competition_ids = 8;
 }
 
 message FixtureRequest {

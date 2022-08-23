@@ -40,7 +40,8 @@ enum SideEnum {
 }
 
 enum StakingPlanEnum {
-  PERCENTAGE = 0;
+  FLAT_RATE = 0;
+  KELLY_CRITERION = 1;
 }
 
 enum StatEnum {

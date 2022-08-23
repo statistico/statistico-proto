@@ -2,6 +2,8 @@
 """Client and server classes corresponding to protobuf-defined services."""
 import grpc
 
+import requests_pb2 as requests__pb2
+import responses_pb2 as responses__pb2
 import strategy_pb2 as strategy__pb2
 
 
@@ -14,44 +16,27 @@ class StrategyServiceStub(object):
         Args:
             channel: A grpc.Channel.
         """
-        self.BuildStrategy = channel.unary_stream(
-                '/statistico.StrategyService/BuildStrategy',
-                request_serializer=strategy__pb2.BuildStrategyRequest.SerializeToString,
-                response_deserializer=strategy__pb2.StrategyTrade.FromString,
-                )
-        self.SaveStrategy = channel.unary_unary(
-                '/statistico.StrategyService/SaveStrategy',
-                request_serializer=strategy__pb2.SaveStrategyRequest.SerializeToString,
-                response_deserializer=strategy__pb2.Strategy.FromString,
-                )
-        self.ListUserStrategies = channel.unary_stream(
-                '/statistico.StrategyService/ListUserStrategies',
-                request_serializer=strategy__pb2.ListUserStrategiesRequest.SerializeToString,
+        self.CreateStrategy = channel.unary_unary(
+                '/statistico.StrategyService/CreateStrategy',
+                request_serializer=requests__pb2.CreateStrategyRequest.SerializeToString,
                 response_deserializer=strategy__pb2.Strategy.FromString,
                 )
         self.HealthCheck = channel.unary_unary(
                 '/statistico.StrategyService/HealthCheck',
-                request_serializer=strategy__pb2.HealthCheckRequest.SerializeToString,
-                response_deserializer=strategy__pb2.HealthCheckResponse.FromString,
+                request_serializer=requests__pb2.HealthCheckRequest.SerializeToString,
+                response_deserializer=responses__pb2.HealthCheckResponse.FromString,
+                )
+        self.ListUserStrategies = channel.unary_stream(
+                '/statistico.StrategyService/ListUserStrategies',
+                request_serializer=requests__pb2.ListUserStrategiesRequest.SerializeToString,
+                response_deserializer=strategy__pb2.Strategy.FromString,
                 )
 
 
 class StrategyServiceServicer(object):
     """Missing associated documentation comment in .proto file."""
 
-    def BuildStrategy(self, request, context):
-        """Missing associated documentation comment in .proto file."""
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
-    def SaveStrategy(self, request, context):
-        """Missing associated documentation comment in .proto file."""
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
-    def ListUserStrategies(self, request, context):
+    def CreateStrategy(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -63,28 +48,29 @@ class StrategyServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def ListUserStrategies(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_StrategyServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
-            'BuildStrategy': grpc.unary_stream_rpc_method_handler(
-                    servicer.BuildStrategy,
-                    request_deserializer=strategy__pb2.BuildStrategyRequest.FromString,
-                    response_serializer=strategy__pb2.StrategyTrade.SerializeToString,
-            ),
-            'SaveStrategy': grpc.unary_unary_rpc_method_handler(
-                    servicer.SaveStrategy,
-                    request_deserializer=strategy__pb2.SaveStrategyRequest.FromString,
-                    response_serializer=strategy__pb2.Strategy.SerializeToString,
-            ),
-            'ListUserStrategies': grpc.unary_stream_rpc_method_handler(
-                    servicer.ListUserStrategies,
-                    request_deserializer=strategy__pb2.ListUserStrategiesRequest.FromString,
+            'CreateStrategy': grpc.unary_unary_rpc_method_handler(
+                    servicer.CreateStrategy,
+                    request_deserializer=requests__pb2.CreateStrategyRequest.FromString,
                     response_serializer=strategy__pb2.Strategy.SerializeToString,
             ),
             'HealthCheck': grpc.unary_unary_rpc_method_handler(
                     servicer.HealthCheck,
-                    request_deserializer=strategy__pb2.HealthCheckRequest.FromString,
-                    response_serializer=strategy__pb2.HealthCheckResponse.SerializeToString,
+                    request_deserializer=requests__pb2.HealthCheckRequest.FromString,
+                    response_serializer=responses__pb2.HealthCheckResponse.SerializeToString,
+            ),
+            'ListUserStrategies': grpc.unary_stream_rpc_method_handler(
+                    servicer.ListUserStrategies,
+                    request_deserializer=requests__pb2.ListUserStrategiesRequest.FromString,
+                    response_serializer=strategy__pb2.Strategy.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -97,7 +83,7 @@ class StrategyService(object):
     """Missing associated documentation comment in .proto file."""
 
     @staticmethod
-    def BuildStrategy(request,
+    def CreateStrategy(request,
             target,
             options=(),
             channel_credentials=None,
@@ -107,42 +93,8 @@ class StrategyService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_stream(request, target, '/statistico.StrategyService/BuildStrategy',
-            strategy__pb2.BuildStrategyRequest.SerializeToString,
-            strategy__pb2.StrategyTrade.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
-
-    @staticmethod
-    def SaveStrategy(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/statistico.StrategyService/SaveStrategy',
-            strategy__pb2.SaveStrategyRequest.SerializeToString,
-            strategy__pb2.Strategy.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
-
-    @staticmethod
-    def ListUserStrategies(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_stream(request, target, '/statistico.StrategyService/ListUserStrategies',
-            strategy__pb2.ListUserStrategiesRequest.SerializeToString,
+        return grpc.experimental.unary_unary(request, target, '/statistico.StrategyService/CreateStrategy',
+            requests__pb2.CreateStrategyRequest.SerializeToString,
             strategy__pb2.Strategy.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
@@ -159,7 +111,24 @@ class StrategyService(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/statistico.StrategyService/HealthCheck',
-            strategy__pb2.HealthCheckRequest.SerializeToString,
-            strategy__pb2.HealthCheckResponse.FromString,
+            requests__pb2.HealthCheckRequest.SerializeToString,
+            responses__pb2.HealthCheckResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def ListUserStrategies(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_stream(request, target, '/statistico.StrategyService/ListUserStrategies',
+            requests__pb2.ListUserStrategiesRequest.SerializeToString,
+            strategy__pb2.Strategy.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

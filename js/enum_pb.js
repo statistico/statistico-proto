@@ -84,7 +84,8 @@ proto.statistico.SideEnum = {
  * @enum {number}
  */
 proto.statistico.StakingPlanEnum = {
-  PERCENTAGE: 0
+  FLAT_RATE: 0,
+  KELLY_CRITERION: 1
 };
 
 /**

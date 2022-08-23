@@ -15,7 +15,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\nenum.proto\x12\nstatistico*\"\n\nActionEnum\x12\x07\n\x03\x46OR\x10\x00\x12\x0b\n\x07\x41GAINST\x10\x01* \n\x08LineEnum\x12\x0b\n\x07\x43LOSING\x10\x00\x12\x07\n\x03MAX\x10\x01*5\n\x0bMeasureEnum\x12\t\n\x05TOTAL\x10\x00\x12\x0b\n\x07\x41VERAGE\x10\x01\x12\x0e\n\nCONTINUOUS\x10\x02*\x1e\n\nMetricEnum\x12\x07\n\x03GTE\x10\x00\x12\x07\n\x03LTE\x10\x01*T\n\nResultEnum\x12\x07\n\x03WIN\x10\x00\x12\x08\n\x04LOSE\x10\x01\x12\x08\n\x04\x44RAW\x10\x02\x12\x0c\n\x08WIN_DRAW\x10\x03\x12\r\n\tLOSE_DRAW\x10\x04\x12\x0c\n\x08WIN_LOSE\x10\x05*\x1d\n\x08SideEnum\x12\x08\n\x04\x42\x41\x43K\x10\x00\x12\x07\n\x03LAY\x10\x01*!\n\x0fStakingPlanEnum\x12\x0e\n\nPERCENTAGE\x10\x00*(\n\x08StatEnum\x12\t\n\x05GOALS\x10\x00\x12\x11\n\rSHOTS_ON_GOAL\x10\x01*.\n\x12StrategyStatusEnum\x12\x0c\n\x08\x41RCHIVED\x10\x00\x12\n\n\x06\x41\x43TIVE\x10\x01*(\n\x08TeamEnum\x12\r\n\tHOME_TEAM\x10\x00\x12\r\n\tAWAY_TEAM\x10\x01*(\n\x0fTradeResultEnum\x12\x08\n\x04\x46\x41IL\x10\x00\x12\x0b\n\x07SUCCESS\x10\x01*.\n\tVenueEnum\x12\x08\n\x04HOME\x10\x00\x12\x08\n\x04\x41WAY\x10\x01\x12\r\n\tHOME_AWAY\x10\x02*)\n\x0eVisibilityEnum\x12\n\n\x06PUBLIC\x10\x00\x12\x0b\n\x07PRIVATE\x10\x01\x42\x33Z1github.com/statistico/statistico-proto;statisticob\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\nenum.proto\x12\nstatistico*\"\n\nActionEnum\x12\x07\n\x03\x46OR\x10\x00\x12\x0b\n\x07\x41GAINST\x10\x01* \n\x08LineEnum\x12\x0b\n\x07\x43LOSING\x10\x00\x12\x07\n\x03MAX\x10\x01*5\n\x0bMeasureEnum\x12\t\n\x05TOTAL\x10\x00\x12\x0b\n\x07\x41VERAGE\x10\x01\x12\x0e\n\nCONTINUOUS\x10\x02*\x1e\n\nMetricEnum\x12\x07\n\x03GTE\x10\x00\x12\x07\n\x03LTE\x10\x01*T\n\nResultEnum\x12\x07\n\x03WIN\x10\x00\x12\x08\n\x04LOSE\x10\x01\x12\x08\n\x04\x44RAW\x10\x02\x12\x0c\n\x08WIN_DRAW\x10\x03\x12\r\n\tLOSE_DRAW\x10\x04\x12\x0c\n\x08WIN_LOSE\x10\x05*\x1d\n\x08SideEnum\x12\x08\n\x04\x42\x41\x43K\x10\x00\x12\x07\n\x03LAY\x10\x01*5\n\x0fStakingPlanEnum\x12\r\n\tFLAT_RATE\x10\x00\x12\x13\n\x0fKELLY_CRITERION\x10\x01*(\n\x08StatEnum\x12\t\n\x05GOALS\x10\x00\x12\x11\n\rSHOTS_ON_GOAL\x10\x01*.\n\x12StrategyStatusEnum\x12\x0c\n\x08\x41RCHIVED\x10\x00\x12\n\n\x06\x41\x43TIVE\x10\x01*(\n\x08TeamEnum\x12\r\n\tHOME_TEAM\x10\x00\x12\r\n\tAWAY_TEAM\x10\x01*(\n\x0fTradeResultEnum\x12\x08\n\x04\x46\x41IL\x10\x00\x12\x0b\n\x07SUCCESS\x10\x01*.\n\tVenueEnum\x12\x08\n\x04HOME\x10\x00\x12\x08\n\x04\x41WAY\x10\x01\x12\r\n\tHOME_AWAY\x10\x02*)\n\x0eVisibilityEnum\x12\n\n\x06PUBLIC\x10\x00\x12\x0b\n\x07PRIVATE\x10\x01\x42\x33Z1github.com/statistico/statistico-proto;statisticob\x06proto3')
 
 _ACTIONENUM = DESCRIPTOR.enum_types_by_name['ActionEnum']
 ActionEnum = enum_type_wrapper.EnumTypeWrapper(_ACTIONENUM)
@@ -60,7 +60,8 @@ LOSE_DRAW = 4
 WIN_LOSE = 5
 BACK = 0
 LAY = 1
-PERCENTAGE = 0
+FLAT_RATE = 0
+KELLY_CRITERION = 1
 GOALS = 0
 SHOTS_ON_GOAL = 1
 ARCHIVED = 0
@@ -93,17 +94,17 @@ if _descriptor._USE_C_DESCRIPTORS == False:
   _SIDEENUM._serialized_start=269
   _SIDEENUM._serialized_end=298
   _STAKINGPLANENUM._serialized_start=300
-  _STAKINGPLANENUM._serialized_end=333
-  _STATENUM._serialized_start=335
-  _STATENUM._serialized_end=375
-  _STRATEGYSTATUSENUM._serialized_start=377
-  _STRATEGYSTATUSENUM._serialized_end=423
-  _TEAMENUM._serialized_start=425
-  _TEAMENUM._serialized_end=465
-  _TRADERESULTENUM._serialized_start=467
-  _TRADERESULTENUM._serialized_end=507
-  _VENUEENUM._serialized_start=509
-  _VENUEENUM._serialized_end=555
-  _VISIBILITYENUM._serialized_start=557
-  _VISIBILITYENUM._serialized_end=598
+  _STAKINGPLANENUM._serialized_end=353
+  _STATENUM._serialized_start=355
+  _STATENUM._serialized_end=395
+  _STRATEGYSTATUSENUM._serialized_start=397
+  _STRATEGYSTATUSENUM._serialized_end=443
+  _TEAMENUM._serialized_start=445
+  _TEAMENUM._serialized_end=485
+  _TRADERESULTENUM._serialized_start=487
+  _TRADERESULTENUM._serialized_end=527
+  _VENUEENUM._serialized_start=529
+  _VENUEENUM._serialized_end=575
+  _VISIBILITYENUM._serialized_start=577
+  _VISIBILITYENUM._serialized_end=618
 # @@protoc_insertion_point(module_scope)

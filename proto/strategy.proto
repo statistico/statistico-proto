@@ -5,92 +5,33 @@ package statistico;
 option go_package = "github.com/statistico/statistico-proto;statistico";
 
 import "enum.proto";
-import "filter.proto";
+import "requests.proto";
+import "responses.proto";
 import "google/protobuf/timestamp.proto";
 import "google/protobuf/wrappers.proto";
 
 service StrategyService {
-  rpc BuildStrategy(BuildStrategyRequest) returns (stream StrategyTrade) {}
-  rpc SaveStrategy(SaveStrategyRequest) returns (Strategy) {}
-  rpc ListUserStrategies(ListUserStrategiesRequest) returns (stream Strategy) {}
+  rpc CreateStrategy(CreateStrategyRequest) returns (Strategy) {}
   rpc HealthCheck(HealthCheckRequest) returns (HealthCheckResponse) {}
-}
-
-message BuildStrategyRequest {
-    string market = 1;
-    string runner = 2;
-    google.protobuf.FloatValue min_odds = 3;
-    google.protobuf.FloatValue max_odds = 4;
-    string line = 5;
-    SideEnum side = 6;
-    repeated uint64 competition_ids = 7;
-    repeated uint64 season_ids = 8;
-    google.protobuf.Timestamp dateFrom = 9;
-    google.protobuf.Timestamp dateTo = 10;
-    repeated ResultFilter result_filters = 11;
-    repeated StatFilter stat_filters = 12;
-}
-
-message ListUserStrategiesRequest {
-    string user_id = 1;
-}
-
-message SaveStrategyRequest {
-    string name = 1;
-    string description = 2;
-    string market = 3;
-    string runner = 4;
-    google.protobuf.FloatValue min_odds = 5;
-    google.protobuf.FloatValue max_odds = 6;
-    SideEnum side = 7;
-    repeated uint64 competition_ids = 8;
-    repeated ResultFilter result_filters = 9;
-    repeated StatFilter stat_filters = 10;
-    VisibilityEnum visibility = 11;
-    StakingPlan staking_plan = 14;
+  rpc ListUserStrategies(ListUserStrategiesRequest) returns (stream Strategy) {}
 }
 
 message Strategy {
   string id = 1;
   string name = 2;
-  string description = 3;
-  string user_id = 4;
-  string market = 5;
-  string runner = 6;
-  google.protobuf.FloatValue min_odds = 7;
-  google.protobuf.FloatValue max_odds = 8;
-  repeated uint64 competition_ids = 9;
-  SideEnum side = 10;
-  VisibilityEnum visibility = 11;
-  StrategyStatusEnum status = 12;
-  StakingPlan staking_plan = 13;
-  repeated ResultFilter result_filters = 14;
-  repeated StatFilter stat_filters = 15;
-  google.protobuf.Timestamp created_at = 16;
-  google.protobuf.Timestamp updated_at = 17;
-}
-
-message StrategyTrade {
-  string market_name = 1;
-  string runner_name = 2;
-  float runner_price = 3;
-  SideEnum side = 4;
-  uint64 event_id = 5;
-  uint64 competition_id = 6;
-  uint64 season_id = 7;
-  google.protobuf.Timestamp event_date = 8;
-  TradeResultEnum result = 9;
+  string user_id = 3;
+  string market = 4;
+  google.protobuf.FloatValue min_odds = 5;
+  google.protobuf.FloatValue max_odds = 6;
+  repeated uint64 competition_ids = 7;
+  SideEnum side = 8;
+  StakingPlan staking_plan = 9;
+  StrategyStatusEnum status = 10;
+  google.protobuf.Timestamp created_at = 11;
+  google.protobuf.Timestamp updated_at = 12;
 }
 
 message StakingPlan {
   StakingPlanEnum name = 1;
   float value = 2;
-}
-
-message HealthCheckRequest {
-  string service = 1;
-}
-
-message HealthCheckResponse {
-  string message = 1;
 }

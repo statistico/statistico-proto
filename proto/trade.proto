@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+package statistico;
+
+option go_package = "github.com/statistico/statistico-proto;statistico";
+
+import "enum.proto";
+import "requests.proto";
+import "responses.proto";
+import "google/protobuf/timestamp.proto";
+
+service TradeService {
+  rpc HealthCheck(HealthCheckRequest) returns (HealthCheckResponse) {}
+  rpc SearchTrades(SearchTradesRequest) returns (stream Trade) {}
+}
+
+message Trade {
+  string id = 1;
+  string strategy_id = 2;
+  string exchange = 3;
+  string exchange_ref = 4;
+  string market = 5;
+  string runner = 6;
+  float runner_price = 7;
+  float statistico_price = 8;
+  float stake = 9;
+  SideEnum side = 10;
+  uint64 event_id = 11;
+  uint64 competition_id = 12;
+  uint64 season_id = 13;
+  google.protobuf.Timestamp event_date = 14;
+  google.protobuf.Timestamp timestamp = 15;
+  TradeResultEnum result = 16;
+}

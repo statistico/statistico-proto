@@ -12,18 +12,24 @@ from google.protobuf import symbol_database as _symbol_database
 _sym_db = _symbol_database.Default()
 
 
+import enum_pb2 as enum__pb2
+from google.protobuf import timestamp_pb2 as google_dot_protobuf_dot_timestamp__pb2
 from google.protobuf import wrappers_pb2 as google_dot_protobuf_dot_wrappers__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0erequests.proto\x12\nstatistico\x1a\x1egoogle/protobuf/wrappers.proto\"\x81\x01\n\x12\x43ompetitionRequest\x12\x13\n\x0b\x63ountry_ids\x18\x01 \x03(\x04\x12*\n\x04sort\x18\x02 \x01(\x0b\x32\x1c.google.protobuf.StringValue\x12*\n\x06is_cup\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.BoolValue\"$\n\x0e\x46ixtureRequest\x12\x12\n\nfixture_id\x18\x01 \x01(\x04\"\xe8\x01\n\x14\x46ixtureSearchRequest\x12\x12\n\nseason_ids\x18\x01 \x03(\x04\x12+\n\x05limit\x18\x02 \x01(\x0b\x32\x1c.google.protobuf.UInt64Value\x12\x31\n\x0b\x64\x61te_before\x18\x03 \x01(\x0b\x32\x1c.google.protobuf.StringValue\x12\x30\n\ndate_after\x18\x04 \x01(\x0b\x32\x1c.google.protobuf.StringValue\x12*\n\x04sort\x18\x05 \x01(\x0b\x32\x1c.google.protobuf.StringValue\"i\n\x17HistoricalResultRequest\x12\x14\n\x0chome_team_id\x18\x01 \x01(\x04\x12\x14\n\x0c\x61way_team_id\x18\x02 \x01(\x04\x12\r\n\x05limit\x18\x03 \x01(\r\x12\x13\n\x0b\x64\x61te_before\x18\x04 \x01(\t\"#\n\rResultRequest\x12\x12\n\nfixture_id\x18\x01 \x01(\x04\"^\n\x18SeasonCompetitionRequest\x12\x16\n\x0e\x63ompetition_id\x18\x01 \x01(\x04\x12*\n\x04sort\x18\x02 \x01(\x0b\x32\x1c.google.protobuf.StringValue\"M\n\x14SeasonFixtureRequest\x12\x11\n\tseason_id\x18\x01 \x01(\x04\x12\x11\n\tdate_from\x18\x02 \x01(\t\x12\x0f\n\x07\x64\x61te_to\x18\x03 \x01(\t\"7\n\rSeasonRequest\x12\x11\n\tseason_id\x18\x01 \x01(\x03\x12\x13\n\x0b\x64\x61te_before\x18\x02 \x01(\t\"\'\n\x12SeasonTeamsRequest\x12\x11\n\tseason_id\x18\x01 \x01(\x04\"\x1e\n\x0bTeamRequest\x12\x0f\n\x07team_id\x18\x01 \x01(\x04\"\xa3\x02\n\x11TeamResultRequest\x12\x0f\n\x07team_id\x18\x01 \x01(\x04\x12+\n\x05limit\x18\x02 \x01(\x0b\x32\x1c.google.protobuf.UInt64Value\x12\x31\n\x0b\x64\x61te_before\x18\x03 \x01(\x0b\x32\x1c.google.protobuf.StringValue\x12\x30\n\ndate_after\x18\x04 \x01(\x0b\x32\x1c.google.protobuf.StringValue\x12+\n\x05venue\x18\x05 \x01(\x0b\x32\x1c.google.protobuf.StringValue\x12\x12\n\nseason_ids\x18\x06 \x03(\x04\x12*\n\x04sort\x18\x07 \x01(\x0b\x32\x1c.google.protobuf.StringValue\"\xdd\x02\n\x0fTeamStatRequest\x12\x0c\n\x04stat\x18\x01 \x01(\t\x12\x0f\n\x07team_id\x18\x02 \x01(\x04\x12+\n\x05limit\x18\x03 \x01(\x0b\x32\x1c.google.protobuf.UInt64Value\x12\x31\n\x0b\x64\x61te_before\x18\x04 \x01(\x0b\x32\x1c.google.protobuf.StringValue\x12\x30\n\ndate_after\x18\x05 \x01(\x0b\x32\x1c.google.protobuf.StringValue\x12+\n\x05venue\x18\x06 \x01(\x0b\x32\x1c.google.protobuf.StringValue\x12\x12\n\nseason_ids\x18\x07 \x03(\x04\x12*\n\x04sort\x18\x08 \x01(\x0b\x32\x1c.google.protobuf.StringValue\x12,\n\x08opponent\x18\t \x01(\x0b\x32\x1a.google.protobuf.BoolValueB3Z1github.com/statistico/statistico-proto;statisticob\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0erequests.proto\x12\nstatistico\x1a\nenum.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1egoogle/protobuf/wrappers.proto\"\x81\x01\n\x12\x43ompetitionRequest\x12\x13\n\x0b\x63ountry_ids\x18\x01 \x03(\x04\x12*\n\x04sort\x18\x02 \x01(\x0b\x32\x1c.google.protobuf.StringValue\x12*\n\x06is_cup\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.BoolValue\"\xd0\x01\n\x15\x43reateStrategyRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x0e\n\x06market\x18\x02 \x01(\t\x12-\n\x08min_odds\x18\x03 \x01(\x0b\x32\x1b.google.protobuf.FloatValue\x12-\n\x08max_odds\x18\x04 \x01(\x0b\x32\x1b.google.protobuf.FloatValue\x12\"\n\x04side\x18\x05 \x01(\x0e\x32\x14.statistico.SideEnum\x12\x17\n\x0f\x63ompetition_ids\x18\x06 \x03(\x04\"$\n\x0e\x46ixtureRequest\x12\x12\n\nfixture_id\x18\x01 \x01(\x04\"\xe8\x01\n\x14\x46ixtureSearchRequest\x12\x12\n\nseason_ids\x18\x01 \x03(\x04\x12+\n\x05limit\x18\x02 \x01(\x0b\x32\x1c.google.protobuf.UInt64Value\x12\x31\n\x0b\x64\x61te_before\x18\x03 \x01(\x0b\x32\x1c.google.protobuf.StringValue\x12\x30\n\ndate_after\x18\x04 \x01(\x0b\x32\x1c.google.protobuf.StringValue\x12*\n\x04sort\x18\x05 \x01(\x0b\x32\x1c.google.protobuf.StringValue\"%\n\x12HealthCheckRequest\x12\x0f\n\x07service\x18\x01 \x01(\t\"i\n\x17HistoricalResultRequest\x12\x14\n\x0chome_team_id\x18\x01 \x01(\x04\x12\x14\n\x0c\x61way_team_id\x18\x02 \x01(\x04\x12\r\n\x05limit\x18\x03 \x01(\r\x12\x13\n\x0b\x64\x61te_before\x18\x04 \x01(\t\",\n\x19ListUserStrategiesRequest\x12\x0f\n\x07user_id\x18\x01 \x01(\t\"#\n\rResultRequest\x12\x12\n\nfixture_id\x18\x01 \x01(\x04\"\xe6\x02\n\x13SearchTradesRequest\x12\x31\n\x0bstrategy_id\x18\x01 \x01(\x0b\x32\x1c.google.protobuf.StringValue\x12,\n\x06market\x18\x02 \x01(\x0b\x32\x1c.google.protobuf.StringValue\x12\x34\n\x0e\x63ompetition_id\x18\x03 \x01(\x0b\x32\x1c.google.protobuf.UInt64Value\x12,\n\x06status\x18\x04 \x01(\x0b\x32\x1c.google.protobuf.StringValue\x12.\n\x08\x65xchange\x18\x05 \x01(\x0b\x32\x1c.google.protobuf.StringValue\x12-\n\tdate_from\x18\x06 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12+\n\x07\x64\x61te_to\x18\x07 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\"^\n\x18SeasonCompetitionRequest\x12\x16\n\x0e\x63ompetition_id\x18\x01 \x01(\x04\x12*\n\x04sort\x18\x02 \x01(\x0b\x32\x1c.google.protobuf.StringValue\"M\n\x14SeasonFixtureRequest\x12\x11\n\tseason_id\x18\x01 \x01(\x04\x12\x11\n\tdate_from\x18\x02 \x01(\t\x12\x0f\n\x07\x64\x61te_to\x18\x03 \x01(\t\"7\n\rSeasonRequest\x12\x11\n\tseason_id\x18\x01 \x01(\x03\x12\x13\n\x0b\x64\x61te_before\x18\x02 \x01(\t\"\'\n\x12SeasonTeamsRequest\x12\x11\n\tseason_id\x18\x01 \x01(\x04\"\x1e\n\x0bTeamRequest\x12\x0f\n\x07team_id\x18\x01 \x01(\x04\"\xa3\x02\n\x11TeamResultRequest\x12\x0f\n\x07team_id\x18\x01 \x01(\x04\x12+\n\x05limit\x18\x02 \x01(\x0b\x32\x1c.google.protobuf.UInt64Value\x12\x31\n\x0b\x64\x61te_before\x18\x03 \x01(\x0b\x32\x1c.google.protobuf.StringValue\x12\x30\n\ndate_after\x18\x04 \x01(\x0b\x32\x1c.google.protobuf.StringValue\x12+\n\x05venue\x18\x05 \x01(\x0b\x32\x1c.google.protobuf.StringValue\x12\x12\n\nseason_ids\x18\x06 \x03(\x04\x12*\n\x04sort\x18\x07 \x01(\x0b\x32\x1c.google.protobuf.StringValue\"\xdd\x02\n\x0fTeamStatRequest\x12\x0c\n\x04stat\x18\x01 \x01(\t\x12\x0f\n\x07team_id\x18\x02 \x01(\x04\x12+\n\x05limit\x18\x03 \x01(\x0b\x32\x1c.google.protobuf.UInt64Value\x12\x31\n\x0b\x64\x61te_before\x18\x04 \x01(\x0b\x32\x1c.google.protobuf.StringValue\x12\x30\n\ndate_after\x18\x05 \x01(\x0b\x32\x1c.google.protobuf.StringValue\x12+\n\x05venue\x18\x06 \x01(\x0b\x32\x1c.google.protobuf.StringValue\x12\x12\n\nseason_ids\x18\x07 \x03(\x04\x12*\n\x04sort\x18\x08 \x01(\x0b\x32\x1c.google.protobuf.StringValue\x12,\n\x08opponent\x18\t \x01(\x0b\x32\x1a.google.protobuf.BoolValueB3Z1github.com/statistico/statistico-proto;statisticob\x06proto3')
 
 
 
 _COMPETITIONREQUEST = DESCRIPTOR.message_types_by_name['CompetitionRequest']
+_CREATESTRATEGYREQUEST = DESCRIPTOR.message_types_by_name['CreateStrategyRequest']
 _FIXTUREREQUEST = DESCRIPTOR.message_types_by_name['FixtureRequest']
 _FIXTURESEARCHREQUEST = DESCRIPTOR.message_types_by_name['FixtureSearchRequest']
+_HEALTHCHECKREQUEST = DESCRIPTOR.message_types_by_name['HealthCheckRequest']
 _HISTORICALRESULTREQUEST = DESCRIPTOR.message_types_by_name['HistoricalResultRequest']
+_LISTUSERSTRATEGIESREQUEST = DESCRIPTOR.message_types_by_name['ListUserStrategiesRequest']
 _RESULTREQUEST = DESCRIPTOR.message_types_by_name['ResultRequest']
+_SEARCHTRADESREQUEST = DESCRIPTOR.message_types_by_name['SearchTradesRequest']
 _SEASONCOMPETITIONREQUEST = DESCRIPTOR.message_types_by_name['SeasonCompetitionRequest']
 _SEASONFIXTUREREQUEST = DESCRIPTOR.message_types_by_name['SeasonFixtureRequest']
 _SEASONREQUEST = DESCRIPTOR.message_types_by_name['SeasonRequest']
@@ -37,6 +43,13 @@ CompetitionRequest = _reflection.GeneratedProtocolMessageType('CompetitionReques
   # @@protoc_insertion_point(class_scope:statistico.CompetitionRequest)
   })
 _sym_db.RegisterMessage(CompetitionRequest)
+
+CreateStrategyRequest = _reflection.GeneratedProtocolMessageType('CreateStrategyRequest', (_message.Message,), {
+  'DESCRIPTOR' : _CREATESTRATEGYREQUEST,
+  '__module__' : 'requests_pb2'
+  # @@protoc_insertion_point(class_scope:statistico.CreateStrategyRequest)
+  })
+_sym_db.RegisterMessage(CreateStrategyRequest)
 
 FixtureRequest = _reflection.GeneratedProtocolMessageType('FixtureRequest', (_message.Message,), {
   'DESCRIPTOR' : _FIXTUREREQUEST,
@@ -52,6 +65,13 @@ FixtureSearchRequest = _reflection.GeneratedProtocolMessageType('FixtureSearchRe
   })
 _sym_db.RegisterMessage(FixtureSearchRequest)
 
+HealthCheckRequest = _reflection.GeneratedProtocolMessageType('HealthCheckRequest', (_message.Message,), {
+  'DESCRIPTOR' : _HEALTHCHECKREQUEST,
+  '__module__' : 'requests_pb2'
+  # @@protoc_insertion_point(class_scope:statistico.HealthCheckRequest)
+  })
+_sym_db.RegisterMessage(HealthCheckRequest)
+
 HistoricalResultRequest = _reflection.GeneratedProtocolMessageType('HistoricalResultRequest', (_message.Message,), {
   'DESCRIPTOR' : _HISTORICALRESULTREQUEST,
   '__module__' : 'requests_pb2'
@@ -59,12 +79,26 @@ HistoricalResultRequest = _reflection.GeneratedProtocolMessageType('HistoricalRe
   })
 _sym_db.RegisterMessage(HistoricalResultRequest)
 
+ListUserStrategiesRequest = _reflection.GeneratedProtocolMessageType('ListUserStrategiesRequest', (_message.Message,), {
+  'DESCRIPTOR' : _LISTUSERSTRATEGIESREQUEST,
+  '__module__' : 'requests_pb2'
+  # @@protoc_insertion_point(class_scope:statistico.ListUserStrategiesRequest)
+  })
+_sym_db.RegisterMessage(ListUserStrategiesRequest)
+
 ResultRequest = _reflection.GeneratedProtocolMessageType('ResultRequest', (_message.Message,), {
   'DESCRIPTOR' : _RESULTREQUEST,
   '__module__' : 'requests_pb2'
   # @@protoc_insertion_point(class_scope:statistico.ResultRequest)
   })
 _sym_db.RegisterMessage(ResultRequest)
+
+SearchTradesRequest = _reflection.GeneratedProtocolMessageType('SearchTradesRequest', (_message.Message,), {
+  'DESCRIPTOR' : _SEARCHTRADESREQUEST,
+  '__module__' : 'requests_pb2'
+  # @@protoc_insertion_point(class_scope:statistico.SearchTradesRequest)
+  })
+_sym_db.RegisterMessage(SearchTradesRequest)
 
 SeasonCompetitionRequest = _reflection.GeneratedProtocolMessageType('SeasonCompetitionRequest', (_message.Message,), {
   'DESCRIPTOR' : _SEASONCOMPETITIONREQUEST,
@@ -119,28 +153,36 @@ if _descriptor._USE_C_DESCRIPTORS == False:
 
   DESCRIPTOR._options = None
   DESCRIPTOR._serialized_options = b'Z1github.com/statistico/statistico-proto;statistico'
-  _COMPETITIONREQUEST._serialized_start=63
-  _COMPETITIONREQUEST._serialized_end=192
-  _FIXTUREREQUEST._serialized_start=194
-  _FIXTUREREQUEST._serialized_end=230
-  _FIXTURESEARCHREQUEST._serialized_start=233
-  _FIXTURESEARCHREQUEST._serialized_end=465
-  _HISTORICALRESULTREQUEST._serialized_start=467
-  _HISTORICALRESULTREQUEST._serialized_end=572
-  _RESULTREQUEST._serialized_start=574
-  _RESULTREQUEST._serialized_end=609
-  _SEASONCOMPETITIONREQUEST._serialized_start=611
-  _SEASONCOMPETITIONREQUEST._serialized_end=705
-  _SEASONFIXTUREREQUEST._serialized_start=707
-  _SEASONFIXTUREREQUEST._serialized_end=784
-  _SEASONREQUEST._serialized_start=786
-  _SEASONREQUEST._serialized_end=841
-  _SEASONTEAMSREQUEST._serialized_start=843
-  _SEASONTEAMSREQUEST._serialized_end=882
-  _TEAMREQUEST._serialized_start=884
-  _TEAMREQUEST._serialized_end=914
-  _TEAMRESULTREQUEST._serialized_start=917
-  _TEAMRESULTREQUEST._serialized_end=1208
-  _TEAMSTATREQUEST._serialized_start=1211
-  _TEAMSTATREQUEST._serialized_end=1560
+  _COMPETITIONREQUEST._serialized_start=108
+  _COMPETITIONREQUEST._serialized_end=237
+  _CREATESTRATEGYREQUEST._serialized_start=240
+  _CREATESTRATEGYREQUEST._serialized_end=448
+  _FIXTUREREQUEST._serialized_start=450
+  _FIXTUREREQUEST._serialized_end=486
+  _FIXTURESEARCHREQUEST._serialized_start=489
+  _FIXTURESEARCHREQUEST._serialized_end=721
+  _HEALTHCHECKREQUEST._serialized_start=723
+  _HEALTHCHECKREQUEST._serialized_end=760
+  _HISTORICALRESULTREQUEST._serialized_start=762
+  _HISTORICALRESULTREQUEST._serialized_end=867
+  _LISTUSERSTRATEGIESREQUEST._serialized_start=869
+  _LISTUSERSTRATEGIESREQUEST._serialized_end=913
+  _RESULTREQUEST._serialized_start=915
+  _RESULTREQUEST._serialized_end=950
+  _SEARCHTRADESREQUEST._serialized_start=953
+  _SEARCHTRADESREQUEST._serialized_end=1311
+  _SEASONCOMPETITIONREQUEST._serialized_start=1313
+  _SEASONCOMPETITIONREQUEST._serialized_end=1407
+  _SEASONFIXTUREREQUEST._serialized_start=1409
+  _SEASONFIXTUREREQUEST._serialized_end=1486
+  _SEASONREQUEST._serialized_start=1488
+  _SEASONREQUEST._serialized_end=1543
+  _SEASONTEAMSREQUEST._serialized_start=1545
+  _SEASONTEAMSREQUEST._serialized_end=1584
+  _TEAMREQUEST._serialized_start=1586
+  _TEAMREQUEST._serialized_end=1616
+  _TEAMRESULTREQUEST._serialized_start=1619
+  _TEAMRESULTREQUEST._serialized_end=1910
+  _TEAMSTATREQUEST._serialized_start=1913
+  _TEAMSTATREQUEST._serialized_end=2262
 # @@protoc_insertion_point(module_scope)

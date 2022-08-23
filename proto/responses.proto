@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package statistico;
+
+option go_package = "github.com/statistico/statistico-proto;statistico";
+
+message HealthCheckResponse {
+  string message = 1;
+}

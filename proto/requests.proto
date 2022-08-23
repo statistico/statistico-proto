@@ -19,11 +19,12 @@ message CompetitionRequest {
 
 message CreateStrategyRequest {
     string name = 1;
-    string market = 2;
-    google.protobuf.FloatValue min_odds = 3;
-    google.protobuf.FloatValue max_odds = 4;
-    SideEnum side = 5;
-    repeated uint64 competition_ids = 6;
+    string user_id = 2;
+    string market = 3;
+    google.protobuf.FloatValue min_odds = 4;
+    google.protobuf.FloatValue max_odds = 5;
+    SideEnum side = 6;
+    repeated uint64 competition_ids = 7;
 }
 
 message FixtureRequest {

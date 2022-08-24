@@ -21,7 +21,7 @@ message Trade {
   string exchange_ref = 4;
   string market = 5;
   string runner = 6;
-  float runner_price = 7;
+  float exchange_price = 7;
   float statistico_price = 8;
   float stake = 9;
   SideEnum side = 10;

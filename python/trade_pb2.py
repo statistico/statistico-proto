@@ -18,7 +18,7 @@ import responses_pb2 as responses__pb2
 from google.protobuf import timestamp_pb2 as google_dot_protobuf_dot_timestamp__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0btrade.proto\x12\nstatistico\x1a\nenum.proto\x1a\x0erequests.proto\x1a\x0fresponses.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\x9c\x03\n\x05Trade\x12\n\n\x02id\x18\x01 \x01(\t\x12\x13\n\x0bstrategy_id\x18\x02 \x01(\t\x12\x10\n\x08\x65xchange\x18\x03 \x01(\t\x12\x14\n\x0c\x65xchange_ref\x18\x04 \x01(\t\x12\x0e\n\x06market\x18\x05 \x01(\t\x12\x0e\n\x06runner\x18\x06 \x01(\t\x12\x14\n\x0crunner_price\x18\x07 \x01(\x02\x12\x18\n\x10statistico_price\x18\x08 \x01(\x02\x12\r\n\x05stake\x18\t \x01(\x02\x12\"\n\x04side\x18\n \x01(\x0e\x32\x14.statistico.SideEnum\x12\x10\n\x08\x65vent_id\x18\x0b \x01(\x04\x12\x16\n\x0e\x63ompetition_id\x18\x0c \x01(\x04\x12\x11\n\tseason_id\x18\r \x01(\x04\x12.\n\nevent_date\x18\x0e \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12-\n\ttimestamp\x18\x0f \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12+\n\x06result\x18\x10 \x01(\x0e\x32\x1b.statistico.TradeResultEnum2\xa8\x01\n\x0cTradeService\x12P\n\x0bHealthCheck\x12\x1e.statistico.HealthCheckRequest\x1a\x1f.statistico.HealthCheckResponse\"\x00\x12\x46\n\x0cSearchTrades\x12\x1f.statistico.SearchTradesRequest\x1a\x11.statistico.Trade\"\x00\x30\x01\x42\x33Z1github.com/statistico/statistico-proto;statisticob\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0btrade.proto\x12\nstatistico\x1a\nenum.proto\x1a\x0erequests.proto\x1a\x0fresponses.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\x9e\x03\n\x05Trade\x12\n\n\x02id\x18\x01 \x01(\t\x12\x13\n\x0bstrategy_id\x18\x02 \x01(\t\x12\x10\n\x08\x65xchange\x18\x03 \x01(\t\x12\x14\n\x0c\x65xchange_ref\x18\x04 \x01(\t\x12\x0e\n\x06market\x18\x05 \x01(\t\x12\x0e\n\x06runner\x18\x06 \x01(\t\x12\x16\n\x0e\x65xchange_price\x18\x07 \x01(\x02\x12\x18\n\x10statistico_price\x18\x08 \x01(\x02\x12\r\n\x05stake\x18\t \x01(\x02\x12\"\n\x04side\x18\n \x01(\x0e\x32\x14.statistico.SideEnum\x12\x10\n\x08\x65vent_id\x18\x0b \x01(\x04\x12\x16\n\x0e\x63ompetition_id\x18\x0c \x01(\x04\x12\x11\n\tseason_id\x18\r \x01(\x04\x12.\n\nevent_date\x18\x0e \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12-\n\ttimestamp\x18\x0f \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12+\n\x06result\x18\x10 \x01(\x0e\x32\x1b.statistico.TradeResultEnum2\xa8\x01\n\x0cTradeService\x12P\n\x0bHealthCheck\x12\x1e.statistico.HealthCheckRequest\x1a\x1f.statistico.HealthCheckResponse\"\x00\x12\x46\n\x0cSearchTrades\x12\x1f.statistico.SearchTradesRequest\x1a\x11.statistico.Trade\"\x00\x30\x01\x42\x33Z1github.com/statistico/statistico-proto;statisticob\x06proto3')
 
 
 
@@ -36,7 +36,7 @@ if _descriptor._USE_C_DESCRIPTORS == False:
   DESCRIPTOR._options = None
   DESCRIPTOR._serialized_options = b'Z1github.com/statistico/statistico-proto;statistico'
   _TRADE._serialized_start=106
-  _TRADE._serialized_end=518
-  _TRADESERVICE._serialized_start=521
-  _TRADESERVICE._serialized_end=689
+  _TRADE._serialized_end=520
+  _TRADESERVICE._serialized_start=523
+  _TRADESERVICE._serialized_end=691
 # @@protoc_insertion_point(module_scope)

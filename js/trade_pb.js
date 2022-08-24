@@ -82,7 +82,7 @@ proto.statistico.Trade.toObject = function(includeInstance, msg) {
     exchangeRef: jspb.Message.getFieldWithDefault(msg, 4, ""),
     market: jspb.Message.getFieldWithDefault(msg, 5, ""),
     runner: jspb.Message.getFieldWithDefault(msg, 6, ""),
-    runnerPrice: jspb.Message.getFloatingPointFieldWithDefault(msg, 7, 0.0),
+    exchangePrice: jspb.Message.getFloatingPointFieldWithDefault(msg, 7, 0.0),
     statisticoPrice: jspb.Message.getFloatingPointFieldWithDefault(msg, 8, 0.0),
     stake: jspb.Message.getFloatingPointFieldWithDefault(msg, 9, 0.0),
     side: jspb.Message.getFieldWithDefault(msg, 10, 0),
@@ -154,7 +154,7 @@ proto.statistico.Trade.deserializeBinaryFromReader = function(msg, reader) {
       break;
     case 7:
       var value = /** @type {number} */ (reader.readFloat());
-      msg.setRunnerPrice(value);
+      msg.setExchangePrice(value);
       break;
     case 8:
       var value = /** @type {number} */ (reader.readFloat());
@@ -265,7 +265,7 @@ proto.statistico.Trade.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
-  f = message.getRunnerPrice();
+  f = message.getExchangePrice();
   if (f !== 0.0) {
     writer.writeFloat(
       7,
@@ -449,10 +449,10 @@ proto.statistico.Trade.prototype.setRunner = function(value) {
 
 
 /**
- * optional float runner_price = 7;
+ * optional float exchange_price = 7;
  * @return {number}
  */
-proto.statistico.Trade.prototype.getRunnerPrice = function() {
+proto.statistico.Trade.prototype.getExchangePrice = function() {
   return /** @type {number} */ (jspb.Message.getFloatingPointFieldWithDefault(this, 7, 0.0));
 };
 
@@ -461,7 +461,7 @@ proto.statistico.Trade.prototype.getRunnerPrice = function() {
  * @param {number} value
  * @return {!proto.statistico.Trade} returns this
  */
-proto.statistico.Trade.prototype.setRunnerPrice = function(value) {
+proto.statistico.Trade.prototype.setExchangePrice = function(value) {
   return jspb.Message.setProto3FloatField(this, 7, value);
 };
 

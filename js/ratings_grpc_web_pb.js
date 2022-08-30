@@ -25,7 +25,7 @@ proto.statistico = require('./ratings_pb.js');
 /**
  * @param {string} hostname
  * @param {?Object} credentials
- * @param {?Object} options
+ * @param {?grpc.web.ClientOptions} options
  * @constructor
  * @struct
  * @final
@@ -33,7 +33,7 @@ proto.statistico = require('./ratings_pb.js');
 proto.statistico.TeamRatingServiceClient =
     function(hostname, credentials, options) {
   if (!options) options = {};
-  options['format'] = 'text';
+  options.format = 'text';
 
   /**
    * @private @const {!grpc.web.GrpcWebClientBase} The client
@@ -51,7 +51,7 @@ proto.statistico.TeamRatingServiceClient =
 /**
  * @param {string} hostname
  * @param {?Object} credentials
- * @param {?Object} options
+ * @param {?grpc.web.ClientOptions} options
  * @constructor
  * @struct
  * @final
@@ -59,7 +59,7 @@ proto.statistico.TeamRatingServiceClient =
 proto.statistico.TeamRatingServicePromiseClient =
     function(hostname, credentials, options) {
   if (!options) options = {};
-  options['format'] = 'text';
+  options.format = 'text';
 
   /**
    * @private @const {!grpc.web.GrpcWebClientBase} The client
@@ -77,14 +77,75 @@ proto.statistico.TeamRatingServicePromiseClient =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
+ *   !proto.statistico.FixtureRatingRequest,
+ *   !proto.statistico.RatingResponse>}
+ */
+const methodDescriptor_TeamRatingService_GetFixtureRatings = new grpc.web.MethodDescriptor(
+  '/statistico.TeamRatingService/GetFixtureRatings',
+  grpc.web.MethodType.UNARY,
+  proto.statistico.FixtureRatingRequest,
+  proto.statistico.RatingResponse,
+  /**
+   * @param {!proto.statistico.FixtureRatingRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.statistico.RatingResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.statistico.FixtureRatingRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.statistico.RatingResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.statistico.RatingResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.statistico.TeamRatingServiceClient.prototype.getFixtureRatings =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/statistico.TeamRatingService/GetFixtureRatings',
+      request,
+      metadata || {},
+      methodDescriptor_TeamRatingService_GetFixtureRatings,
+      callback);
+};
+
+
+/**
+ * @param {!proto.statistico.FixtureRatingRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.statistico.RatingResponse>}
+ *     Promise that resolves to the response
+ */
+proto.statistico.TeamRatingServicePromiseClient.prototype.getFixtureRatings =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/statistico.TeamRatingService/GetFixtureRatings',
+      request,
+      metadata || {},
+      methodDescriptor_TeamRatingService_GetFixtureRatings);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
  *   !proto.statistico.TeamRatingRequest,
- *   !proto.statistico.TeamRatingResponse>}
+ *   !proto.statistico.RatingResponse>}
  */
 const methodDescriptor_TeamRatingService_GetTeamRatings = new grpc.web.MethodDescriptor(
   '/statistico.TeamRatingService/GetTeamRatings',
   grpc.web.MethodType.UNARY,
   proto.statistico.TeamRatingRequest,
-  proto.statistico.TeamRatingResponse,
+  proto.statistico.RatingResponse,
   /**
    * @param {!proto.statistico.TeamRatingRequest} request
    * @return {!Uint8Array}
@@ -92,26 +153,7 @@ const methodDescriptor_TeamRatingService_GetTeamRatings = new grpc.web.MethodDes
   function(request) {
     return request.serializeBinary();
   },
-  proto.statistico.TeamRatingResponse.deserializeBinary
-);
-
-
-/**
- * @const
- * @type {!grpc.web.AbstractClientBase.MethodInfo<
- *   !proto.statistico.TeamRatingRequest,
- *   !proto.statistico.TeamRatingResponse>}
- */
-const methodInfo_TeamRatingService_GetTeamRatings = new grpc.web.AbstractClientBase.MethodInfo(
-  proto.statistico.TeamRatingResponse,
-  /**
-   * @param {!proto.statistico.TeamRatingRequest} request
-   * @return {!Uint8Array}
-   */
-  function(request) {
-    return request.serializeBinary();
-  },
-  proto.statistico.TeamRatingResponse.deserializeBinary
+  proto.statistico.RatingResponse.deserializeBinary
 );
 
 
@@ -120,9 +162,9 @@ const methodInfo_TeamRatingService_GetTeamRatings = new grpc.web.AbstractClientB
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.Error, ?proto.statistico.TeamRatingResponse)}
+ * @param {function(?grpc.web.RpcError, ?proto.statistico.RatingResponse)}
  *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.statistico.TeamRatingResponse>|undefined}
+ * @return {!grpc.web.ClientReadableStream<!proto.statistico.RatingResponse>|undefined}
  *     The XHR Node Readable Stream
  */
 proto.statistico.TeamRatingServiceClient.prototype.getTeamRatings =
@@ -139,9 +181,9 @@ proto.statistico.TeamRatingServiceClient.prototype.getTeamRatings =
 /**
  * @param {!proto.statistico.TeamRatingRequest} request The
  *     request proto
- * @param {?Object<string, string>} metadata User defined
+ * @param {?Object<string, string>=} metadata User defined
  *     call metadata
- * @return {!Promise<!proto.statistico.TeamRatingResponse>}
+ * @return {!Promise<!proto.statistico.RatingResponse>}
  *     Promise that resolves to the response
  */
 proto.statistico.TeamRatingServicePromiseClient.prototype.getTeamRatings =

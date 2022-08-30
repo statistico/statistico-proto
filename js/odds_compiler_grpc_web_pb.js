@@ -15,10 +15,8 @@
 const grpc = {};
 grpc.web = require('grpc-web');
 
-
-var requests_pb = require('./requests_pb.js')
 const proto = {};
-proto.statistico = require('./competition_pb.js');
+proto.statistico = require('./odds_compiler_pb.js');
 
 /**
  * @param {string} hostname
@@ -28,7 +26,7 @@ proto.statistico = require('./competition_pb.js');
  * @struct
  * @final
  */
-proto.statistico.CompetitionServiceClient =
+proto.statistico.OddsCompilerServiceClient =
     function(hostname, credentials, options) {
   if (!options) options = {};
   options.format = 'text';
@@ -54,7 +52,7 @@ proto.statistico.CompetitionServiceClient =
  * @struct
  * @final
  */
-proto.statistico.CompetitionServicePromiseClient =
+proto.statistico.OddsCompilerServicePromiseClient =
     function(hostname, credentials, options) {
   if (!options) options = {};
   options.format = 'text';
@@ -75,56 +73,61 @@ proto.statistico.CompetitionServicePromiseClient =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.statistico.CompetitionRequest,
- *   !proto.statistico.Competition>}
+ *   !proto.statistico.EventRequest,
+ *   !proto.statistico.EventMarket>}
  */
-const methodDescriptor_CompetitionService_ListCompetitions = new grpc.web.MethodDescriptor(
-  '/statistico.CompetitionService/ListCompetitions',
-  grpc.web.MethodType.SERVER_STREAMING,
-  requests_pb.CompetitionRequest,
-  proto.statistico.Competition,
+const methodDescriptor_OddsCompilerService_GetEventMarket = new grpc.web.MethodDescriptor(
+  '/statistico.OddsCompilerService/GetEventMarket',
+  grpc.web.MethodType.UNARY,
+  proto.statistico.EventRequest,
+  proto.statistico.EventMarket,
   /**
-   * @param {!proto.statistico.CompetitionRequest} request
+   * @param {!proto.statistico.EventRequest} request
    * @return {!Uint8Array}
    */
   function(request) {
     return request.serializeBinary();
   },
-  proto.statistico.Competition.deserializeBinary
+  proto.statistico.EventMarket.deserializeBinary
 );
 
 
 /**
- * @param {!proto.statistico.CompetitionRequest} request The request proto
- * @param {?Object<string, string>=} metadata User defined
+ * @param {!proto.statistico.EventRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @return {!grpc.web.ClientReadableStream<!proto.statistico.Competition>}
+ * @param {function(?grpc.web.RpcError, ?proto.statistico.EventMarket)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.statistico.EventMarket>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.statistico.CompetitionServiceClient.prototype.listCompetitions =
-    function(request, metadata) {
-  return this.client_.serverStreaming(this.hostname_ +
-      '/statistico.CompetitionService/ListCompetitions',
+proto.statistico.OddsCompilerServiceClient.prototype.getEventMarket =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/statistico.OddsCompilerService/GetEventMarket',
       request,
       metadata || {},
-      methodDescriptor_CompetitionService_ListCompetitions);
+      methodDescriptor_OddsCompilerService_GetEventMarket,
+      callback);
 };
 
 
 /**
- * @param {!proto.statistico.CompetitionRequest} request The request proto
+ * @param {!proto.statistico.EventRequest} request The
+ *     request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
- * @return {!grpc.web.ClientReadableStream<!proto.statistico.Competition>}
- *     The XHR Node Readable Stream
+ * @return {!Promise<!proto.statistico.EventMarket>}
+ *     Promise that resolves to the response
  */
-proto.statistico.CompetitionServicePromiseClient.prototype.listCompetitions =
+proto.statistico.OddsCompilerServicePromiseClient.prototype.getEventMarket =
     function(request, metadata) {
-  return this.client_.serverStreaming(this.hostname_ +
-      '/statistico.CompetitionService/ListCompetitions',
+  return this.client_.unaryCall(this.hostname_ +
+      '/statistico.OddsCompilerService/GetEventMarket',
       request,
       metadata || {},
-      methodDescriptor_CompetitionService_ListCompetitions);
+      methodDescriptor_OddsCompilerService_GetEventMarket);
 };
 
 

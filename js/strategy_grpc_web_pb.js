@@ -18,7 +18,9 @@ grpc.web = require('grpc-web');
 
 var enum_pb = require('./enum_pb.js')
 
-var filter_pb = require('./filter_pb.js')
+var requests_pb = require('./requests_pb.js')
+
+var responses_pb = require('./responses_pb.js')
 
 var google_protobuf_timestamp_pb = require('google-protobuf/google/protobuf/timestamp_pb.js')
 
@@ -29,7 +31,7 @@ proto.statistico = require('./strategy_pb.js');
 /**
  * @param {string} hostname
  * @param {?Object} credentials
- * @param {?Object} options
+ * @param {?grpc.web.ClientOptions} options
  * @constructor
  * @struct
  * @final
@@ -37,7 +39,7 @@ proto.statistico = require('./strategy_pb.js');
 proto.statistico.StrategyServiceClient =
     function(hostname, credentials, options) {
   if (!options) options = {};
-  options['format'] = 'text';
+  options.format = 'text';
 
   /**
    * @private @const {!grpc.web.GrpcWebClientBase} The client
@@ -55,7 +57,7 @@ proto.statistico.StrategyServiceClient =
 /**
  * @param {string} hostname
  * @param {?Object} credentials
- * @param {?Object} options
+ * @param {?grpc.web.ClientOptions} options
  * @constructor
  * @struct
  * @final
@@ -63,7 +65,7 @@ proto.statistico.StrategyServiceClient =
 proto.statistico.StrategyServicePromiseClient =
     function(hostname, credentials, options) {
   if (!options) options = {};
-  options['format'] = 'text';
+  options.format = 'text';
 
   /**
    * @private @const {!grpc.web.GrpcWebClientBase} The client
@@ -81,91 +83,16 @@ proto.statistico.StrategyServicePromiseClient =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.statistico.BuildStrategyRequest,
- *   !proto.statistico.StrategyTrade>}
- */
-const methodDescriptor_StrategyService_BuildStrategy = new grpc.web.MethodDescriptor(
-  '/statistico.StrategyService/BuildStrategy',
-  grpc.web.MethodType.SERVER_STREAMING,
-  proto.statistico.BuildStrategyRequest,
-  proto.statistico.StrategyTrade,
-  /**
-   * @param {!proto.statistico.BuildStrategyRequest} request
-   * @return {!Uint8Array}
-   */
-  function(request) {
-    return request.serializeBinary();
-  },
-  proto.statistico.StrategyTrade.deserializeBinary
-);
-
-
-/**
- * @const
- * @type {!grpc.web.AbstractClientBase.MethodInfo<
- *   !proto.statistico.BuildStrategyRequest,
- *   !proto.statistico.StrategyTrade>}
- */
-const methodInfo_StrategyService_BuildStrategy = new grpc.web.AbstractClientBase.MethodInfo(
-  proto.statistico.StrategyTrade,
-  /**
-   * @param {!proto.statistico.BuildStrategyRequest} request
-   * @return {!Uint8Array}
-   */
-  function(request) {
-    return request.serializeBinary();
-  },
-  proto.statistico.StrategyTrade.deserializeBinary
-);
-
-
-/**
- * @param {!proto.statistico.BuildStrategyRequest} request The request proto
- * @param {?Object<string, string>} metadata User defined
- *     call metadata
- * @return {!grpc.web.ClientReadableStream<!proto.statistico.StrategyTrade>}
- *     The XHR Node Readable Stream
- */
-proto.statistico.StrategyServiceClient.prototype.buildStrategy =
-    function(request, metadata) {
-  return this.client_.serverStreaming(this.hostname_ +
-      '/statistico.StrategyService/BuildStrategy',
-      request,
-      metadata || {},
-      methodDescriptor_StrategyService_BuildStrategy);
-};
-
-
-/**
- * @param {!proto.statistico.BuildStrategyRequest} request The request proto
- * @param {?Object<string, string>} metadata User defined
- *     call metadata
- * @return {!grpc.web.ClientReadableStream<!proto.statistico.StrategyTrade>}
- *     The XHR Node Readable Stream
- */
-proto.statistico.StrategyServicePromiseClient.prototype.buildStrategy =
-    function(request, metadata) {
-  return this.client_.serverStreaming(this.hostname_ +
-      '/statistico.StrategyService/BuildStrategy',
-      request,
-      metadata || {},
-      methodDescriptor_StrategyService_BuildStrategy);
-};
-
-
-/**
- * @const
- * @type {!grpc.web.MethodDescriptor<
- *   !proto.statistico.SaveStrategyRequest,
+ *   !proto.statistico.CreateStrategyRequest,
  *   !proto.statistico.Strategy>}
  */
-const methodDescriptor_StrategyService_SaveStrategy = new grpc.web.MethodDescriptor(
-  '/statistico.StrategyService/SaveStrategy',
+const methodDescriptor_StrategyService_CreateStrategy = new grpc.web.MethodDescriptor(
+  '/statistico.StrategyService/CreateStrategy',
   grpc.web.MethodType.UNARY,
-  proto.statistico.SaveStrategyRequest,
+  requests_pb.CreateStrategyRequest,
   proto.statistico.Strategy,
   /**
-   * @param {!proto.statistico.SaveStrategyRequest} request
+   * @param {!proto.statistico.CreateStrategyRequest} request
    * @return {!Uint8Array}
    */
   function(request) {
@@ -176,135 +103,41 @@ const methodDescriptor_StrategyService_SaveStrategy = new grpc.web.MethodDescrip
 
 
 /**
- * @const
- * @type {!grpc.web.AbstractClientBase.MethodInfo<
- *   !proto.statistico.SaveStrategyRequest,
- *   !proto.statistico.Strategy>}
- */
-const methodInfo_StrategyService_SaveStrategy = new grpc.web.AbstractClientBase.MethodInfo(
-  proto.statistico.Strategy,
-  /**
-   * @param {!proto.statistico.SaveStrategyRequest} request
-   * @return {!Uint8Array}
-   */
-  function(request) {
-    return request.serializeBinary();
-  },
-  proto.statistico.Strategy.deserializeBinary
-);
-
-
-/**
- * @param {!proto.statistico.SaveStrategyRequest} request The
+ * @param {!proto.statistico.CreateStrategyRequest} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.Error, ?proto.statistico.Strategy)}
+ * @param {function(?grpc.web.RpcError, ?proto.statistico.Strategy)}
  *     callback The callback function(error, response)
  * @return {!grpc.web.ClientReadableStream<!proto.statistico.Strategy>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.statistico.StrategyServiceClient.prototype.saveStrategy =
+proto.statistico.StrategyServiceClient.prototype.createStrategy =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/statistico.StrategyService/SaveStrategy',
+      '/statistico.StrategyService/CreateStrategy',
       request,
       metadata || {},
-      methodDescriptor_StrategyService_SaveStrategy,
+      methodDescriptor_StrategyService_CreateStrategy,
       callback);
 };
 
 
 /**
- * @param {!proto.statistico.SaveStrategyRequest} request The
+ * @param {!proto.statistico.CreateStrategyRequest} request The
  *     request proto
- * @param {?Object<string, string>} metadata User defined
+ * @param {?Object<string, string>=} metadata User defined
  *     call metadata
  * @return {!Promise<!proto.statistico.Strategy>}
  *     Promise that resolves to the response
  */
-proto.statistico.StrategyServicePromiseClient.prototype.saveStrategy =
+proto.statistico.StrategyServicePromiseClient.prototype.createStrategy =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/statistico.StrategyService/SaveStrategy',
+      '/statistico.StrategyService/CreateStrategy',
       request,
       metadata || {},
-      methodDescriptor_StrategyService_SaveStrategy);
-};
-
-
-/**
- * @const
- * @type {!grpc.web.MethodDescriptor<
- *   !proto.statistico.ListUserStrategiesRequest,
- *   !proto.statistico.Strategy>}
- */
-const methodDescriptor_StrategyService_ListUserStrategies = new grpc.web.MethodDescriptor(
-  '/statistico.StrategyService/ListUserStrategies',
-  grpc.web.MethodType.SERVER_STREAMING,
-  proto.statistico.ListUserStrategiesRequest,
-  proto.statistico.Strategy,
-  /**
-   * @param {!proto.statistico.ListUserStrategiesRequest} request
-   * @return {!Uint8Array}
-   */
-  function(request) {
-    return request.serializeBinary();
-  },
-  proto.statistico.Strategy.deserializeBinary
-);
-
-
-/**
- * @const
- * @type {!grpc.web.AbstractClientBase.MethodInfo<
- *   !proto.statistico.ListUserStrategiesRequest,
- *   !proto.statistico.Strategy>}
- */
-const methodInfo_StrategyService_ListUserStrategies = new grpc.web.AbstractClientBase.MethodInfo(
-  proto.statistico.Strategy,
-  /**
-   * @param {!proto.statistico.ListUserStrategiesRequest} request
-   * @return {!Uint8Array}
-   */
-  function(request) {
-    return request.serializeBinary();
-  },
-  proto.statistico.Strategy.deserializeBinary
-);
-
-
-/**
- * @param {!proto.statistico.ListUserStrategiesRequest} request The request proto
- * @param {?Object<string, string>} metadata User defined
- *     call metadata
- * @return {!grpc.web.ClientReadableStream<!proto.statistico.Strategy>}
- *     The XHR Node Readable Stream
- */
-proto.statistico.StrategyServiceClient.prototype.listUserStrategies =
-    function(request, metadata) {
-  return this.client_.serverStreaming(this.hostname_ +
-      '/statistico.StrategyService/ListUserStrategies',
-      request,
-      metadata || {},
-      methodDescriptor_StrategyService_ListUserStrategies);
-};
-
-
-/**
- * @param {!proto.statistico.ListUserStrategiesRequest} request The request proto
- * @param {?Object<string, string>} metadata User defined
- *     call metadata
- * @return {!grpc.web.ClientReadableStream<!proto.statistico.Strategy>}
- *     The XHR Node Readable Stream
- */
-proto.statistico.StrategyServicePromiseClient.prototype.listUserStrategies =
-    function(request, metadata) {
-  return this.client_.serverStreaming(this.hostname_ +
-      '/statistico.StrategyService/ListUserStrategies',
-      request,
-      metadata || {},
-      methodDescriptor_StrategyService_ListUserStrategies);
+      methodDescriptor_StrategyService_CreateStrategy);
 };
 
 
@@ -317,8 +150,8 @@ proto.statistico.StrategyServicePromiseClient.prototype.listUserStrategies =
 const methodDescriptor_StrategyService_HealthCheck = new grpc.web.MethodDescriptor(
   '/statistico.StrategyService/HealthCheck',
   grpc.web.MethodType.UNARY,
-  proto.statistico.HealthCheckRequest,
-  proto.statistico.HealthCheckResponse,
+  requests_pb.HealthCheckRequest,
+  responses_pb.HealthCheckResponse,
   /**
    * @param {!proto.statistico.HealthCheckRequest} request
    * @return {!Uint8Array}
@@ -326,26 +159,7 @@ const methodDescriptor_StrategyService_HealthCheck = new grpc.web.MethodDescript
   function(request) {
     return request.serializeBinary();
   },
-  proto.statistico.HealthCheckResponse.deserializeBinary
-);
-
-
-/**
- * @const
- * @type {!grpc.web.AbstractClientBase.MethodInfo<
- *   !proto.statistico.HealthCheckRequest,
- *   !proto.statistico.HealthCheckResponse>}
- */
-const methodInfo_StrategyService_HealthCheck = new grpc.web.AbstractClientBase.MethodInfo(
-  proto.statistico.HealthCheckResponse,
-  /**
-   * @param {!proto.statistico.HealthCheckRequest} request
-   * @return {!Uint8Array}
-   */
-  function(request) {
-    return request.serializeBinary();
-  },
-  proto.statistico.HealthCheckResponse.deserializeBinary
+  responses_pb.HealthCheckResponse.deserializeBinary
 );
 
 
@@ -354,7 +168,7 @@ const methodInfo_StrategyService_HealthCheck = new grpc.web.AbstractClientBase.M
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.Error, ?proto.statistico.HealthCheckResponse)}
+ * @param {function(?grpc.web.RpcError, ?proto.statistico.HealthCheckResponse)}
  *     callback The callback function(error, response)
  * @return {!grpc.web.ClientReadableStream<!proto.statistico.HealthCheckResponse>|undefined}
  *     The XHR Node Readable Stream
@@ -373,7 +187,7 @@ proto.statistico.StrategyServiceClient.prototype.healthCheck =
 /**
  * @param {!proto.statistico.HealthCheckRequest} request The
  *     request proto
- * @param {?Object<string, string>} metadata User defined
+ * @param {?Object<string, string>=} metadata User defined
  *     call metadata
  * @return {!Promise<!proto.statistico.HealthCheckResponse>}
  *     Promise that resolves to the response
@@ -385,6 +199,62 @@ proto.statistico.StrategyServicePromiseClient.prototype.healthCheck =
       request,
       metadata || {},
       methodDescriptor_StrategyService_HealthCheck);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.statistico.ListUserStrategiesRequest,
+ *   !proto.statistico.Strategy>}
+ */
+const methodDescriptor_StrategyService_ListUserStrategies = new grpc.web.MethodDescriptor(
+  '/statistico.StrategyService/ListUserStrategies',
+  grpc.web.MethodType.SERVER_STREAMING,
+  requests_pb.ListUserStrategiesRequest,
+  proto.statistico.Strategy,
+  /**
+   * @param {!proto.statistico.ListUserStrategiesRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.statistico.Strategy.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.statistico.ListUserStrategiesRequest} request The request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!grpc.web.ClientReadableStream<!proto.statistico.Strategy>}
+ *     The XHR Node Readable Stream
+ */
+proto.statistico.StrategyServiceClient.prototype.listUserStrategies =
+    function(request, metadata) {
+  return this.client_.serverStreaming(this.hostname_ +
+      '/statistico.StrategyService/ListUserStrategies',
+      request,
+      metadata || {},
+      methodDescriptor_StrategyService_ListUserStrategies);
+};
+
+
+/**
+ * @param {!proto.statistico.ListUserStrategiesRequest} request The request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!grpc.web.ClientReadableStream<!proto.statistico.Strategy>}
+ *     The XHR Node Readable Stream
+ */
+proto.statistico.StrategyServicePromiseClient.prototype.listUserStrategies =
+    function(request, metadata) {
+  return this.client_.serverStreaming(this.hostname_ +
+      '/statistico.StrategyService/ListUserStrategies',
+      request,
+      metadata || {},
+      methodDescriptor_StrategyService_ListUserStrategies);
 };
 
 

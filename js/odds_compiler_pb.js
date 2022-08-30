@@ -1,4 +1,4 @@
-// source: compiler.proto
+// source: odds_compiler.proto
 /**
  * @fileoverview
  * @enhanceable

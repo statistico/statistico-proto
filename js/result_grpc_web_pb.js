@@ -37,7 +37,7 @@ proto.statistico = require('./result_pb.js');
 /**
  * @param {string} hostname
  * @param {?Object} credentials
- * @param {?Object} options
+ * @param {?grpc.web.ClientOptions} options
  * @constructor
  * @struct
  * @final
@@ -45,7 +45,7 @@ proto.statistico = require('./result_pb.js');
 proto.statistico.ResultServiceClient =
     function(hostname, credentials, options) {
   if (!options) options = {};
-  options['format'] = 'text';
+  options.format = 'text';
 
   /**
    * @private @const {!grpc.web.GrpcWebClientBase} The client
@@ -63,7 +63,7 @@ proto.statistico.ResultServiceClient =
 /**
  * @param {string} hostname
  * @param {?Object} credentials
- * @param {?Object} options
+ * @param {?grpc.web.ClientOptions} options
  * @constructor
  * @struct
  * @final
@@ -71,7 +71,7 @@ proto.statistico.ResultServiceClient =
 proto.statistico.ResultServicePromiseClient =
     function(hostname, credentials, options) {
   if (!options) options = {};
-  options['format'] = 'text';
+  options.format = 'text';
 
   /**
    * @private @const {!grpc.web.GrpcWebClientBase} The client
@@ -109,30 +109,11 @@ const methodDescriptor_ResultService_GetById = new grpc.web.MethodDescriptor(
 
 
 /**
- * @const
- * @type {!grpc.web.AbstractClientBase.MethodInfo<
- *   !proto.statistico.ResultRequest,
- *   !proto.statistico.Result>}
- */
-const methodInfo_ResultService_GetById = new grpc.web.AbstractClientBase.MethodInfo(
-  proto.statistico.Result,
-  /**
-   * @param {!proto.statistico.ResultRequest} request
-   * @return {!Uint8Array}
-   */
-  function(request) {
-    return request.serializeBinary();
-  },
-  proto.statistico.Result.deserializeBinary
-);
-
-
-/**
  * @param {!proto.statistico.ResultRequest} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.Error, ?proto.statistico.Result)}
+ * @param {function(?grpc.web.RpcError, ?proto.statistico.Result)}
  *     callback The callback function(error, response)
  * @return {!grpc.web.ClientReadableStream<!proto.statistico.Result>|undefined}
  *     The XHR Node Readable Stream
@@ -151,7 +132,7 @@ proto.statistico.ResultServiceClient.prototype.getById =
 /**
  * @param {!proto.statistico.ResultRequest} request The
  *     request proto
- * @param {?Object<string, string>} metadata User defined
+ * @param {?Object<string, string>=} metadata User defined
  *     call metadata
  * @return {!Promise<!proto.statistico.Result>}
  *     Promise that resolves to the response
@@ -189,27 +170,8 @@ const methodDescriptor_ResultService_GetHistoricalResultsForFixture = new grpc.w
 
 
 /**
- * @const
- * @type {!grpc.web.AbstractClientBase.MethodInfo<
- *   !proto.statistico.HistoricalResultRequest,
- *   !proto.statistico.Result>}
- */
-const methodInfo_ResultService_GetHistoricalResultsForFixture = new grpc.web.AbstractClientBase.MethodInfo(
-  proto.statistico.Result,
-  /**
-   * @param {!proto.statistico.HistoricalResultRequest} request
-   * @return {!Uint8Array}
-   */
-  function(request) {
-    return request.serializeBinary();
-  },
-  proto.statistico.Result.deserializeBinary
-);
-
-
-/**
  * @param {!proto.statistico.HistoricalResultRequest} request The request proto
- * @param {?Object<string, string>} metadata User defined
+ * @param {?Object<string, string>=} metadata User defined
  *     call metadata
  * @return {!grpc.web.ClientReadableStream<!proto.statistico.Result>}
  *     The XHR Node Readable Stream
@@ -226,7 +188,7 @@ proto.statistico.ResultServiceClient.prototype.getHistoricalResultsForFixture =
 
 /**
  * @param {!proto.statistico.HistoricalResultRequest} request The request proto
- * @param {?Object<string, string>} metadata User defined
+ * @param {?Object<string, string>=} metadata User defined
  *     call metadata
  * @return {!grpc.web.ClientReadableStream<!proto.statistico.Result>}
  *     The XHR Node Readable Stream
@@ -264,27 +226,8 @@ const methodDescriptor_ResultService_GetResultsForSeason = new grpc.web.MethodDe
 
 
 /**
- * @const
- * @type {!grpc.web.AbstractClientBase.MethodInfo<
- *   !proto.statistico.SeasonRequest,
- *   !proto.statistico.Result>}
- */
-const methodInfo_ResultService_GetResultsForSeason = new grpc.web.AbstractClientBase.MethodInfo(
-  proto.statistico.Result,
-  /**
-   * @param {!proto.statistico.SeasonRequest} request
-   * @return {!Uint8Array}
-   */
-  function(request) {
-    return request.serializeBinary();
-  },
-  proto.statistico.Result.deserializeBinary
-);
-
-
-/**
  * @param {!proto.statistico.SeasonRequest} request The request proto
- * @param {?Object<string, string>} metadata User defined
+ * @param {?Object<string, string>=} metadata User defined
  *     call metadata
  * @return {!grpc.web.ClientReadableStream<!proto.statistico.Result>}
  *     The XHR Node Readable Stream
@@ -301,7 +244,7 @@ proto.statistico.ResultServiceClient.prototype.getResultsForSeason =
 
 /**
  * @param {!proto.statistico.SeasonRequest} request The request proto
- * @param {?Object<string, string>} metadata User defined
+ * @param {?Object<string, string>=} metadata User defined
  *     call metadata
  * @return {!grpc.web.ClientReadableStream<!proto.statistico.Result>}
  *     The XHR Node Readable Stream
@@ -339,27 +282,8 @@ const methodDescriptor_ResultService_GetResultsForTeam = new grpc.web.MethodDesc
 
 
 /**
- * @const
- * @type {!grpc.web.AbstractClientBase.MethodInfo<
- *   !proto.statistico.TeamResultRequest,
- *   !proto.statistico.Result>}
- */
-const methodInfo_ResultService_GetResultsForTeam = new grpc.web.AbstractClientBase.MethodInfo(
-  proto.statistico.Result,
-  /**
-   * @param {!proto.statistico.TeamResultRequest} request
-   * @return {!Uint8Array}
-   */
-  function(request) {
-    return request.serializeBinary();
-  },
-  proto.statistico.Result.deserializeBinary
-);
-
-
-/**
  * @param {!proto.statistico.TeamResultRequest} request The request proto
- * @param {?Object<string, string>} metadata User defined
+ * @param {?Object<string, string>=} metadata User defined
  *     call metadata
  * @return {!grpc.web.ClientReadableStream<!proto.statistico.Result>}
  *     The XHR Node Readable Stream
@@ -376,7 +300,7 @@ proto.statistico.ResultServiceClient.prototype.getResultsForTeam =
 
 /**
  * @param {!proto.statistico.TeamResultRequest} request The request proto
- * @param {?Object<string, string>} metadata User defined
+ * @param {?Object<string, string>=} metadata User defined
  *     call metadata
  * @return {!grpc.web.ClientReadableStream<!proto.statistico.Result>}
  *     The XHR Node Readable Stream

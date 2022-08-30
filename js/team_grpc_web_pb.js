@@ -25,7 +25,7 @@ proto.statistico = require('./team_pb.js');
 /**
  * @param {string} hostname
  * @param {?Object} credentials
- * @param {?Object} options
+ * @param {?grpc.web.ClientOptions} options
  * @constructor
  * @struct
  * @final
@@ -33,7 +33,7 @@ proto.statistico = require('./team_pb.js');
 proto.statistico.TeamServiceClient =
     function(hostname, credentials, options) {
   if (!options) options = {};
-  options['format'] = 'text';
+  options.format = 'text';
 
   /**
    * @private @const {!grpc.web.GrpcWebClientBase} The client
@@ -51,7 +51,7 @@ proto.statistico.TeamServiceClient =
 /**
  * @param {string} hostname
  * @param {?Object} credentials
- * @param {?Object} options
+ * @param {?grpc.web.ClientOptions} options
  * @constructor
  * @struct
  * @final
@@ -59,7 +59,7 @@ proto.statistico.TeamServiceClient =
 proto.statistico.TeamServicePromiseClient =
     function(hostname, credentials, options) {
   if (!options) options = {};
-  options['format'] = 'text';
+  options.format = 'text';
 
   /**
    * @private @const {!grpc.web.GrpcWebClientBase} The client
@@ -97,30 +97,11 @@ const methodDescriptor_TeamService_GetTeamByID = new grpc.web.MethodDescriptor(
 
 
 /**
- * @const
- * @type {!grpc.web.AbstractClientBase.MethodInfo<
- *   !proto.statistico.TeamRequest,
- *   !proto.statistico.Team>}
- */
-const methodInfo_TeamService_GetTeamByID = new grpc.web.AbstractClientBase.MethodInfo(
-  proto.statistico.Team,
-  /**
-   * @param {!proto.statistico.TeamRequest} request
-   * @return {!Uint8Array}
-   */
-  function(request) {
-    return request.serializeBinary();
-  },
-  proto.statistico.Team.deserializeBinary
-);
-
-
-/**
  * @param {!proto.statistico.TeamRequest} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.Error, ?proto.statistico.Team)}
+ * @param {function(?grpc.web.RpcError, ?proto.statistico.Team)}
  *     callback The callback function(error, response)
  * @return {!grpc.web.ClientReadableStream<!proto.statistico.Team>|undefined}
  *     The XHR Node Readable Stream
@@ -139,7 +120,7 @@ proto.statistico.TeamServiceClient.prototype.getTeamByID =
 /**
  * @param {!proto.statistico.TeamRequest} request The
  *     request proto
- * @param {?Object<string, string>} metadata User defined
+ * @param {?Object<string, string>=} metadata User defined
  *     call metadata
  * @return {!Promise<!proto.statistico.Team>}
  *     Promise that resolves to the response
@@ -177,30 +158,11 @@ const methodDescriptor_TeamService_GetTeamsByCompetitionId = new grpc.web.Method
 
 
 /**
- * @const
- * @type {!grpc.web.AbstractClientBase.MethodInfo<
- *   !proto.statistico.CompetitionTeamsRequest,
- *   !proto.statistico.TeamsResponse>}
- */
-const methodInfo_TeamService_GetTeamsByCompetitionId = new grpc.web.AbstractClientBase.MethodInfo(
-  proto.statistico.TeamsResponse,
-  /**
-   * @param {!proto.statistico.CompetitionTeamsRequest} request
-   * @return {!Uint8Array}
-   */
-  function(request) {
-    return request.serializeBinary();
-  },
-  proto.statistico.TeamsResponse.deserializeBinary
-);
-
-
-/**
  * @param {!proto.statistico.CompetitionTeamsRequest} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.Error, ?proto.statistico.TeamsResponse)}
+ * @param {function(?grpc.web.RpcError, ?proto.statistico.TeamsResponse)}
  *     callback The callback function(error, response)
  * @return {!grpc.web.ClientReadableStream<!proto.statistico.TeamsResponse>|undefined}
  *     The XHR Node Readable Stream
@@ -219,7 +181,7 @@ proto.statistico.TeamServiceClient.prototype.getTeamsByCompetitionId =
 /**
  * @param {!proto.statistico.CompetitionTeamsRequest} request The
  *     request proto
- * @param {?Object<string, string>} metadata User defined
+ * @param {?Object<string, string>=} metadata User defined
  *     call metadata
  * @return {!Promise<!proto.statistico.TeamsResponse>}
  *     Promise that resolves to the response
@@ -257,27 +219,8 @@ const methodDescriptor_TeamService_GetTeamsBySeasonId = new grpc.web.MethodDescr
 
 
 /**
- * @const
- * @type {!grpc.web.AbstractClientBase.MethodInfo<
- *   !proto.statistico.SeasonTeamsRequest,
- *   !proto.statistico.Team>}
- */
-const methodInfo_TeamService_GetTeamsBySeasonId = new grpc.web.AbstractClientBase.MethodInfo(
-  proto.statistico.Team,
-  /**
-   * @param {!proto.statistico.SeasonTeamsRequest} request
-   * @return {!Uint8Array}
-   */
-  function(request) {
-    return request.serializeBinary();
-  },
-  proto.statistico.Team.deserializeBinary
-);
-
-
-/**
  * @param {!proto.statistico.SeasonTeamsRequest} request The request proto
- * @param {?Object<string, string>} metadata User defined
+ * @param {?Object<string, string>=} metadata User defined
  *     call metadata
  * @return {!grpc.web.ClientReadableStream<!proto.statistico.Team>}
  *     The XHR Node Readable Stream
@@ -294,7 +237,7 @@ proto.statistico.TeamServiceClient.prototype.getTeamsBySeasonId =
 
 /**
  * @param {!proto.statistico.SeasonTeamsRequest} request The request proto
- * @param {?Object<string, string>} metadata User defined
+ * @param {?Object<string, string>=} metadata User defined
  *     call metadata
  * @return {!grpc.web.ClientReadableStream<!proto.statistico.Team>}
  *     The XHR Node Readable Stream

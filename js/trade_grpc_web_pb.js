@@ -16,11 +16,15 @@ const grpc = {};
 grpc.web = require('grpc-web');
 
 
-var google_protobuf_wrappers_pb = require('google-protobuf/google/protobuf/wrappers_pb.js')
+var enum_pb = require('./enum_pb.js')
 
 var requests_pb = require('./requests_pb.js')
+
+var responses_pb = require('./responses_pb.js')
+
+var google_protobuf_timestamp_pb = require('google-protobuf/google/protobuf/timestamp_pb.js')
 const proto = {};
-proto.statistico = require('./team_stats_pb.js');
+proto.statistico = require('./trade_pb.js');
 
 /**
  * @param {string} hostname
@@ -30,7 +34,7 @@ proto.statistico = require('./team_stats_pb.js');
  * @struct
  * @final
  */
-proto.statistico.TeamStatsServiceClient =
+proto.statistico.TradeServiceClient =
     function(hostname, credentials, options) {
   if (!options) options = {};
   options.format = 'text';
@@ -56,7 +60,7 @@ proto.statistico.TeamStatsServiceClient =
  * @struct
  * @final
  */
-proto.statistico.TeamStatsServicePromiseClient =
+proto.statistico.TradeServicePromiseClient =
     function(hostname, credentials, options) {
   if (!options) options = {};
   options.format = 'text';
@@ -77,117 +81,117 @@ proto.statistico.TeamStatsServicePromiseClient =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.statistico.FixtureRequest,
- *   !proto.statistico.TeamStatsResponse>}
+ *   !proto.statistico.HealthCheckRequest,
+ *   !proto.statistico.HealthCheckResponse>}
  */
-const methodDescriptor_TeamStatsService_GetTeamStatsForFixture = new grpc.web.MethodDescriptor(
-  '/statistico.TeamStatsService/GetTeamStatsForFixture',
+const methodDescriptor_TradeService_HealthCheck = new grpc.web.MethodDescriptor(
+  '/statistico.TradeService/HealthCheck',
   grpc.web.MethodType.UNARY,
-  requests_pb.FixtureRequest,
-  proto.statistico.TeamStatsResponse,
+  requests_pb.HealthCheckRequest,
+  responses_pb.HealthCheckResponse,
   /**
-   * @param {!proto.statistico.FixtureRequest} request
+   * @param {!proto.statistico.HealthCheckRequest} request
    * @return {!Uint8Array}
    */
   function(request) {
     return request.serializeBinary();
   },
-  proto.statistico.TeamStatsResponse.deserializeBinary
+  responses_pb.HealthCheckResponse.deserializeBinary
 );
 
 
 /**
- * @param {!proto.statistico.FixtureRequest} request The
+ * @param {!proto.statistico.HealthCheckRequest} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.RpcError, ?proto.statistico.TeamStatsResponse)}
+ * @param {function(?grpc.web.RpcError, ?proto.statistico.HealthCheckResponse)}
  *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.statistico.TeamStatsResponse>|undefined}
+ * @return {!grpc.web.ClientReadableStream<!proto.statistico.HealthCheckResponse>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.statistico.TeamStatsServiceClient.prototype.getTeamStatsForFixture =
+proto.statistico.TradeServiceClient.prototype.healthCheck =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/statistico.TeamStatsService/GetTeamStatsForFixture',
+      '/statistico.TradeService/HealthCheck',
       request,
       metadata || {},
-      methodDescriptor_TeamStatsService_GetTeamStatsForFixture,
+      methodDescriptor_TradeService_HealthCheck,
       callback);
 };
 
 
 /**
- * @param {!proto.statistico.FixtureRequest} request The
+ * @param {!proto.statistico.HealthCheckRequest} request The
  *     request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
- * @return {!Promise<!proto.statistico.TeamStatsResponse>}
+ * @return {!Promise<!proto.statistico.HealthCheckResponse>}
  *     Promise that resolves to the response
  */
-proto.statistico.TeamStatsServicePromiseClient.prototype.getTeamStatsForFixture =
+proto.statistico.TradeServicePromiseClient.prototype.healthCheck =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/statistico.TeamStatsService/GetTeamStatsForFixture',
+      '/statistico.TradeService/HealthCheck',
       request,
       metadata || {},
-      methodDescriptor_TeamStatsService_GetTeamStatsForFixture);
+      methodDescriptor_TradeService_HealthCheck);
 };
 
 
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.statistico.TeamStatRequest,
- *   !proto.statistico.TeamStat>}
+ *   !proto.statistico.SearchTradesRequest,
+ *   !proto.statistico.Trade>}
  */
-const methodDescriptor_TeamStatsService_GetStatForTeam = new grpc.web.MethodDescriptor(
-  '/statistico.TeamStatsService/GetStatForTeam',
+const methodDescriptor_TradeService_SearchTrades = new grpc.web.MethodDescriptor(
+  '/statistico.TradeService/SearchTrades',
   grpc.web.MethodType.SERVER_STREAMING,
-  requests_pb.TeamStatRequest,
-  proto.statistico.TeamStat,
+  requests_pb.SearchTradesRequest,
+  proto.statistico.Trade,
   /**
-   * @param {!proto.statistico.TeamStatRequest} request
+   * @param {!proto.statistico.SearchTradesRequest} request
    * @return {!Uint8Array}
    */
   function(request) {
     return request.serializeBinary();
   },
-  proto.statistico.TeamStat.deserializeBinary
+  proto.statistico.Trade.deserializeBinary
 );
 
 
 /**
- * @param {!proto.statistico.TeamStatRequest} request The request proto
+ * @param {!proto.statistico.SearchTradesRequest} request The request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
- * @return {!grpc.web.ClientReadableStream<!proto.statistico.TeamStat>}
+ * @return {!grpc.web.ClientReadableStream<!proto.statistico.Trade>}
  *     The XHR Node Readable Stream
  */
-proto.statistico.TeamStatsServiceClient.prototype.getStatForTeam =
+proto.statistico.TradeServiceClient.prototype.searchTrades =
     function(request, metadata) {
   return this.client_.serverStreaming(this.hostname_ +
-      '/statistico.TeamStatsService/GetStatForTeam',
+      '/statistico.TradeService/SearchTrades',
       request,
       metadata || {},
-      methodDescriptor_TeamStatsService_GetStatForTeam);
+      methodDescriptor_TradeService_SearchTrades);
 };
 
 
 /**
- * @param {!proto.statistico.TeamStatRequest} request The request proto
+ * @param {!proto.statistico.SearchTradesRequest} request The request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
- * @return {!grpc.web.ClientReadableStream<!proto.statistico.TeamStat>}
+ * @return {!grpc.web.ClientReadableStream<!proto.statistico.Trade>}
  *     The XHR Node Readable Stream
  */
-proto.statistico.TeamStatsServicePromiseClient.prototype.getStatForTeam =
+proto.statistico.TradeServicePromiseClient.prototype.searchTrades =
     function(request, metadata) {
   return this.client_.serverStreaming(this.hostname_ +
-      '/statistico.TeamStatsService/GetStatForTeam',
+      '/statistico.TradeService/SearchTrades',
       request,
       metadata || {},
-      methodDescriptor_TeamStatsService_GetStatForTeam);
+      methodDescriptor_TradeService_SearchTrades);
 };
 
 

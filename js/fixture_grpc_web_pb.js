@@ -35,7 +35,7 @@ proto.statistico = require('./fixture_pb.js');
 /**
  * @param {string} hostname
  * @param {?Object} credentials
- * @param {?Object} options
+ * @param {?grpc.web.ClientOptions} options
  * @constructor
  * @struct
  * @final
@@ -43,7 +43,7 @@ proto.statistico = require('./fixture_pb.js');
 proto.statistico.FixtureServiceClient =
     function(hostname, credentials, options) {
   if (!options) options = {};
-  options['format'] = 'text';
+  options.format = 'text';
 
   /**
    * @private @const {!grpc.web.GrpcWebClientBase} The client
@@ -61,7 +61,7 @@ proto.statistico.FixtureServiceClient =
 /**
  * @param {string} hostname
  * @param {?Object} credentials
- * @param {?Object} options
+ * @param {?grpc.web.ClientOptions} options
  * @constructor
  * @struct
  * @final
@@ -69,7 +69,7 @@ proto.statistico.FixtureServiceClient =
 proto.statistico.FixtureServicePromiseClient =
     function(hostname, credentials, options) {
   if (!options) options = {};
-  options['format'] = 'text';
+  options.format = 'text';
 
   /**
    * @private @const {!grpc.web.GrpcWebClientBase} The client
@@ -107,27 +107,8 @@ const methodDescriptor_FixtureService_ListSeasonFixtures = new grpc.web.MethodDe
 
 
 /**
- * @const
- * @type {!grpc.web.AbstractClientBase.MethodInfo<
- *   !proto.statistico.SeasonFixtureRequest,
- *   !proto.statistico.Fixture>}
- */
-const methodInfo_FixtureService_ListSeasonFixtures = new grpc.web.AbstractClientBase.MethodInfo(
-  proto.statistico.Fixture,
-  /**
-   * @param {!proto.statistico.SeasonFixtureRequest} request
-   * @return {!Uint8Array}
-   */
-  function(request) {
-    return request.serializeBinary();
-  },
-  proto.statistico.Fixture.deserializeBinary
-);
-
-
-/**
  * @param {!proto.statistico.SeasonFixtureRequest} request The request proto
- * @param {?Object<string, string>} metadata User defined
+ * @param {?Object<string, string>=} metadata User defined
  *     call metadata
  * @return {!grpc.web.ClientReadableStream<!proto.statistico.Fixture>}
  *     The XHR Node Readable Stream
@@ -144,7 +125,7 @@ proto.statistico.FixtureServiceClient.prototype.listSeasonFixtures =
 
 /**
  * @param {!proto.statistico.SeasonFixtureRequest} request The request proto
- * @param {?Object<string, string>} metadata User defined
+ * @param {?Object<string, string>=} metadata User defined
  *     call metadata
  * @return {!grpc.web.ClientReadableStream<!proto.statistico.Fixture>}
  *     The XHR Node Readable Stream
@@ -182,30 +163,11 @@ const methodDescriptor_FixtureService_FixtureByID = new grpc.web.MethodDescripto
 
 
 /**
- * @const
- * @type {!grpc.web.AbstractClientBase.MethodInfo<
- *   !proto.statistico.FixtureRequest,
- *   !proto.statistico.Fixture>}
- */
-const methodInfo_FixtureService_FixtureByID = new grpc.web.AbstractClientBase.MethodInfo(
-  proto.statistico.Fixture,
-  /**
-   * @param {!proto.statistico.FixtureRequest} request
-   * @return {!Uint8Array}
-   */
-  function(request) {
-    return request.serializeBinary();
-  },
-  proto.statistico.Fixture.deserializeBinary
-);
-
-
-/**
  * @param {!proto.statistico.FixtureRequest} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.Error, ?proto.statistico.Fixture)}
+ * @param {function(?grpc.web.RpcError, ?proto.statistico.Fixture)}
  *     callback The callback function(error, response)
  * @return {!grpc.web.ClientReadableStream<!proto.statistico.Fixture>|undefined}
  *     The XHR Node Readable Stream
@@ -224,7 +186,7 @@ proto.statistico.FixtureServiceClient.prototype.fixtureByID =
 /**
  * @param {!proto.statistico.FixtureRequest} request The
  *     request proto
- * @param {?Object<string, string>} metadata User defined
+ * @param {?Object<string, string>=} metadata User defined
  *     call metadata
  * @return {!Promise<!proto.statistico.Fixture>}
  *     Promise that resolves to the response
@@ -262,27 +224,8 @@ const methodDescriptor_FixtureService_Search = new grpc.web.MethodDescriptor(
 
 
 /**
- * @const
- * @type {!grpc.web.AbstractClientBase.MethodInfo<
- *   !proto.statistico.FixtureSearchRequest,
- *   !proto.statistico.Fixture>}
- */
-const methodInfo_FixtureService_Search = new grpc.web.AbstractClientBase.MethodInfo(
-  proto.statistico.Fixture,
-  /**
-   * @param {!proto.statistico.FixtureSearchRequest} request
-   * @return {!Uint8Array}
-   */
-  function(request) {
-    return request.serializeBinary();
-  },
-  proto.statistico.Fixture.deserializeBinary
-);
-
-
-/**
  * @param {!proto.statistico.FixtureSearchRequest} request The request proto
- * @param {?Object<string, string>} metadata User defined
+ * @param {?Object<string, string>=} metadata User defined
  *     call metadata
  * @return {!grpc.web.ClientReadableStream<!proto.statistico.Fixture>}
  *     The XHR Node Readable Stream
@@ -299,7 +242,7 @@ proto.statistico.FixtureServiceClient.prototype.search =
 
 /**
  * @param {!proto.statistico.FixtureSearchRequest} request The request proto
- * @param {?Object<string, string>} metadata User defined
+ * @param {?Object<string, string>=} metadata User defined
  *     call metadata
  * @return {!grpc.web.ClientReadableStream<!proto.statistico.Fixture>}
  *     The XHR Node Readable Stream

@@ -2,7 +2,7 @@
 """Client and server classes corresponding to protobuf-defined services."""
 import grpc
 
-import compiler_pb2 as compiler__pb2
+import odds_compiler_pb2 as odds__compiler__pb2
 
 
 class OddsCompilerServiceStub(object):
@@ -16,8 +16,8 @@ class OddsCompilerServiceStub(object):
         """
         self.GetEventMarket = channel.unary_unary(
                 '/statistico.OddsCompilerService/GetEventMarket',
-                request_serializer=compiler__pb2.EventRequest.SerializeToString,
-                response_deserializer=compiler__pb2.EventMarket.FromString,
+                request_serializer=odds__compiler__pb2.EventRequest.SerializeToString,
+                response_deserializer=odds__compiler__pb2.EventMarket.FromString,
                 )
 
 
@@ -36,8 +36,8 @@ def add_OddsCompilerServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
             'GetEventMarket': grpc.unary_unary_rpc_method_handler(
                     servicer.GetEventMarket,
-                    request_deserializer=compiler__pb2.EventRequest.FromString,
-                    response_serializer=compiler__pb2.EventMarket.SerializeToString,
+                    request_deserializer=odds__compiler__pb2.EventRequest.FromString,
+                    response_serializer=odds__compiler__pb2.EventMarket.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -61,7 +61,7 @@ class OddsCompilerService(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/statistico.OddsCompilerService/GetEventMarket',
-            compiler__pb2.EventRequest.SerializeToString,
-            compiler__pb2.EventMarket.FromString,
+            odds__compiler__pb2.EventRequest.SerializeToString,
+            odds__compiler__pb2.EventMarket.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

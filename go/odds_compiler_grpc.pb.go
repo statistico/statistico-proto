@@ -99,5 +99,5 @@ var OddsCompilerService_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "compiler.proto",
+	Metadata: "odds_compiler.proto",
 }

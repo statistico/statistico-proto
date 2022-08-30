@@ -25,7 +25,7 @@ proto.statistico = require('./player_stats_pb.js');
 /**
  * @param {string} hostname
  * @param {?Object} credentials
- * @param {?Object} options
+ * @param {?grpc.web.ClientOptions} options
  * @constructor
  * @struct
  * @final
@@ -33,7 +33,7 @@ proto.statistico = require('./player_stats_pb.js');
 proto.statistico.PlayerStatsServiceClient =
     function(hostname, credentials, options) {
   if (!options) options = {};
-  options['format'] = 'text';
+  options.format = 'text';
 
   /**
    * @private @const {!grpc.web.GrpcWebClientBase} The client
@@ -51,7 +51,7 @@ proto.statistico.PlayerStatsServiceClient =
 /**
  * @param {string} hostname
  * @param {?Object} credentials
- * @param {?Object} options
+ * @param {?grpc.web.ClientOptions} options
  * @constructor
  * @struct
  * @final
@@ -59,7 +59,7 @@ proto.statistico.PlayerStatsServiceClient =
 proto.statistico.PlayerStatsServicePromiseClient =
     function(hostname, credentials, options) {
   if (!options) options = {};
-  options['format'] = 'text';
+  options.format = 'text';
 
   /**
    * @private @const {!grpc.web.GrpcWebClientBase} The client
@@ -97,30 +97,11 @@ const methodDescriptor_PlayerStatsService_GetPlayerStatsForFixture = new grpc.we
 
 
 /**
- * @const
- * @type {!grpc.web.AbstractClientBase.MethodInfo<
- *   !proto.statistico.FixtureRequest,
- *   !proto.statistico.PlayerStatsResponse>}
- */
-const methodInfo_PlayerStatsService_GetPlayerStatsForFixture = new grpc.web.AbstractClientBase.MethodInfo(
-  proto.statistico.PlayerStatsResponse,
-  /**
-   * @param {!proto.statistico.FixtureRequest} request
-   * @return {!Uint8Array}
-   */
-  function(request) {
-    return request.serializeBinary();
-  },
-  proto.statistico.PlayerStatsResponse.deserializeBinary
-);
-
-
-/**
  * @param {!proto.statistico.FixtureRequest} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.Error, ?proto.statistico.PlayerStatsResponse)}
+ * @param {function(?grpc.web.RpcError, ?proto.statistico.PlayerStatsResponse)}
  *     callback The callback function(error, response)
  * @return {!grpc.web.ClientReadableStream<!proto.statistico.PlayerStatsResponse>|undefined}
  *     The XHR Node Readable Stream
@@ -139,7 +120,7 @@ proto.statistico.PlayerStatsServiceClient.prototype.getPlayerStatsForFixture =
 /**
  * @param {!proto.statistico.FixtureRequest} request The
  *     request proto
- * @param {?Object<string, string>} metadata User defined
+ * @param {?Object<string, string>=} metadata User defined
  *     call metadata
  * @return {!Promise<!proto.statistico.PlayerStatsResponse>}
  *     Promise that resolves to the response
@@ -177,30 +158,11 @@ const methodDescriptor_PlayerStatsService_GetLineUpForFixture = new grpc.web.Met
 
 
 /**
- * @const
- * @type {!grpc.web.AbstractClientBase.MethodInfo<
- *   !proto.statistico.FixtureRequest,
- *   !proto.statistico.LineupResponse>}
- */
-const methodInfo_PlayerStatsService_GetLineUpForFixture = new grpc.web.AbstractClientBase.MethodInfo(
-  proto.statistico.LineupResponse,
-  /**
-   * @param {!proto.statistico.FixtureRequest} request
-   * @return {!Uint8Array}
-   */
-  function(request) {
-    return request.serializeBinary();
-  },
-  proto.statistico.LineupResponse.deserializeBinary
-);
-
-
-/**
  * @param {!proto.statistico.FixtureRequest} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.Error, ?proto.statistico.LineupResponse)}
+ * @param {function(?grpc.web.RpcError, ?proto.statistico.LineupResponse)}
  *     callback The callback function(error, response)
  * @return {!grpc.web.ClientReadableStream<!proto.statistico.LineupResponse>|undefined}
  *     The XHR Node Readable Stream
@@ -219,7 +181,7 @@ proto.statistico.PlayerStatsServiceClient.prototype.getLineUpForFixture =
 /**
  * @param {!proto.statistico.FixtureRequest} request The
  *     request proto
- * @param {?Object<string, string>} metadata User defined
+ * @param {?Object<string, string>=} metadata User defined
  *     call metadata
  * @return {!Promise<!proto.statistico.LineupResponse>}
  *     Promise that resolves to the response

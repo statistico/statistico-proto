@@ -23,7 +23,7 @@ proto.statistico = require('./performance_pb.js');
 /**
  * @param {string} hostname
  * @param {?Object} credentials
- * @param {?Object} options
+ * @param {?grpc.web.ClientOptions} options
  * @constructor
  * @struct
  * @final
@@ -31,7 +31,7 @@ proto.statistico = require('./performance_pb.js');
 proto.statistico.PerformanceServiceClient =
     function(hostname, credentials, options) {
   if (!options) options = {};
-  options['format'] = 'text';
+  options.format = 'text';
 
   /**
    * @private @const {!grpc.web.GrpcWebClientBase} The client
@@ -49,7 +49,7 @@ proto.statistico.PerformanceServiceClient =
 /**
  * @param {string} hostname
  * @param {?Object} credentials
- * @param {?Object} options
+ * @param {?grpc.web.ClientOptions} options
  * @constructor
  * @struct
  * @final
@@ -57,7 +57,7 @@ proto.statistico.PerformanceServiceClient =
 proto.statistico.PerformanceServicePromiseClient =
     function(hostname, credentials, options) {
   if (!options) options = {};
-  options['format'] = 'text';
+  options.format = 'text';
 
   /**
    * @private @const {!grpc.web.GrpcWebClientBase} The client
@@ -95,30 +95,11 @@ const methodDescriptor_PerformanceService_GetTeamsMatchingStat = new grpc.web.Me
 
 
 /**
- * @const
- * @type {!grpc.web.AbstractClientBase.MethodInfo<
- *   !proto.statistico.TeamStatPerformanceRequest,
- *   !proto.statistico.TeamStatResponse>}
- */
-const methodInfo_PerformanceService_GetTeamsMatchingStat = new grpc.web.AbstractClientBase.MethodInfo(
-  proto.statistico.TeamStatResponse,
-  /**
-   * @param {!proto.statistico.TeamStatPerformanceRequest} request
-   * @return {!Uint8Array}
-   */
-  function(request) {
-    return request.serializeBinary();
-  },
-  proto.statistico.TeamStatResponse.deserializeBinary
-);
-
-
-/**
  * @param {!proto.statistico.TeamStatPerformanceRequest} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.Error, ?proto.statistico.TeamStatResponse)}
+ * @param {function(?grpc.web.RpcError, ?proto.statistico.TeamStatResponse)}
  *     callback The callback function(error, response)
  * @return {!grpc.web.ClientReadableStream<!proto.statistico.TeamStatResponse>|undefined}
  *     The XHR Node Readable Stream
@@ -137,7 +118,7 @@ proto.statistico.PerformanceServiceClient.prototype.getTeamsMatchingStat =
 /**
  * @param {!proto.statistico.TeamStatPerformanceRequest} request The
  *     request proto
- * @param {?Object<string, string>} metadata User defined
+ * @param {?Object<string, string>=} metadata User defined
  *     call metadata
  * @return {!Promise<!proto.statistico.TeamStatResponse>}
  *     Promise that resolves to the response

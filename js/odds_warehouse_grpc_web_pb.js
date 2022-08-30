@@ -27,7 +27,7 @@ proto.statistico = require('./odds_warehouse_pb.js');
 /**
  * @param {string} hostname
  * @param {?Object} credentials
- * @param {?Object} options
+ * @param {?grpc.web.ClientOptions} options
  * @constructor
  * @struct
  * @final
@@ -35,7 +35,7 @@ proto.statistico = require('./odds_warehouse_pb.js');
 proto.statistico.OddsWarehouseServiceClient =
     function(hostname, credentials, options) {
   if (!options) options = {};
-  options['format'] = 'text';
+  options.format = 'text';
 
   /**
    * @private @const {!grpc.web.GrpcWebClientBase} The client
@@ -53,7 +53,7 @@ proto.statistico.OddsWarehouseServiceClient =
 /**
  * @param {string} hostname
  * @param {?Object} credentials
- * @param {?Object} options
+ * @param {?grpc.web.ClientOptions} options
  * @constructor
  * @struct
  * @final
@@ -61,7 +61,7 @@ proto.statistico.OddsWarehouseServiceClient =
 proto.statistico.OddsWarehouseServicePromiseClient =
     function(hostname, credentials, options) {
   if (!options) options = {};
-  options['format'] = 'text';
+  options.format = 'text';
 
   /**
    * @private @const {!grpc.web.GrpcWebClientBase} The client
@@ -99,27 +99,8 @@ const methodDescriptor_OddsWarehouseService_MarketRunnerSearch = new grpc.web.Me
 
 
 /**
- * @const
- * @type {!grpc.web.AbstractClientBase.MethodInfo<
- *   !proto.statistico.MarketRunnerRequest,
- *   !proto.statistico.MarketRunner>}
- */
-const methodInfo_OddsWarehouseService_MarketRunnerSearch = new grpc.web.AbstractClientBase.MethodInfo(
-  proto.statistico.MarketRunner,
-  /**
-   * @param {!proto.statistico.MarketRunnerRequest} request
-   * @return {!Uint8Array}
-   */
-  function(request) {
-    return request.serializeBinary();
-  },
-  proto.statistico.MarketRunner.deserializeBinary
-);
-
-
-/**
  * @param {!proto.statistico.MarketRunnerRequest} request The request proto
- * @param {?Object<string, string>} metadata User defined
+ * @param {?Object<string, string>=} metadata User defined
  *     call metadata
  * @return {!grpc.web.ClientReadableStream<!proto.statistico.MarketRunner>}
  *     The XHR Node Readable Stream
@@ -136,7 +117,7 @@ proto.statistico.OddsWarehouseServiceClient.prototype.marketRunnerSearch =
 
 /**
  * @param {!proto.statistico.MarketRunnerRequest} request The request proto
- * @param {?Object<string, string>} metadata User defined
+ * @param {?Object<string, string>=} metadata User defined
  *     call metadata
  * @return {!grpc.web.ClientReadableStream<!proto.statistico.MarketRunner>}
  *     The XHR Node Readable Stream

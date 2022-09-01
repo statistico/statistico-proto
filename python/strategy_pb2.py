@@ -15,16 +15,16 @@ _sym_db = _symbol_database.Default()
 import enum_pb2 as enum__pb2
 import requests_pb2 as requests__pb2
 import responses_pb2 as responses__pb2
+import utility_pb2 as utility__pb2
 from google.protobuf import timestamp_pb2 as google_dot_protobuf_dot_timestamp__pb2
 from google.protobuf import wrappers_pb2 as google_dot_protobuf_dot_wrappers__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0estrategy.proto\x12\nstatistico\x1a\nenum.proto\x1a\x0erequests.proto\x1a\x0fresponses.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1egoogle/protobuf/wrappers.proto\"\x9f\x03\n\x08Strategy\x12\n\n\x02id\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x0f\n\x07user_id\x18\x03 \x01(\t\x12\x0e\n\x06market\x18\x04 \x01(\t\x12-\n\x08min_odds\x18\x05 \x01(\x0b\x32\x1b.google.protobuf.FloatValue\x12-\n\x08max_odds\x18\x06 \x01(\x0b\x32\x1b.google.protobuf.FloatValue\x12\x17\n\x0f\x63ompetition_ids\x18\x07 \x03(\x04\x12\"\n\x04side\x18\x08 \x01(\x0e\x32\x14.statistico.SideEnum\x12-\n\x0cstaking_plan\x18\t \x01(\x0b\x32\x17.statistico.StakingPlan\x12.\n\x06status\x18\n \x01(\x0e\x32\x1e.statistico.StrategyStatusEnum\x12.\n\ncreated_at\x18\x0b \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12.\n\nupdated_at\x18\x0c \x01(\x0b\x32\x1a.google.protobuf.Timestamp\"G\n\x0bStakingPlan\x12)\n\x04name\x18\x01 \x01(\x0e\x32\x1b.statistico.StakingPlanEnum\x12\r\n\x05value\x18\x02 \x01(\x02\x32\x87\x02\n\x0fStrategyService\x12K\n\x0e\x43reateStrategy\x12!.statistico.CreateStrategyRequest\x1a\x14.statistico.Strategy\"\x00\x12P\n\x0bHealthCheck\x12\x1e.statistico.HealthCheckRequest\x1a\x1f.statistico.HealthCheckResponse\"\x00\x12U\n\x12ListUserStrategies\x12%.statistico.ListUserStrategiesRequest\x1a\x14.statistico.Strategy\"\x00\x30\x01\x42\x33Z1github.com/statistico/statistico-proto;statisticob\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0estrategy.proto\x12\nstatistico\x1a\nenum.proto\x1a\x0erequests.proto\x1a\x0fresponses.proto\x1a\rutility.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1egoogle/protobuf/wrappers.proto\"\x9f\x03\n\x08Strategy\x12\n\n\x02id\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x0f\n\x07user_id\x18\x03 \x01(\t\x12\x0e\n\x06market\x18\x04 \x01(\t\x12-\n\x08min_odds\x18\x05 \x01(\x0b\x32\x1b.google.protobuf.FloatValue\x12-\n\x08max_odds\x18\x06 \x01(\x0b\x32\x1b.google.protobuf.FloatValue\x12\x17\n\x0f\x63ompetition_ids\x18\x07 \x03(\x04\x12\"\n\x04side\x18\x08 \x01(\x0e\x32\x14.statistico.SideEnum\x12-\n\x0cstaking_plan\x18\t \x01(\x0b\x32\x17.statistico.StakingPlan\x12.\n\x06status\x18\n \x01(\x0e\x32\x1e.statistico.StrategyStatusEnum\x12.\n\ncreated_at\x18\x0b \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12.\n\nupdated_at\x18\x0c \x01(\x0b\x32\x1a.google.protobuf.Timestamp2\x87\x02\n\x0fStrategyService\x12K\n\x0e\x43reateStrategy\x12!.statistico.CreateStrategyRequest\x1a\x14.statistico.Strategy\"\x00\x12P\n\x0bHealthCheck\x12\x1e.statistico.HealthCheckRequest\x1a\x1f.statistico.HealthCheckResponse\"\x00\x12U\n\x12ListUserStrategies\x12%.statistico.ListUserStrategiesRequest\x1a\x14.statistico.Strategy\"\x00\x30\x01\x42\x33Z1github.com/statistico/statistico-proto;statisticob\x06proto3')
 
 
 
 _STRATEGY = DESCRIPTOR.message_types_by_name['Strategy']
-_STAKINGPLAN = DESCRIPTOR.message_types_by_name['StakingPlan']
 Strategy = _reflection.GeneratedProtocolMessageType('Strategy', (_message.Message,), {
   'DESCRIPTOR' : _STRATEGY,
   '__module__' : 'strategy_pb2'
@@ -32,22 +32,13 @@ Strategy = _reflection.GeneratedProtocolMessageType('Strategy', (_message.Messag
   })
 _sym_db.RegisterMessage(Strategy)
 
-StakingPlan = _reflection.GeneratedProtocolMessageType('StakingPlan', (_message.Message,), {
-  'DESCRIPTOR' : _STAKINGPLAN,
-  '__module__' : 'strategy_pb2'
-  # @@protoc_insertion_point(class_scope:statistico.StakingPlan)
-  })
-_sym_db.RegisterMessage(StakingPlan)
-
 _STRATEGYSERVICE = DESCRIPTOR.services_by_name['StrategyService']
 if _descriptor._USE_C_DESCRIPTORS == False:
 
   DESCRIPTOR._options = None
   DESCRIPTOR._serialized_options = b'Z1github.com/statistico/statistico-proto;statistico'
-  _STRATEGY._serialized_start=141
-  _STRATEGY._serialized_end=556
-  _STAKINGPLAN._serialized_start=558
-  _STAKINGPLAN._serialized_end=629
-  _STRATEGYSERVICE._serialized_start=632
-  _STRATEGYSERVICE._serialized_end=895
+  _STRATEGY._serialized_start=156
+  _STRATEGY._serialized_end=571
+  _STRATEGYSERVICE._serialized_start=574
+  _STRATEGYSERVICE._serialized_end=837
 # @@protoc_insertion_point(module_scope)

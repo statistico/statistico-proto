@@ -5,6 +5,7 @@ package statistico;
 option go_package = "github.com/statistico/statistico-proto;statistico";
 
 import "enum.proto";
+import "utility.proto";
 import "google/protobuf/timestamp.proto";
 import "google/protobuf/wrappers.proto";
 
@@ -19,14 +20,12 @@ message CompetitionRequest {
 
 message CreateStrategyRequest {
     string name = 1;
-    string user_id = 2;
-    string market = 3;
-    google.protobuf.FloatValue min_odds = 4;
-    google.protobuf.FloatValue max_odds = 5;
-    SideEnum side = 6;
-    StakingPlanEnum staking_plan_name = 7;
-    float staking_plan_value = 8;
-    repeated uint64 competition_ids = 9;
+    string market = 2;
+    google.protobuf.FloatValue min_odds = 3;
+    google.protobuf.FloatValue max_odds = 4;
+    SideEnum side = 5;
+    StakingPlan staking_plan = 6;
+    repeated uint64 competition_ids = 8;
 }
 
 message FixtureRequest {

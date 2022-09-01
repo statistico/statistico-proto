@@ -1,6 +1,7 @@
 import * as jspb from 'google-protobuf'
 
 import * as enum_pb from './enum_pb';
+import * as utility_pb from './utility_pb';
 import * as google_protobuf_timestamp_pb from 'google-protobuf/google/protobuf/timestamp_pb';
 import * as google_protobuf_wrappers_pb from 'google-protobuf/google/protobuf/wrappers_pb';
 
@@ -41,9 +42,6 @@ export class CreateStrategyRequest extends jspb.Message {
   getName(): string;
   setName(value: string): CreateStrategyRequest;
 
-  getUserId(): string;
-  setUserId(value: string): CreateStrategyRequest;
-
   getMarket(): string;
   setMarket(value: string): CreateStrategyRequest;
 
@@ -60,11 +58,10 @@ export class CreateStrategyRequest extends jspb.Message {
   getSide(): enum_pb.SideEnum;
   setSide(value: enum_pb.SideEnum): CreateStrategyRequest;
 
-  getStakingPlanName(): enum_pb.StakingPlanEnum;
-  setStakingPlanName(value: enum_pb.StakingPlanEnum): CreateStrategyRequest;
-
-  getStakingPlanValue(): number;
-  setStakingPlanValue(value: number): CreateStrategyRequest;
+  getStakingPlan(): utility_pb.StakingPlan | undefined;
+  setStakingPlan(value?: utility_pb.StakingPlan): CreateStrategyRequest;
+  hasStakingPlan(): boolean;
+  clearStakingPlan(): CreateStrategyRequest;
 
   getCompetitionIdsList(): Array<number>;
   setCompetitionIdsList(value: Array<number>): CreateStrategyRequest;
@@ -82,13 +79,11 @@ export class CreateStrategyRequest extends jspb.Message {
 export namespace CreateStrategyRequest {
   export type AsObject = {
     name: string,
-    userId: string,
     market: string,
     minOdds?: google_protobuf_wrappers_pb.FloatValue.AsObject,
     maxOdds?: google_protobuf_wrappers_pb.FloatValue.AsObject,
     side: enum_pb.SideEnum,
-    stakingPlanName: enum_pb.StakingPlanEnum,
-    stakingPlanValue: number,
+    stakingPlan?: utility_pb.StakingPlan.AsObject,
     competitionIdsList: Array<number>,
   }
 }

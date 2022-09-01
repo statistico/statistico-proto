@@ -16,6 +16,8 @@ var global = Function('return this')();
 
 var enum_pb = require('./enum_pb.js');
 goog.object.extend(proto, enum_pb);
+var utility_pb = require('./utility_pb.js');
+goog.object.extend(proto, utility_pb);
 var google_protobuf_timestamp_pb = require('google-protobuf/google/protobuf/timestamp_pb.js');
 goog.object.extend(proto, google_protobuf_timestamp_pb);
 var google_protobuf_wrappers_pb = require('google-protobuf/google/protobuf/wrappers_pb.js');
@@ -638,7 +640,7 @@ proto.statistico.CompetitionRequest.prototype.hasIsCup = function() {
  * @private {!Array<number>}
  * @const
  */
-proto.statistico.CreateStrategyRequest.repeatedFields_ = [9];
+proto.statistico.CreateStrategyRequest.repeatedFields_ = [8];
 
 
 
@@ -672,14 +674,12 @@ proto.statistico.CreateStrategyRequest.prototype.toObject = function(opt_include
 proto.statistico.CreateStrategyRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    userId: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    market: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    market: jspb.Message.getFieldWithDefault(msg, 2, ""),
     minOdds: (f = msg.getMinOdds()) && google_protobuf_wrappers_pb.FloatValue.toObject(includeInstance, f),
     maxOdds: (f = msg.getMaxOdds()) && google_protobuf_wrappers_pb.FloatValue.toObject(includeInstance, f),
-    side: jspb.Message.getFieldWithDefault(msg, 6, 0),
-    stakingPlanName: jspb.Message.getFieldWithDefault(msg, 7, 0),
-    stakingPlanValue: jspb.Message.getFloatingPointFieldWithDefault(msg, 8, 0.0),
-    competitionIdsList: (f = jspb.Message.getRepeatedField(msg, 9)) == null ? undefined : f
+    side: jspb.Message.getFieldWithDefault(msg, 5, 0),
+    stakingPlan: (f = msg.getStakingPlan()) && utility_pb.StakingPlan.toObject(includeInstance, f),
+    competitionIdsList: (f = jspb.Message.getRepeatedField(msg, 8)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -722,35 +722,28 @@ proto.statistico.CreateStrategyRequest.deserializeBinaryFromReader = function(ms
       break;
     case 2:
       var value = /** @type {string} */ (reader.readString());
-      msg.setUserId(value);
-      break;
-    case 3:
-      var value = /** @type {string} */ (reader.readString());
       msg.setMarket(value);
       break;
-    case 4:
+    case 3:
       var value = new google_protobuf_wrappers_pb.FloatValue;
       reader.readMessage(value,google_protobuf_wrappers_pb.FloatValue.deserializeBinaryFromReader);
       msg.setMinOdds(value);
       break;
-    case 5:
+    case 4:
       var value = new google_protobuf_wrappers_pb.FloatValue;
       reader.readMessage(value,google_protobuf_wrappers_pb.FloatValue.deserializeBinaryFromReader);
       msg.setMaxOdds(value);
       break;
-    case 6:
+    case 5:
       var value = /** @type {!proto.statistico.SideEnum} */ (reader.readEnum());
       msg.setSide(value);
       break;
-    case 7:
-      var value = /** @type {!proto.statistico.StakingPlanEnum} */ (reader.readEnum());
-      msg.setStakingPlanName(value);
+    case 6:
+      var value = new utility_pb.StakingPlan;
+      reader.readMessage(value,utility_pb.StakingPlan.deserializeBinaryFromReader);
+      msg.setStakingPlan(value);
       break;
     case 8:
-      var value = /** @type {number} */ (reader.readFloat());
-      msg.setStakingPlanValue(value);
-      break;
-    case 9:
       var values = /** @type {!Array<number>} */ (reader.isDelimited() ? reader.readPackedUint64() : [reader.readUint64()]);
       for (var i = 0; i < values.length; i++) {
         msg.addCompetitionIds(values[i]);
@@ -792,24 +785,17 @@ proto.statistico.CreateStrategyRequest.serializeBinaryToWriter = function(messag
       f
     );
   }
-  f = message.getUserId();
+  f = message.getMarket();
   if (f.length > 0) {
     writer.writeString(
       2,
       f
     );
   }
-  f = message.getMarket();
-  if (f.length > 0) {
-    writer.writeString(
-      3,
-      f
-    );
-  }
   f = message.getMinOdds();
   if (f != null) {
     writer.writeMessage(
-      4,
+      3,
       f,
       google_protobuf_wrappers_pb.FloatValue.serializeBinaryToWriter
     );
@@ -817,7 +803,7 @@ proto.statistico.CreateStrategyRequest.serializeBinaryToWriter = function(messag
   f = message.getMaxOdds();
   if (f != null) {
     writer.writeMessage(
-      5,
+      4,
       f,
       google_protobuf_wrappers_pb.FloatValue.serializeBinaryToWriter
     );
@@ -825,28 +811,22 @@ proto.statistico.CreateStrategyRequest.serializeBinaryToWriter = function(messag
   f = message.getSide();
   if (f !== 0.0) {
     writer.writeEnum(
+      5,
+      f
+    );
+  }
+  f = message.getStakingPlan();
+  if (f != null) {
+    writer.writeMessage(
       6,
-      f
-    );
-  }
-  f = message.getStakingPlanName();
-  if (f !== 0.0) {
-    writer.writeEnum(
-      7,
-      f
-    );
-  }
-  f = message.getStakingPlanValue();
-  if (f !== 0.0) {
-    writer.writeFloat(
-      8,
-      f
+      f,
+      utility_pb.StakingPlan.serializeBinaryToWriter
     );
   }
   f = message.getCompetitionIdsList();
   if (f.length > 0) {
     writer.writePackedUint64(
-      9,
+      8,
       f
     );
   }
@@ -872,10 +852,10 @@ proto.statistico.CreateStrategyRequest.prototype.setName = function(value) {
 
 
 /**
- * optional string user_id = 2;
+ * optional string market = 2;
  * @return {string}
  */
-proto.statistico.CreateStrategyRequest.prototype.getUserId = function() {
+proto.statistico.CreateStrategyRequest.prototype.getMarket = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
 
@@ -884,36 +864,18 @@ proto.statistico.CreateStrategyRequest.prototype.getUserId = function() {
  * @param {string} value
  * @return {!proto.statistico.CreateStrategyRequest} returns this
  */
-proto.statistico.CreateStrategyRequest.prototype.setUserId = function(value) {
+proto.statistico.CreateStrategyRequest.prototype.setMarket = function(value) {
   return jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
 /**
- * optional string market = 3;
- * @return {string}
- */
-proto.statistico.CreateStrategyRequest.prototype.getMarket = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
-};
-
-
-/**
- * @param {string} value
- * @return {!proto.statistico.CreateStrategyRequest} returns this
- */
-proto.statistico.CreateStrategyRequest.prototype.setMarket = function(value) {
-  return jspb.Message.setProto3StringField(this, 3, value);
-};
-
-
-/**
- * optional google.protobuf.FloatValue min_odds = 4;
+ * optional google.protobuf.FloatValue min_odds = 3;
  * @return {?proto.google.protobuf.FloatValue}
  */
 proto.statistico.CreateStrategyRequest.prototype.getMinOdds = function() {
   return /** @type{?proto.google.protobuf.FloatValue} */ (
-    jspb.Message.getWrapperField(this, google_protobuf_wrappers_pb.FloatValue, 4));
+    jspb.Message.getWrapperField(this, google_protobuf_wrappers_pb.FloatValue, 3));
 };
 
 
@@ -922,7 +884,7 @@ proto.statistico.CreateStrategyRequest.prototype.getMinOdds = function() {
  * @return {!proto.statistico.CreateStrategyRequest} returns this
 */
 proto.statistico.CreateStrategyRequest.prototype.setMinOdds = function(value) {
-  return jspb.Message.setWrapperField(this, 4, value);
+  return jspb.Message.setWrapperField(this, 3, value);
 };
 
 
@@ -940,17 +902,17 @@ proto.statistico.CreateStrategyRequest.prototype.clearMinOdds = function() {
  * @return {boolean}
  */
 proto.statistico.CreateStrategyRequest.prototype.hasMinOdds = function() {
-  return jspb.Message.getField(this, 4) != null;
+  return jspb.Message.getField(this, 3) != null;
 };
 
 
 /**
- * optional google.protobuf.FloatValue max_odds = 5;
+ * optional google.protobuf.FloatValue max_odds = 4;
  * @return {?proto.google.protobuf.FloatValue}
  */
 proto.statistico.CreateStrategyRequest.prototype.getMaxOdds = function() {
   return /** @type{?proto.google.protobuf.FloatValue} */ (
-    jspb.Message.getWrapperField(this, google_protobuf_wrappers_pb.FloatValue, 5));
+    jspb.Message.getWrapperField(this, google_protobuf_wrappers_pb.FloatValue, 4));
 };
 
 
@@ -959,7 +921,7 @@ proto.statistico.CreateStrategyRequest.prototype.getMaxOdds = function() {
  * @return {!proto.statistico.CreateStrategyRequest} returns this
 */
 proto.statistico.CreateStrategyRequest.prototype.setMaxOdds = function(value) {
-  return jspb.Message.setWrapperField(this, 5, value);
+  return jspb.Message.setWrapperField(this, 4, value);
 };
 
 
@@ -977,16 +939,16 @@ proto.statistico.CreateStrategyRequest.prototype.clearMaxOdds = function() {
  * @return {boolean}
  */
 proto.statistico.CreateStrategyRequest.prototype.hasMaxOdds = function() {
-  return jspb.Message.getField(this, 5) != null;
+  return jspb.Message.getField(this, 4) != null;
 };
 
 
 /**
- * optional SideEnum side = 6;
+ * optional SideEnum side = 5;
  * @return {!proto.statistico.SideEnum}
  */
 proto.statistico.CreateStrategyRequest.prototype.getSide = function() {
-  return /** @type {!proto.statistico.SideEnum} */ (jspb.Message.getFieldWithDefault(this, 6, 0));
+  return /** @type {!proto.statistico.SideEnum} */ (jspb.Message.getFieldWithDefault(this, 5, 0));
 };
 
 
@@ -995,52 +957,53 @@ proto.statistico.CreateStrategyRequest.prototype.getSide = function() {
  * @return {!proto.statistico.CreateStrategyRequest} returns this
  */
 proto.statistico.CreateStrategyRequest.prototype.setSide = function(value) {
-  return jspb.Message.setProto3EnumField(this, 6, value);
+  return jspb.Message.setProto3EnumField(this, 5, value);
 };
 
 
 /**
- * optional StakingPlanEnum staking_plan_name = 7;
- * @return {!proto.statistico.StakingPlanEnum}
+ * optional StakingPlan staking_plan = 6;
+ * @return {?proto.statistico.StakingPlan}
  */
-proto.statistico.CreateStrategyRequest.prototype.getStakingPlanName = function() {
-  return /** @type {!proto.statistico.StakingPlanEnum} */ (jspb.Message.getFieldWithDefault(this, 7, 0));
+proto.statistico.CreateStrategyRequest.prototype.getStakingPlan = function() {
+  return /** @type{?proto.statistico.StakingPlan} */ (
+    jspb.Message.getWrapperField(this, utility_pb.StakingPlan, 6));
 };
 
 
 /**
- * @param {!proto.statistico.StakingPlanEnum} value
+ * @param {?proto.statistico.StakingPlan|undefined} value
+ * @return {!proto.statistico.CreateStrategyRequest} returns this
+*/
+proto.statistico.CreateStrategyRequest.prototype.setStakingPlan = function(value) {
+  return jspb.Message.setWrapperField(this, 6, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
  * @return {!proto.statistico.CreateStrategyRequest} returns this
  */
-proto.statistico.CreateStrategyRequest.prototype.setStakingPlanName = function(value) {
-  return jspb.Message.setProto3EnumField(this, 7, value);
+proto.statistico.CreateStrategyRequest.prototype.clearStakingPlan = function() {
+  return this.setStakingPlan(undefined);
 };
 
 
 /**
- * optional float staking_plan_value = 8;
- * @return {number}
+ * Returns whether this field is set.
+ * @return {boolean}
  */
-proto.statistico.CreateStrategyRequest.prototype.getStakingPlanValue = function() {
-  return /** @type {number} */ (jspb.Message.getFloatingPointFieldWithDefault(this, 8, 0.0));
+proto.statistico.CreateStrategyRequest.prototype.hasStakingPlan = function() {
+  return jspb.Message.getField(this, 6) != null;
 };
 
 
 /**
- * @param {number} value
- * @return {!proto.statistico.CreateStrategyRequest} returns this
- */
-proto.statistico.CreateStrategyRequest.prototype.setStakingPlanValue = function(value) {
-  return jspb.Message.setProto3FloatField(this, 8, value);
-};
-
-
-/**
- * repeated uint64 competition_ids = 9;
+ * repeated uint64 competition_ids = 8;
  * @return {!Array<number>}
  */
 proto.statistico.CreateStrategyRequest.prototype.getCompetitionIdsList = function() {
-  return /** @type {!Array<number>} */ (jspb.Message.getRepeatedField(this, 9));
+  return /** @type {!Array<number>} */ (jspb.Message.getRepeatedField(this, 8));
 };
 
 
@@ -1049,7 +1012,7 @@ proto.statistico.CreateStrategyRequest.prototype.getCompetitionIdsList = functio
  * @return {!proto.statistico.CreateStrategyRequest} returns this
  */
 proto.statistico.CreateStrategyRequest.prototype.setCompetitionIdsList = function(value) {
-  return jspb.Message.setField(this, 9, value || []);
+  return jspb.Message.setField(this, 8, value || []);
 };
 
 
@@ -1059,7 +1022,7 @@ proto.statistico.CreateStrategyRequest.prototype.setCompetitionIdsList = functio
  * @return {!proto.statistico.CreateStrategyRequest} returns this
  */
 proto.statistico.CreateStrategyRequest.prototype.addCompetitionIds = function(value, opt_index) {
-  return jspb.Message.addToRepeatedField(this, 9, value, opt_index);
+  return jspb.Message.addToRepeatedField(this, 8, value, opt_index);
 };
 
 

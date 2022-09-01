@@ -22,6 +22,8 @@ var requests_pb = require('./requests_pb.js')
 
 var responses_pb = require('./responses_pb.js')
 
+var utility_pb = require('./utility_pb.js')
+
 var google_protobuf_timestamp_pb = require('google-protobuf/google/protobuf/timestamp_pb.js')
 
 var google_protobuf_wrappers_pb = require('google-protobuf/google/protobuf/wrappers_pb.js')

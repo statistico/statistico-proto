@@ -3,6 +3,7 @@ import * as jspb from 'google-protobuf'
 import * as enum_pb from './enum_pb';
 import * as requests_pb from './requests_pb';
 import * as responses_pb from './responses_pb';
+import * as utility_pb from './utility_pb';
 import * as google_protobuf_timestamp_pb from 'google-protobuf/google/protobuf/timestamp_pb';
 import * as google_protobuf_wrappers_pb from 'google-protobuf/google/protobuf/wrappers_pb';
 
@@ -38,8 +39,8 @@ export class Strategy extends jspb.Message {
   getSide(): enum_pb.SideEnum;
   setSide(value: enum_pb.SideEnum): Strategy;
 
-  getStakingPlan(): StakingPlan | undefined;
-  setStakingPlan(value?: StakingPlan): Strategy;
+  getStakingPlan(): utility_pb.StakingPlan | undefined;
+  setStakingPlan(value?: utility_pb.StakingPlan): Strategy;
   hasStakingPlan(): boolean;
   clearStakingPlan(): Strategy;
 
@@ -74,32 +75,10 @@ export namespace Strategy {
     maxOdds?: google_protobuf_wrappers_pb.FloatValue.AsObject,
     competitionIdsList: Array<number>,
     side: enum_pb.SideEnum,
-    stakingPlan?: StakingPlan.AsObject,
+    stakingPlan?: utility_pb.StakingPlan.AsObject,
     status: enum_pb.StrategyStatusEnum,
     createdAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     updatedAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
-  }
-}
-
-export class StakingPlan extends jspb.Message {
-  getName(): enum_pb.StakingPlanEnum;
-  setName(value: enum_pb.StakingPlanEnum): StakingPlan;
-
-  getValue(): number;
-  setValue(value: number): StakingPlan;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): StakingPlan.AsObject;
-  static toObject(includeInstance: boolean, msg: StakingPlan): StakingPlan.AsObject;
-  static serializeBinaryToWriter(message: StakingPlan, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): StakingPlan;
-  static deserializeBinaryFromReader(message: StakingPlan, reader: jspb.BinaryReader): StakingPlan;
-}
-
-export namespace StakingPlan {
-  export type AsObject = {
-    name: enum_pb.StakingPlanEnum,
-    value: number,
   }
 }
 

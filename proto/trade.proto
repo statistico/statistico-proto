@@ -6,11 +6,9 @@ option go_package = "github.com/statistico/statistico-proto;statistico";
 
 import "enum.proto";
 import "requests.proto";
-import "responses.proto";
 import "google/protobuf/timestamp.proto";
 
 service TradeService {
-  rpc HealthCheck(HealthCheckRequest) returns (HealthCheckResponse) {}
   rpc SearchTrades(SearchTradesRequest) returns (stream Trade) {}
 }
 

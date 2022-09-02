@@ -18,8 +18,6 @@ var enum_pb = require('./enum_pb.js');
 goog.object.extend(proto, enum_pb);
 var requests_pb = require('./requests_pb.js');
 goog.object.extend(proto, requests_pb);
-var responses_pb = require('./responses_pb.js');
-goog.object.extend(proto, responses_pb);
 var google_protobuf_timestamp_pb = require('google-protobuf/google/protobuf/timestamp_pb.js');
 goog.object.extend(proto, google_protobuf_timestamp_pb);
 goog.exportSymbol('proto.statistico.Trade', null, global);

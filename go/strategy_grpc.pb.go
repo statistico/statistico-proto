@@ -19,7 +19,6 @@ const _ = grpc.SupportPackageIsVersion7
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type StrategyServiceClient interface {
 	CreateStrategy(ctx context.Context, in *CreateStrategyRequest, opts ...grpc.CallOption) (*Strategy, error)
-	HealthCheck(ctx context.Context, in *HealthCheckRequest, opts ...grpc.CallOption) (*HealthCheckResponse, error)
 	ListUserStrategies(ctx context.Context, in *ListUserStrategiesRequest, opts ...grpc.CallOption) (StrategyService_ListUserStrategiesClient, error)
 }
 
@@ -34,15 +33,6 @@ func NewStrategyServiceClient(cc grpc.ClientConnInterface) StrategyServiceClient
 func (c *strategyServiceClient) CreateStrategy(ctx context.Context, in *CreateStrategyRequest, opts ...grpc.CallOption) (*Strategy, error) {
 	out := new(Strategy)
 	err := c.cc.Invoke(ctx, "/statistico.StrategyService/CreateStrategy", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *strategyServiceClient) HealthCheck(ctx context.Context, in *HealthCheckRequest, opts ...grpc.CallOption) (*HealthCheckResponse, error) {
-	out := new(HealthCheckResponse)
-	err := c.cc.Invoke(ctx, "/statistico.StrategyService/HealthCheck", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -86,7 +76,6 @@ func (x *strategyServiceListUserStrategiesClient) Recv() (*Strategy, error) {
 // for forward compatibility
 type StrategyServiceServer interface {
 	CreateStrategy(context.Context, *CreateStrategyRequest) (*Strategy, error)
-	HealthCheck(context.Context, *HealthCheckRequest) (*HealthCheckResponse, error)
 	ListUserStrategies(*ListUserStrategiesRequest, StrategyService_ListUserStrategiesServer) error
 	mustEmbedUnimplementedStrategyServiceServer()
 }
@@ -97,9 +86,6 @@ type UnimplementedStrategyServiceServer struct {
 
 func (UnimplementedStrategyServiceServer) CreateStrategy(context.Context, *CreateStrategyRequest) (*Strategy, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateStrategy not implemented")
-}
-func (UnimplementedStrategyServiceServer) HealthCheck(context.Context, *HealthCheckRequest) (*HealthCheckResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method HealthCheck not implemented")
 }
 func (UnimplementedStrategyServiceServer) ListUserStrategies(*ListUserStrategiesRequest, StrategyService_ListUserStrategiesServer) error {
 	return status.Errorf(codes.Unimplemented, "method ListUserStrategies not implemented")
@@ -135,24 +121,6 @@ func _StrategyService_CreateStrategy_Handler(srv interface{}, ctx context.Contex
 	return interceptor(ctx, in, info, handler)
 }
 
-func _StrategyService_HealthCheck_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(HealthCheckRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(StrategyServiceServer).HealthCheck(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/statistico.StrategyService/HealthCheck",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(StrategyServiceServer).HealthCheck(ctx, req.(*HealthCheckRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _StrategyService_ListUserStrategies_Handler(srv interface{}, stream grpc.ServerStream) error {
 	m := new(ListUserStrategiesRequest)
 	if err := stream.RecvMsg(m); err != nil {
@@ -184,10 +152,6 @@ var StrategyService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "CreateStrategy",
 			Handler:    _StrategyService_CreateStrategy_Handler,
-		},
-		{
-			MethodName: "HealthCheck",
-			Handler:    _StrategyService_HealthCheck_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{

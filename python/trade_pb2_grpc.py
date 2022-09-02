@@ -3,7 +3,6 @@
 import grpc
 
 import requests_pb2 as requests__pb2
-import responses_pb2 as responses__pb2
 import trade_pb2 as trade__pb2
 
 
@@ -16,11 +15,6 @@ class TradeServiceStub(object):
         Args:
             channel: A grpc.Channel.
         """
-        self.HealthCheck = channel.unary_unary(
-                '/statistico.TradeService/HealthCheck',
-                request_serializer=requests__pb2.HealthCheckRequest.SerializeToString,
-                response_deserializer=responses__pb2.HealthCheckResponse.FromString,
-                )
         self.SearchTrades = channel.unary_stream(
                 '/statistico.TradeService/SearchTrades',
                 request_serializer=requests__pb2.SearchTradesRequest.SerializeToString,
@@ -31,12 +25,6 @@ class TradeServiceStub(object):
 class TradeServiceServicer(object):
     """Missing associated documentation comment in .proto file."""
 
-    def HealthCheck(self, request, context):
-        """Missing associated documentation comment in .proto file."""
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
     def SearchTrades(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -46,11 +34,6 @@ class TradeServiceServicer(object):
 
 def add_TradeServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
-            'HealthCheck': grpc.unary_unary_rpc_method_handler(
-                    servicer.HealthCheck,
-                    request_deserializer=requests__pb2.HealthCheckRequest.FromString,
-                    response_serializer=responses__pb2.HealthCheckResponse.SerializeToString,
-            ),
             'SearchTrades': grpc.unary_stream_rpc_method_handler(
                     servicer.SearchTrades,
                     request_deserializer=requests__pb2.SearchTradesRequest.FromString,
@@ -65,23 +48,6 @@ def add_TradeServiceServicer_to_server(servicer, server):
  # This class is part of an EXPERIMENTAL API.
 class TradeService(object):
     """Missing associated documentation comment in .proto file."""
-
-    @staticmethod
-    def HealthCheck(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/statistico.TradeService/HealthCheck',
-            requests__pb2.HealthCheckRequest.SerializeToString,
-            responses__pb2.HealthCheckResponse.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def SearchTrades(request,

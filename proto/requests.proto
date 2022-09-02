@@ -47,10 +47,6 @@ message FixtureSearchRequest {
     google.protobuf.StringValue sort = 5;
 }
 
-message HealthCheckRequest {
-    string service = 1;
-}
-
 message HistoricalResultRequest {
     // The Home Team ID that the Result set relates to
     uint64 home_team_id = 1;

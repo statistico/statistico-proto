@@ -18,7 +18,6 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type TradeServiceClient interface {
-	HealthCheck(ctx context.Context, in *HealthCheckRequest, opts ...grpc.CallOption) (*HealthCheckResponse, error)
 	SearchTrades(ctx context.Context, in *SearchTradesRequest, opts ...grpc.CallOption) (TradeService_SearchTradesClient, error)
 }
 
@@ -28,15 +27,6 @@ type tradeServiceClient struct {
 
 func NewTradeServiceClient(cc grpc.ClientConnInterface) TradeServiceClient {
 	return &tradeServiceClient{cc}
-}
-
-func (c *tradeServiceClient) HealthCheck(ctx context.Context, in *HealthCheckRequest, opts ...grpc.CallOption) (*HealthCheckResponse, error) {
-	out := new(HealthCheckResponse)
-	err := c.cc.Invoke(ctx, "/statistico.TradeService/HealthCheck", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
 }
 
 func (c *tradeServiceClient) SearchTrades(ctx context.Context, in *SearchTradesRequest, opts ...grpc.CallOption) (TradeService_SearchTradesClient, error) {
@@ -75,7 +65,6 @@ func (x *tradeServiceSearchTradesClient) Recv() (*Trade, error) {
 // All implementations must embed UnimplementedTradeServiceServer
 // for forward compatibility
 type TradeServiceServer interface {
-	HealthCheck(context.Context, *HealthCheckRequest) (*HealthCheckResponse, error)
 	SearchTrades(*SearchTradesRequest, TradeService_SearchTradesServer) error
 	mustEmbedUnimplementedTradeServiceServer()
 }
@@ -84,9 +73,6 @@ type TradeServiceServer interface {
 type UnimplementedTradeServiceServer struct {
 }
 
-func (UnimplementedTradeServiceServer) HealthCheck(context.Context, *HealthCheckRequest) (*HealthCheckResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method HealthCheck not implemented")
-}
 func (UnimplementedTradeServiceServer) SearchTrades(*SearchTradesRequest, TradeService_SearchTradesServer) error {
 	return status.Errorf(codes.Unimplemented, "method SearchTrades not implemented")
 }
@@ -101,24 +87,6 @@ type UnsafeTradeServiceServer interface {
 
 func RegisterTradeServiceServer(s grpc.ServiceRegistrar, srv TradeServiceServer) {
 	s.RegisterService(&TradeService_ServiceDesc, srv)
-}
-
-func _TradeService_HealthCheck_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(HealthCheckRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(TradeServiceServer).HealthCheck(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/statistico.TradeService/HealthCheck",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TradeServiceServer).HealthCheck(ctx, req.(*HealthCheckRequest))
-	}
-	return interceptor(ctx, in, info, handler)
 }
 
 func _TradeService_SearchTrades_Handler(srv interface{}, stream grpc.ServerStream) error {
@@ -148,12 +116,7 @@ func (x *tradeServiceSearchTradesServer) Send(m *Trade) error {
 var TradeService_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "statistico.TradeService",
 	HandlerType: (*TradeServiceServer)(nil),
-	Methods: []grpc.MethodDesc{
-		{
-			MethodName: "HealthCheck",
-			Handler:    _TradeService_HealthCheck_Handler,
-		},
-	},
+	Methods:     []grpc.MethodDesc{},
 	Streams: []grpc.StreamDesc{
 		{
 			StreamName:    "SearchTrades",

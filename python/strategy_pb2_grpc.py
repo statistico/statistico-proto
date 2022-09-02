@@ -3,7 +3,6 @@
 import grpc
 
 import requests_pb2 as requests__pb2
-import responses_pb2 as responses__pb2
 import strategy_pb2 as strategy__pb2
 
 
@@ -21,11 +20,6 @@ class StrategyServiceStub(object):
                 request_serializer=requests__pb2.CreateStrategyRequest.SerializeToString,
                 response_deserializer=strategy__pb2.Strategy.FromString,
                 )
-        self.HealthCheck = channel.unary_unary(
-                '/statistico.StrategyService/HealthCheck',
-                request_serializer=requests__pb2.HealthCheckRequest.SerializeToString,
-                response_deserializer=responses__pb2.HealthCheckResponse.FromString,
-                )
         self.ListUserStrategies = channel.unary_stream(
                 '/statistico.StrategyService/ListUserStrategies',
                 request_serializer=requests__pb2.ListUserStrategiesRequest.SerializeToString,
@@ -37,12 +31,6 @@ class StrategyServiceServicer(object):
     """Missing associated documentation comment in .proto file."""
 
     def CreateStrategy(self, request, context):
-        """Missing associated documentation comment in .proto file."""
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
-    def HealthCheck(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -61,11 +49,6 @@ def add_StrategyServiceServicer_to_server(servicer, server):
                     servicer.CreateStrategy,
                     request_deserializer=requests__pb2.CreateStrategyRequest.FromString,
                     response_serializer=strategy__pb2.Strategy.SerializeToString,
-            ),
-            'HealthCheck': grpc.unary_unary_rpc_method_handler(
-                    servicer.HealthCheck,
-                    request_deserializer=requests__pb2.HealthCheckRequest.FromString,
-                    response_serializer=responses__pb2.HealthCheckResponse.SerializeToString,
             ),
             'ListUserStrategies': grpc.unary_stream_rpc_method_handler(
                     servicer.ListUserStrategies,
@@ -96,23 +79,6 @@ class StrategyService(object):
         return grpc.experimental.unary_unary(request, target, '/statistico.StrategyService/CreateStrategy',
             requests__pb2.CreateStrategyRequest.SerializeToString,
             strategy__pb2.Strategy.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
-
-    @staticmethod
-    def HealthCheck(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/statistico.StrategyService/HealthCheck',
-            requests__pb2.HealthCheckRequest.SerializeToString,
-            responses__pb2.HealthCheckResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 

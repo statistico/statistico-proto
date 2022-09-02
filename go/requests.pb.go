@@ -316,53 +316,6 @@ func (x *FixtureSearchRequest) GetSort() *wrapperspb.StringValue {
 	return nil
 }
 
-type HealthCheckRequest struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	Service string `protobuf:"bytes,1,opt,name=service,proto3" json:"service,omitempty"`
-}
-
-func (x *HealthCheckRequest) Reset() {
-	*x = HealthCheckRequest{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_requests_proto_msgTypes[4]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *HealthCheckRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*HealthCheckRequest) ProtoMessage() {}
-
-func (x *HealthCheckRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_requests_proto_msgTypes[4]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use HealthCheckRequest.ProtoReflect.Descriptor instead.
-func (*HealthCheckRequest) Descriptor() ([]byte, []int) {
-	return file_requests_proto_rawDescGZIP(), []int{4}
-}
-
-func (x *HealthCheckRequest) GetService() string {
-	if x != nil {
-		return x.Service
-	}
-	return ""
-}
-
 type HistoricalResultRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -382,7 +335,7 @@ type HistoricalResultRequest struct {
 func (x *HistoricalResultRequest) Reset() {
 	*x = HistoricalResultRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_requests_proto_msgTypes[5]
+		mi := &file_requests_proto_msgTypes[4]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -395,7 +348,7 @@ func (x *HistoricalResultRequest) String() string {
 func (*HistoricalResultRequest) ProtoMessage() {}
 
 func (x *HistoricalResultRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_requests_proto_msgTypes[5]
+	mi := &file_requests_proto_msgTypes[4]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -408,7 +361,7 @@ func (x *HistoricalResultRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use HistoricalResultRequest.ProtoReflect.Descriptor instead.
 func (*HistoricalResultRequest) Descriptor() ([]byte, []int) {
-	return file_requests_proto_rawDescGZIP(), []int{5}
+	return file_requests_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *HistoricalResultRequest) GetHomeTeamId() uint64 {
@@ -450,7 +403,7 @@ type ListUserStrategiesRequest struct {
 func (x *ListUserStrategiesRequest) Reset() {
 	*x = ListUserStrategiesRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_requests_proto_msgTypes[6]
+		mi := &file_requests_proto_msgTypes[5]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -463,7 +416,7 @@ func (x *ListUserStrategiesRequest) String() string {
 func (*ListUserStrategiesRequest) ProtoMessage() {}
 
 func (x *ListUserStrategiesRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_requests_proto_msgTypes[6]
+	mi := &file_requests_proto_msgTypes[5]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -476,7 +429,7 @@ func (x *ListUserStrategiesRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListUserStrategiesRequest.ProtoReflect.Descriptor instead.
 func (*ListUserStrategiesRequest) Descriptor() ([]byte, []int) {
-	return file_requests_proto_rawDescGZIP(), []int{6}
+	return file_requests_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *ListUserStrategiesRequest) GetUserId() string {
@@ -497,7 +450,7 @@ type ResultRequest struct {
 func (x *ResultRequest) Reset() {
 	*x = ResultRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_requests_proto_msgTypes[7]
+		mi := &file_requests_proto_msgTypes[6]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -510,7 +463,7 @@ func (x *ResultRequest) String() string {
 func (*ResultRequest) ProtoMessage() {}
 
 func (x *ResultRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_requests_proto_msgTypes[7]
+	mi := &file_requests_proto_msgTypes[6]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -523,7 +476,7 @@ func (x *ResultRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ResultRequest.ProtoReflect.Descriptor instead.
 func (*ResultRequest) Descriptor() ([]byte, []int) {
-	return file_requests_proto_rawDescGZIP(), []int{7}
+	return file_requests_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *ResultRequest) GetFixtureId() uint64 {
@@ -550,7 +503,7 @@ type SearchTradesRequest struct {
 func (x *SearchTradesRequest) Reset() {
 	*x = SearchTradesRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_requests_proto_msgTypes[8]
+		mi := &file_requests_proto_msgTypes[7]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -563,7 +516,7 @@ func (x *SearchTradesRequest) String() string {
 func (*SearchTradesRequest) ProtoMessage() {}
 
 func (x *SearchTradesRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_requests_proto_msgTypes[8]
+	mi := &file_requests_proto_msgTypes[7]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -576,7 +529,7 @@ func (x *SearchTradesRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SearchTradesRequest.ProtoReflect.Descriptor instead.
 func (*SearchTradesRequest) Descriptor() ([]byte, []int) {
-	return file_requests_proto_rawDescGZIP(), []int{8}
+	return file_requests_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *SearchTradesRequest) GetStrategyId() *wrapperspb.StringValue {
@@ -641,7 +594,7 @@ type SeasonCompetitionRequest struct {
 func (x *SeasonCompetitionRequest) Reset() {
 	*x = SeasonCompetitionRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_requests_proto_msgTypes[9]
+		mi := &file_requests_proto_msgTypes[8]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -654,7 +607,7 @@ func (x *SeasonCompetitionRequest) String() string {
 func (*SeasonCompetitionRequest) ProtoMessage() {}
 
 func (x *SeasonCompetitionRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_requests_proto_msgTypes[9]
+	mi := &file_requests_proto_msgTypes[8]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -667,7 +620,7 @@ func (x *SeasonCompetitionRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SeasonCompetitionRequest.ProtoReflect.Descriptor instead.
 func (*SeasonCompetitionRequest) Descriptor() ([]byte, []int) {
-	return file_requests_proto_rawDescGZIP(), []int{9}
+	return file_requests_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *SeasonCompetitionRequest) GetCompetitionId() uint64 {
@@ -699,7 +652,7 @@ type SeasonFixtureRequest struct {
 func (x *SeasonFixtureRequest) Reset() {
 	*x = SeasonFixtureRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_requests_proto_msgTypes[10]
+		mi := &file_requests_proto_msgTypes[9]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -712,7 +665,7 @@ func (x *SeasonFixtureRequest) String() string {
 func (*SeasonFixtureRequest) ProtoMessage() {}
 
 func (x *SeasonFixtureRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_requests_proto_msgTypes[10]
+	mi := &file_requests_proto_msgTypes[9]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -725,7 +678,7 @@ func (x *SeasonFixtureRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SeasonFixtureRequest.ProtoReflect.Descriptor instead.
 func (*SeasonFixtureRequest) Descriptor() ([]byte, []int) {
-	return file_requests_proto_rawDescGZIP(), []int{10}
+	return file_requests_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *SeasonFixtureRequest) GetSeasonId() uint64 {
@@ -764,7 +717,7 @@ type SeasonRequest struct {
 func (x *SeasonRequest) Reset() {
 	*x = SeasonRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_requests_proto_msgTypes[11]
+		mi := &file_requests_proto_msgTypes[10]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -777,7 +730,7 @@ func (x *SeasonRequest) String() string {
 func (*SeasonRequest) ProtoMessage() {}
 
 func (x *SeasonRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_requests_proto_msgTypes[11]
+	mi := &file_requests_proto_msgTypes[10]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -790,7 +743,7 @@ func (x *SeasonRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SeasonRequest.ProtoReflect.Descriptor instead.
 func (*SeasonRequest) Descriptor() ([]byte, []int) {
-	return file_requests_proto_rawDescGZIP(), []int{11}
+	return file_requests_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *SeasonRequest) GetSeasonId() int64 {
@@ -818,7 +771,7 @@ type SeasonTeamsRequest struct {
 func (x *SeasonTeamsRequest) Reset() {
 	*x = SeasonTeamsRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_requests_proto_msgTypes[12]
+		mi := &file_requests_proto_msgTypes[11]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -831,7 +784,7 @@ func (x *SeasonTeamsRequest) String() string {
 func (*SeasonTeamsRequest) ProtoMessage() {}
 
 func (x *SeasonTeamsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_requests_proto_msgTypes[12]
+	mi := &file_requests_proto_msgTypes[11]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -844,7 +797,7 @@ func (x *SeasonTeamsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SeasonTeamsRequest.ProtoReflect.Descriptor instead.
 func (*SeasonTeamsRequest) Descriptor() ([]byte, []int) {
-	return file_requests_proto_rawDescGZIP(), []int{12}
+	return file_requests_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *SeasonTeamsRequest) GetSeasonId() uint64 {
@@ -865,7 +818,7 @@ type TeamRequest struct {
 func (x *TeamRequest) Reset() {
 	*x = TeamRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_requests_proto_msgTypes[13]
+		mi := &file_requests_proto_msgTypes[12]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -878,7 +831,7 @@ func (x *TeamRequest) String() string {
 func (*TeamRequest) ProtoMessage() {}
 
 func (x *TeamRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_requests_proto_msgTypes[13]
+	mi := &file_requests_proto_msgTypes[12]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -891,7 +844,7 @@ func (x *TeamRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TeamRequest.ProtoReflect.Descriptor instead.
 func (*TeamRequest) Descriptor() ([]byte, []int) {
-	return file_requests_proto_rawDescGZIP(), []int{13}
+	return file_requests_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *TeamRequest) GetTeamId() uint64 {
@@ -928,7 +881,7 @@ type TeamResultRequest struct {
 func (x *TeamResultRequest) Reset() {
 	*x = TeamResultRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_requests_proto_msgTypes[14]
+		mi := &file_requests_proto_msgTypes[13]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -941,7 +894,7 @@ func (x *TeamResultRequest) String() string {
 func (*TeamResultRequest) ProtoMessage() {}
 
 func (x *TeamResultRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_requests_proto_msgTypes[14]
+	mi := &file_requests_proto_msgTypes[13]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -954,7 +907,7 @@ func (x *TeamResultRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TeamResultRequest.ProtoReflect.Descriptor instead.
 func (*TeamResultRequest) Descriptor() ([]byte, []int) {
-	return file_requests_proto_rawDescGZIP(), []int{14}
+	return file_requests_proto_rawDescGZIP(), []int{13}
 }
 
 func (x *TeamResultRequest) GetTeamId() uint64 {
@@ -1036,7 +989,7 @@ type TeamStatRequest struct {
 func (x *TeamStatRequest) Reset() {
 	*x = TeamStatRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_requests_proto_msgTypes[15]
+		mi := &file_requests_proto_msgTypes[14]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1049,7 +1002,7 @@ func (x *TeamStatRequest) String() string {
 func (*TeamStatRequest) ProtoMessage() {}
 
 func (x *TeamStatRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_requests_proto_msgTypes[15]
+	mi := &file_requests_proto_msgTypes[14]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1062,7 +1015,7 @@ func (x *TeamStatRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TeamStatRequest.ProtoReflect.Descriptor instead.
 func (*TeamStatRequest) Descriptor() ([]byte, []int) {
-	return file_requests_proto_rawDescGZIP(), []int{15}
+	return file_requests_proto_rawDescGZIP(), []int{14}
 }
 
 func (x *TeamStatRequest) GetStat() string {
@@ -1189,10 +1142,7 @@ var file_requests_proto_rawDesc = []byte{
 	0x74, 0x65, 0x72, 0x12, 0x30, 0x0a, 0x04, 0x73, 0x6f, 0x72, 0x74, 0x18, 0x05, 0x20, 0x01, 0x28,
 	0x0b, 0x32, 0x1c, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f,
 	0x62, 0x75, 0x66, 0x2e, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x56, 0x61, 0x6c, 0x75, 0x65, 0x52,
-	0x04, 0x73, 0x6f, 0x72, 0x74, 0x22, 0x2e, 0x0a, 0x12, 0x48, 0x65, 0x61, 0x6c, 0x74, 0x68, 0x43,
-	0x68, 0x65, 0x63, 0x6b, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x18, 0x0a, 0x07, 0x73,
-	0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x73, 0x65,
-	0x72, 0x76, 0x69, 0x63, 0x65, 0x22, 0x94, 0x01, 0x0a, 0x17, 0x48, 0x69, 0x73, 0x74, 0x6f, 0x72,
+	0x04, 0x73, 0x6f, 0x72, 0x74, 0x22, 0x94, 0x01, 0x0a, 0x17, 0x48, 0x69, 0x73, 0x74, 0x6f, 0x72,
 	0x69, 0x63, 0x61, 0x6c, 0x52, 0x65, 0x73, 0x75, 0x6c, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
 	0x74, 0x12, 0x20, 0x0a, 0x0c, 0x68, 0x6f, 0x6d, 0x65, 0x5f, 0x74, 0x65, 0x61, 0x6d, 0x5f, 0x69,
 	0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x04, 0x52, 0x0a, 0x68, 0x6f, 0x6d, 0x65, 0x54, 0x65, 0x61,
@@ -1327,62 +1277,61 @@ func file_requests_proto_rawDescGZIP() []byte {
 	return file_requests_proto_rawDescData
 }
 
-var file_requests_proto_msgTypes = make([]protoimpl.MessageInfo, 16)
+var file_requests_proto_msgTypes = make([]protoimpl.MessageInfo, 15)
 var file_requests_proto_goTypes = []interface{}{
 	(*CompetitionRequest)(nil),        // 0: statistico.CompetitionRequest
 	(*CreateStrategyRequest)(nil),     // 1: statistico.CreateStrategyRequest
 	(*FixtureRequest)(nil),            // 2: statistico.FixtureRequest
 	(*FixtureSearchRequest)(nil),      // 3: statistico.FixtureSearchRequest
-	(*HealthCheckRequest)(nil),        // 4: statistico.HealthCheckRequest
-	(*HistoricalResultRequest)(nil),   // 5: statistico.HistoricalResultRequest
-	(*ListUserStrategiesRequest)(nil), // 6: statistico.ListUserStrategiesRequest
-	(*ResultRequest)(nil),             // 7: statistico.ResultRequest
-	(*SearchTradesRequest)(nil),       // 8: statistico.SearchTradesRequest
-	(*SeasonCompetitionRequest)(nil),  // 9: statistico.SeasonCompetitionRequest
-	(*SeasonFixtureRequest)(nil),      // 10: statistico.SeasonFixtureRequest
-	(*SeasonRequest)(nil),             // 11: statistico.SeasonRequest
-	(*SeasonTeamsRequest)(nil),        // 12: statistico.SeasonTeamsRequest
-	(*TeamRequest)(nil),               // 13: statistico.TeamRequest
-	(*TeamResultRequest)(nil),         // 14: statistico.TeamResultRequest
-	(*TeamStatRequest)(nil),           // 15: statistico.TeamStatRequest
-	(*wrapperspb.StringValue)(nil),    // 16: google.protobuf.StringValue
-	(*wrapperspb.BoolValue)(nil),      // 17: google.protobuf.BoolValue
-	(*wrapperspb.FloatValue)(nil),     // 18: google.protobuf.FloatValue
-	(SideEnum)(0),                     // 19: statistico.SideEnum
-	(*StakingPlan)(nil),               // 20: statistico.StakingPlan
-	(*wrapperspb.UInt64Value)(nil),    // 21: google.protobuf.UInt64Value
-	(*timestamppb.Timestamp)(nil),     // 22: google.protobuf.Timestamp
+	(*HistoricalResultRequest)(nil),   // 4: statistico.HistoricalResultRequest
+	(*ListUserStrategiesRequest)(nil), // 5: statistico.ListUserStrategiesRequest
+	(*ResultRequest)(nil),             // 6: statistico.ResultRequest
+	(*SearchTradesRequest)(nil),       // 7: statistico.SearchTradesRequest
+	(*SeasonCompetitionRequest)(nil),  // 8: statistico.SeasonCompetitionRequest
+	(*SeasonFixtureRequest)(nil),      // 9: statistico.SeasonFixtureRequest
+	(*SeasonRequest)(nil),             // 10: statistico.SeasonRequest
+	(*SeasonTeamsRequest)(nil),        // 11: statistico.SeasonTeamsRequest
+	(*TeamRequest)(nil),               // 12: statistico.TeamRequest
+	(*TeamResultRequest)(nil),         // 13: statistico.TeamResultRequest
+	(*TeamStatRequest)(nil),           // 14: statistico.TeamStatRequest
+	(*wrapperspb.StringValue)(nil),    // 15: google.protobuf.StringValue
+	(*wrapperspb.BoolValue)(nil),      // 16: google.protobuf.BoolValue
+	(*wrapperspb.FloatValue)(nil),     // 17: google.protobuf.FloatValue
+	(SideEnum)(0),                     // 18: statistico.SideEnum
+	(*StakingPlan)(nil),               // 19: statistico.StakingPlan
+	(*wrapperspb.UInt64Value)(nil),    // 20: google.protobuf.UInt64Value
+	(*timestamppb.Timestamp)(nil),     // 21: google.protobuf.Timestamp
 }
 var file_requests_proto_depIdxs = []int32{
-	16, // 0: statistico.CompetitionRequest.sort:type_name -> google.protobuf.StringValue
-	17, // 1: statistico.CompetitionRequest.is_cup:type_name -> google.protobuf.BoolValue
-	18, // 2: statistico.CreateStrategyRequest.min_odds:type_name -> google.protobuf.FloatValue
-	18, // 3: statistico.CreateStrategyRequest.max_odds:type_name -> google.protobuf.FloatValue
-	19, // 4: statistico.CreateStrategyRequest.side:type_name -> statistico.SideEnum
-	20, // 5: statistico.CreateStrategyRequest.staking_plan:type_name -> statistico.StakingPlan
-	21, // 6: statistico.FixtureSearchRequest.limit:type_name -> google.protobuf.UInt64Value
-	16, // 7: statistico.FixtureSearchRequest.date_before:type_name -> google.protobuf.StringValue
-	16, // 8: statistico.FixtureSearchRequest.date_after:type_name -> google.protobuf.StringValue
-	16, // 9: statistico.FixtureSearchRequest.sort:type_name -> google.protobuf.StringValue
-	16, // 10: statistico.SearchTradesRequest.strategy_id:type_name -> google.protobuf.StringValue
-	16, // 11: statistico.SearchTradesRequest.market:type_name -> google.protobuf.StringValue
-	21, // 12: statistico.SearchTradesRequest.competition_id:type_name -> google.protobuf.UInt64Value
-	16, // 13: statistico.SearchTradesRequest.status:type_name -> google.protobuf.StringValue
-	16, // 14: statistico.SearchTradesRequest.exchange:type_name -> google.protobuf.StringValue
-	22, // 15: statistico.SearchTradesRequest.date_from:type_name -> google.protobuf.Timestamp
-	22, // 16: statistico.SearchTradesRequest.date_to:type_name -> google.protobuf.Timestamp
-	16, // 17: statistico.SeasonCompetitionRequest.sort:type_name -> google.protobuf.StringValue
-	21, // 18: statistico.TeamResultRequest.limit:type_name -> google.protobuf.UInt64Value
-	16, // 19: statistico.TeamResultRequest.date_before:type_name -> google.protobuf.StringValue
-	16, // 20: statistico.TeamResultRequest.date_after:type_name -> google.protobuf.StringValue
-	16, // 21: statistico.TeamResultRequest.venue:type_name -> google.protobuf.StringValue
-	16, // 22: statistico.TeamResultRequest.sort:type_name -> google.protobuf.StringValue
-	21, // 23: statistico.TeamStatRequest.limit:type_name -> google.protobuf.UInt64Value
-	16, // 24: statistico.TeamStatRequest.date_before:type_name -> google.protobuf.StringValue
-	16, // 25: statistico.TeamStatRequest.date_after:type_name -> google.protobuf.StringValue
-	16, // 26: statistico.TeamStatRequest.venue:type_name -> google.protobuf.StringValue
-	16, // 27: statistico.TeamStatRequest.sort:type_name -> google.protobuf.StringValue
-	17, // 28: statistico.TeamStatRequest.opponent:type_name -> google.protobuf.BoolValue
+	15, // 0: statistico.CompetitionRequest.sort:type_name -> google.protobuf.StringValue
+	16, // 1: statistico.CompetitionRequest.is_cup:type_name -> google.protobuf.BoolValue
+	17, // 2: statistico.CreateStrategyRequest.min_odds:type_name -> google.protobuf.FloatValue
+	17, // 3: statistico.CreateStrategyRequest.max_odds:type_name -> google.protobuf.FloatValue
+	18, // 4: statistico.CreateStrategyRequest.side:type_name -> statistico.SideEnum
+	19, // 5: statistico.CreateStrategyRequest.staking_plan:type_name -> statistico.StakingPlan
+	20, // 6: statistico.FixtureSearchRequest.limit:type_name -> google.protobuf.UInt64Value
+	15, // 7: statistico.FixtureSearchRequest.date_before:type_name -> google.protobuf.StringValue
+	15, // 8: statistico.FixtureSearchRequest.date_after:type_name -> google.protobuf.StringValue
+	15, // 9: statistico.FixtureSearchRequest.sort:type_name -> google.protobuf.StringValue
+	15, // 10: statistico.SearchTradesRequest.strategy_id:type_name -> google.protobuf.StringValue
+	15, // 11: statistico.SearchTradesRequest.market:type_name -> google.protobuf.StringValue
+	20, // 12: statistico.SearchTradesRequest.competition_id:type_name -> google.protobuf.UInt64Value
+	15, // 13: statistico.SearchTradesRequest.status:type_name -> google.protobuf.StringValue
+	15, // 14: statistico.SearchTradesRequest.exchange:type_name -> google.protobuf.StringValue
+	21, // 15: statistico.SearchTradesRequest.date_from:type_name -> google.protobuf.Timestamp
+	21, // 16: statistico.SearchTradesRequest.date_to:type_name -> google.protobuf.Timestamp
+	15, // 17: statistico.SeasonCompetitionRequest.sort:type_name -> google.protobuf.StringValue
+	20, // 18: statistico.TeamResultRequest.limit:type_name -> google.protobuf.UInt64Value
+	15, // 19: statistico.TeamResultRequest.date_before:type_name -> google.protobuf.StringValue
+	15, // 20: statistico.TeamResultRequest.date_after:type_name -> google.protobuf.StringValue
+	15, // 21: statistico.TeamResultRequest.venue:type_name -> google.protobuf.StringValue
+	15, // 22: statistico.TeamResultRequest.sort:type_name -> google.protobuf.StringValue
+	20, // 23: statistico.TeamStatRequest.limit:type_name -> google.protobuf.UInt64Value
+	15, // 24: statistico.TeamStatRequest.date_before:type_name -> google.protobuf.StringValue
+	15, // 25: statistico.TeamStatRequest.date_after:type_name -> google.protobuf.StringValue
+	15, // 26: statistico.TeamStatRequest.venue:type_name -> google.protobuf.StringValue
+	15, // 27: statistico.TeamStatRequest.sort:type_name -> google.protobuf.StringValue
+	16, // 28: statistico.TeamStatRequest.opponent:type_name -> google.protobuf.BoolValue
 	29, // [29:29] is the sub-list for method output_type
 	29, // [29:29] is the sub-list for method input_type
 	29, // [29:29] is the sub-list for extension type_name
@@ -1447,18 +1396,6 @@ func file_requests_proto_init() {
 			}
 		}
 		file_requests_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*HealthCheckRequest); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_requests_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*HistoricalResultRequest); i {
 			case 0:
 				return &v.state
@@ -1470,7 +1407,7 @@ func file_requests_proto_init() {
 				return nil
 			}
 		}
-		file_requests_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
+		file_requests_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ListUserStrategiesRequest); i {
 			case 0:
 				return &v.state
@@ -1482,7 +1419,7 @@ func file_requests_proto_init() {
 				return nil
 			}
 		}
-		file_requests_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
+		file_requests_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ResultRequest); i {
 			case 0:
 				return &v.state
@@ -1494,7 +1431,7 @@ func file_requests_proto_init() {
 				return nil
 			}
 		}
-		file_requests_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
+		file_requests_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*SearchTradesRequest); i {
 			case 0:
 				return &v.state
@@ -1506,7 +1443,7 @@ func file_requests_proto_init() {
 				return nil
 			}
 		}
-		file_requests_proto_msgTypes[9].Exporter = func(v interface{}, i int) interface{} {
+		file_requests_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*SeasonCompetitionRequest); i {
 			case 0:
 				return &v.state
@@ -1518,7 +1455,7 @@ func file_requests_proto_init() {
 				return nil
 			}
 		}
-		file_requests_proto_msgTypes[10].Exporter = func(v interface{}, i int) interface{} {
+		file_requests_proto_msgTypes[9].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*SeasonFixtureRequest); i {
 			case 0:
 				return &v.state
@@ -1530,7 +1467,7 @@ func file_requests_proto_init() {
 				return nil
 			}
 		}
-		file_requests_proto_msgTypes[11].Exporter = func(v interface{}, i int) interface{} {
+		file_requests_proto_msgTypes[10].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*SeasonRequest); i {
 			case 0:
 				return &v.state
@@ -1542,7 +1479,7 @@ func file_requests_proto_init() {
 				return nil
 			}
 		}
-		file_requests_proto_msgTypes[12].Exporter = func(v interface{}, i int) interface{} {
+		file_requests_proto_msgTypes[11].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*SeasonTeamsRequest); i {
 			case 0:
 				return &v.state
@@ -1554,7 +1491,7 @@ func file_requests_proto_init() {
 				return nil
 			}
 		}
-		file_requests_proto_msgTypes[13].Exporter = func(v interface{}, i int) interface{} {
+		file_requests_proto_msgTypes[12].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*TeamRequest); i {
 			case 0:
 				return &v.state
@@ -1566,7 +1503,7 @@ func file_requests_proto_init() {
 				return nil
 			}
 		}
-		file_requests_proto_msgTypes[14].Exporter = func(v interface{}, i int) interface{} {
+		file_requests_proto_msgTypes[13].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*TeamResultRequest); i {
 			case 0:
 				return &v.state
@@ -1578,7 +1515,7 @@ func file_requests_proto_init() {
 				return nil
 			}
 		}
-		file_requests_proto_msgTypes[15].Exporter = func(v interface{}, i int) interface{} {
+		file_requests_proto_msgTypes[14].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*TeamStatRequest); i {
 			case 0:
 				return &v.state
@@ -1597,7 +1534,7 @@ func file_requests_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_requests_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   16,
+			NumMessages:   15,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

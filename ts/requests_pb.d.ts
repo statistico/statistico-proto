@@ -150,24 +150,6 @@ export namespace FixtureSearchRequest {
   }
 }
 
-export class HealthCheckRequest extends jspb.Message {
-  getService(): string;
-  setService(value: string): HealthCheckRequest;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): HealthCheckRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: HealthCheckRequest): HealthCheckRequest.AsObject;
-  static serializeBinaryToWriter(message: HealthCheckRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): HealthCheckRequest;
-  static deserializeBinaryFromReader(message: HealthCheckRequest, reader: jspb.BinaryReader): HealthCheckRequest;
-}
-
-export namespace HealthCheckRequest {
-  export type AsObject = {
-    service: string,
-  }
-}
-
 export class HistoricalResultRequest extends jspb.Message {
   getHomeTeamId(): number;
   setHomeTeamId(value: number): HistoricalResultRequest;

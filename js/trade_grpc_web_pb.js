@@ -20,8 +20,6 @@ var enum_pb = require('./enum_pb.js')
 
 var requests_pb = require('./requests_pb.js')
 
-var responses_pb = require('./responses_pb.js')
-
 var google_protobuf_timestamp_pb = require('google-protobuf/google/protobuf/timestamp_pb.js')
 const proto = {};
 proto.statistico = require('./trade_pb.js');
@@ -75,67 +73,6 @@ proto.statistico.TradeServicePromiseClient =
    */
   this.hostname_ = hostname;
 
-};
-
-
-/**
- * @const
- * @type {!grpc.web.MethodDescriptor<
- *   !proto.statistico.HealthCheckRequest,
- *   !proto.statistico.HealthCheckResponse>}
- */
-const methodDescriptor_TradeService_HealthCheck = new grpc.web.MethodDescriptor(
-  '/statistico.TradeService/HealthCheck',
-  grpc.web.MethodType.UNARY,
-  requests_pb.HealthCheckRequest,
-  responses_pb.HealthCheckResponse,
-  /**
-   * @param {!proto.statistico.HealthCheckRequest} request
-   * @return {!Uint8Array}
-   */
-  function(request) {
-    return request.serializeBinary();
-  },
-  responses_pb.HealthCheckResponse.deserializeBinary
-);
-
-
-/**
- * @param {!proto.statistico.HealthCheckRequest} request The
- *     request proto
- * @param {?Object<string, string>} metadata User defined
- *     call metadata
- * @param {function(?grpc.web.RpcError, ?proto.statistico.HealthCheckResponse)}
- *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.statistico.HealthCheckResponse>|undefined}
- *     The XHR Node Readable Stream
- */
-proto.statistico.TradeServiceClient.prototype.healthCheck =
-    function(request, metadata, callback) {
-  return this.client_.rpcCall(this.hostname_ +
-      '/statistico.TradeService/HealthCheck',
-      request,
-      metadata || {},
-      methodDescriptor_TradeService_HealthCheck,
-      callback);
-};
-
-
-/**
- * @param {!proto.statistico.HealthCheckRequest} request The
- *     request proto
- * @param {?Object<string, string>=} metadata User defined
- *     call metadata
- * @return {!Promise<!proto.statistico.HealthCheckResponse>}
- *     Promise that resolves to the response
- */
-proto.statistico.TradeServicePromiseClient.prototype.healthCheck =
-    function(request, metadata) {
-  return this.client_.unaryCall(this.hostname_ +
-      '/statistico.TradeService/HealthCheck',
-      request,
-      metadata || {},
-      methodDescriptor_TradeService_HealthCheck);
 };
 
 

@@ -14,7 +14,6 @@
 import * as grpcWeb from 'grpc-web';
 
 import * as requests_pb from './requests_pb';
-import * as responses_pb from './responses_pb';
 import * as trade_pb from './trade_pb';
 
 
@@ -35,49 +34,6 @@ export class TradeServiceClient {
     this.hostname_ = hostname;
     this.credentials_ = credentials;
     this.options_ = options;
-  }
-
-  methodInfoHealthCheck = new grpcWeb.MethodDescriptor(
-    '/statistico.TradeService/HealthCheck',
-    grpcWeb.MethodType.UNARY,
-    requests_pb.HealthCheckRequest,
-    responses_pb.HealthCheckResponse,
-    (request: requests_pb.HealthCheckRequest) => {
-      return request.serializeBinary();
-    },
-    responses_pb.HealthCheckResponse.deserializeBinary
-  );
-
-  healthCheck(
-    request: requests_pb.HealthCheckRequest,
-    metadata: grpcWeb.Metadata | null): Promise<responses_pb.HealthCheckResponse>;
-
-  healthCheck(
-    request: requests_pb.HealthCheckRequest,
-    metadata: grpcWeb.Metadata | null,
-    callback: (err: grpcWeb.RpcError,
-               response: responses_pb.HealthCheckResponse) => void): grpcWeb.ClientReadableStream<responses_pb.HealthCheckResponse>;
-
-  healthCheck(
-    request: requests_pb.HealthCheckRequest,
-    metadata: grpcWeb.Metadata | null,
-    callback?: (err: grpcWeb.RpcError,
-               response: responses_pb.HealthCheckResponse) => void) {
-    if (callback !== undefined) {
-      return this.client_.rpcCall(
-        this.hostname_ +
-          '/statistico.TradeService/HealthCheck',
-        request,
-        metadata || {},
-        this.methodInfoHealthCheck,
-        callback);
-    }
-    return this.client_.unaryCall(
-    this.hostname_ +
-      '/statistico.TradeService/HealthCheck',
-    request,
-    metadata || {},
-    this.methodInfoHealthCheck);
   }
 
   methodInfoSearchTrades = new grpcWeb.MethodDescriptor(

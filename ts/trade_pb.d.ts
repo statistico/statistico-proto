@@ -2,7 +2,6 @@ import * as jspb from 'google-protobuf'
 
 import * as enum_pb from './enum_pb';
 import * as requests_pb from './requests_pb';
-import * as responses_pb from './responses_pb';
 import * as google_protobuf_timestamp_pb from 'google-protobuf/google/protobuf/timestamp_pb';
 
 

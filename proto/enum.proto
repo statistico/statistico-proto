@@ -9,9 +9,18 @@ enum ActionEnum {
   AGAINST = 1;
 }
 
+enum ExchangeEnum {
+  BETFAIR = 0;
+  PINNACLE = 1;
+}
+
 enum LineEnum {
   CLOSING = 0;
   MAX = 1;
+}
+
+enum MarketEnum {
+  OVER_UNDER_25 = 0;
 }
 
 enum MeasureEnum {
@@ -52,15 +61,18 @@ enum StatEnum {
 enum StrategyStatusEnum {
   ARCHIVED = 0;
   ACTIVE = 1;
+  SIMULATED = 2;
 }
 
 enum TeamEnum {
   HOME_TEAM = 0;
   AWAY_TEAM = 1;
 }
+
 enum TradeResultEnum {
-  FAIL = 0;
-  SUCCESS = 1;
+  IN_PLAY = 0;
+  FAIL = 1;
+  SUCCESS = 2;
 }
 
 enum VenueEnum {

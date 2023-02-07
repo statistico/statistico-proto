@@ -15,7 +15,9 @@ var goog = jspb;
 var global = Function('return this')();
 
 goog.exportSymbol('proto.statistico.ActionEnum', null, global);
+goog.exportSymbol('proto.statistico.ExchangeEnum', null, global);
 goog.exportSymbol('proto.statistico.LineEnum', null, global);
+goog.exportSymbol('proto.statistico.MarketEnum', null, global);
 goog.exportSymbol('proto.statistico.MeasureEnum', null, global);
 goog.exportSymbol('proto.statistico.MetricEnum', null, global);
 goog.exportSymbol('proto.statistico.ResultEnum', null, global);
@@ -38,9 +40,24 @@ proto.statistico.ActionEnum = {
 /**
  * @enum {number}
  */
+proto.statistico.ExchangeEnum = {
+  BETFAIR: 0,
+  PINNACLE: 1
+};
+
+/**
+ * @enum {number}
+ */
 proto.statistico.LineEnum = {
   CLOSING: 0,
   MAX: 1
+};
+
+/**
+ * @enum {number}
+ */
+proto.statistico.MarketEnum = {
+  OVER_UNDER_25: 0
 };
 
 /**
@@ -101,7 +118,8 @@ proto.statistico.StatEnum = {
  */
 proto.statistico.StrategyStatusEnum = {
   ARCHIVED: 0,
-  ACTIVE: 1
+  ACTIVE: 1,
+  SIMULATED: 2
 };
 
 /**
@@ -116,8 +134,9 @@ proto.statistico.TeamEnum = {
  * @enum {number}
  */
 proto.statistico.TradeResultEnum = {
-  FAIL: 0,
-  SUCCESS: 1
+  IN_PLAY: 0,
+  FAIL: 1,
+  SUCCESS: 2
 };
 
 /**

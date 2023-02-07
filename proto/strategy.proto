@@ -19,13 +19,13 @@ message Strategy {
   string id = 1;
   string name = 2;
   string user_id = 3;
-  string market = 4;
-  google.protobuf.FloatValue min_odds = 5;
-  google.protobuf.FloatValue max_odds = 6;
-  repeated uint64 competition_ids = 7;
-  SideEnum side = 8;
+  MarketEnum market = 4;
+  ExchangeEnum exchange = 5;
+  google.protobuf.FloatValue min_odds = 6;
+  google.protobuf.FloatValue max_odds = 7;
+  repeated uint64 competition_ids = 8;
   StakingPlan staking_plan = 9;
   StrategyStatusEnum status = 10;
-  google.protobuf.Timestamp created_at = 11;
-  google.protobuf.Timestamp updated_at = 12;
+  float bankroll = 11;
+  google.protobuf.Timestamp timestamp = 12;
 }

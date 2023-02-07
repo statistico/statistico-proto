@@ -134,7 +134,7 @@ proto.statistico.TeamEnum = {
  * @enum {number}
  */
 proto.statistico.TradeResultEnum = {
-  IN_PLAY: 0,
+  PLACED: 0,
   FAIL: 1,
   SUCCESS: 2
 };

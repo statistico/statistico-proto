@@ -185,7 +185,7 @@ func (x *Trade) GetResult() TradeResultEnum {
 	if x != nil {
 		return x.Result
 	}
-	return TradeResultEnum_IN_PLAY
+	return TradeResultEnum_PLACED
 }
 
 var File_trade_proto protoreflect.FileDescriptor

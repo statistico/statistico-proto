@@ -52,7 +52,7 @@ if (goog.DEBUG && !COMPILED) {
  * @private {!Array<number>}
  * @const
  */
-proto.statistico.Strategy.repeatedFields_ = [7];
+proto.statistico.Strategy.repeatedFields_ = [8];
 
 
 
@@ -88,15 +88,15 @@ proto.statistico.Strategy.toObject = function(includeInstance, msg) {
     id: jspb.Message.getFieldWithDefault(msg, 1, ""),
     name: jspb.Message.getFieldWithDefault(msg, 2, ""),
     userId: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    market: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    market: jspb.Message.getFieldWithDefault(msg, 4, 0),
+    exchange: jspb.Message.getFieldWithDefault(msg, 5, 0),
     minOdds: (f = msg.getMinOdds()) && google_protobuf_wrappers_pb.FloatValue.toObject(includeInstance, f),
     maxOdds: (f = msg.getMaxOdds()) && google_protobuf_wrappers_pb.FloatValue.toObject(includeInstance, f),
-    competitionIdsList: (f = jspb.Message.getRepeatedField(msg, 7)) == null ? undefined : f,
-    side: jspb.Message.getFieldWithDefault(msg, 8, 0),
+    competitionIdsList: (f = jspb.Message.getRepeatedField(msg, 8)) == null ? undefined : f,
     stakingPlan: (f = msg.getStakingPlan()) && utility_pb.StakingPlan.toObject(includeInstance, f),
     status: jspb.Message.getFieldWithDefault(msg, 10, 0),
-    createdAt: (f = msg.getCreatedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    updatedAt: (f = msg.getUpdatedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
+    bankroll: jspb.Message.getFloatingPointFieldWithDefault(msg, 11, 0.0),
+    timestamp: (f = msg.getTimestamp()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -146,28 +146,28 @@ proto.statistico.Strategy.deserializeBinaryFromReader = function(msg, reader) {
       msg.setUserId(value);
       break;
     case 4:
-      var value = /** @type {string} */ (reader.readString());
+      var value = /** @type {!proto.statistico.MarketEnum} */ (reader.readEnum());
       msg.setMarket(value);
       break;
     case 5:
-      var value = new google_protobuf_wrappers_pb.FloatValue;
-      reader.readMessage(value,google_protobuf_wrappers_pb.FloatValue.deserializeBinaryFromReader);
-      msg.setMinOdds(value);
+      var value = /** @type {!proto.statistico.ExchangeEnum} */ (reader.readEnum());
+      msg.setExchange(value);
       break;
     case 6:
       var value = new google_protobuf_wrappers_pb.FloatValue;
       reader.readMessage(value,google_protobuf_wrappers_pb.FloatValue.deserializeBinaryFromReader);
-      msg.setMaxOdds(value);
+      msg.setMinOdds(value);
       break;
     case 7:
+      var value = new google_protobuf_wrappers_pb.FloatValue;
+      reader.readMessage(value,google_protobuf_wrappers_pb.FloatValue.deserializeBinaryFromReader);
+      msg.setMaxOdds(value);
+      break;
+    case 8:
       var values = /** @type {!Array<number>} */ (reader.isDelimited() ? reader.readPackedUint64() : [reader.readUint64()]);
       for (var i = 0; i < values.length; i++) {
         msg.addCompetitionIds(values[i]);
       }
-      break;
-    case 8:
-      var value = /** @type {!proto.statistico.SideEnum} */ (reader.readEnum());
-      msg.setSide(value);
       break;
     case 9:
       var value = new utility_pb.StakingPlan;
@@ -179,14 +179,13 @@ proto.statistico.Strategy.deserializeBinaryFromReader = function(msg, reader) {
       msg.setStatus(value);
       break;
     case 11:
-      var value = new google_protobuf_timestamp_pb.Timestamp;
-      reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
-      msg.setCreatedAt(value);
+      var value = /** @type {number} */ (reader.readFloat());
+      msg.setBankroll(value);
       break;
     case 12:
       var value = new google_protobuf_timestamp_pb.Timestamp;
       reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
-      msg.setUpdatedAt(value);
+      msg.setTimestamp(value);
       break;
     default:
       reader.skipField();
@@ -239,21 +238,20 @@ proto.statistico.Strategy.serializeBinaryToWriter = function(message, writer) {
     );
   }
   f = message.getMarket();
-  if (f.length > 0) {
-    writer.writeString(
+  if (f !== 0.0) {
+    writer.writeEnum(
       4,
       f
     );
   }
-  f = message.getMinOdds();
-  if (f != null) {
-    writer.writeMessage(
+  f = message.getExchange();
+  if (f !== 0.0) {
+    writer.writeEnum(
       5,
-      f,
-      google_protobuf_wrappers_pb.FloatValue.serializeBinaryToWriter
+      f
     );
   }
-  f = message.getMaxOdds();
+  f = message.getMinOdds();
   if (f != null) {
     writer.writeMessage(
       6,
@@ -261,16 +259,17 @@ proto.statistico.Strategy.serializeBinaryToWriter = function(message, writer) {
       google_protobuf_wrappers_pb.FloatValue.serializeBinaryToWriter
     );
   }
+  f = message.getMaxOdds();
+  if (f != null) {
+    writer.writeMessage(
+      7,
+      f,
+      google_protobuf_wrappers_pb.FloatValue.serializeBinaryToWriter
+    );
+  }
   f = message.getCompetitionIdsList();
   if (f.length > 0) {
     writer.writePackedUint64(
-      7,
-      f
-    );
-  }
-  f = message.getSide();
-  if (f !== 0.0) {
-    writer.writeEnum(
       8,
       f
     );
@@ -290,15 +289,14 @@ proto.statistico.Strategy.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
-  f = message.getCreatedAt();
-  if (f != null) {
-    writer.writeMessage(
+  f = message.getBankroll();
+  if (f !== 0.0) {
+    writer.writeFloat(
       11,
-      f,
-      google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
+      f
     );
   }
-  f = message.getUpdatedAt();
+  f = message.getTimestamp();
   if (f != null) {
     writer.writeMessage(
       12,
@@ -364,30 +362,48 @@ proto.statistico.Strategy.prototype.setUserId = function(value) {
 
 
 /**
- * optional string market = 4;
- * @return {string}
+ * optional MarketEnum market = 4;
+ * @return {!proto.statistico.MarketEnum}
  */
 proto.statistico.Strategy.prototype.getMarket = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
+  return /** @type {!proto.statistico.MarketEnum} */ (jspb.Message.getFieldWithDefault(this, 4, 0));
 };
 
 
 /**
- * @param {string} value
+ * @param {!proto.statistico.MarketEnum} value
  * @return {!proto.statistico.Strategy} returns this
  */
 proto.statistico.Strategy.prototype.setMarket = function(value) {
-  return jspb.Message.setProto3StringField(this, 4, value);
+  return jspb.Message.setProto3EnumField(this, 4, value);
 };
 
 
 /**
- * optional google.protobuf.FloatValue min_odds = 5;
+ * optional ExchangeEnum exchange = 5;
+ * @return {!proto.statistico.ExchangeEnum}
+ */
+proto.statistico.Strategy.prototype.getExchange = function() {
+  return /** @type {!proto.statistico.ExchangeEnum} */ (jspb.Message.getFieldWithDefault(this, 5, 0));
+};
+
+
+/**
+ * @param {!proto.statistico.ExchangeEnum} value
+ * @return {!proto.statistico.Strategy} returns this
+ */
+proto.statistico.Strategy.prototype.setExchange = function(value) {
+  return jspb.Message.setProto3EnumField(this, 5, value);
+};
+
+
+/**
+ * optional google.protobuf.FloatValue min_odds = 6;
  * @return {?proto.google.protobuf.FloatValue}
  */
 proto.statistico.Strategy.prototype.getMinOdds = function() {
   return /** @type{?proto.google.protobuf.FloatValue} */ (
-    jspb.Message.getWrapperField(this, google_protobuf_wrappers_pb.FloatValue, 5));
+    jspb.Message.getWrapperField(this, google_protobuf_wrappers_pb.FloatValue, 6));
 };
 
 
@@ -396,7 +412,7 @@ proto.statistico.Strategy.prototype.getMinOdds = function() {
  * @return {!proto.statistico.Strategy} returns this
 */
 proto.statistico.Strategy.prototype.setMinOdds = function(value) {
-  return jspb.Message.setWrapperField(this, 5, value);
+  return jspb.Message.setWrapperField(this, 6, value);
 };
 
 
@@ -414,17 +430,17 @@ proto.statistico.Strategy.prototype.clearMinOdds = function() {
  * @return {boolean}
  */
 proto.statistico.Strategy.prototype.hasMinOdds = function() {
-  return jspb.Message.getField(this, 5) != null;
+  return jspb.Message.getField(this, 6) != null;
 };
 
 
 /**
- * optional google.protobuf.FloatValue max_odds = 6;
+ * optional google.protobuf.FloatValue max_odds = 7;
  * @return {?proto.google.protobuf.FloatValue}
  */
 proto.statistico.Strategy.prototype.getMaxOdds = function() {
   return /** @type{?proto.google.protobuf.FloatValue} */ (
-    jspb.Message.getWrapperField(this, google_protobuf_wrappers_pb.FloatValue, 6));
+    jspb.Message.getWrapperField(this, google_protobuf_wrappers_pb.FloatValue, 7));
 };
 
 
@@ -433,7 +449,7 @@ proto.statistico.Strategy.prototype.getMaxOdds = function() {
  * @return {!proto.statistico.Strategy} returns this
 */
 proto.statistico.Strategy.prototype.setMaxOdds = function(value) {
-  return jspb.Message.setWrapperField(this, 6, value);
+  return jspb.Message.setWrapperField(this, 7, value);
 };
 
 
@@ -451,16 +467,16 @@ proto.statistico.Strategy.prototype.clearMaxOdds = function() {
  * @return {boolean}
  */
 proto.statistico.Strategy.prototype.hasMaxOdds = function() {
-  return jspb.Message.getField(this, 6) != null;
+  return jspb.Message.getField(this, 7) != null;
 };
 
 
 /**
- * repeated uint64 competition_ids = 7;
+ * repeated uint64 competition_ids = 8;
  * @return {!Array<number>}
  */
 proto.statistico.Strategy.prototype.getCompetitionIdsList = function() {
-  return /** @type {!Array<number>} */ (jspb.Message.getRepeatedField(this, 7));
+  return /** @type {!Array<number>} */ (jspb.Message.getRepeatedField(this, 8));
 };
 
 
@@ -469,7 +485,7 @@ proto.statistico.Strategy.prototype.getCompetitionIdsList = function() {
  * @return {!proto.statistico.Strategy} returns this
  */
 proto.statistico.Strategy.prototype.setCompetitionIdsList = function(value) {
-  return jspb.Message.setField(this, 7, value || []);
+  return jspb.Message.setField(this, 8, value || []);
 };
 
 
@@ -479,7 +495,7 @@ proto.statistico.Strategy.prototype.setCompetitionIdsList = function(value) {
  * @return {!proto.statistico.Strategy} returns this
  */
 proto.statistico.Strategy.prototype.addCompetitionIds = function(value, opt_index) {
-  return jspb.Message.addToRepeatedField(this, 7, value, opt_index);
+  return jspb.Message.addToRepeatedField(this, 8, value, opt_index);
 };
 
 
@@ -489,24 +505,6 @@ proto.statistico.Strategy.prototype.addCompetitionIds = function(value, opt_inde
  */
 proto.statistico.Strategy.prototype.clearCompetitionIdsList = function() {
   return this.setCompetitionIdsList([]);
-};
-
-
-/**
- * optional SideEnum side = 8;
- * @return {!proto.statistico.SideEnum}
- */
-proto.statistico.Strategy.prototype.getSide = function() {
-  return /** @type {!proto.statistico.SideEnum} */ (jspb.Message.getFieldWithDefault(this, 8, 0));
-};
-
-
-/**
- * @param {!proto.statistico.SideEnum} value
- * @return {!proto.statistico.Strategy} returns this
- */
-proto.statistico.Strategy.prototype.setSide = function(value) {
-  return jspb.Message.setProto3EnumField(this, 8, value);
 };
 
 
@@ -566,47 +564,28 @@ proto.statistico.Strategy.prototype.setStatus = function(value) {
 
 
 /**
- * optional google.protobuf.Timestamp created_at = 11;
- * @return {?proto.google.protobuf.Timestamp}
+ * optional float bankroll = 11;
+ * @return {number}
  */
-proto.statistico.Strategy.prototype.getCreatedAt = function() {
-  return /** @type{?proto.google.protobuf.Timestamp} */ (
-    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 11));
+proto.statistico.Strategy.prototype.getBankroll = function() {
+  return /** @type {number} */ (jspb.Message.getFloatingPointFieldWithDefault(this, 11, 0.0));
 };
 
 
 /**
- * @param {?proto.google.protobuf.Timestamp|undefined} value
- * @return {!proto.statistico.Strategy} returns this
-*/
-proto.statistico.Strategy.prototype.setCreatedAt = function(value) {
-  return jspb.Message.setWrapperField(this, 11, value);
-};
-
-
-/**
- * Clears the message field making it undefined.
+ * @param {number} value
  * @return {!proto.statistico.Strategy} returns this
  */
-proto.statistico.Strategy.prototype.clearCreatedAt = function() {
-  return this.setCreatedAt(undefined);
+proto.statistico.Strategy.prototype.setBankroll = function(value) {
+  return jspb.Message.setProto3FloatField(this, 11, value);
 };
 
 
 /**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.statistico.Strategy.prototype.hasCreatedAt = function() {
-  return jspb.Message.getField(this, 11) != null;
-};
-
-
-/**
- * optional google.protobuf.Timestamp updated_at = 12;
+ * optional google.protobuf.Timestamp timestamp = 12;
  * @return {?proto.google.protobuf.Timestamp}
  */
-proto.statistico.Strategy.prototype.getUpdatedAt = function() {
+proto.statistico.Strategy.prototype.getTimestamp = function() {
   return /** @type{?proto.google.protobuf.Timestamp} */ (
     jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 12));
 };
@@ -616,7 +595,7 @@ proto.statistico.Strategy.prototype.getUpdatedAt = function() {
  * @param {?proto.google.protobuf.Timestamp|undefined} value
  * @return {!proto.statistico.Strategy} returns this
 */
-proto.statistico.Strategy.prototype.setUpdatedAt = function(value) {
+proto.statistico.Strategy.prototype.setTimestamp = function(value) {
   return jspb.Message.setWrapperField(this, 12, value);
 };
 
@@ -625,8 +604,8 @@ proto.statistico.Strategy.prototype.setUpdatedAt = function(value) {
  * Clears the message field making it undefined.
  * @return {!proto.statistico.Strategy} returns this
  */
-proto.statistico.Strategy.prototype.clearUpdatedAt = function() {
-  return this.setUpdatedAt(undefined);
+proto.statistico.Strategy.prototype.clearTimestamp = function() {
+  return this.setTimestamp(undefined);
 };
 
 
@@ -634,7 +613,7 @@ proto.statistico.Strategy.prototype.clearUpdatedAt = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.statistico.Strategy.prototype.hasUpdatedAt = function() {
+proto.statistico.Strategy.prototype.hasTimestamp = function() {
   return jspb.Message.getField(this, 12) != null;
 };
 

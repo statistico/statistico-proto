@@ -22,11 +22,10 @@ message Trade {
   float exchange_price = 7;
   float statistico_price = 8;
   float stake = 9;
-  SideEnum side = 10;
-  uint64 event_id = 11;
-  uint64 competition_id = 12;
-  uint64 season_id = 13;
-  google.protobuf.Timestamp event_date = 14;
-  google.protobuf.Timestamp timestamp = 15;
-  TradeResultEnum result = 16;
+  uint64 event_id = 10;
+  uint64 competition_id = 11;
+  uint64 season_id = 12;
+  google.protobuf.Timestamp event_date = 13;
+  google.protobuf.Timestamp timestamp = 14;
+  TradeResultEnum result = 15;
 }

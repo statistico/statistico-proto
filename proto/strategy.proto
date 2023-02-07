@@ -27,5 +27,6 @@ message Strategy {
   StakingPlan staking_plan = 9;
   StrategyStatusEnum status = 10;
   float bankroll = 11;
-  google.protobuf.Timestamp timestamp = 12;
+  google.protobuf.Timestamp created_at = 12;
+  google.protobuf.Timestamp updated_at = 13;
 }

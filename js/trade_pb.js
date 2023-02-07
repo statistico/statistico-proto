@@ -87,8 +87,9 @@ proto.statistico.Trade.toObject = function(includeInstance, msg) {
     competitionId: jspb.Message.getFieldWithDefault(msg, 11, 0),
     seasonId: jspb.Message.getFieldWithDefault(msg, 12, 0),
     eventDate: (f = msg.getEventDate()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    timestamp: (f = msg.getTimestamp()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    result: jspb.Message.getFieldWithDefault(msg, 15, 0)
+    result: jspb.Message.getFieldWithDefault(msg, 14, 0),
+    createdAt: (f = msg.getCreatedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+    updatedAt: (f = msg.getUpdatedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -179,13 +180,18 @@ proto.statistico.Trade.deserializeBinaryFromReader = function(msg, reader) {
       msg.setEventDate(value);
       break;
     case 14:
-      var value = new google_protobuf_timestamp_pb.Timestamp;
-      reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
-      msg.setTimestamp(value);
-      break;
-    case 15:
       var value = /** @type {!proto.statistico.TradeResultEnum} */ (reader.readEnum());
       msg.setResult(value);
+      break;
+    case 15:
+      var value = new google_protobuf_timestamp_pb.Timestamp;
+      reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
+      msg.setCreatedAt(value);
+      break;
+    case 16:
+      var value = new google_protobuf_timestamp_pb.Timestamp;
+      reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
+      msg.setUpdatedAt(value);
       break;
     default:
       reader.skipField();
@@ -308,19 +314,27 @@ proto.statistico.Trade.serializeBinaryToWriter = function(message, writer) {
       google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
     );
   }
-  f = message.getTimestamp();
+  f = message.getResult();
+  if (f !== 0.0) {
+    writer.writeEnum(
+      14,
+      f
+    );
+  }
+  f = message.getCreatedAt();
   if (f != null) {
     writer.writeMessage(
-      14,
+      15,
       f,
       google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
     );
   }
-  f = message.getResult();
-  if (f !== 0.0) {
-    writer.writeEnum(
-      15,
-      f
+  f = message.getUpdatedAt();
+  if (f != null) {
+    writer.writeMessage(
+      16,
+      f,
+      google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
     );
   }
 };
@@ -580,48 +594,11 @@ proto.statistico.Trade.prototype.hasEventDate = function() {
 
 
 /**
- * optional google.protobuf.Timestamp timestamp = 14;
- * @return {?proto.google.protobuf.Timestamp}
- */
-proto.statistico.Trade.prototype.getTimestamp = function() {
-  return /** @type{?proto.google.protobuf.Timestamp} */ (
-    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 14));
-};
-
-
-/**
- * @param {?proto.google.protobuf.Timestamp|undefined} value
- * @return {!proto.statistico.Trade} returns this
-*/
-proto.statistico.Trade.prototype.setTimestamp = function(value) {
-  return jspb.Message.setWrapperField(this, 14, value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.statistico.Trade} returns this
- */
-proto.statistico.Trade.prototype.clearTimestamp = function() {
-  return this.setTimestamp(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.statistico.Trade.prototype.hasTimestamp = function() {
-  return jspb.Message.getField(this, 14) != null;
-};
-
-
-/**
- * optional TradeResultEnum result = 15;
+ * optional TradeResultEnum result = 14;
  * @return {!proto.statistico.TradeResultEnum}
  */
 proto.statistico.Trade.prototype.getResult = function() {
-  return /** @type {!proto.statistico.TradeResultEnum} */ (jspb.Message.getFieldWithDefault(this, 15, 0));
+  return /** @type {!proto.statistico.TradeResultEnum} */ (jspb.Message.getFieldWithDefault(this, 14, 0));
 };
 
 
@@ -630,7 +607,81 @@ proto.statistico.Trade.prototype.getResult = function() {
  * @return {!proto.statistico.Trade} returns this
  */
 proto.statistico.Trade.prototype.setResult = function(value) {
-  return jspb.Message.setProto3EnumField(this, 15, value);
+  return jspb.Message.setProto3EnumField(this, 14, value);
+};
+
+
+/**
+ * optional google.protobuf.Timestamp created_at = 15;
+ * @return {?proto.google.protobuf.Timestamp}
+ */
+proto.statistico.Trade.prototype.getCreatedAt = function() {
+  return /** @type{?proto.google.protobuf.Timestamp} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 15));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.Timestamp|undefined} value
+ * @return {!proto.statistico.Trade} returns this
+*/
+proto.statistico.Trade.prototype.setCreatedAt = function(value) {
+  return jspb.Message.setWrapperField(this, 15, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.statistico.Trade} returns this
+ */
+proto.statistico.Trade.prototype.clearCreatedAt = function() {
+  return this.setCreatedAt(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.statistico.Trade.prototype.hasCreatedAt = function() {
+  return jspb.Message.getField(this, 15) != null;
+};
+
+
+/**
+ * optional google.protobuf.Timestamp updated_at = 16;
+ * @return {?proto.google.protobuf.Timestamp}
+ */
+proto.statistico.Trade.prototype.getUpdatedAt = function() {
+  return /** @type{?proto.google.protobuf.Timestamp} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 16));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.Timestamp|undefined} value
+ * @return {!proto.statistico.Trade} returns this
+*/
+proto.statistico.Trade.prototype.setUpdatedAt = function(value) {
+  return jspb.Message.setWrapperField(this, 16, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.statistico.Trade} returns this
+ */
+proto.statistico.Trade.prototype.clearUpdatedAt = function() {
+  return this.setUpdatedAt(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.statistico.Trade.prototype.hasUpdatedAt = function() {
+  return jspb.Message.getField(this, 16) != null;
 };
 
 

@@ -96,7 +96,8 @@ proto.statistico.Strategy.toObject = function(includeInstance, msg) {
     stakingPlan: (f = msg.getStakingPlan()) && utility_pb.StakingPlan.toObject(includeInstance, f),
     status: jspb.Message.getFieldWithDefault(msg, 10, 0),
     bankroll: jspb.Message.getFloatingPointFieldWithDefault(msg, 11, 0.0),
-    timestamp: (f = msg.getTimestamp()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
+    createdAt: (f = msg.getCreatedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+    updatedAt: (f = msg.getUpdatedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -185,7 +186,12 @@ proto.statistico.Strategy.deserializeBinaryFromReader = function(msg, reader) {
     case 12:
       var value = new google_protobuf_timestamp_pb.Timestamp;
       reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
-      msg.setTimestamp(value);
+      msg.setCreatedAt(value);
+      break;
+    case 13:
+      var value = new google_protobuf_timestamp_pb.Timestamp;
+      reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
+      msg.setUpdatedAt(value);
       break;
     default:
       reader.skipField();
@@ -296,10 +302,18 @@ proto.statistico.Strategy.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
-  f = message.getTimestamp();
+  f = message.getCreatedAt();
   if (f != null) {
     writer.writeMessage(
       12,
+      f,
+      google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
+    );
+  }
+  f = message.getUpdatedAt();
+  if (f != null) {
+    writer.writeMessage(
+      13,
       f,
       google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
     );
@@ -582,10 +596,10 @@ proto.statistico.Strategy.prototype.setBankroll = function(value) {
 
 
 /**
- * optional google.protobuf.Timestamp timestamp = 12;
+ * optional google.protobuf.Timestamp created_at = 12;
  * @return {?proto.google.protobuf.Timestamp}
  */
-proto.statistico.Strategy.prototype.getTimestamp = function() {
+proto.statistico.Strategy.prototype.getCreatedAt = function() {
   return /** @type{?proto.google.protobuf.Timestamp} */ (
     jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 12));
 };
@@ -595,7 +609,7 @@ proto.statistico.Strategy.prototype.getTimestamp = function() {
  * @param {?proto.google.protobuf.Timestamp|undefined} value
  * @return {!proto.statistico.Strategy} returns this
 */
-proto.statistico.Strategy.prototype.setTimestamp = function(value) {
+proto.statistico.Strategy.prototype.setCreatedAt = function(value) {
   return jspb.Message.setWrapperField(this, 12, value);
 };
 
@@ -604,8 +618,8 @@ proto.statistico.Strategy.prototype.setTimestamp = function(value) {
  * Clears the message field making it undefined.
  * @return {!proto.statistico.Strategy} returns this
  */
-proto.statistico.Strategy.prototype.clearTimestamp = function() {
-  return this.setTimestamp(undefined);
+proto.statistico.Strategy.prototype.clearCreatedAt = function() {
+  return this.setCreatedAt(undefined);
 };
 
 
@@ -613,8 +627,45 @@ proto.statistico.Strategy.prototype.clearTimestamp = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.statistico.Strategy.prototype.hasTimestamp = function() {
+proto.statistico.Strategy.prototype.hasCreatedAt = function() {
   return jspb.Message.getField(this, 12) != null;
+};
+
+
+/**
+ * optional google.protobuf.Timestamp updated_at = 13;
+ * @return {?proto.google.protobuf.Timestamp}
+ */
+proto.statistico.Strategy.prototype.getUpdatedAt = function() {
+  return /** @type{?proto.google.protobuf.Timestamp} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 13));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.Timestamp|undefined} value
+ * @return {!proto.statistico.Strategy} returns this
+*/
+proto.statistico.Strategy.prototype.setUpdatedAt = function(value) {
+  return jspb.Message.setWrapperField(this, 13, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.statistico.Strategy} returns this
+ */
+proto.statistico.Strategy.prototype.clearUpdatedAt = function() {
+  return this.setUpdatedAt(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.statistico.Strategy.prototype.hasUpdatedAt = function() {
+  return jspb.Message.getField(this, 13) != null;
 };
 
 

@@ -83,13 +83,12 @@ proto.statistico.Trade.toObject = function(includeInstance, msg) {
     exchangePrice: jspb.Message.getFloatingPointFieldWithDefault(msg, 7, 0.0),
     statisticoPrice: jspb.Message.getFloatingPointFieldWithDefault(msg, 8, 0.0),
     stake: jspb.Message.getFloatingPointFieldWithDefault(msg, 9, 0.0),
-    side: jspb.Message.getFieldWithDefault(msg, 10, 0),
-    eventId: jspb.Message.getFieldWithDefault(msg, 11, 0),
-    competitionId: jspb.Message.getFieldWithDefault(msg, 12, 0),
-    seasonId: jspb.Message.getFieldWithDefault(msg, 13, 0),
+    eventId: jspb.Message.getFieldWithDefault(msg, 10, 0),
+    competitionId: jspb.Message.getFieldWithDefault(msg, 11, 0),
+    seasonId: jspb.Message.getFieldWithDefault(msg, 12, 0),
     eventDate: (f = msg.getEventDate()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
     timestamp: (f = msg.getTimestamp()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    result: jspb.Message.getFieldWithDefault(msg, 16, 0)
+    result: jspb.Message.getFieldWithDefault(msg, 15, 0)
   };
 
   if (includeInstance) {
@@ -163,32 +162,28 @@ proto.statistico.Trade.deserializeBinaryFromReader = function(msg, reader) {
       msg.setStake(value);
       break;
     case 10:
-      var value = /** @type {!proto.statistico.SideEnum} */ (reader.readEnum());
-      msg.setSide(value);
-      break;
-    case 11:
       var value = /** @type {number} */ (reader.readUint64());
       msg.setEventId(value);
       break;
-    case 12:
+    case 11:
       var value = /** @type {number} */ (reader.readUint64());
       msg.setCompetitionId(value);
       break;
-    case 13:
+    case 12:
       var value = /** @type {number} */ (reader.readUint64());
       msg.setSeasonId(value);
       break;
-    case 14:
+    case 13:
       var value = new google_protobuf_timestamp_pb.Timestamp;
       reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
       msg.setEventDate(value);
       break;
-    case 15:
+    case 14:
       var value = new google_protobuf_timestamp_pb.Timestamp;
       reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
       msg.setTimestamp(value);
       break;
-    case 16:
+    case 15:
       var value = /** @type {!proto.statistico.TradeResultEnum} */ (reader.readEnum());
       msg.setResult(value);
       break;
@@ -284,38 +279,31 @@ proto.statistico.Trade.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
-  f = message.getSide();
-  if (f !== 0.0) {
-    writer.writeEnum(
-      10,
-      f
-    );
-  }
   f = message.getEventId();
   if (f !== 0) {
     writer.writeUint64(
-      11,
+      10,
       f
     );
   }
   f = message.getCompetitionId();
   if (f !== 0) {
     writer.writeUint64(
-      12,
+      11,
       f
     );
   }
   f = message.getSeasonId();
   if (f !== 0) {
     writer.writeUint64(
-      13,
+      12,
       f
     );
   }
   f = message.getEventDate();
   if (f != null) {
     writer.writeMessage(
-      14,
+      13,
       f,
       google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
     );
@@ -323,7 +311,7 @@ proto.statistico.Trade.serializeBinaryToWriter = function(message, writer) {
   f = message.getTimestamp();
   if (f != null) {
     writer.writeMessage(
-      15,
+      14,
       f,
       google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
     );
@@ -331,7 +319,7 @@ proto.statistico.Trade.serializeBinaryToWriter = function(message, writer) {
   f = message.getResult();
   if (f !== 0.0) {
     writer.writeEnum(
-      16,
+      15,
       f
     );
   }
@@ -501,29 +489,11 @@ proto.statistico.Trade.prototype.setStake = function(value) {
 
 
 /**
- * optional SideEnum side = 10;
- * @return {!proto.statistico.SideEnum}
- */
-proto.statistico.Trade.prototype.getSide = function() {
-  return /** @type {!proto.statistico.SideEnum} */ (jspb.Message.getFieldWithDefault(this, 10, 0));
-};
-
-
-/**
- * @param {!proto.statistico.SideEnum} value
- * @return {!proto.statistico.Trade} returns this
- */
-proto.statistico.Trade.prototype.setSide = function(value) {
-  return jspb.Message.setProto3EnumField(this, 10, value);
-};
-
-
-/**
- * optional uint64 event_id = 11;
+ * optional uint64 event_id = 10;
  * @return {number}
  */
 proto.statistico.Trade.prototype.getEventId = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 11, 0));
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 10, 0));
 };
 
 
@@ -532,16 +502,16 @@ proto.statistico.Trade.prototype.getEventId = function() {
  * @return {!proto.statistico.Trade} returns this
  */
 proto.statistico.Trade.prototype.setEventId = function(value) {
-  return jspb.Message.setProto3IntField(this, 11, value);
+  return jspb.Message.setProto3IntField(this, 10, value);
 };
 
 
 /**
- * optional uint64 competition_id = 12;
+ * optional uint64 competition_id = 11;
  * @return {number}
  */
 proto.statistico.Trade.prototype.getCompetitionId = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 12, 0));
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 11, 0));
 };
 
 
@@ -550,16 +520,16 @@ proto.statistico.Trade.prototype.getCompetitionId = function() {
  * @return {!proto.statistico.Trade} returns this
  */
 proto.statistico.Trade.prototype.setCompetitionId = function(value) {
-  return jspb.Message.setProto3IntField(this, 12, value);
+  return jspb.Message.setProto3IntField(this, 11, value);
 };
 
 
 /**
- * optional uint64 season_id = 13;
+ * optional uint64 season_id = 12;
  * @return {number}
  */
 proto.statistico.Trade.prototype.getSeasonId = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 13, 0));
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 12, 0));
 };
 
 
@@ -568,17 +538,17 @@ proto.statistico.Trade.prototype.getSeasonId = function() {
  * @return {!proto.statistico.Trade} returns this
  */
 proto.statistico.Trade.prototype.setSeasonId = function(value) {
-  return jspb.Message.setProto3IntField(this, 13, value);
+  return jspb.Message.setProto3IntField(this, 12, value);
 };
 
 
 /**
- * optional google.protobuf.Timestamp event_date = 14;
+ * optional google.protobuf.Timestamp event_date = 13;
  * @return {?proto.google.protobuf.Timestamp}
  */
 proto.statistico.Trade.prototype.getEventDate = function() {
   return /** @type{?proto.google.protobuf.Timestamp} */ (
-    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 14));
+    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 13));
 };
 
 
@@ -587,7 +557,7 @@ proto.statistico.Trade.prototype.getEventDate = function() {
  * @return {!proto.statistico.Trade} returns this
 */
 proto.statistico.Trade.prototype.setEventDate = function(value) {
-  return jspb.Message.setWrapperField(this, 14, value);
+  return jspb.Message.setWrapperField(this, 13, value);
 };
 
 
@@ -605,17 +575,17 @@ proto.statistico.Trade.prototype.clearEventDate = function() {
  * @return {boolean}
  */
 proto.statistico.Trade.prototype.hasEventDate = function() {
-  return jspb.Message.getField(this, 14) != null;
+  return jspb.Message.getField(this, 13) != null;
 };
 
 
 /**
- * optional google.protobuf.Timestamp timestamp = 15;
+ * optional google.protobuf.Timestamp timestamp = 14;
  * @return {?proto.google.protobuf.Timestamp}
  */
 proto.statistico.Trade.prototype.getTimestamp = function() {
   return /** @type{?proto.google.protobuf.Timestamp} */ (
-    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 15));
+    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 14));
 };
 
 
@@ -624,7 +594,7 @@ proto.statistico.Trade.prototype.getTimestamp = function() {
  * @return {!proto.statistico.Trade} returns this
 */
 proto.statistico.Trade.prototype.setTimestamp = function(value) {
-  return jspb.Message.setWrapperField(this, 15, value);
+  return jspb.Message.setWrapperField(this, 14, value);
 };
 
 
@@ -642,16 +612,16 @@ proto.statistico.Trade.prototype.clearTimestamp = function() {
  * @return {boolean}
  */
 proto.statistico.Trade.prototype.hasTimestamp = function() {
-  return jspb.Message.getField(this, 15) != null;
+  return jspb.Message.getField(this, 14) != null;
 };
 
 
 /**
- * optional TradeResultEnum result = 16;
+ * optional TradeResultEnum result = 15;
  * @return {!proto.statistico.TradeResultEnum}
  */
 proto.statistico.Trade.prototype.getResult = function() {
-  return /** @type {!proto.statistico.TradeResultEnum} */ (jspb.Message.getFieldWithDefault(this, 16, 0));
+  return /** @type {!proto.statistico.TradeResultEnum} */ (jspb.Message.getFieldWithDefault(this, 15, 0));
 };
 
 
@@ -660,7 +630,7 @@ proto.statistico.Trade.prototype.getResult = function() {
  * @return {!proto.statistico.Trade} returns this
  */
 proto.statistico.Trade.prototype.setResult = function(value) {
-  return jspb.Message.setProto3EnumField(this, 16, value);
+  return jspb.Message.setProto3EnumField(this, 15, value);
 };
 
 

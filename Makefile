@@ -5,13 +5,7 @@ build:
        ./proto/*.proto
 
 	protoc --proto_path=./proto \
-		--js_out=import_style=commonjs,binary:js \
-	   --grpc-web_out=import_style=commonjs,mode=grpcwebtext:js \
-	   ./proto/*.proto
-
-	protoc --proto_path=./proto \
-		--js_out=import_style=commonjs,binary:ts \
-	   --grpc-web_out=import_style=typescript,mode=grpcweb:ts \
+		--ts_out=ts \
 	   ./proto/*.proto
 
 	python3 -m grpc_tools.protoc \

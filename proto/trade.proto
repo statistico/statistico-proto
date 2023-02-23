@@ -6,7 +6,6 @@ option go_package = "github.com/statistico/statistico-proto;statistico";
 
 import "enum.proto";
 import "requests.proto";
-import "google/protobuf/timestamp.proto";
 
 service TradeService {
   rpc SearchTrades(SearchTradesRequest) returns (stream Trade) {}
@@ -25,7 +24,7 @@ message Trade {
   uint64 event_id = 10;
   uint64 competition_id = 11;
   uint64 season_id = 12;
-  google.protobuf.Timestamp event_date = 13;
+  uint64 event_date = 13;
   TradeResultEnum result = 14;
   uint64 created_at = 15;
   uint64 updated_at = 16;

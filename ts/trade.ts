@@ -14,7 +14,6 @@ import { reflectionMergePartial } from "@protobuf-ts/runtime";
 import { MESSAGE_TYPE } from "@protobuf-ts/runtime";
 import { MessageType } from "@protobuf-ts/runtime";
 import { TradeResultEnum } from "./enum";
-import { Timestamp } from "./google/protobuf/timestamp";
 /**
  * @generated from protobuf message statistico.Trade
  */
@@ -68,9 +67,9 @@ export interface Trade {
      */
     seasonId: bigint;
     /**
-     * @generated from protobuf field: google.protobuf.Timestamp event_date = 13;
+     * @generated from protobuf field: uint64 event_date = 13;
      */
-    eventDate?: Timestamp;
+    eventDate: bigint;
     /**
      * @generated from protobuf field: statistico.TradeResultEnum result = 14;
      */
@@ -100,14 +99,14 @@ class Trade$Type extends MessageType<Trade> {
             { no: 10, name: "event_id", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 0 /*LongType.BIGINT*/ },
             { no: 11, name: "competition_id", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 0 /*LongType.BIGINT*/ },
             { no: 12, name: "season_id", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 0 /*LongType.BIGINT*/ },
-            { no: 13, name: "event_date", kind: "message", T: () => Timestamp },
+            { no: 13, name: "event_date", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 0 /*LongType.BIGINT*/ },
             { no: 14, name: "result", kind: "enum", T: () => ["statistico.TradeResultEnum", TradeResultEnum] },
             { no: 15, name: "created_at", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 0 /*LongType.BIGINT*/ },
             { no: 16, name: "updated_at", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 0 /*LongType.BIGINT*/ }
         ]);
     }
     create(value?: PartialMessage<Trade>): Trade {
-        const message = { id: "", strategyId: "", exchange: "", exchangeRef: "", market: "", runner: "", exchangePrice: 0, statisticoPrice: 0, stake: 0, eventId: 0n, competitionId: 0n, seasonId: 0n, result: 0, createdAt: 0n, updatedAt: 0n };
+        const message = { id: "", strategyId: "", exchange: "", exchangeRef: "", market: "", runner: "", exchangePrice: 0, statisticoPrice: 0, stake: 0, eventId: 0n, competitionId: 0n, seasonId: 0n, eventDate: 0n, result: 0, createdAt: 0n, updatedAt: 0n };
         globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this });
         if (value !== undefined)
             reflectionMergePartial<Trade>(this, message, value);
@@ -154,8 +153,8 @@ class Trade$Type extends MessageType<Trade> {
                 case /* uint64 season_id */ 12:
                     message.seasonId = reader.uint64().toBigInt();
                     break;
-                case /* google.protobuf.Timestamp event_date */ 13:
-                    message.eventDate = Timestamp.internalBinaryRead(reader, reader.uint32(), options, message.eventDate);
+                case /* uint64 event_date */ 13:
+                    message.eventDate = reader.uint64().toBigInt();
                     break;
                 case /* statistico.TradeResultEnum result */ 14:
                     message.result = reader.int32();
@@ -214,9 +213,9 @@ class Trade$Type extends MessageType<Trade> {
         /* uint64 season_id = 12; */
         if (message.seasonId !== 0n)
             writer.tag(12, WireType.Varint).uint64(message.seasonId);
-        /* google.protobuf.Timestamp event_date = 13; */
-        if (message.eventDate)
-            Timestamp.internalBinaryWrite(message.eventDate, writer.tag(13, WireType.LengthDelimited).fork(), options).join();
+        /* uint64 event_date = 13; */
+        if (message.eventDate !== 0n)
+            writer.tag(13, WireType.Varint).uint64(message.eventDate);
         /* statistico.TradeResultEnum result = 14; */
         if (message.result !== 0)
             writer.tag(14, WireType.Varint).int32(message.result);

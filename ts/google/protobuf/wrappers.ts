@@ -38,11 +38,6 @@
 // where we need to distinguish between the absence of a primitive
 // typed field and its default value.
 //
-// These wrappers have no meaningful use within repeated fields as they lack
-// the ability to detect presence on individual elements.
-// These wrappers have no meaningful use within a map or a oneof since
-// individual entries of a map or fields of a oneof can already detect presence.
-//
 import { ScalarType } from "@protobuf-ts/runtime";
 import { LongType } from "@protobuf-ts/runtime";
 import type { BinaryWriteOptions } from "@protobuf-ts/runtime";

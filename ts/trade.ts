@@ -76,13 +76,13 @@ export interface Trade {
      */
     result: TradeResultEnum;
     /**
-     * @generated from protobuf field: google.protobuf.Timestamp created_at = 15;
+     * @generated from protobuf field: uint64 created_at = 15;
      */
-    createdAt?: Timestamp;
+    createdAt: bigint;
     /**
-     * @generated from protobuf field: google.protobuf.Timestamp updated_at = 16;
+     * @generated from protobuf field: uint64 updated_at = 16;
      */
-    updatedAt?: Timestamp;
+    updatedAt: bigint;
 }
 // @generated message type with reflection information, may provide speed optimized methods
 class Trade$Type extends MessageType<Trade> {
@@ -102,12 +102,12 @@ class Trade$Type extends MessageType<Trade> {
             { no: 12, name: "season_id", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 0 /*LongType.BIGINT*/ },
             { no: 13, name: "event_date", kind: "message", T: () => Timestamp },
             { no: 14, name: "result", kind: "enum", T: () => ["statistico.TradeResultEnum", TradeResultEnum] },
-            { no: 15, name: "created_at", kind: "message", T: () => Timestamp },
-            { no: 16, name: "updated_at", kind: "message", T: () => Timestamp }
+            { no: 15, name: "created_at", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 0 /*LongType.BIGINT*/ },
+            { no: 16, name: "updated_at", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 0 /*LongType.BIGINT*/ }
         ]);
     }
     create(value?: PartialMessage<Trade>): Trade {
-        const message = { id: "", strategyId: "", exchange: "", exchangeRef: "", market: "", runner: "", exchangePrice: 0, statisticoPrice: 0, stake: 0, eventId: 0n, competitionId: 0n, seasonId: 0n, result: 0 };
+        const message = { id: "", strategyId: "", exchange: "", exchangeRef: "", market: "", runner: "", exchangePrice: 0, statisticoPrice: 0, stake: 0, eventId: 0n, competitionId: 0n, seasonId: 0n, result: 0, createdAt: 0n, updatedAt: 0n };
         globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this });
         if (value !== undefined)
             reflectionMergePartial<Trade>(this, message, value);
@@ -160,11 +160,11 @@ class Trade$Type extends MessageType<Trade> {
                 case /* statistico.TradeResultEnum result */ 14:
                     message.result = reader.int32();
                     break;
-                case /* google.protobuf.Timestamp created_at */ 15:
-                    message.createdAt = Timestamp.internalBinaryRead(reader, reader.uint32(), options, message.createdAt);
+                case /* uint64 created_at */ 15:
+                    message.createdAt = reader.uint64().toBigInt();
                     break;
-                case /* google.protobuf.Timestamp updated_at */ 16:
-                    message.updatedAt = Timestamp.internalBinaryRead(reader, reader.uint32(), options, message.updatedAt);
+                case /* uint64 updated_at */ 16:
+                    message.updatedAt = reader.uint64().toBigInt();
                     break;
                 default:
                     let u = options.readUnknownField;
@@ -220,12 +220,12 @@ class Trade$Type extends MessageType<Trade> {
         /* statistico.TradeResultEnum result = 14; */
         if (message.result !== 0)
             writer.tag(14, WireType.Varint).int32(message.result);
-        /* google.protobuf.Timestamp created_at = 15; */
-        if (message.createdAt)
-            Timestamp.internalBinaryWrite(message.createdAt, writer.tag(15, WireType.LengthDelimited).fork(), options).join();
-        /* google.protobuf.Timestamp updated_at = 16; */
-        if (message.updatedAt)
-            Timestamp.internalBinaryWrite(message.updatedAt, writer.tag(16, WireType.LengthDelimited).fork(), options).join();
+        /* uint64 created_at = 15; */
+        if (message.createdAt !== 0n)
+            writer.tag(15, WireType.Varint).uint64(message.createdAt);
+        /* uint64 updated_at = 16; */
+        if (message.updatedAt !== 0n)
+            writer.tag(16, WireType.Varint).uint64(message.updatedAt);
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);

@@ -27,6 +27,6 @@ message Trade {
   uint64 season_id = 12;
   google.protobuf.Timestamp event_date = 13;
   TradeResultEnum result = 14;
-  google.protobuf.Timestamp created_at = 15;
-  google.protobuf.Timestamp updated_at = 16;
+  uint64 created_at = 15;
+  uint64 updated_at = 16;
 }

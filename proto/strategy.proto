@@ -7,7 +7,6 @@ option go_package = "github.com/statistico/statistico-proto;statistico";
 import "enum.proto";
 import "requests.proto";
 import "utility.proto";
-import "google/protobuf/timestamp.proto";
 import "google/protobuf/wrappers.proto";
 
 service StrategyService {
@@ -27,6 +26,6 @@ message Strategy {
   StakingPlan staking_plan = 9;
   StrategyStatusEnum status = 10;
   float bankroll = 11;
-  google.protobuf.Timestamp created_at = 12;
-  google.protobuf.Timestamp updated_at = 13;
+  uint64 created_at = 12;
+  uint64 updated_at = 13;
 }

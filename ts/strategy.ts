@@ -14,7 +14,6 @@ import type { PartialMessage } from "@protobuf-ts/runtime";
 import { reflectionMergePartial } from "@protobuf-ts/runtime";
 import { MESSAGE_TYPE } from "@protobuf-ts/runtime";
 import { MessageType } from "@protobuf-ts/runtime";
-import { Timestamp } from "./google/protobuf/timestamp";
 import { StrategyStatusEnum } from "./enum";
 import { StakingPlan } from "./utility";
 import { FloatValue } from "./google/protobuf/wrappers";
@@ -69,13 +68,13 @@ export interface Strategy {
      */
     bankroll: number;
     /**
-     * @generated from protobuf field: google.protobuf.Timestamp created_at = 12;
+     * @generated from protobuf field: uint64 created_at = 12;
      */
-    createdAt?: Timestamp;
+    createdAt: bigint;
     /**
-     * @generated from protobuf field: google.protobuf.Timestamp updated_at = 13;
+     * @generated from protobuf field: uint64 updated_at = 13;
      */
-    updatedAt?: Timestamp;
+    updatedAt: bigint;
 }
 // @generated message type with reflection information, may provide speed optimized methods
 class Strategy$Type extends MessageType<Strategy> {
@@ -92,12 +91,12 @@ class Strategy$Type extends MessageType<Strategy> {
             { no: 9, name: "staking_plan", kind: "message", T: () => StakingPlan },
             { no: 10, name: "status", kind: "enum", T: () => ["statistico.StrategyStatusEnum", StrategyStatusEnum] },
             { no: 11, name: "bankroll", kind: "scalar", T: 2 /*ScalarType.FLOAT*/ },
-            { no: 12, name: "created_at", kind: "message", T: () => Timestamp },
-            { no: 13, name: "updated_at", kind: "message", T: () => Timestamp }
+            { no: 12, name: "created_at", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 0 /*LongType.BIGINT*/ },
+            { no: 13, name: "updated_at", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 0 /*LongType.BIGINT*/ }
         ]);
     }
     create(value?: PartialMessage<Strategy>): Strategy {
-        const message = { id: "", name: "", userId: "", market: 0, exchange: 0, competitionIds: [], status: 0, bankroll: 0 };
+        const message = { id: "", name: "", userId: "", market: 0, exchange: 0, competitionIds: [], status: 0, bankroll: 0, createdAt: 0n, updatedAt: 0n };
         globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this });
         if (value !== undefined)
             reflectionMergePartial<Strategy>(this, message, value);
@@ -145,11 +144,11 @@ class Strategy$Type extends MessageType<Strategy> {
                 case /* float bankroll */ 11:
                     message.bankroll = reader.float();
                     break;
-                case /* google.protobuf.Timestamp created_at */ 12:
-                    message.createdAt = Timestamp.internalBinaryRead(reader, reader.uint32(), options, message.createdAt);
+                case /* uint64 created_at */ 12:
+                    message.createdAt = reader.uint64().toBigInt();
                     break;
-                case /* google.protobuf.Timestamp updated_at */ 13:
-                    message.updatedAt = Timestamp.internalBinaryRead(reader, reader.uint32(), options, message.updatedAt);
+                case /* uint64 updated_at */ 13:
+                    message.updatedAt = reader.uint64().toBigInt();
                     break;
                 default:
                     let u = options.readUnknownField;
@@ -200,12 +199,12 @@ class Strategy$Type extends MessageType<Strategy> {
         /* float bankroll = 11; */
         if (message.bankroll !== 0)
             writer.tag(11, WireType.Bit32).float(message.bankroll);
-        /* google.protobuf.Timestamp created_at = 12; */
-        if (message.createdAt)
-            Timestamp.internalBinaryWrite(message.createdAt, writer.tag(12, WireType.LengthDelimited).fork(), options).join();
-        /* google.protobuf.Timestamp updated_at = 13; */
-        if (message.updatedAt)
-            Timestamp.internalBinaryWrite(message.updatedAt, writer.tag(13, WireType.LengthDelimited).fork(), options).join();
+        /* uint64 created_at = 12; */
+        if (message.createdAt !== 0n)
+            writer.tag(12, WireType.Varint).uint64(message.createdAt);
+        /* uint64 updated_at = 13; */
+        if (message.updatedAt !== 0n)
+            writer.tag(13, WireType.Varint).uint64(message.updatedAt);
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);

@@ -4,10 +4,8 @@ package statistico;
 
 option go_package = "github.com/statistico/statistico-proto;statistico";
 
-import "common.proto";
-
 service OddsWarehouseService {
-  rpc ExchangeEventMarketSearch(ExchangeEventMarketRequest) returns (ExchangeEventMarket) {}
+  rpc ExchangeEventMarketRunners(ExchangeEventMarketRequest) returns (stream MarketRunner) {}
 }
 
 message ExchangeEventMarketRequest {
@@ -17,9 +15,13 @@ message ExchangeEventMarketRequest {
   uint32 limit =4;
 }
 
-message ExchangeEventMarket {
+message MarketRunner {
   uint64 event_id = 1;
   string market = 2;
-  string exchange = 3;
-  repeated Odds odds = 4;
+  repeated ExchangeOdds odds = 4;
+}
+
+message ExchangeOdds {
+  float price = 1;
+  uint64 timestamp = 2;
 }

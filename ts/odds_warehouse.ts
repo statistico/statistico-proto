@@ -38,13 +38,13 @@ export interface ExchangeEventMarketRequest {
  */
 export interface MarketRunner {
     /**
-     * @generated from protobuf field: uint64 event_id = 1;
+     * @generated from protobuf field: string id = 1;
      */
-    eventId: bigint;
+    id: string;
     /**
-     * @generated from protobuf field: string market = 2;
+     * @generated from protobuf field: string name = 2;
      */
-    market: string;
+    name: string;
     /**
      * @generated from protobuf field: repeated statistico.ExchangeOdds odds = 4;
      */
@@ -135,13 +135,13 @@ export const ExchangeEventMarketRequest = new ExchangeEventMarketRequest$Type();
 class MarketRunner$Type extends MessageType<MarketRunner> {
     constructor() {
         super("statistico.MarketRunner", [
-            { no: 1, name: "event_id", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 0 /*LongType.BIGINT*/ },
-            { no: 2, name: "market", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 1, name: "id", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 2, name: "name", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
             { no: 4, name: "odds", kind: "message", repeat: 1 /*RepeatType.PACKED*/, T: () => ExchangeOdds }
         ]);
     }
     create(value?: PartialMessage<MarketRunner>): MarketRunner {
-        const message = { eventId: 0n, market: "", odds: [] };
+        const message = { id: "", name: "", odds: [] };
         globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this });
         if (value !== undefined)
             reflectionMergePartial<MarketRunner>(this, message, value);
@@ -152,11 +152,11 @@ class MarketRunner$Type extends MessageType<MarketRunner> {
         while (reader.pos < end) {
             let [fieldNo, wireType] = reader.tag();
             switch (fieldNo) {
-                case /* uint64 event_id */ 1:
-                    message.eventId = reader.uint64().toBigInt();
+                case /* string id */ 1:
+                    message.id = reader.string();
                     break;
-                case /* string market */ 2:
-                    message.market = reader.string();
+                case /* string name */ 2:
+                    message.name = reader.string();
                     break;
                 case /* repeated statistico.ExchangeOdds odds */ 4:
                     message.odds.push(ExchangeOdds.internalBinaryRead(reader, reader.uint32(), options));
@@ -173,12 +173,12 @@ class MarketRunner$Type extends MessageType<MarketRunner> {
         return message;
     }
     internalBinaryWrite(message: MarketRunner, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
-        /* uint64 event_id = 1; */
-        if (message.eventId !== 0n)
-            writer.tag(1, WireType.Varint).uint64(message.eventId);
-        /* string market = 2; */
-        if (message.market !== "")
-            writer.tag(2, WireType.LengthDelimited).string(message.market);
+        /* string id = 1; */
+        if (message.id !== "")
+            writer.tag(1, WireType.LengthDelimited).string(message.id);
+        /* string name = 2; */
+        if (message.name !== "")
+            writer.tag(2, WireType.LengthDelimited).string(message.name);
         /* repeated statistico.ExchangeOdds odds = 4; */
         for (let i = 0; i < message.odds.length; i++)
             ExchangeOdds.internalBinaryWrite(message.odds[i], writer.tag(4, WireType.LengthDelimited).fork(), options).join();

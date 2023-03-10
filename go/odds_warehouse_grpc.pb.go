@@ -22,7 +22,7 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type OddsWarehouseServiceClient interface {
-	ExchangeEventMarketSearch(ctx context.Context, in *ExchangeEventMarketRequest, opts ...grpc.CallOption) (*ExchangeEventMarket, error)
+	ExchangeEventMarketRunners(ctx context.Context, in *ExchangeEventMarketRequest, opts ...grpc.CallOption) (OddsWarehouseService_ExchangeEventMarketRunnersClient, error)
 }
 
 type oddsWarehouseServiceClient struct {
@@ -33,20 +33,43 @@ func NewOddsWarehouseServiceClient(cc grpc.ClientConnInterface) OddsWarehouseSer
 	return &oddsWarehouseServiceClient{cc}
 }
 
-func (c *oddsWarehouseServiceClient) ExchangeEventMarketSearch(ctx context.Context, in *ExchangeEventMarketRequest, opts ...grpc.CallOption) (*ExchangeEventMarket, error) {
-	out := new(ExchangeEventMarket)
-	err := c.cc.Invoke(ctx, "/statistico.OddsWarehouseService/ExchangeEventMarketSearch", in, out, opts...)
+func (c *oddsWarehouseServiceClient) ExchangeEventMarketRunners(ctx context.Context, in *ExchangeEventMarketRequest, opts ...grpc.CallOption) (OddsWarehouseService_ExchangeEventMarketRunnersClient, error) {
+	stream, err := c.cc.NewStream(ctx, &OddsWarehouseService_ServiceDesc.Streams[0], "/statistico.OddsWarehouseService/ExchangeEventMarketRunners", opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	x := &oddsWarehouseServiceExchangeEventMarketRunnersClient{stream}
+	if err := x.ClientStream.SendMsg(in); err != nil {
+		return nil, err
+	}
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	return x, nil
+}
+
+type OddsWarehouseService_ExchangeEventMarketRunnersClient interface {
+	Recv() (*MarketRunner, error)
+	grpc.ClientStream
+}
+
+type oddsWarehouseServiceExchangeEventMarketRunnersClient struct {
+	grpc.ClientStream
+}
+
+func (x *oddsWarehouseServiceExchangeEventMarketRunnersClient) Recv() (*MarketRunner, error) {
+	m := new(MarketRunner)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
 }
 
 // OddsWarehouseServiceServer is the server API for OddsWarehouseService service.
 // All implementations must embed UnimplementedOddsWarehouseServiceServer
 // for forward compatibility
 type OddsWarehouseServiceServer interface {
-	ExchangeEventMarketSearch(context.Context, *ExchangeEventMarketRequest) (*ExchangeEventMarket, error)
+	ExchangeEventMarketRunners(*ExchangeEventMarketRequest, OddsWarehouseService_ExchangeEventMarketRunnersServer) error
 	mustEmbedUnimplementedOddsWarehouseServiceServer()
 }
 
@@ -54,8 +77,8 @@ type OddsWarehouseServiceServer interface {
 type UnimplementedOddsWarehouseServiceServer struct {
 }
 
-func (UnimplementedOddsWarehouseServiceServer) ExchangeEventMarketSearch(context.Context, *ExchangeEventMarketRequest) (*ExchangeEventMarket, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ExchangeEventMarketSearch not implemented")
+func (UnimplementedOddsWarehouseServiceServer) ExchangeEventMarketRunners(*ExchangeEventMarketRequest, OddsWarehouseService_ExchangeEventMarketRunnersServer) error {
+	return status.Errorf(codes.Unimplemented, "method ExchangeEventMarketRunners not implemented")
 }
 func (UnimplementedOddsWarehouseServiceServer) mustEmbedUnimplementedOddsWarehouseServiceServer() {}
 
@@ -70,22 +93,25 @@ func RegisterOddsWarehouseServiceServer(s grpc.ServiceRegistrar, srv OddsWarehou
 	s.RegisterService(&OddsWarehouseService_ServiceDesc, srv)
 }
 
-func _OddsWarehouseService_ExchangeEventMarketSearch_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ExchangeEventMarketRequest)
-	if err := dec(in); err != nil {
-		return nil, err
+func _OddsWarehouseService_ExchangeEventMarketRunners_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(ExchangeEventMarketRequest)
+	if err := stream.RecvMsg(m); err != nil {
+		return err
 	}
-	if interceptor == nil {
-		return srv.(OddsWarehouseServiceServer).ExchangeEventMarketSearch(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/statistico.OddsWarehouseService/ExchangeEventMarketSearch",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(OddsWarehouseServiceServer).ExchangeEventMarketSearch(ctx, req.(*ExchangeEventMarketRequest))
-	}
-	return interceptor(ctx, in, info, handler)
+	return srv.(OddsWarehouseServiceServer).ExchangeEventMarketRunners(m, &oddsWarehouseServiceExchangeEventMarketRunnersServer{stream})
+}
+
+type OddsWarehouseService_ExchangeEventMarketRunnersServer interface {
+	Send(*MarketRunner) error
+	grpc.ServerStream
+}
+
+type oddsWarehouseServiceExchangeEventMarketRunnersServer struct {
+	grpc.ServerStream
+}
+
+func (x *oddsWarehouseServiceExchangeEventMarketRunnersServer) Send(m *MarketRunner) error {
+	return x.ServerStream.SendMsg(m)
 }
 
 // OddsWarehouseService_ServiceDesc is the grpc.ServiceDesc for OddsWarehouseService service.
@@ -94,12 +120,13 @@ func _OddsWarehouseService_ExchangeEventMarketSearch_Handler(srv interface{}, ct
 var OddsWarehouseService_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "statistico.OddsWarehouseService",
 	HandlerType: (*OddsWarehouseServiceServer)(nil),
-	Methods: []grpc.MethodDesc{
+	Methods:     []grpc.MethodDesc{},
+	Streams: []grpc.StreamDesc{
 		{
-			MethodName: "ExchangeEventMarketSearch",
-			Handler:    _OddsWarehouseService_ExchangeEventMarketSearch_Handler,
+			StreamName:    "ExchangeEventMarketRunners",
+			Handler:       _OddsWarehouseService_ExchangeEventMarketRunners_Handler,
+			ServerStreams: true,
 		},
 	},
-	Streams:  []grpc.StreamDesc{},
 	Metadata: "odds_warehouse.proto",
 }

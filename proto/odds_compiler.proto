@@ -2,6 +2,8 @@ syntax = "proto3";
 
 package statistico;
 
+import "common.proto";
+
 option go_package = "github.com/statistico/statistico-proto;statistico";
 
 service OddsCompilerService {
@@ -17,10 +19,5 @@ message EventRequest {
 message EventMarket {
   uint64 event_id = 1;
   string market = 2;
-  repeated Odds odds = 3;
-}
-
-message Odds {
-  float price = 1;
-  string selection = 2;
+  repeated Odds odds = 4;
 }

@@ -4,43 +4,22 @@ package statistico;
 
 option go_package = "github.com/statistico/statistico-proto;statistico";
 
-import "enum.proto";
-import "google/protobuf/timestamp.proto";
-import "google/protobuf/wrappers.proto";
+import "common.proto";
 
 service OddsWarehouseService {
-  rpc MarketRunnerSearch(MarketRunnerRequest) returns (stream MarketRunner) {}
+  rpc ExchangeEventMarketSearch(ExchangeEventMarketRequest) returns (ExchangeEventMarket) {}
 }
 
-message MarketRunnerRequest {
-  string market = 1;
-  string runner = 2;
-  google.protobuf.FloatValue min_odds = 3;
-  google.protobuf.FloatValue max_odds = 4;
-  string line = 5;
-  SideEnum side = 6;
-  repeated uint64 competition_ids = 7;
-  repeated uint64 season_ids = 8;
-  google.protobuf.Timestamp dateFrom = 9;
-  google.protobuf.Timestamp dateTo = 10;
+message ExchangeEventMarketRequest {
+  uint64 event_id = 1;
+  string market = 2;
+  string exchange = 3;
+  uint32 limit =4;
 }
 
-message MarketRunner {
-  string market_id = 1;
-  string market_name = 2;
-  uint64 runner_id = 3;
-  string runner_name = 4;
-  uint64 event_id = 5;
-  uint64 competition_id = 6;
-  uint64 season_id = 7;
-  google.protobuf.Timestamp event_date = 8;
-  string exchange = 9;
-  Price price = 10;
-}
-
-message Price {
-  float value = 1;
-  float size = 2;
-  SideEnum side = 3;
-  int64 timestamp = 4;
+message ExchangeEventMarket {
+  uint64 event_id = 1;
+  string market = 2;
+  string exchange = 3;
+  repeated Odds odds = 4;
 }

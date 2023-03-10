@@ -14,17 +14,17 @@ class OddsWarehouseServiceStub(object):
         Args:
             channel: A grpc.Channel.
         """
-        self.MarketRunnerSearch = channel.unary_stream(
-                '/statistico.OddsWarehouseService/MarketRunnerSearch',
-                request_serializer=odds__warehouse__pb2.MarketRunnerRequest.SerializeToString,
-                response_deserializer=odds__warehouse__pb2.MarketRunner.FromString,
+        self.ExchangeEventMarketSearch = channel.unary_unary(
+                '/statistico.OddsWarehouseService/ExchangeEventMarketSearch',
+                request_serializer=odds__warehouse__pb2.ExchangeEventMarketRequest.SerializeToString,
+                response_deserializer=odds__warehouse__pb2.ExchangeEventMarket.FromString,
                 )
 
 
 class OddsWarehouseServiceServicer(object):
     """Missing associated documentation comment in .proto file."""
 
-    def MarketRunnerSearch(self, request, context):
+    def ExchangeEventMarketSearch(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -33,10 +33,10 @@ class OddsWarehouseServiceServicer(object):
 
 def add_OddsWarehouseServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
-            'MarketRunnerSearch': grpc.unary_stream_rpc_method_handler(
-                    servicer.MarketRunnerSearch,
-                    request_deserializer=odds__warehouse__pb2.MarketRunnerRequest.FromString,
-                    response_serializer=odds__warehouse__pb2.MarketRunner.SerializeToString,
+            'ExchangeEventMarketSearch': grpc.unary_unary_rpc_method_handler(
+                    servicer.ExchangeEventMarketSearch,
+                    request_deserializer=odds__warehouse__pb2.ExchangeEventMarketRequest.FromString,
+                    response_serializer=odds__warehouse__pb2.ExchangeEventMarket.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -49,7 +49,7 @@ class OddsWarehouseService(object):
     """Missing associated documentation comment in .proto file."""
 
     @staticmethod
-    def MarketRunnerSearch(request,
+    def ExchangeEventMarketSearch(request,
             target,
             options=(),
             channel_credentials=None,
@@ -59,8 +59,8 @@ class OddsWarehouseService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_stream(request, target, '/statistico.OddsWarehouseService/MarketRunnerSearch',
-            odds__warehouse__pb2.MarketRunnerRequest.SerializeToString,
-            odds__warehouse__pb2.MarketRunner.FromString,
+        return grpc.experimental.unary_unary(request, target, '/statistico.OddsWarehouseService/ExchangeEventMarketSearch',
+            odds__warehouse__pb2.ExchangeEventMarketRequest.SerializeToString,
+            odds__warehouse__pb2.ExchangeEventMarket.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

@@ -12,6 +12,7 @@ import type { PartialMessage } from "@protobuf-ts/runtime";
 import { reflectionMergePartial } from "@protobuf-ts/runtime";
 import { MESSAGE_TYPE } from "@protobuf-ts/runtime";
 import { MessageType } from "@protobuf-ts/runtime";
+import { Odds } from "./common";
 /**
  * @generated from protobuf message statistico.EventRequest
  */
@@ -38,22 +39,9 @@ export interface EventMarket {
      */
     market: string;
     /**
-     * @generated from protobuf field: repeated statistico.Odds odds = 3;
+     * @generated from protobuf field: repeated statistico.Odds odds = 4;
      */
     odds: Odds[];
-}
-/**
- * @generated from protobuf message statistico.Odds
- */
-export interface Odds {
-    /**
-     * @generated from protobuf field: float price = 1;
-     */
-    price: number;
-    /**
-     * @generated from protobuf field: string selection = 2;
-     */
-    selection: string;
 }
 // @generated message type with reflection information, may provide speed optimized methods
 class EventRequest$Type extends MessageType<EventRequest> {
@@ -115,7 +103,7 @@ class EventMarket$Type extends MessageType<EventMarket> {
         super("statistico.EventMarket", [
             { no: 1, name: "event_id", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 0 /*LongType.BIGINT*/ },
             { no: 2, name: "market", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 3, name: "odds", kind: "message", repeat: 1 /*RepeatType.PACKED*/, T: () => Odds }
+            { no: 4, name: "odds", kind: "message", repeat: 1 /*RepeatType.PACKED*/, T: () => Odds }
         ]);
     }
     create(value?: PartialMessage<EventMarket>): EventMarket {
@@ -136,7 +124,7 @@ class EventMarket$Type extends MessageType<EventMarket> {
                 case /* string market */ 2:
                     message.market = reader.string();
                     break;
-                case /* repeated statistico.Odds odds */ 3:
+                case /* repeated statistico.Odds odds */ 4:
                     message.odds.push(Odds.internalBinaryRead(reader, reader.uint32(), options));
                     break;
                 default:
@@ -157,9 +145,9 @@ class EventMarket$Type extends MessageType<EventMarket> {
         /* string market = 2; */
         if (message.market !== "")
             writer.tag(2, WireType.LengthDelimited).string(message.market);
-        /* repeated statistico.Odds odds = 3; */
+        /* repeated statistico.Odds odds = 4; */
         for (let i = 0; i < message.odds.length; i++)
-            Odds.internalBinaryWrite(message.odds[i], writer.tag(3, WireType.LengthDelimited).fork(), options).join();
+            Odds.internalBinaryWrite(message.odds[i], writer.tag(4, WireType.LengthDelimited).fork(), options).join();
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
@@ -170,60 +158,6 @@ class EventMarket$Type extends MessageType<EventMarket> {
  * @generated MessageType for protobuf message statistico.EventMarket
  */
 export const EventMarket = new EventMarket$Type();
-// @generated message type with reflection information, may provide speed optimized methods
-class Odds$Type extends MessageType<Odds> {
-    constructor() {
-        super("statistico.Odds", [
-            { no: 1, name: "price", kind: "scalar", T: 2 /*ScalarType.FLOAT*/ },
-            { no: 2, name: "selection", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
-        ]);
-    }
-    create(value?: PartialMessage<Odds>): Odds {
-        const message = { price: 0, selection: "" };
-        globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this });
-        if (value !== undefined)
-            reflectionMergePartial<Odds>(this, message, value);
-        return message;
-    }
-    internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: Odds): Odds {
-        let message = target ?? this.create(), end = reader.pos + length;
-        while (reader.pos < end) {
-            let [fieldNo, wireType] = reader.tag();
-            switch (fieldNo) {
-                case /* float price */ 1:
-                    message.price = reader.float();
-                    break;
-                case /* string selection */ 2:
-                    message.selection = reader.string();
-                    break;
-                default:
-                    let u = options.readUnknownField;
-                    if (u === "throw")
-                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
-                    let d = reader.skip(wireType);
-                    if (u !== false)
-                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
-            }
-        }
-        return message;
-    }
-    internalBinaryWrite(message: Odds, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
-        /* float price = 1; */
-        if (message.price !== 0)
-            writer.tag(1, WireType.Bit32).float(message.price);
-        /* string selection = 2; */
-        if (message.selection !== "")
-            writer.tag(2, WireType.LengthDelimited).string(message.selection);
-        let u = options.writeUnknownFields;
-        if (u !== false)
-            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
-        return writer;
-    }
-}
-/**
- * @generated MessageType for protobuf message statistico.Odds
- */
-export const Odds = new Odds$Type();
 /**
  * @generated ServiceType for protobuf service statistico.OddsCompilerService
  */

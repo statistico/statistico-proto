@@ -8,3 +8,8 @@ message Date {
   int64 utc = 1;
   string rfc = 2;
 }
+
+message Odds {
+  float price = 1;
+  string selection = 2;
+}

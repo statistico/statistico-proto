@@ -5,18 +5,18 @@ import type { RpcTransport } from "@protobuf-ts/runtime-rpc";
 import type { ServiceInfo } from "@protobuf-ts/runtime-rpc";
 import { OddsWarehouseService } from "./odds_warehouse";
 import { stackIntercept } from "@protobuf-ts/runtime-rpc";
-import type { MarketRunner } from "./odds_warehouse";
-import type { MarketRunnerRequest } from "./odds_warehouse";
-import type { ServerStreamingCall } from "@protobuf-ts/runtime-rpc";
+import type { ExchangeEventMarket } from "./odds_warehouse";
+import type { ExchangeEventMarketRequest } from "./odds_warehouse";
+import type { UnaryCall } from "@protobuf-ts/runtime-rpc";
 import type { RpcOptions } from "@protobuf-ts/runtime-rpc";
 /**
  * @generated from protobuf service statistico.OddsWarehouseService
  */
 export interface IOddsWarehouseServiceClient {
     /**
-     * @generated from protobuf rpc: MarketRunnerSearch(statistico.MarketRunnerRequest) returns (stream statistico.MarketRunner);
+     * @generated from protobuf rpc: ExchangeEventMarketSearch(statistico.ExchangeEventMarketRequest) returns (statistico.ExchangeEventMarket);
      */
-    marketRunnerSearch(input: MarketRunnerRequest, options?: RpcOptions): ServerStreamingCall<MarketRunnerRequest, MarketRunner>;
+    exchangeEventMarketSearch(input: ExchangeEventMarketRequest, options?: RpcOptions): UnaryCall<ExchangeEventMarketRequest, ExchangeEventMarket>;
 }
 /**
  * @generated from protobuf service statistico.OddsWarehouseService
@@ -28,10 +28,10 @@ export class OddsWarehouseServiceClient implements IOddsWarehouseServiceClient, 
     constructor(private readonly _transport: RpcTransport) {
     }
     /**
-     * @generated from protobuf rpc: MarketRunnerSearch(statistico.MarketRunnerRequest) returns (stream statistico.MarketRunner);
+     * @generated from protobuf rpc: ExchangeEventMarketSearch(statistico.ExchangeEventMarketRequest) returns (statistico.ExchangeEventMarket);
      */
-    marketRunnerSearch(input: MarketRunnerRequest, options?: RpcOptions): ServerStreamingCall<MarketRunnerRequest, MarketRunner> {
+    exchangeEventMarketSearch(input: ExchangeEventMarketRequest, options?: RpcOptions): UnaryCall<ExchangeEventMarketRequest, ExchangeEventMarket> {
         const method = this.methods[0], opt = this._transport.mergeOptions(options);
-        return stackIntercept<MarketRunnerRequest, MarketRunner>("serverStreaming", this._transport, method, opt, input);
+        return stackIntercept<ExchangeEventMarketRequest, ExchangeEventMarket>("unary", this._transport, method, opt, input);
     }
 }

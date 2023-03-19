@@ -5,20 +5,15 @@ package statistico;
 option go_package = "github.com/statistico/statistico-proto;statistico";
 
 service OddsWarehouseService {
-  rpc ExchangeEventMarketRunners(ExchangeEventMarketRequest) returns (stream MarketRunner) {}
+  rpc GetExchangeOdds(ExchangeOddsRequest) returns (stream ExchangeOdds) {}
 }
 
-message ExchangeEventMarketRequest {
+message ExchangeOddsRequest {
   uint64 event_id = 1;
   string market = 2;
   string exchange = 3;
-  uint32 limit =4;
-}
-
-message MarketRunner {
-  string id = 1;
-  string name = 2;
-  repeated ExchangeOdds odds = 4;
+  string runner = 4;
+  uint32 limit = 5;
 }
 
 message ExchangeOdds {

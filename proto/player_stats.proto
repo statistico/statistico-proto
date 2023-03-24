@@ -10,10 +10,10 @@ import "requests.proto";
 service PlayerStatsService {
     rpc GetPlayerStatsForFixture(FixtureRequest) returns (PlayerStatsResponse) {}
     rpc GetLineUpForFixture(FixtureRequest) returns (LineupResponse) {}
-    rpc GetTeamSeasonPlayerStats(PlayStatsRequest) returns (stream PlayerStats) {}
+    rpc GetTeamSeasonPlayerStats(TeamSeasonPlayStatsRequest) returns (stream PlayerStats) {}
 }
 
-message PlayStatsRequest {
+message TeamSeasonPlayStatsRequest {
     uint64 team_id = 1;
     uint64 season_id = 2;
     uint64 date_before = 3;

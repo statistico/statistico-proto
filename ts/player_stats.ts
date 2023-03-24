@@ -16,9 +16,9 @@ import { MessageType } from "@protobuf-ts/runtime";
 import { UInt32Value } from "./google/protobuf/wrappers";
 import { Int32Value } from "./google/protobuf/wrappers";
 /**
- * @generated from protobuf message statistico.PlayStatsRequest
+ * @generated from protobuf message statistico.TeamSeasonPlayStatsRequest
  */
-export interface PlayStatsRequest {
+export interface TeamSeasonPlayStatsRequest {
     /**
      * @generated from protobuf field: uint64 team_id = 1;
      */
@@ -122,22 +122,22 @@ export interface LineupPlayer {
     isSubstitute: boolean;
 }
 // @generated message type with reflection information, may provide speed optimized methods
-class PlayStatsRequest$Type extends MessageType<PlayStatsRequest> {
+class TeamSeasonPlayStatsRequest$Type extends MessageType<TeamSeasonPlayStatsRequest> {
     constructor() {
-        super("statistico.PlayStatsRequest", [
+        super("statistico.TeamSeasonPlayStatsRequest", [
             { no: 1, name: "team_id", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 0 /*LongType.BIGINT*/ },
             { no: 2, name: "season_id", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 0 /*LongType.BIGINT*/ },
             { no: 3, name: "date_before", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 0 /*LongType.BIGINT*/ }
         ]);
     }
-    create(value?: PartialMessage<PlayStatsRequest>): PlayStatsRequest {
+    create(value?: PartialMessage<TeamSeasonPlayStatsRequest>): TeamSeasonPlayStatsRequest {
         const message = { teamId: 0n, seasonId: 0n, dateBefore: 0n };
         globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this });
         if (value !== undefined)
-            reflectionMergePartial<PlayStatsRequest>(this, message, value);
+            reflectionMergePartial<TeamSeasonPlayStatsRequest>(this, message, value);
         return message;
     }
-    internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: PlayStatsRequest): PlayStatsRequest {
+    internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: TeamSeasonPlayStatsRequest): TeamSeasonPlayStatsRequest {
         let message = target ?? this.create(), end = reader.pos + length;
         while (reader.pos < end) {
             let [fieldNo, wireType] = reader.tag();
@@ -162,7 +162,7 @@ class PlayStatsRequest$Type extends MessageType<PlayStatsRequest> {
         }
         return message;
     }
-    internalBinaryWrite(message: PlayStatsRequest, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
+    internalBinaryWrite(message: TeamSeasonPlayStatsRequest, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
         /* uint64 team_id = 1; */
         if (message.teamId !== 0n)
             writer.tag(1, WireType.Varint).uint64(message.teamId);
@@ -179,9 +179,9 @@ class PlayStatsRequest$Type extends MessageType<PlayStatsRequest> {
     }
 }
 /**
- * @generated MessageType for protobuf message statistico.PlayStatsRequest
+ * @generated MessageType for protobuf message statistico.TeamSeasonPlayStatsRequest
  */
-export const PlayStatsRequest = new PlayStatsRequest$Type();
+export const TeamSeasonPlayStatsRequest = new TeamSeasonPlayStatsRequest$Type();
 // @generated message type with reflection information, may provide speed optimized methods
 class PlayerStatsResponse$Type extends MessageType<PlayerStatsResponse> {
     constructor() {
@@ -500,5 +500,5 @@ export const LineupPlayer = new LineupPlayer$Type();
 export const PlayerStatsService = new ServiceType("statistico.PlayerStatsService", [
     { name: "GetPlayerStatsForFixture", options: {}, I: FixtureRequest, O: PlayerStatsResponse },
     { name: "GetLineUpForFixture", options: {}, I: FixtureRequest, O: LineupResponse },
-    { name: "GetTeamSeasonPlayerStats", serverStreaming: true, options: {}, I: PlayStatsRequest, O: PlayerStats }
+    { name: "GetTeamSeasonPlayerStats", serverStreaming: true, options: {}, I: TeamSeasonPlayStatsRequest, O: PlayerStats }
 ]);

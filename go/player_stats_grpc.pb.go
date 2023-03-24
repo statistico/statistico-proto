@@ -24,7 +24,7 @@ const _ = grpc.SupportPackageIsVersion7
 type PlayerStatsServiceClient interface {
 	GetPlayerStatsForFixture(ctx context.Context, in *FixtureRequest, opts ...grpc.CallOption) (*PlayerStatsResponse, error)
 	GetLineUpForFixture(ctx context.Context, in *FixtureRequest, opts ...grpc.CallOption) (*LineupResponse, error)
-	GetTeamSeasonPlayerStats(ctx context.Context, in *PlayStatsRequest, opts ...grpc.CallOption) (PlayerStatsService_GetTeamSeasonPlayerStatsClient, error)
+	GetTeamSeasonPlayerStats(ctx context.Context, in *TeamSeasonPlayStatsRequest, opts ...grpc.CallOption) (PlayerStatsService_GetTeamSeasonPlayerStatsClient, error)
 }
 
 type playerStatsServiceClient struct {
@@ -53,7 +53,7 @@ func (c *playerStatsServiceClient) GetLineUpForFixture(ctx context.Context, in *
 	return out, nil
 }
 
-func (c *playerStatsServiceClient) GetTeamSeasonPlayerStats(ctx context.Context, in *PlayStatsRequest, opts ...grpc.CallOption) (PlayerStatsService_GetTeamSeasonPlayerStatsClient, error) {
+func (c *playerStatsServiceClient) GetTeamSeasonPlayerStats(ctx context.Context, in *TeamSeasonPlayStatsRequest, opts ...grpc.CallOption) (PlayerStatsService_GetTeamSeasonPlayerStatsClient, error) {
 	stream, err := c.cc.NewStream(ctx, &PlayerStatsService_ServiceDesc.Streams[0], "/statistico.PlayerStatsService/GetTeamSeasonPlayerStats", opts...)
 	if err != nil {
 		return nil, err
@@ -91,7 +91,7 @@ func (x *playerStatsServiceGetTeamSeasonPlayerStatsClient) Recv() (*PlayerStats,
 type PlayerStatsServiceServer interface {
 	GetPlayerStatsForFixture(context.Context, *FixtureRequest) (*PlayerStatsResponse, error)
 	GetLineUpForFixture(context.Context, *FixtureRequest) (*LineupResponse, error)
-	GetTeamSeasonPlayerStats(*PlayStatsRequest, PlayerStatsService_GetTeamSeasonPlayerStatsServer) error
+	GetTeamSeasonPlayerStats(*TeamSeasonPlayStatsRequest, PlayerStatsService_GetTeamSeasonPlayerStatsServer) error
 	mustEmbedUnimplementedPlayerStatsServiceServer()
 }
 
@@ -105,7 +105,7 @@ func (UnimplementedPlayerStatsServiceServer) GetPlayerStatsForFixture(context.Co
 func (UnimplementedPlayerStatsServiceServer) GetLineUpForFixture(context.Context, *FixtureRequest) (*LineupResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetLineUpForFixture not implemented")
 }
-func (UnimplementedPlayerStatsServiceServer) GetTeamSeasonPlayerStats(*PlayStatsRequest, PlayerStatsService_GetTeamSeasonPlayerStatsServer) error {
+func (UnimplementedPlayerStatsServiceServer) GetTeamSeasonPlayerStats(*TeamSeasonPlayStatsRequest, PlayerStatsService_GetTeamSeasonPlayerStatsServer) error {
 	return status.Errorf(codes.Unimplemented, "method GetTeamSeasonPlayerStats not implemented")
 }
 func (UnimplementedPlayerStatsServiceServer) mustEmbedUnimplementedPlayerStatsServiceServer() {}
@@ -158,7 +158,7 @@ func _PlayerStatsService_GetLineUpForFixture_Handler(srv interface{}, ctx contex
 }
 
 func _PlayerStatsService_GetTeamSeasonPlayerStats_Handler(srv interface{}, stream grpc.ServerStream) error {
-	m := new(PlayStatsRequest)
+	m := new(TeamSeasonPlayStatsRequest)
 	if err := stream.RecvMsg(m); err != nil {
 		return err
 	}

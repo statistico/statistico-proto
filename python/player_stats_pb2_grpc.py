@@ -27,7 +27,7 @@ class PlayerStatsServiceStub(object):
                 )
         self.GetTeamSeasonPlayerStats = channel.unary_stream(
                 '/statistico.PlayerStatsService/GetTeamSeasonPlayerStats',
-                request_serializer=player__stats__pb2.PlayStatsRequest.SerializeToString,
+                request_serializer=player__stats__pb2.TeamSeasonPlayStatsRequest.SerializeToString,
                 response_deserializer=player__stats__pb2.PlayerStats.FromString,
                 )
 
@@ -68,7 +68,7 @@ def add_PlayerStatsServiceServicer_to_server(servicer, server):
             ),
             'GetTeamSeasonPlayerStats': grpc.unary_stream_rpc_method_handler(
                     servicer.GetTeamSeasonPlayerStats,
-                    request_deserializer=player__stats__pb2.PlayStatsRequest.FromString,
+                    request_deserializer=player__stats__pb2.TeamSeasonPlayStatsRequest.FromString,
                     response_serializer=player__stats__pb2.PlayerStats.SerializeToString,
             ),
     }
@@ -127,7 +127,7 @@ class PlayerStatsService(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_stream(request, target, '/statistico.PlayerStatsService/GetTeamSeasonPlayerStats',
-            player__stats__pb2.PlayStatsRequest.SerializeToString,
+            player__stats__pb2.TeamSeasonPlayStatsRequest.SerializeToString,
             player__stats__pb2.PlayerStats.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

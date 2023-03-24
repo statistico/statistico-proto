@@ -15,7 +15,6 @@ import type { PartialMessage } from "@protobuf-ts/runtime";
 import { reflectionMergePartial } from "@protobuf-ts/runtime";
 import { MESSAGE_TYPE } from "@protobuf-ts/runtime";
 import { MessageType } from "@protobuf-ts/runtime";
-import { FloatValue } from "./google/protobuf/wrappers";
 import { Date } from "./common";
 import { Venue } from "./venue";
 import { Round } from "./round";
@@ -58,36 +57,6 @@ export interface Fixture {
      * @generated from protobuf field: statistico.Date date_time = 8;
      */
     dateTime?: Date;
-}
-/**
- * @generated from protobuf message statistico.FixtureLineUpStats
- */
-export interface FixtureLineUpStats {
-    /**
-     * @generated from protobuf field: statistico.LineUpStats home = 1;
-     */
-    home?: LineUpStats;
-    /**
-     * @generated from protobuf field: statistico.LineUpStats away = 2;
-     */
-    away?: LineUpStats;
-}
-/**
- * @generated from protobuf message statistico.LineUpStats
- */
-export interface LineUpStats {
-    /**
-     * @generated from protobuf field: google.protobuf.FloatValue goals = 1;
-     */
-    goals?: FloatValue;
-    /**
-     * @generated from protobuf field: google.protobuf.FloatValue shots_on_goal = 2;
-     */
-    shotsOnGoal?: FloatValue;
-    /**
-     * @generated from protobuf field: google.protobuf.FloatValue assists = 3;
-     */
-    assists?: FloatValue;
 }
 // @generated message type with reflection information, may provide speed optimized methods
 class Fixture$Type extends MessageType<Fixture> {
@@ -185,127 +154,11 @@ class Fixture$Type extends MessageType<Fixture> {
  * @generated MessageType for protobuf message statistico.Fixture
  */
 export const Fixture = new Fixture$Type();
-// @generated message type with reflection information, may provide speed optimized methods
-class FixtureLineUpStats$Type extends MessageType<FixtureLineUpStats> {
-    constructor() {
-        super("statistico.FixtureLineUpStats", [
-            { no: 1, name: "home", kind: "message", T: () => LineUpStats },
-            { no: 2, name: "away", kind: "message", T: () => LineUpStats }
-        ]);
-    }
-    create(value?: PartialMessage<FixtureLineUpStats>): FixtureLineUpStats {
-        const message = {};
-        globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this });
-        if (value !== undefined)
-            reflectionMergePartial<FixtureLineUpStats>(this, message, value);
-        return message;
-    }
-    internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: FixtureLineUpStats): FixtureLineUpStats {
-        let message = target ?? this.create(), end = reader.pos + length;
-        while (reader.pos < end) {
-            let [fieldNo, wireType] = reader.tag();
-            switch (fieldNo) {
-                case /* statistico.LineUpStats home */ 1:
-                    message.home = LineUpStats.internalBinaryRead(reader, reader.uint32(), options, message.home);
-                    break;
-                case /* statistico.LineUpStats away */ 2:
-                    message.away = LineUpStats.internalBinaryRead(reader, reader.uint32(), options, message.away);
-                    break;
-                default:
-                    let u = options.readUnknownField;
-                    if (u === "throw")
-                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
-                    let d = reader.skip(wireType);
-                    if (u !== false)
-                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
-            }
-        }
-        return message;
-    }
-    internalBinaryWrite(message: FixtureLineUpStats, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
-        /* statistico.LineUpStats home = 1; */
-        if (message.home)
-            LineUpStats.internalBinaryWrite(message.home, writer.tag(1, WireType.LengthDelimited).fork(), options).join();
-        /* statistico.LineUpStats away = 2; */
-        if (message.away)
-            LineUpStats.internalBinaryWrite(message.away, writer.tag(2, WireType.LengthDelimited).fork(), options).join();
-        let u = options.writeUnknownFields;
-        if (u !== false)
-            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
-        return writer;
-    }
-}
-/**
- * @generated MessageType for protobuf message statistico.FixtureLineUpStats
- */
-export const FixtureLineUpStats = new FixtureLineUpStats$Type();
-// @generated message type with reflection information, may provide speed optimized methods
-class LineUpStats$Type extends MessageType<LineUpStats> {
-    constructor() {
-        super("statistico.LineUpStats", [
-            { no: 1, name: "goals", kind: "message", T: () => FloatValue },
-            { no: 2, name: "shots_on_goal", kind: "message", T: () => FloatValue },
-            { no: 3, name: "assists", kind: "message", T: () => FloatValue }
-        ]);
-    }
-    create(value?: PartialMessage<LineUpStats>): LineUpStats {
-        const message = {};
-        globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this });
-        if (value !== undefined)
-            reflectionMergePartial<LineUpStats>(this, message, value);
-        return message;
-    }
-    internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: LineUpStats): LineUpStats {
-        let message = target ?? this.create(), end = reader.pos + length;
-        while (reader.pos < end) {
-            let [fieldNo, wireType] = reader.tag();
-            switch (fieldNo) {
-                case /* google.protobuf.FloatValue goals */ 1:
-                    message.goals = FloatValue.internalBinaryRead(reader, reader.uint32(), options, message.goals);
-                    break;
-                case /* google.protobuf.FloatValue shots_on_goal */ 2:
-                    message.shotsOnGoal = FloatValue.internalBinaryRead(reader, reader.uint32(), options, message.shotsOnGoal);
-                    break;
-                case /* google.protobuf.FloatValue assists */ 3:
-                    message.assists = FloatValue.internalBinaryRead(reader, reader.uint32(), options, message.assists);
-                    break;
-                default:
-                    let u = options.readUnknownField;
-                    if (u === "throw")
-                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
-                    let d = reader.skip(wireType);
-                    if (u !== false)
-                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
-            }
-        }
-        return message;
-    }
-    internalBinaryWrite(message: LineUpStats, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
-        /* google.protobuf.FloatValue goals = 1; */
-        if (message.goals)
-            FloatValue.internalBinaryWrite(message.goals, writer.tag(1, WireType.LengthDelimited).fork(), options).join();
-        /* google.protobuf.FloatValue shots_on_goal = 2; */
-        if (message.shotsOnGoal)
-            FloatValue.internalBinaryWrite(message.shotsOnGoal, writer.tag(2, WireType.LengthDelimited).fork(), options).join();
-        /* google.protobuf.FloatValue assists = 3; */
-        if (message.assists)
-            FloatValue.internalBinaryWrite(message.assists, writer.tag(3, WireType.LengthDelimited).fork(), options).join();
-        let u = options.writeUnknownFields;
-        if (u !== false)
-            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
-        return writer;
-    }
-}
-/**
- * @generated MessageType for protobuf message statistico.LineUpStats
- */
-export const LineUpStats = new LineUpStats$Type();
 /**
  * @generated ServiceType for protobuf service statistico.FixtureService
  */
 export const FixtureService = new ServiceType("statistico.FixtureService", [
     { name: "ListSeasonFixtures", serverStreaming: true, options: {}, I: SeasonFixtureRequest, O: Fixture },
     { name: "FixtureByID", options: {}, I: FixtureRequest, O: Fixture },
-    { name: "Search", serverStreaming: true, options: {}, I: FixtureSearchRequest, O: Fixture },
-    { name: "GetFixtureLineUpStats", options: {}, I: FixtureRequest, O: FixtureLineUpStats }
+    { name: "Search", serverStreaming: true, options: {}, I: FixtureSearchRequest, O: Fixture }
 ]);

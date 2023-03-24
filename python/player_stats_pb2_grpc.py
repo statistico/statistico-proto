@@ -25,6 +25,11 @@ class PlayerStatsServiceStub(object):
                 request_serializer=requests__pb2.FixtureRequest.SerializeToString,
                 response_deserializer=player__stats__pb2.LineupResponse.FromString,
                 )
+        self.GetTeamSeasonPlayerStats = channel.unary_stream(
+                '/statistico.PlayerStatsService/GetTeamSeasonPlayerStats',
+                request_serializer=player__stats__pb2.TeamSeasonPlayStatsRequest.SerializeToString,
+                response_deserializer=player__stats__pb2.PlayerStats.FromString,
+                )
 
 
 class PlayerStatsServiceServicer(object):
@@ -42,6 +47,12 @@ class PlayerStatsServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def GetTeamSeasonPlayerStats(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_PlayerStatsServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -54,6 +65,11 @@ def add_PlayerStatsServiceServicer_to_server(servicer, server):
                     servicer.GetLineUpForFixture,
                     request_deserializer=requests__pb2.FixtureRequest.FromString,
                     response_serializer=player__stats__pb2.LineupResponse.SerializeToString,
+            ),
+            'GetTeamSeasonPlayerStats': grpc.unary_stream_rpc_method_handler(
+                    servicer.GetTeamSeasonPlayerStats,
+                    request_deserializer=player__stats__pb2.TeamSeasonPlayStatsRequest.FromString,
+                    response_serializer=player__stats__pb2.PlayerStats.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -96,5 +112,22 @@ class PlayerStatsService(object):
         return grpc.experimental.unary_unary(request, target, '/statistico.PlayerStatsService/GetLineUpForFixture',
             requests__pb2.FixtureRequest.SerializeToString,
             player__stats__pb2.LineupResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetTeamSeasonPlayerStats(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_stream(request, target, '/statistico.PlayerStatsService/GetTeamSeasonPlayerStats',
+            player__stats__pb2.TeamSeasonPlayStatsRequest.SerializeToString,
+            player__stats__pb2.PlayerStats.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

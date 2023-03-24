@@ -25,6 +25,7 @@ type FixtureServiceClient interface {
 	ListSeasonFixtures(ctx context.Context, in *SeasonFixtureRequest, opts ...grpc.CallOption) (FixtureService_ListSeasonFixturesClient, error)
 	FixtureByID(ctx context.Context, in *FixtureRequest, opts ...grpc.CallOption) (*Fixture, error)
 	Search(ctx context.Context, in *FixtureSearchRequest, opts ...grpc.CallOption) (FixtureService_SearchClient, error)
+	GetFixtureLineUpStats(ctx context.Context, in *FixtureRequest, opts ...grpc.CallOption) (*FixtureLineUpStats, error)
 }
 
 type fixtureServiceClient struct {
@@ -108,6 +109,15 @@ func (x *fixtureServiceSearchClient) Recv() (*Fixture, error) {
 	return m, nil
 }
 
+func (c *fixtureServiceClient) GetFixtureLineUpStats(ctx context.Context, in *FixtureRequest, opts ...grpc.CallOption) (*FixtureLineUpStats, error) {
+	out := new(FixtureLineUpStats)
+	err := c.cc.Invoke(ctx, "/statistico.FixtureService/GetFixtureLineUpStats", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // FixtureServiceServer is the server API for FixtureService service.
 // All implementations must embed UnimplementedFixtureServiceServer
 // for forward compatibility
@@ -115,6 +125,7 @@ type FixtureServiceServer interface {
 	ListSeasonFixtures(*SeasonFixtureRequest, FixtureService_ListSeasonFixturesServer) error
 	FixtureByID(context.Context, *FixtureRequest) (*Fixture, error)
 	Search(*FixtureSearchRequest, FixtureService_SearchServer) error
+	GetFixtureLineUpStats(context.Context, *FixtureRequest) (*FixtureLineUpStats, error)
 	mustEmbedUnimplementedFixtureServiceServer()
 }
 
@@ -130,6 +141,9 @@ func (UnimplementedFixtureServiceServer) FixtureByID(context.Context, *FixtureRe
 }
 func (UnimplementedFixtureServiceServer) Search(*FixtureSearchRequest, FixtureService_SearchServer) error {
 	return status.Errorf(codes.Unimplemented, "method Search not implemented")
+}
+func (UnimplementedFixtureServiceServer) GetFixtureLineUpStats(context.Context, *FixtureRequest) (*FixtureLineUpStats, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetFixtureLineUpStats not implemented")
 }
 func (UnimplementedFixtureServiceServer) mustEmbedUnimplementedFixtureServiceServer() {}
 
@@ -204,6 +218,24 @@ func (x *fixtureServiceSearchServer) Send(m *Fixture) error {
 	return x.ServerStream.SendMsg(m)
 }
 
+func _FixtureService_GetFixtureLineUpStats_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(FixtureRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(FixtureServiceServer).GetFixtureLineUpStats(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/statistico.FixtureService/GetFixtureLineUpStats",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(FixtureServiceServer).GetFixtureLineUpStats(ctx, req.(*FixtureRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // FixtureService_ServiceDesc is the grpc.ServiceDesc for FixtureService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -214,6 +246,10 @@ var FixtureService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "FixtureByID",
 			Handler:    _FixtureService_FixtureByID_Handler,
+		},
+		{
+			MethodName: "GetFixtureLineUpStats",
+			Handler:    _FixtureService_GetFixtureLineUpStats_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{

@@ -4,6 +4,7 @@
 import type { RpcTransport } from "@protobuf-ts/runtime-rpc";
 import type { ServiceInfo } from "@protobuf-ts/runtime-rpc";
 import { FixtureService } from "./fixture";
+import type { FixtureLineUpStats } from "./fixture";
 import type { FixtureSearchRequest } from "./requests";
 import type { FixtureRequest } from "./requests";
 import type { UnaryCall } from "@protobuf-ts/runtime-rpc";
@@ -28,6 +29,10 @@ export interface IFixtureServiceClient {
      * @generated from protobuf rpc: Search(statistico.FixtureSearchRequest) returns (stream statistico.Fixture);
      */
     search(input: FixtureSearchRequest, options?: RpcOptions): ServerStreamingCall<FixtureSearchRequest, Fixture>;
+    /**
+     * @generated from protobuf rpc: GetFixtureLineUpStats(statistico.FixtureRequest) returns (statistico.FixtureLineUpStats);
+     */
+    getFixtureLineUpStats(input: FixtureRequest, options?: RpcOptions): UnaryCall<FixtureRequest, FixtureLineUpStats>;
 }
 /**
  * @generated from protobuf service statistico.FixtureService
@@ -58,5 +63,12 @@ export class FixtureServiceClient implements IFixtureServiceClient, ServiceInfo 
     search(input: FixtureSearchRequest, options?: RpcOptions): ServerStreamingCall<FixtureSearchRequest, Fixture> {
         const method = this.methods[2], opt = this._transport.mergeOptions(options);
         return stackIntercept<FixtureSearchRequest, Fixture>("serverStreaming", this._transport, method, opt, input);
+    }
+    /**
+     * @generated from protobuf rpc: GetFixtureLineUpStats(statistico.FixtureRequest) returns (statistico.FixtureLineUpStats);
+     */
+    getFixtureLineUpStats(input: FixtureRequest, options?: RpcOptions): UnaryCall<FixtureRequest, FixtureLineUpStats> {
+        const method = this.methods[3], opt = this._transport.mergeOptions(options);
+        return stackIntercept<FixtureRequest, FixtureLineUpStats>("unary", this._transport, method, opt, input);
     }
 }

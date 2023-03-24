@@ -11,11 +11,13 @@ import "round.proto";
 import "season.proto";
 import "team.proto";
 import "venue.proto";
+import "google/protobuf/wrappers.proto";
 
 service FixtureService {
     rpc ListSeasonFixtures(SeasonFixtureRequest) returns (stream Fixture) {}
     rpc FixtureByID(FixtureRequest) returns (Fixture) {}
     rpc Search(FixtureSearchRequest) returns (stream Fixture) {}
+    rpc GetFixtureLineUpStats(FixtureRequest) returns (FixtureLineUpStats) {}
 }
 
 message Fixture {
@@ -27,4 +29,15 @@ message Fixture {
     Round round = 6;
     Venue venue = 7;
     Date date_time = 8;
+}
+
+message FixtureLineUpStats {
+    LineUpStats home = 1;
+    LineUpStats away = 2;
+}
+
+message LineUpStats {
+    google.protobuf.FloatValue goals = 1;
+    google.protobuf.FloatValue shots_on_goal = 2;
+    google.protobuf.FloatValue assists = 3;
 }

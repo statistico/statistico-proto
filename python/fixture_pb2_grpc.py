@@ -30,6 +30,11 @@ class FixtureServiceStub(object):
                 request_serializer=requests__pb2.FixtureSearchRequest.SerializeToString,
                 response_deserializer=fixture__pb2.Fixture.FromString,
                 )
+        self.GetFixtureLineUpStats = channel.unary_unary(
+                '/statistico.FixtureService/GetFixtureLineUpStats',
+                request_serializer=requests__pb2.FixtureRequest.SerializeToString,
+                response_deserializer=fixture__pb2.FixtureLineUpStats.FromString,
+                )
 
 
 class FixtureServiceServicer(object):
@@ -53,6 +58,12 @@ class FixtureServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def GetFixtureLineUpStats(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_FixtureServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -70,6 +81,11 @@ def add_FixtureServiceServicer_to_server(servicer, server):
                     servicer.Search,
                     request_deserializer=requests__pb2.FixtureSearchRequest.FromString,
                     response_serializer=fixture__pb2.Fixture.SerializeToString,
+            ),
+            'GetFixtureLineUpStats': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetFixtureLineUpStats,
+                    request_deserializer=requests__pb2.FixtureRequest.FromString,
+                    response_serializer=fixture__pb2.FixtureLineUpStats.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -129,5 +145,22 @@ class FixtureService(object):
         return grpc.experimental.unary_stream(request, target, '/statistico.FixtureService/Search',
             requests__pb2.FixtureSearchRequest.SerializeToString,
             fixture__pb2.Fixture.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetFixtureLineUpStats(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/statistico.FixtureService/GetFixtureLineUpStats',
+            requests__pb2.FixtureRequest.SerializeToString,
+            fixture__pb2.FixtureLineUpStats.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

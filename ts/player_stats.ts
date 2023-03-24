@@ -16,6 +16,23 @@ import { MessageType } from "@protobuf-ts/runtime";
 import { UInt32Value } from "./google/protobuf/wrappers";
 import { Int32Value } from "./google/protobuf/wrappers";
 /**
+ * @generated from protobuf message statistico.PlayStatsRequest
+ */
+export interface PlayStatsRequest {
+    /**
+     * @generated from protobuf field: uint64 team_id = 1;
+     */
+    teamId: bigint;
+    /**
+     * @generated from protobuf field: uint64 season_id = 2;
+     */
+    seasonId: bigint;
+    /**
+     * @generated from protobuf field: uint64 date_before = 3;
+     */
+    dateBefore: bigint;
+}
+/**
  * @generated from protobuf message statistico.PlayerStatsResponse
  */
 export interface PlayerStatsResponse {
@@ -104,6 +121,67 @@ export interface LineupPlayer {
      */
     isSubstitute: boolean;
 }
+// @generated message type with reflection information, may provide speed optimized methods
+class PlayStatsRequest$Type extends MessageType<PlayStatsRequest> {
+    constructor() {
+        super("statistico.PlayStatsRequest", [
+            { no: 1, name: "team_id", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 0 /*LongType.BIGINT*/ },
+            { no: 2, name: "season_id", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 0 /*LongType.BIGINT*/ },
+            { no: 3, name: "date_before", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 0 /*LongType.BIGINT*/ }
+        ]);
+    }
+    create(value?: PartialMessage<PlayStatsRequest>): PlayStatsRequest {
+        const message = { teamId: 0n, seasonId: 0n, dateBefore: 0n };
+        globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this });
+        if (value !== undefined)
+            reflectionMergePartial<PlayStatsRequest>(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: PlayStatsRequest): PlayStatsRequest {
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* uint64 team_id */ 1:
+                    message.teamId = reader.uint64().toBigInt();
+                    break;
+                case /* uint64 season_id */ 2:
+                    message.seasonId = reader.uint64().toBigInt();
+                    break;
+                case /* uint64 date_before */ 3:
+                    message.dateBefore = reader.uint64().toBigInt();
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
+    }
+    internalBinaryWrite(message: PlayStatsRequest, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
+        /* uint64 team_id = 1; */
+        if (message.teamId !== 0n)
+            writer.tag(1, WireType.Varint).uint64(message.teamId);
+        /* uint64 season_id = 2; */
+        if (message.seasonId !== 0n)
+            writer.tag(2, WireType.Varint).uint64(message.seasonId);
+        /* uint64 date_before = 3; */
+        if (message.dateBefore !== 0n)
+            writer.tag(3, WireType.Varint).uint64(message.dateBefore);
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message statistico.PlayStatsRequest
+ */
+export const PlayStatsRequest = new PlayStatsRequest$Type();
 // @generated message type with reflection information, may provide speed optimized methods
 class PlayerStatsResponse$Type extends MessageType<PlayerStatsResponse> {
     constructor() {
@@ -421,5 +499,6 @@ export const LineupPlayer = new LineupPlayer$Type();
  */
 export const PlayerStatsService = new ServiceType("statistico.PlayerStatsService", [
     { name: "GetPlayerStatsForFixture", options: {}, I: FixtureRequest, O: PlayerStatsResponse },
-    { name: "GetLineUpForFixture", options: {}, I: FixtureRequest, O: LineupResponse }
+    { name: "GetLineUpForFixture", options: {}, I: FixtureRequest, O: LineupResponse },
+    { name: "GetTeamSeasonPlayerStats", serverStreaming: true, options: {}, I: PlayStatsRequest, O: PlayerStats }
 ]);

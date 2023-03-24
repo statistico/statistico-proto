@@ -16,15 +16,23 @@ from google.protobuf import wrappers_pb2 as google_dot_protobuf_dot_wrappers__pb
 import requests_pb2 as requests__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x12player_stats.proto\x12\nstatistico\x1a\x1egoogle/protobuf/wrappers.proto\x1a\x0erequests.proto\"m\n\x13PlayerStatsResponse\x12*\n\thome_team\x18\x01 \x03(\x0b\x32\x17.statistico.PlayerStats\x12*\n\taway_team\x18\x02 \x03(\x0b\x32\x17.statistico.PlayerStats\"^\n\x0eLineupResponse\x12%\n\thome_team\x18\x01 \x01(\x0b\x32\x12.statistico.Lineup\x12%\n\taway_team\x18\x02 \x01(\x0b\x32\x12.statistico.Lineup\"\x9c\x02\n\x0bPlayerStats\x12\x11\n\tplayer_id\x18\x01 \x01(\x04\x12\x30\n\x0bshots_total\x18\x02 \x01(\x0b\x32\x1b.google.protobuf.Int32Value\x12\x32\n\rshots_on_goal\x18\x03 \x01(\x0b\x32\x1b.google.protobuf.Int32Value\x12\x31\n\x0cgoals_scored\x18\x04 \x01(\x0b\x32\x1b.google.protobuf.Int32Value\x12\x33\n\x0egoals_conceded\x18\x05 \x01(\x0b\x32\x1b.google.protobuf.Int32Value\x12,\n\x07\x61ssists\x18\x06 \x01(\x0b\x32\x1b.google.protobuf.Int32Value\"Z\n\x06Lineup\x12\'\n\x05start\x18\x01 \x03(\x0b\x32\x18.statistico.LineupPlayer\x12\'\n\x05\x62\x65nch\x18\x02 \x03(\x0b\x32\x18.statistico.LineupPlayer\"\x84\x01\n\x0cLineupPlayer\x12\x11\n\tplayer_id\x18\x01 \x01(\x04\x12\x10\n\x08position\x18\x02 \x01(\t\x12\x38\n\x12\x66ormation_position\x18\x03 \x01(\x0b\x32\x1c.google.protobuf.UInt32Value\x12\x15\n\ris_substitute\x18\x04 \x01(\x08\x32\xc0\x01\n\x12PlayerStatsService\x12Y\n\x18GetPlayerStatsForFixture\x12\x1a.statistico.FixtureRequest\x1a\x1f.statistico.PlayerStatsResponse\"\x00\x12O\n\x13GetLineUpForFixture\x12\x1a.statistico.FixtureRequest\x1a\x1a.statistico.LineupResponse\"\x00\x42\x33Z1github.com/statistico/statistico-proto;statisticob\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x12player_stats.proto\x12\nstatistico\x1a\x1egoogle/protobuf/wrappers.proto\x1a\x0erequests.proto\"K\n\x10PlayStatsRequest\x12\x0f\n\x07team_id\x18\x01 \x01(\x04\x12\x11\n\tseason_id\x18\x02 \x01(\x04\x12\x13\n\x0b\x64\x61te_before\x18\x03 \x01(\x04\"m\n\x13PlayerStatsResponse\x12*\n\thome_team\x18\x01 \x03(\x0b\x32\x17.statistico.PlayerStats\x12*\n\taway_team\x18\x02 \x03(\x0b\x32\x17.statistico.PlayerStats\"^\n\x0eLineupResponse\x12%\n\thome_team\x18\x01 \x01(\x0b\x32\x12.statistico.Lineup\x12%\n\taway_team\x18\x02 \x01(\x0b\x32\x12.statistico.Lineup\"\x9c\x02\n\x0bPlayerStats\x12\x11\n\tplayer_id\x18\x01 \x01(\x04\x12\x30\n\x0bshots_total\x18\x02 \x01(\x0b\x32\x1b.google.protobuf.Int32Value\x12\x32\n\rshots_on_goal\x18\x03 \x01(\x0b\x32\x1b.google.protobuf.Int32Value\x12\x31\n\x0cgoals_scored\x18\x04 \x01(\x0b\x32\x1b.google.protobuf.Int32Value\x12\x33\n\x0egoals_conceded\x18\x05 \x01(\x0b\x32\x1b.google.protobuf.Int32Value\x12,\n\x07\x61ssists\x18\x06 \x01(\x0b\x32\x1b.google.protobuf.Int32Value\"Z\n\x06Lineup\x12\'\n\x05start\x18\x01 \x03(\x0b\x32\x18.statistico.LineupPlayer\x12\'\n\x05\x62\x65nch\x18\x02 \x03(\x0b\x32\x18.statistico.LineupPlayer\"\x84\x01\n\x0cLineupPlayer\x12\x11\n\tplayer_id\x18\x01 \x01(\x04\x12\x10\n\x08position\x18\x02 \x01(\t\x12\x38\n\x12\x66ormation_position\x18\x03 \x01(\x0b\x32\x1c.google.protobuf.UInt32Value\x12\x15\n\ris_substitute\x18\x04 \x01(\x08\x32\x97\x02\n\x12PlayerStatsService\x12Y\n\x18GetPlayerStatsForFixture\x12\x1a.statistico.FixtureRequest\x1a\x1f.statistico.PlayerStatsResponse\"\x00\x12O\n\x13GetLineUpForFixture\x12\x1a.statistico.FixtureRequest\x1a\x1a.statistico.LineupResponse\"\x00\x12U\n\x18GetTeamSeasonPlayerStats\x12\x1c.statistico.PlayStatsRequest\x1a\x17.statistico.PlayerStats\"\x00\x30\x01\x42\x33Z1github.com/statistico/statistico-proto;statisticob\x06proto3')
 
 
 
+_PLAYSTATSREQUEST = DESCRIPTOR.message_types_by_name['PlayStatsRequest']
 _PLAYERSTATSRESPONSE = DESCRIPTOR.message_types_by_name['PlayerStatsResponse']
 _LINEUPRESPONSE = DESCRIPTOR.message_types_by_name['LineupResponse']
 _PLAYERSTATS = DESCRIPTOR.message_types_by_name['PlayerStats']
 _LINEUP = DESCRIPTOR.message_types_by_name['Lineup']
 _LINEUPPLAYER = DESCRIPTOR.message_types_by_name['LineupPlayer']
+PlayStatsRequest = _reflection.GeneratedProtocolMessageType('PlayStatsRequest', (_message.Message,), {
+  'DESCRIPTOR' : _PLAYSTATSREQUEST,
+  '__module__' : 'player_stats_pb2'
+  # @@protoc_insertion_point(class_scope:statistico.PlayStatsRequest)
+  })
+_sym_db.RegisterMessage(PlayStatsRequest)
+
 PlayerStatsResponse = _reflection.GeneratedProtocolMessageType('PlayerStatsResponse', (_message.Message,), {
   'DESCRIPTOR' : _PLAYERSTATSRESPONSE,
   '__module__' : 'player_stats_pb2'
@@ -65,16 +73,18 @@ if _descriptor._USE_C_DESCRIPTORS == False:
 
   DESCRIPTOR._options = None
   DESCRIPTOR._serialized_options = b'Z1github.com/statistico/statistico-proto;statistico'
-  _PLAYERSTATSRESPONSE._serialized_start=82
-  _PLAYERSTATSRESPONSE._serialized_end=191
-  _LINEUPRESPONSE._serialized_start=193
-  _LINEUPRESPONSE._serialized_end=287
-  _PLAYERSTATS._serialized_start=290
-  _PLAYERSTATS._serialized_end=574
-  _LINEUP._serialized_start=576
-  _LINEUP._serialized_end=666
-  _LINEUPPLAYER._serialized_start=669
-  _LINEUPPLAYER._serialized_end=801
-  _PLAYERSTATSSERVICE._serialized_start=804
-  _PLAYERSTATSSERVICE._serialized_end=996
+  _PLAYSTATSREQUEST._serialized_start=82
+  _PLAYSTATSREQUEST._serialized_end=157
+  _PLAYERSTATSRESPONSE._serialized_start=159
+  _PLAYERSTATSRESPONSE._serialized_end=268
+  _LINEUPRESPONSE._serialized_start=270
+  _LINEUPRESPONSE._serialized_end=364
+  _PLAYERSTATS._serialized_start=367
+  _PLAYERSTATS._serialized_end=651
+  _LINEUP._serialized_start=653
+  _LINEUP._serialized_end=743
+  _LINEUPPLAYER._serialized_start=746
+  _LINEUPPLAYER._serialized_end=878
+  _PLAYERSTATSSERVICE._serialized_start=881
+  _PLAYERSTATSSERVICE._serialized_end=1160
 # @@protoc_insertion_point(module_scope)

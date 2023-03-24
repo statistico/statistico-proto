@@ -4,6 +4,9 @@
 import type { RpcTransport } from "@protobuf-ts/runtime-rpc";
 import type { ServiceInfo } from "@protobuf-ts/runtime-rpc";
 import { PlayerStatsService } from "./player_stats";
+import type { PlayerStats } from "./player_stats";
+import type { PlayStatsRequest } from "./player_stats";
+import type { ServerStreamingCall } from "@protobuf-ts/runtime-rpc";
 import type { LineupResponse } from "./player_stats";
 import { stackIntercept } from "@protobuf-ts/runtime-rpc";
 import type { PlayerStatsResponse } from "./player_stats";
@@ -22,6 +25,10 @@ export interface IPlayerStatsServiceClient {
      * @generated from protobuf rpc: GetLineUpForFixture(statistico.FixtureRequest) returns (statistico.LineupResponse);
      */
     getLineUpForFixture(input: FixtureRequest, options?: RpcOptions): UnaryCall<FixtureRequest, LineupResponse>;
+    /**
+     * @generated from protobuf rpc: GetTeamSeasonPlayerStats(statistico.PlayStatsRequest) returns (stream statistico.PlayerStats);
+     */
+    getTeamSeasonPlayerStats(input: PlayStatsRequest, options?: RpcOptions): ServerStreamingCall<PlayStatsRequest, PlayerStats>;
 }
 /**
  * @generated from protobuf service statistico.PlayerStatsService
@@ -45,5 +52,12 @@ export class PlayerStatsServiceClient implements IPlayerStatsServiceClient, Serv
     getLineUpForFixture(input: FixtureRequest, options?: RpcOptions): UnaryCall<FixtureRequest, LineupResponse> {
         const method = this.methods[1], opt = this._transport.mergeOptions(options);
         return stackIntercept<FixtureRequest, LineupResponse>("unary", this._transport, method, opt, input);
+    }
+    /**
+     * @generated from protobuf rpc: GetTeamSeasonPlayerStats(statistico.PlayStatsRequest) returns (stream statistico.PlayerStats);
+     */
+    getTeamSeasonPlayerStats(input: PlayStatsRequest, options?: RpcOptions): ServerStreamingCall<PlayStatsRequest, PlayerStats> {
+        const method = this.methods[2], opt = this._transport.mergeOptions(options);
+        return stackIntercept<PlayStatsRequest, PlayerStats>("serverStreaming", this._transport, method, opt, input);
     }
 }

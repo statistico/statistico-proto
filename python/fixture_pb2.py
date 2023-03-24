@@ -19,16 +19,13 @@ import round_pb2 as round__pb2
 import season_pb2 as season__pb2
 import team_pb2 as team__pb2
 import venue_pb2 as venue__pb2
-from google.protobuf import wrappers_pb2 as google_dot_protobuf_dot_wrappers__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\rfixture.proto\x12\nstatistico\x1a\x0c\x63ommon.proto\x1a\x11\x63ompetition.proto\x1a\x0erequests.proto\x1a\x0bround.proto\x1a\x0cseason.proto\x1a\nteam.proto\x1a\x0bvenue.proto\x1a\x1egoogle/protobuf/wrappers.proto\"\x9a\x02\n\x07\x46ixture\x12\n\n\x02id\x18\x01 \x01(\x03\x12,\n\x0b\x63ompetition\x18\x02 \x01(\x0b\x32\x17.statistico.Competition\x12\"\n\x06season\x18\x03 \x01(\x0b\x32\x12.statistico.Season\x12#\n\thome_team\x18\x04 \x01(\x0b\x32\x10.statistico.Team\x12#\n\taway_team\x18\x05 \x01(\x0b\x32\x10.statistico.Team\x12 \n\x05round\x18\x06 \x01(\x0b\x32\x11.statistico.Round\x12 \n\x05venue\x18\x07 \x01(\x0b\x32\x11.statistico.Venue\x12#\n\tdate_time\x18\x08 \x01(\x0b\x32\x10.statistico.Date\"b\n\x12\x46ixtureLineUpStats\x12%\n\x04home\x18\x01 \x01(\x0b\x32\x17.statistico.LineUpStats\x12%\n\x04\x61way\x18\x02 \x01(\x0b\x32\x17.statistico.LineUpStats\"\x9b\x01\n\x0bLineUpStats\x12*\n\x05goals\x18\x01 \x01(\x0b\x32\x1b.google.protobuf.FloatValue\x12\x32\n\rshots_on_goal\x18\x02 \x01(\x0b\x32\x1b.google.protobuf.FloatValue\x12,\n\x07\x61ssists\x18\x03 \x01(\x0b\x32\x1b.google.protobuf.FloatValue2\xbf\x02\n\x0e\x46ixtureService\x12O\n\x12ListSeasonFixtures\x12 .statistico.SeasonFixtureRequest\x1a\x13.statistico.Fixture\"\x00\x30\x01\x12@\n\x0b\x46ixtureByID\x12\x1a.statistico.FixtureRequest\x1a\x13.statistico.Fixture\"\x00\x12\x43\n\x06Search\x12 .statistico.FixtureSearchRequest\x1a\x13.statistico.Fixture\"\x00\x30\x01\x12U\n\x15GetFixtureLineUpStats\x12\x1a.statistico.FixtureRequest\x1a\x1e.statistico.FixtureLineUpStats\"\x00\x42\x33Z1github.com/statistico/statistico-proto;statisticob\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\rfixture.proto\x12\nstatistico\x1a\x0c\x63ommon.proto\x1a\x11\x63ompetition.proto\x1a\x0erequests.proto\x1a\x0bround.proto\x1a\x0cseason.proto\x1a\nteam.proto\x1a\x0bvenue.proto\"\x9a\x02\n\x07\x46ixture\x12\n\n\x02id\x18\x01 \x01(\x03\x12,\n\x0b\x63ompetition\x18\x02 \x01(\x0b\x32\x17.statistico.Competition\x12\"\n\x06season\x18\x03 \x01(\x0b\x32\x12.statistico.Season\x12#\n\thome_team\x18\x04 \x01(\x0b\x32\x10.statistico.Team\x12#\n\taway_team\x18\x05 \x01(\x0b\x32\x10.statistico.Team\x12 \n\x05round\x18\x06 \x01(\x0b\x32\x11.statistico.Round\x12 \n\x05venue\x18\x07 \x01(\x0b\x32\x11.statistico.Venue\x12#\n\tdate_time\x18\x08 \x01(\x0b\x32\x10.statistico.Date2\xe8\x01\n\x0e\x46ixtureService\x12O\n\x12ListSeasonFixtures\x12 .statistico.SeasonFixtureRequest\x1a\x13.statistico.Fixture\"\x00\x30\x01\x12@\n\x0b\x46ixtureByID\x12\x1a.statistico.FixtureRequest\x1a\x13.statistico.Fixture\"\x00\x12\x43\n\x06Search\x12 .statistico.FixtureSearchRequest\x1a\x13.statistico.Fixture\"\x00\x30\x01\x42\x33Z1github.com/statistico/statistico-proto;statisticob\x06proto3')
 
 
 
 _FIXTURE = DESCRIPTOR.message_types_by_name['Fixture']
-_FIXTURELINEUPSTATS = DESCRIPTOR.message_types_by_name['FixtureLineUpStats']
-_LINEUPSTATS = DESCRIPTOR.message_types_by_name['LineUpStats']
 Fixture = _reflection.GeneratedProtocolMessageType('Fixture', (_message.Message,), {
   'DESCRIPTOR' : _FIXTURE,
   '__module__' : 'fixture_pb2'
@@ -36,31 +33,13 @@ Fixture = _reflection.GeneratedProtocolMessageType('Fixture', (_message.Message,
   })
 _sym_db.RegisterMessage(Fixture)
 
-FixtureLineUpStats = _reflection.GeneratedProtocolMessageType('FixtureLineUpStats', (_message.Message,), {
-  'DESCRIPTOR' : _FIXTURELINEUPSTATS,
-  '__module__' : 'fixture_pb2'
-  # @@protoc_insertion_point(class_scope:statistico.FixtureLineUpStats)
-  })
-_sym_db.RegisterMessage(FixtureLineUpStats)
-
-LineUpStats = _reflection.GeneratedProtocolMessageType('LineUpStats', (_message.Message,), {
-  'DESCRIPTOR' : _LINEUPSTATS,
-  '__module__' : 'fixture_pb2'
-  # @@protoc_insertion_point(class_scope:statistico.LineUpStats)
-  })
-_sym_db.RegisterMessage(LineUpStats)
-
 _FIXTURESERVICE = DESCRIPTOR.services_by_name['FixtureService']
 if _descriptor._USE_C_DESCRIPTORS == False:
 
   DESCRIPTOR._options = None
   DESCRIPTOR._serialized_options = b'Z1github.com/statistico/statistico-proto;statistico'
-  _FIXTURE._serialized_start=163
-  _FIXTURE._serialized_end=445
-  _FIXTURELINEUPSTATS._serialized_start=447
-  _FIXTURELINEUPSTATS._serialized_end=545
-  _LINEUPSTATS._serialized_start=548
-  _LINEUPSTATS._serialized_end=703
-  _FIXTURESERVICE._serialized_start=706
-  _FIXTURESERVICE._serialized_end=1025
+  _FIXTURE._serialized_start=131
+  _FIXTURE._serialized_end=413
+  _FIXTURESERVICE._serialized_start=416
+  _FIXTURESERVICE._serialized_end=648
 # @@protoc_insertion_point(module_scope)

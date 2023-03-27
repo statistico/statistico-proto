@@ -67,23 +67,35 @@ export interface PlayerStats {
      */
     playerId: bigint;
     /**
-     * @generated from protobuf field: google.protobuf.Int32Value shots_total = 2;
+     * @generated from protobuf field: uint64 team_id = 2;
+     */
+    teamId: bigint;
+    /**
+     * @generated from protobuf field: uint64 fixture_id = 3;
+     */
+    fixtureId: bigint;
+    /**
+     * @generated from protobuf field: bool is_substitute = 4;
+     */
+    isSubstitute: boolean;
+    /**
+     * @generated from protobuf field: google.protobuf.Int32Value shots_total = 5;
      */
     shotsTotal?: Int32Value;
     /**
-     * @generated from protobuf field: google.protobuf.Int32Value shots_on_goal = 3;
+     * @generated from protobuf field: google.protobuf.Int32Value shots_on_goal = 6;
      */
     shotsOnGoal?: Int32Value;
     /**
-     * @generated from protobuf field: google.protobuf.Int32Value goals_scored = 4;
+     * @generated from protobuf field: google.protobuf.Int32Value goals_scored = 7;
      */
     goalsScored?: Int32Value;
     /**
-     * @generated from protobuf field: google.protobuf.Int32Value goals_conceded = 5;
+     * @generated from protobuf field: google.protobuf.Int32Value goals_conceded = 8;
      */
     goalsConceded?: Int32Value;
     /**
-     * @generated from protobuf field: google.protobuf.Int32Value assists = 6;
+     * @generated from protobuf field: google.protobuf.Int32Value assists = 9;
      */
     assists?: Int32Value;
 }
@@ -295,15 +307,18 @@ class PlayerStats$Type extends MessageType<PlayerStats> {
     constructor() {
         super("statistico.PlayerStats", [
             { no: 1, name: "player_id", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 0 /*LongType.BIGINT*/ },
-            { no: 2, name: "shots_total", kind: "message", T: () => Int32Value },
-            { no: 3, name: "shots_on_goal", kind: "message", T: () => Int32Value },
-            { no: 4, name: "goals_scored", kind: "message", T: () => Int32Value },
-            { no: 5, name: "goals_conceded", kind: "message", T: () => Int32Value },
-            { no: 6, name: "assists", kind: "message", T: () => Int32Value }
+            { no: 2, name: "team_id", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 0 /*LongType.BIGINT*/ },
+            { no: 3, name: "fixture_id", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 0 /*LongType.BIGINT*/ },
+            { no: 4, name: "is_substitute", kind: "scalar", T: 8 /*ScalarType.BOOL*/ },
+            { no: 5, name: "shots_total", kind: "message", T: () => Int32Value },
+            { no: 6, name: "shots_on_goal", kind: "message", T: () => Int32Value },
+            { no: 7, name: "goals_scored", kind: "message", T: () => Int32Value },
+            { no: 8, name: "goals_conceded", kind: "message", T: () => Int32Value },
+            { no: 9, name: "assists", kind: "message", T: () => Int32Value }
         ]);
     }
     create(value?: PartialMessage<PlayerStats>): PlayerStats {
-        const message = { playerId: 0n };
+        const message = { playerId: 0n, teamId: 0n, fixtureId: 0n, isSubstitute: false };
         globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this });
         if (value !== undefined)
             reflectionMergePartial<PlayerStats>(this, message, value);
@@ -317,19 +332,28 @@ class PlayerStats$Type extends MessageType<PlayerStats> {
                 case /* uint64 player_id */ 1:
                     message.playerId = reader.uint64().toBigInt();
                     break;
-                case /* google.protobuf.Int32Value shots_total */ 2:
+                case /* uint64 team_id */ 2:
+                    message.teamId = reader.uint64().toBigInt();
+                    break;
+                case /* uint64 fixture_id */ 3:
+                    message.fixtureId = reader.uint64().toBigInt();
+                    break;
+                case /* bool is_substitute */ 4:
+                    message.isSubstitute = reader.bool();
+                    break;
+                case /* google.protobuf.Int32Value shots_total */ 5:
                     message.shotsTotal = Int32Value.internalBinaryRead(reader, reader.uint32(), options, message.shotsTotal);
                     break;
-                case /* google.protobuf.Int32Value shots_on_goal */ 3:
+                case /* google.protobuf.Int32Value shots_on_goal */ 6:
                     message.shotsOnGoal = Int32Value.internalBinaryRead(reader, reader.uint32(), options, message.shotsOnGoal);
                     break;
-                case /* google.protobuf.Int32Value goals_scored */ 4:
+                case /* google.protobuf.Int32Value goals_scored */ 7:
                     message.goalsScored = Int32Value.internalBinaryRead(reader, reader.uint32(), options, message.goalsScored);
                     break;
-                case /* google.protobuf.Int32Value goals_conceded */ 5:
+                case /* google.protobuf.Int32Value goals_conceded */ 8:
                     message.goalsConceded = Int32Value.internalBinaryRead(reader, reader.uint32(), options, message.goalsConceded);
                     break;
-                case /* google.protobuf.Int32Value assists */ 6:
+                case /* google.protobuf.Int32Value assists */ 9:
                     message.assists = Int32Value.internalBinaryRead(reader, reader.uint32(), options, message.assists);
                     break;
                 default:
@@ -347,21 +371,30 @@ class PlayerStats$Type extends MessageType<PlayerStats> {
         /* uint64 player_id = 1; */
         if (message.playerId !== 0n)
             writer.tag(1, WireType.Varint).uint64(message.playerId);
-        /* google.protobuf.Int32Value shots_total = 2; */
+        /* uint64 team_id = 2; */
+        if (message.teamId !== 0n)
+            writer.tag(2, WireType.Varint).uint64(message.teamId);
+        /* uint64 fixture_id = 3; */
+        if (message.fixtureId !== 0n)
+            writer.tag(3, WireType.Varint).uint64(message.fixtureId);
+        /* bool is_substitute = 4; */
+        if (message.isSubstitute !== false)
+            writer.tag(4, WireType.Varint).bool(message.isSubstitute);
+        /* google.protobuf.Int32Value shots_total = 5; */
         if (message.shotsTotal)
-            Int32Value.internalBinaryWrite(message.shotsTotal, writer.tag(2, WireType.LengthDelimited).fork(), options).join();
-        /* google.protobuf.Int32Value shots_on_goal = 3; */
+            Int32Value.internalBinaryWrite(message.shotsTotal, writer.tag(5, WireType.LengthDelimited).fork(), options).join();
+        /* google.protobuf.Int32Value shots_on_goal = 6; */
         if (message.shotsOnGoal)
-            Int32Value.internalBinaryWrite(message.shotsOnGoal, writer.tag(3, WireType.LengthDelimited).fork(), options).join();
-        /* google.protobuf.Int32Value goals_scored = 4; */
+            Int32Value.internalBinaryWrite(message.shotsOnGoal, writer.tag(6, WireType.LengthDelimited).fork(), options).join();
+        /* google.protobuf.Int32Value goals_scored = 7; */
         if (message.goalsScored)
-            Int32Value.internalBinaryWrite(message.goalsScored, writer.tag(4, WireType.LengthDelimited).fork(), options).join();
-        /* google.protobuf.Int32Value goals_conceded = 5; */
+            Int32Value.internalBinaryWrite(message.goalsScored, writer.tag(7, WireType.LengthDelimited).fork(), options).join();
+        /* google.protobuf.Int32Value goals_conceded = 8; */
         if (message.goalsConceded)
-            Int32Value.internalBinaryWrite(message.goalsConceded, writer.tag(5, WireType.LengthDelimited).fork(), options).join();
-        /* google.protobuf.Int32Value assists = 6; */
+            Int32Value.internalBinaryWrite(message.goalsConceded, writer.tag(8, WireType.LengthDelimited).fork(), options).join();
+        /* google.protobuf.Int32Value assists = 9; */
         if (message.assists)
-            Int32Value.internalBinaryWrite(message.assists, writer.tag(6, WireType.LengthDelimited).fork(), options).join();
+            Int32Value.internalBinaryWrite(message.assists, writer.tag(9, WireType.LengthDelimited).fork(), options).join();
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);

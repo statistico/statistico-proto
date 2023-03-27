@@ -31,12 +31,14 @@ message LineupResponse {
 
 message PlayerStats {
     uint64 player_id = 1;
-    uint64 team_id = 1;
-    google.protobuf.Int32Value shots_total = 2;
-    google.protobuf.Int32Value shots_on_goal = 3;
-    google.protobuf.Int32Value goals_scored = 4;
-    google.protobuf.Int32Value goals_conceded = 5;
-    google.protobuf.Int32Value assists = 6;
+    uint64 team_id = 2;
+    uint64 fixture_id = 3;
+    bool is_substitute = 4;
+    google.protobuf.Int32Value shots_total = 5;
+    google.protobuf.Int32Value shots_on_goal = 6;
+    google.protobuf.Int32Value goals_scored = 7;
+    google.protobuf.Int32Value goals_conceded = 8;
+    google.protobuf.Int32Value assists = 9;
 }
 
 message Lineup {

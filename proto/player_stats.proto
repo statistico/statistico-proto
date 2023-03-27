@@ -31,6 +31,7 @@ message LineupResponse {
 
 message PlayerStats {
     uint64 player_id = 1;
+    uint64 team_id = 1;
     google.protobuf.Int32Value shots_total = 2;
     google.protobuf.Int32Value shots_on_goal = 3;
     google.protobuf.Int32Value goals_scored = 4;

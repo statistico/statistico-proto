@@ -18,7 +18,7 @@ import utility_pb2 as utility__pb2
 from google.protobuf import wrappers_pb2 as google_dot_protobuf_dot_wrappers__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0estrategy.proto\x12\nstatistico\x1a\nenum.proto\x1a\x0erequests.proto\x1a\rutility.proto\x1a\x1egoogle/protobuf/wrappers.proto\"\x99\x03\n\x08Strategy\x12\n\n\x02id\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x0f\n\x07user_id\x18\x03 \x01(\t\x12&\n\x06market\x18\x04 \x01(\x0e\x32\x16.statistico.MarketEnum\x12*\n\x08\x65xchange\x18\x05 \x01(\x0e\x32\x18.statistico.ExchangeEnum\x12-\n\x08min_odds\x18\x06 \x01(\x0b\x32\x1b.google.protobuf.FloatValue\x12-\n\x08max_odds\x18\x07 \x01(\x0b\x32\x1b.google.protobuf.FloatValue\x12\x17\n\x0f\x63ompetition_ids\x18\x08 \x03(\x04\x12-\n\x0cstaking_plan\x18\t \x01(\x0b\x32\x17.statistico.StakingPlan\x12.\n\x06status\x18\n \x01(\x0e\x32\x1e.statistico.StrategyStatusEnum\x12\x10\n\x08\x62\x61nkroll\x18\x0b \x01(\x02\x12\x12\n\ncreated_at\x18\x0c \x01(\x04\x12\x12\n\nupdated_at\x18\r \x01(\x04\x32\xb5\x01\n\x0fStrategyService\x12K\n\x0e\x43reateStrategy\x12!.statistico.CreateStrategyRequest\x1a\x14.statistico.Strategy\"\x00\x12U\n\x12ListUserStrategies\x12%.statistico.ListUserStrategiesRequest\x1a\x14.statistico.Strategy\"\x00\x30\x01\x42\x33Z1github.com/statistico/statistico-proto;statisticob\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0estrategy.proto\x12\nstatistico\x1a\nenum.proto\x1a\x0erequests.proto\x1a\rutility.proto\x1a\x1egoogle/protobuf/wrappers.proto\"\xf2\x02\n\x08Strategy\x12\n\n\x02id\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x0f\n\x07user_id\x18\x03 \x01(\t\x12&\n\x06market\x18\x04 \x01(\x0e\x32\x16.statistico.MarketEnum\x12-\n\x08min_odds\x18\x05 \x01(\x0b\x32\x1b.google.protobuf.FloatValue\x12-\n\x08max_odds\x18\x06 \x01(\x0b\x32\x1b.google.protobuf.FloatValue\x12\x17\n\x0f\x63ompetition_ids\x18\x07 \x03(\x04\x12-\n\x0cstaking_plan\x18\x08 \x01(\x0b\x32\x17.statistico.StakingPlan\x12.\n\x06status\x18\t \x01(\x0e\x32\x1e.statistico.StrategyStatusEnum\x12\x15\n\rstarting_fund\x18\n \x01(\x02\x12\x12\n\ncreated_at\x18\x0b \x01(\x04\x12\x12\n\nupdated_at\x18\x0c \x01(\x04\x32\xb5\x01\n\x0fStrategyService\x12K\n\x0e\x43reateStrategy\x12!.statistico.CreateStrategyRequest\x1a\x14.statistico.Strategy\"\x00\x12U\n\x12ListUserStrategies\x12%.statistico.ListUserStrategiesRequest\x1a\x14.statistico.Strategy\"\x00\x30\x01\x42\x33Z1github.com/statistico/statistico-proto;statisticob\x06proto3')
 
 
 
@@ -36,7 +36,7 @@ if _descriptor._USE_C_DESCRIPTORS == False:
   DESCRIPTOR._options = None
   DESCRIPTOR._serialized_options = b'Z1github.com/statistico/statistico-proto;statistico'
   _STRATEGY._serialized_start=106
-  _STRATEGY._serialized_end=515
-  _STRATEGYSERVICE._serialized_start=518
-  _STRATEGYSERVICE._serialized_end=699
+  _STRATEGY._serialized_end=476
+  _STRATEGYSERVICE._serialized_start=479
+  _STRATEGYSERVICE._serialized_end=660
 # @@protoc_insertion_point(module_scope)

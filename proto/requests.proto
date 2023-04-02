@@ -21,12 +21,11 @@ message CompetitionRequest {
 message CreateStrategyRequest {
     string name = 1;
     MarketEnum market = 2;
-    ExchangeEnum exchange = 3;
-    google.protobuf.FloatValue min_odds = 4;
-    google.protobuf.FloatValue max_odds = 5;
-    StakingPlan staking_plan = 6;
-    repeated uint64 competition_ids = 7;
-    float bankroll = 8;
+    google.protobuf.FloatValue min_odds = 3;
+    google.protobuf.FloatValue max_odds = 4;
+    StakingPlan staking_plan = 5;
+    repeated uint64 competition_ids = 6;
+    float starting_fund = 7;
 }
 
 message FixtureRequest {

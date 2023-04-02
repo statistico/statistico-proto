@@ -17,7 +17,6 @@ import { MessageType } from "@protobuf-ts/runtime";
 import { StrategyStatusEnum } from "./enum";
 import { StakingPlan } from "./utility";
 import { FloatValue } from "./google/protobuf/wrappers";
-import { ExchangeEnum } from "./enum";
 import { MarketEnum } from "./enum";
 /**
  * @generated from protobuf message statistico.Strategy
@@ -40,39 +39,35 @@ export interface Strategy {
      */
     market: MarketEnum;
     /**
-     * @generated from protobuf field: statistico.ExchangeEnum exchange = 5;
-     */
-    exchange: ExchangeEnum;
-    /**
-     * @generated from protobuf field: google.protobuf.FloatValue min_odds = 6;
+     * @generated from protobuf field: google.protobuf.FloatValue min_odds = 5;
      */
     minOdds?: FloatValue;
     /**
-     * @generated from protobuf field: google.protobuf.FloatValue max_odds = 7;
+     * @generated from protobuf field: google.protobuf.FloatValue max_odds = 6;
      */
     maxOdds?: FloatValue;
     /**
-     * @generated from protobuf field: repeated uint64 competition_ids = 8;
+     * @generated from protobuf field: repeated uint64 competition_ids = 7;
      */
     competitionIds: bigint[];
     /**
-     * @generated from protobuf field: statistico.StakingPlan staking_plan = 9;
+     * @generated from protobuf field: statistico.StakingPlan staking_plan = 8;
      */
     stakingPlan?: StakingPlan;
     /**
-     * @generated from protobuf field: statistico.StrategyStatusEnum status = 10;
+     * @generated from protobuf field: statistico.StrategyStatusEnum status = 9;
      */
     status: StrategyStatusEnum;
     /**
-     * @generated from protobuf field: float bankroll = 11;
+     * @generated from protobuf field: float starting_fund = 10;
      */
-    bankroll: number;
+    startingFund: number;
     /**
-     * @generated from protobuf field: uint64 created_at = 12;
+     * @generated from protobuf field: uint64 created_at = 11;
      */
     createdAt: bigint;
     /**
-     * @generated from protobuf field: uint64 updated_at = 13;
+     * @generated from protobuf field: uint64 updated_at = 12;
      */
     updatedAt: bigint;
 }
@@ -84,19 +79,18 @@ class Strategy$Type extends MessageType<Strategy> {
             { no: 2, name: "name", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
             { no: 3, name: "user_id", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
             { no: 4, name: "market", kind: "enum", T: () => ["statistico.MarketEnum", MarketEnum] },
-            { no: 5, name: "exchange", kind: "enum", T: () => ["statistico.ExchangeEnum", ExchangeEnum] },
-            { no: 6, name: "min_odds", kind: "message", T: () => FloatValue },
-            { no: 7, name: "max_odds", kind: "message", T: () => FloatValue },
-            { no: 8, name: "competition_ids", kind: "scalar", repeat: 1 /*RepeatType.PACKED*/, T: 4 /*ScalarType.UINT64*/, L: 0 /*LongType.BIGINT*/ },
-            { no: 9, name: "staking_plan", kind: "message", T: () => StakingPlan },
-            { no: 10, name: "status", kind: "enum", T: () => ["statistico.StrategyStatusEnum", StrategyStatusEnum] },
-            { no: 11, name: "bankroll", kind: "scalar", T: 2 /*ScalarType.FLOAT*/ },
-            { no: 12, name: "created_at", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 0 /*LongType.BIGINT*/ },
-            { no: 13, name: "updated_at", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 0 /*LongType.BIGINT*/ }
+            { no: 5, name: "min_odds", kind: "message", T: () => FloatValue },
+            { no: 6, name: "max_odds", kind: "message", T: () => FloatValue },
+            { no: 7, name: "competition_ids", kind: "scalar", repeat: 1 /*RepeatType.PACKED*/, T: 4 /*ScalarType.UINT64*/, L: 0 /*LongType.BIGINT*/ },
+            { no: 8, name: "staking_plan", kind: "message", T: () => StakingPlan },
+            { no: 9, name: "status", kind: "enum", T: () => ["statistico.StrategyStatusEnum", StrategyStatusEnum] },
+            { no: 10, name: "starting_fund", kind: "scalar", T: 2 /*ScalarType.FLOAT*/ },
+            { no: 11, name: "created_at", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 0 /*LongType.BIGINT*/ },
+            { no: 12, name: "updated_at", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 0 /*LongType.BIGINT*/ }
         ]);
     }
     create(value?: PartialMessage<Strategy>): Strategy {
-        const message = { id: "", name: "", userId: "", market: 0, exchange: 0, competitionIds: [], status: 0, bankroll: 0, createdAt: 0n, updatedAt: 0n };
+        const message = { id: "", name: "", userId: "", market: 0, competitionIds: [], status: 0, startingFund: 0, createdAt: 0n, updatedAt: 0n };
         globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this });
         if (value !== undefined)
             reflectionMergePartial<Strategy>(this, message, value);
@@ -119,35 +113,32 @@ class Strategy$Type extends MessageType<Strategy> {
                 case /* statistico.MarketEnum market */ 4:
                     message.market = reader.int32();
                     break;
-                case /* statistico.ExchangeEnum exchange */ 5:
-                    message.exchange = reader.int32();
-                    break;
-                case /* google.protobuf.FloatValue min_odds */ 6:
+                case /* google.protobuf.FloatValue min_odds */ 5:
                     message.minOdds = FloatValue.internalBinaryRead(reader, reader.uint32(), options, message.minOdds);
                     break;
-                case /* google.protobuf.FloatValue max_odds */ 7:
+                case /* google.protobuf.FloatValue max_odds */ 6:
                     message.maxOdds = FloatValue.internalBinaryRead(reader, reader.uint32(), options, message.maxOdds);
                     break;
-                case /* repeated uint64 competition_ids */ 8:
+                case /* repeated uint64 competition_ids */ 7:
                     if (wireType === WireType.LengthDelimited)
                         for (let e = reader.int32() + reader.pos; reader.pos < e;)
                             message.competitionIds.push(reader.uint64().toBigInt());
                     else
                         message.competitionIds.push(reader.uint64().toBigInt());
                     break;
-                case /* statistico.StakingPlan staking_plan */ 9:
+                case /* statistico.StakingPlan staking_plan */ 8:
                     message.stakingPlan = StakingPlan.internalBinaryRead(reader, reader.uint32(), options, message.stakingPlan);
                     break;
-                case /* statistico.StrategyStatusEnum status */ 10:
+                case /* statistico.StrategyStatusEnum status */ 9:
                     message.status = reader.int32();
                     break;
-                case /* float bankroll */ 11:
-                    message.bankroll = reader.float();
+                case /* float starting_fund */ 10:
+                    message.startingFund = reader.float();
                     break;
-                case /* uint64 created_at */ 12:
+                case /* uint64 created_at */ 11:
                     message.createdAt = reader.uint64().toBigInt();
                     break;
-                case /* uint64 updated_at */ 13:
+                case /* uint64 updated_at */ 12:
                     message.updatedAt = reader.uint64().toBigInt();
                     break;
                 default:
@@ -174,37 +165,34 @@ class Strategy$Type extends MessageType<Strategy> {
         /* statistico.MarketEnum market = 4; */
         if (message.market !== 0)
             writer.tag(4, WireType.Varint).int32(message.market);
-        /* statistico.ExchangeEnum exchange = 5; */
-        if (message.exchange !== 0)
-            writer.tag(5, WireType.Varint).int32(message.exchange);
-        /* google.protobuf.FloatValue min_odds = 6; */
+        /* google.protobuf.FloatValue min_odds = 5; */
         if (message.minOdds)
-            FloatValue.internalBinaryWrite(message.minOdds, writer.tag(6, WireType.LengthDelimited).fork(), options).join();
-        /* google.protobuf.FloatValue max_odds = 7; */
+            FloatValue.internalBinaryWrite(message.minOdds, writer.tag(5, WireType.LengthDelimited).fork(), options).join();
+        /* google.protobuf.FloatValue max_odds = 6; */
         if (message.maxOdds)
-            FloatValue.internalBinaryWrite(message.maxOdds, writer.tag(7, WireType.LengthDelimited).fork(), options).join();
-        /* repeated uint64 competition_ids = 8; */
+            FloatValue.internalBinaryWrite(message.maxOdds, writer.tag(6, WireType.LengthDelimited).fork(), options).join();
+        /* repeated uint64 competition_ids = 7; */
         if (message.competitionIds.length) {
-            writer.tag(8, WireType.LengthDelimited).fork();
+            writer.tag(7, WireType.LengthDelimited).fork();
             for (let i = 0; i < message.competitionIds.length; i++)
                 writer.uint64(message.competitionIds[i]);
             writer.join();
         }
-        /* statistico.StakingPlan staking_plan = 9; */
+        /* statistico.StakingPlan staking_plan = 8; */
         if (message.stakingPlan)
-            StakingPlan.internalBinaryWrite(message.stakingPlan, writer.tag(9, WireType.LengthDelimited).fork(), options).join();
-        /* statistico.StrategyStatusEnum status = 10; */
+            StakingPlan.internalBinaryWrite(message.stakingPlan, writer.tag(8, WireType.LengthDelimited).fork(), options).join();
+        /* statistico.StrategyStatusEnum status = 9; */
         if (message.status !== 0)
-            writer.tag(10, WireType.Varint).int32(message.status);
-        /* float bankroll = 11; */
-        if (message.bankroll !== 0)
-            writer.tag(11, WireType.Bit32).float(message.bankroll);
-        /* uint64 created_at = 12; */
+            writer.tag(9, WireType.Varint).int32(message.status);
+        /* float starting_fund = 10; */
+        if (message.startingFund !== 0)
+            writer.tag(10, WireType.Bit32).float(message.startingFund);
+        /* uint64 created_at = 11; */
         if (message.createdAt !== 0n)
-            writer.tag(12, WireType.Varint).uint64(message.createdAt);
-        /* uint64 updated_at = 13; */
+            writer.tag(11, WireType.Varint).uint64(message.createdAt);
+        /* uint64 updated_at = 12; */
         if (message.updatedAt !== 0n)
-            writer.tag(13, WireType.Varint).uint64(message.updatedAt);
+            writer.tag(12, WireType.Varint).uint64(message.updatedAt);
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);

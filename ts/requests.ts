@@ -15,7 +15,6 @@ import { Timestamp } from "./google/protobuf/timestamp";
 import { UInt64Value } from "./google/protobuf/wrappers";
 import { StakingPlan } from "./utility";
 import { FloatValue } from "./google/protobuf/wrappers";
-import { ExchangeEnum } from "./enum";
 import { MarketEnum } from "./enum";
 import { BoolValue } from "./google/protobuf/wrappers";
 import { StringValue } from "./google/protobuf/wrappers";
@@ -55,29 +54,25 @@ export interface CreateStrategyRequest {
      */
     market: MarketEnum;
     /**
-     * @generated from protobuf field: statistico.ExchangeEnum exchange = 3;
-     */
-    exchange: ExchangeEnum;
-    /**
-     * @generated from protobuf field: google.protobuf.FloatValue min_odds = 4;
+     * @generated from protobuf field: google.protobuf.FloatValue min_odds = 3;
      */
     minOdds?: FloatValue;
     /**
-     * @generated from protobuf field: google.protobuf.FloatValue max_odds = 5;
+     * @generated from protobuf field: google.protobuf.FloatValue max_odds = 4;
      */
     maxOdds?: FloatValue;
     /**
-     * @generated from protobuf field: statistico.StakingPlan staking_plan = 6;
+     * @generated from protobuf field: statistico.StakingPlan staking_plan = 5;
      */
     stakingPlan?: StakingPlan;
     /**
-     * @generated from protobuf field: repeated uint64 competition_ids = 7;
+     * @generated from protobuf field: repeated uint64 competition_ids = 6;
      */
     competitionIds: bigint[];
     /**
-     * @generated from protobuf field: float bankroll = 8;
+     * @generated from protobuf field: float starting_fund = 7;
      */
-    bankroll: number;
+    startingFund: number;
 }
 /**
  * @generated from protobuf message statistico.FixtureRequest
@@ -463,16 +458,15 @@ class CreateStrategyRequest$Type extends MessageType<CreateStrategyRequest> {
         super("statistico.CreateStrategyRequest", [
             { no: 1, name: "name", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
             { no: 2, name: "market", kind: "enum", T: () => ["statistico.MarketEnum", MarketEnum] },
-            { no: 3, name: "exchange", kind: "enum", T: () => ["statistico.ExchangeEnum", ExchangeEnum] },
-            { no: 4, name: "min_odds", kind: "message", T: () => FloatValue },
-            { no: 5, name: "max_odds", kind: "message", T: () => FloatValue },
-            { no: 6, name: "staking_plan", kind: "message", T: () => StakingPlan },
-            { no: 7, name: "competition_ids", kind: "scalar", repeat: 1 /*RepeatType.PACKED*/, T: 4 /*ScalarType.UINT64*/, L: 0 /*LongType.BIGINT*/ },
-            { no: 8, name: "bankroll", kind: "scalar", T: 2 /*ScalarType.FLOAT*/ }
+            { no: 3, name: "min_odds", kind: "message", T: () => FloatValue },
+            { no: 4, name: "max_odds", kind: "message", T: () => FloatValue },
+            { no: 5, name: "staking_plan", kind: "message", T: () => StakingPlan },
+            { no: 6, name: "competition_ids", kind: "scalar", repeat: 1 /*RepeatType.PACKED*/, T: 4 /*ScalarType.UINT64*/, L: 0 /*LongType.BIGINT*/ },
+            { no: 7, name: "starting_fund", kind: "scalar", T: 2 /*ScalarType.FLOAT*/ }
         ]);
     }
     create(value?: PartialMessage<CreateStrategyRequest>): CreateStrategyRequest {
-        const message = { name: "", market: 0, exchange: 0, competitionIds: [], bankroll: 0 };
+        const message = { name: "", market: 0, competitionIds: [], startingFund: 0 };
         globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this });
         if (value !== undefined)
             reflectionMergePartial<CreateStrategyRequest>(this, message, value);
@@ -489,27 +483,24 @@ class CreateStrategyRequest$Type extends MessageType<CreateStrategyRequest> {
                 case /* statistico.MarketEnum market */ 2:
                     message.market = reader.int32();
                     break;
-                case /* statistico.ExchangeEnum exchange */ 3:
-                    message.exchange = reader.int32();
-                    break;
-                case /* google.protobuf.FloatValue min_odds */ 4:
+                case /* google.protobuf.FloatValue min_odds */ 3:
                     message.minOdds = FloatValue.internalBinaryRead(reader, reader.uint32(), options, message.minOdds);
                     break;
-                case /* google.protobuf.FloatValue max_odds */ 5:
+                case /* google.protobuf.FloatValue max_odds */ 4:
                     message.maxOdds = FloatValue.internalBinaryRead(reader, reader.uint32(), options, message.maxOdds);
                     break;
-                case /* statistico.StakingPlan staking_plan */ 6:
+                case /* statistico.StakingPlan staking_plan */ 5:
                     message.stakingPlan = StakingPlan.internalBinaryRead(reader, reader.uint32(), options, message.stakingPlan);
                     break;
-                case /* repeated uint64 competition_ids */ 7:
+                case /* repeated uint64 competition_ids */ 6:
                     if (wireType === WireType.LengthDelimited)
                         for (let e = reader.int32() + reader.pos; reader.pos < e;)
                             message.competitionIds.push(reader.uint64().toBigInt());
                     else
                         message.competitionIds.push(reader.uint64().toBigInt());
                     break;
-                case /* float bankroll */ 8:
-                    message.bankroll = reader.float();
+                case /* float starting_fund */ 7:
+                    message.startingFund = reader.float();
                     break;
                 default:
                     let u = options.readUnknownField;
@@ -529,28 +520,25 @@ class CreateStrategyRequest$Type extends MessageType<CreateStrategyRequest> {
         /* statistico.MarketEnum market = 2; */
         if (message.market !== 0)
             writer.tag(2, WireType.Varint).int32(message.market);
-        /* statistico.ExchangeEnum exchange = 3; */
-        if (message.exchange !== 0)
-            writer.tag(3, WireType.Varint).int32(message.exchange);
-        /* google.protobuf.FloatValue min_odds = 4; */
+        /* google.protobuf.FloatValue min_odds = 3; */
         if (message.minOdds)
-            FloatValue.internalBinaryWrite(message.minOdds, writer.tag(4, WireType.LengthDelimited).fork(), options).join();
-        /* google.protobuf.FloatValue max_odds = 5; */
+            FloatValue.internalBinaryWrite(message.minOdds, writer.tag(3, WireType.LengthDelimited).fork(), options).join();
+        /* google.protobuf.FloatValue max_odds = 4; */
         if (message.maxOdds)
-            FloatValue.internalBinaryWrite(message.maxOdds, writer.tag(5, WireType.LengthDelimited).fork(), options).join();
-        /* statistico.StakingPlan staking_plan = 6; */
+            FloatValue.internalBinaryWrite(message.maxOdds, writer.tag(4, WireType.LengthDelimited).fork(), options).join();
+        /* statistico.StakingPlan staking_plan = 5; */
         if (message.stakingPlan)
-            StakingPlan.internalBinaryWrite(message.stakingPlan, writer.tag(6, WireType.LengthDelimited).fork(), options).join();
-        /* repeated uint64 competition_ids = 7; */
+            StakingPlan.internalBinaryWrite(message.stakingPlan, writer.tag(5, WireType.LengthDelimited).fork(), options).join();
+        /* repeated uint64 competition_ids = 6; */
         if (message.competitionIds.length) {
-            writer.tag(7, WireType.LengthDelimited).fork();
+            writer.tag(6, WireType.LengthDelimited).fork();
             for (let i = 0; i < message.competitionIds.length; i++)
                 writer.uint64(message.competitionIds[i]);
             writer.join();
         }
-        /* float bankroll = 8; */
-        if (message.bankroll !== 0)
-            writer.tag(8, WireType.Bit32).float(message.bankroll);
+        /* float starting_fund = 7; */
+        if (message.startingFund !== 0)
+            writer.tag(7, WireType.Bit32).float(message.startingFund);
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);

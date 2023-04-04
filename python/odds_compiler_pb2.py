@@ -15,7 +15,7 @@ _sym_db = _symbol_database.Default()
 import common_pb2 as common__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x13odds_compiler.proto\x12\nstatistico\x1a\x0c\x63ommon.proto\"0\n\x0c\x45ventRequest\x12\x10\n\x08\x65vent_id\x18\x01 \x01(\x04\x12\x0e\n\x06market\x18\x02 \x01(\t\"O\n\x0b\x45ventMarket\x12\x10\n\x08\x65vent_id\x18\x01 \x01(\x04\x12\x0e\n\x06market\x18\x02 \x01(\t\x12\x1e\n\x04odds\x18\x04 \x03(\x0b\x32\x10.statistico.Odds2\\\n\x13OddsCompilerService\x12\x45\n\x0eGetEventMarket\x12\x18.statistico.EventRequest\x1a\x17.statistico.EventMarket\"\x00\x42\x33Z1github.com/statistico/statistico-proto;statisticob\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x13odds_compiler.proto\x12\nstatistico\x1a\x0c\x63ommon.proto\"0\n\x0c\x45ventRequest\x12\x10\n\x08\x65vent_id\x18\x01 \x01(\x04\x12\x0e\n\x06market\x18\x02 \x01(\t\"O\n\x0b\x45ventMarket\x12\x10\n\x08\x65vent_id\x18\x01 \x01(\x04\x12\x0e\n\x06market\x18\x02 \x01(\t\x12\x1e\n\x04odds\x18\x03 \x03(\x0b\x32\x10.statistico.Odds2\\\n\x13OddsCompilerService\x12\x45\n\x0eGetEventMarket\x12\x18.statistico.EventRequest\x1a\x17.statistico.EventMarket\"\x00\x42\x33Z1github.com/statistico/statistico-proto;statisticob\x06proto3')
 
 
 

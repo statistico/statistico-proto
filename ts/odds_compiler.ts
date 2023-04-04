@@ -39,7 +39,7 @@ export interface EventMarket {
      */
     market: string;
     /**
-     * @generated from protobuf field: repeated statistico.Odds odds = 4;
+     * @generated from protobuf field: repeated statistico.Odds odds = 3;
      */
     odds: Odds[];
 }
@@ -103,7 +103,7 @@ class EventMarket$Type extends MessageType<EventMarket> {
         super("statistico.EventMarket", [
             { no: 1, name: "event_id", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 0 /*LongType.BIGINT*/ },
             { no: 2, name: "market", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 4, name: "odds", kind: "message", repeat: 1 /*RepeatType.PACKED*/, T: () => Odds }
+            { no: 3, name: "odds", kind: "message", repeat: 1 /*RepeatType.PACKED*/, T: () => Odds }
         ]);
     }
     create(value?: PartialMessage<EventMarket>): EventMarket {
@@ -124,7 +124,7 @@ class EventMarket$Type extends MessageType<EventMarket> {
                 case /* string market */ 2:
                     message.market = reader.string();
                     break;
-                case /* repeated statistico.Odds odds */ 4:
+                case /* repeated statistico.Odds odds */ 3:
                     message.odds.push(Odds.internalBinaryRead(reader, reader.uint32(), options));
                     break;
                 default:
@@ -145,9 +145,9 @@ class EventMarket$Type extends MessageType<EventMarket> {
         /* string market = 2; */
         if (message.market !== "")
             writer.tag(2, WireType.LengthDelimited).string(message.market);
-        /* repeated statistico.Odds odds = 4; */
+        /* repeated statistico.Odds odds = 3; */
         for (let i = 0; i < message.odds.length; i++)
-            Odds.internalBinaryWrite(message.odds[i], writer.tag(4, WireType.LengthDelimited).fork(), options).join();
+            Odds.internalBinaryWrite(message.odds[i], writer.tag(3, WireType.LengthDelimited).fork(), options).join();
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);

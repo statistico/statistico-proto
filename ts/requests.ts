@@ -13,6 +13,7 @@ import { MESSAGE_TYPE } from "@protobuf-ts/runtime";
 import { MessageType } from "@protobuf-ts/runtime";
 import { Timestamp } from "./google/protobuf/timestamp";
 import { UInt64Value } from "./google/protobuf/wrappers";
+import { StrategyStatusEnum } from "./enum";
 import { StakingPlan } from "./utility";
 import { FloatValue } from "./google/protobuf/wrappers";
 import { MarketEnum } from "./enum";
@@ -46,33 +47,37 @@ export interface CompetitionRequest {
  */
 export interface CreateStrategyRequest {
     /**
-     * @generated from protobuf field: string name = 1;
-     */
-    name: string;
-    /**
-     * @generated from protobuf field: statistico.MarketEnum market = 2;
+     * @generated from protobuf field: statistico.MarketEnum market = 1;
      */
     market: MarketEnum;
     /**
-     * @generated from protobuf field: google.protobuf.FloatValue min_odds = 3;
+     * @generated from protobuf field: google.protobuf.FloatValue min_odds = 2;
      */
     minOdds?: FloatValue;
     /**
-     * @generated from protobuf field: google.protobuf.FloatValue max_odds = 4;
+     * @generated from protobuf field: google.protobuf.FloatValue max_odds = 3;
      */
     maxOdds?: FloatValue;
     /**
-     * @generated from protobuf field: statistico.StakingPlan staking_plan = 5;
+     * @generated from protobuf field: statistico.StakingPlan staking_plan = 4;
      */
     stakingPlan?: StakingPlan;
     /**
-     * @generated from protobuf field: repeated uint64 competition_ids = 6;
+     * @generated from protobuf field: uint64 competition_id = 5;
      */
-    competitionIds: bigint[];
+    competitionId: bigint;
+    /**
+     * @generated from protobuf field: uint64 season_id = 6;
+     */
+    seasonId: bigint;
     /**
      * @generated from protobuf field: float starting_fund = 7;
      */
     startingFund: number;
+    /**
+     * @generated from protobuf field: statistico.StrategyStatusEnum status = 8;
+     */
+    status: StrategyStatusEnum;
 }
 /**
  * @generated from protobuf message statistico.FixtureRequest
@@ -151,13 +156,21 @@ export interface HistoricalResultRequest {
     dateBefore: string;
 }
 /**
- * @generated from protobuf message statistico.ListUserStrategiesRequest
+ * @generated from protobuf message statistico.ListStrategiesRequest
  */
-export interface ListUserStrategiesRequest {
+export interface ListStrategiesRequest {
     /**
-     * @generated from protobuf field: string user_id = 1;
+     * @generated from protobuf field: statistico.StrategyStatusEnum status = 1;
      */
-    userId: string;
+    status: StrategyStatusEnum;
+    /**
+     * @generated from protobuf field: google.protobuf.UInt64Value competition_id = 2;
+     */
+    competitionId?: UInt64Value;
+    /**
+     * @generated from protobuf field: google.protobuf.UInt64Value season_id = 3;
+     */
+    seasonId?: UInt64Value;
 }
 /**
  * @generated from protobuf message statistico.ResultRequest
@@ -185,19 +198,23 @@ export interface SearchTradesRequest {
      */
     competitionId?: UInt64Value;
     /**
-     * @generated from protobuf field: google.protobuf.StringValue status = 4;
+     * @generated from protobuf field: google.protobuf.UInt64Value season_id = 4;
+     */
+    seasonId?: UInt64Value;
+    /**
+     * @generated from protobuf field: google.protobuf.StringValue status = 5;
      */
     status?: StringValue;
     /**
-     * @generated from protobuf field: google.protobuf.StringValue exchange = 5;
+     * @generated from protobuf field: google.protobuf.StringValue exchange = 6;
      */
     exchange?: StringValue;
     /**
-     * @generated from protobuf field: google.protobuf.Timestamp date_from = 6;
+     * @generated from protobuf field: google.protobuf.Timestamp date_from = 7;
      */
     dateFrom?: Timestamp;
     /**
-     * @generated from protobuf field: google.protobuf.Timestamp date_to = 7;
+     * @generated from protobuf field: google.protobuf.Timestamp date_to = 8;
      */
     dateTo?: Timestamp;
 }
@@ -456,17 +473,18 @@ export const CompetitionRequest = new CompetitionRequest$Type();
 class CreateStrategyRequest$Type extends MessageType<CreateStrategyRequest> {
     constructor() {
         super("statistico.CreateStrategyRequest", [
-            { no: 1, name: "name", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 2, name: "market", kind: "enum", T: () => ["statistico.MarketEnum", MarketEnum] },
-            { no: 3, name: "min_odds", kind: "message", T: () => FloatValue },
-            { no: 4, name: "max_odds", kind: "message", T: () => FloatValue },
-            { no: 5, name: "staking_plan", kind: "message", T: () => StakingPlan },
-            { no: 6, name: "competition_ids", kind: "scalar", repeat: 1 /*RepeatType.PACKED*/, T: 4 /*ScalarType.UINT64*/, L: 0 /*LongType.BIGINT*/ },
-            { no: 7, name: "starting_fund", kind: "scalar", T: 2 /*ScalarType.FLOAT*/ }
+            { no: 1, name: "market", kind: "enum", T: () => ["statistico.MarketEnum", MarketEnum] },
+            { no: 2, name: "min_odds", kind: "message", T: () => FloatValue },
+            { no: 3, name: "max_odds", kind: "message", T: () => FloatValue },
+            { no: 4, name: "staking_plan", kind: "message", T: () => StakingPlan },
+            { no: 5, name: "competition_id", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 0 /*LongType.BIGINT*/ },
+            { no: 6, name: "season_id", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 0 /*LongType.BIGINT*/ },
+            { no: 7, name: "starting_fund", kind: "scalar", T: 2 /*ScalarType.FLOAT*/ },
+            { no: 8, name: "status", kind: "enum", T: () => ["statistico.StrategyStatusEnum", StrategyStatusEnum] }
         ]);
     }
     create(value?: PartialMessage<CreateStrategyRequest>): CreateStrategyRequest {
-        const message = { name: "", market: 0, competitionIds: [], startingFund: 0 };
+        const message = { market: 0, competitionId: 0n, seasonId: 0n, startingFund: 0, status: 0 };
         globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this });
         if (value !== undefined)
             reflectionMergePartial<CreateStrategyRequest>(this, message, value);
@@ -477,30 +495,29 @@ class CreateStrategyRequest$Type extends MessageType<CreateStrategyRequest> {
         while (reader.pos < end) {
             let [fieldNo, wireType] = reader.tag();
             switch (fieldNo) {
-                case /* string name */ 1:
-                    message.name = reader.string();
-                    break;
-                case /* statistico.MarketEnum market */ 2:
+                case /* statistico.MarketEnum market */ 1:
                     message.market = reader.int32();
                     break;
-                case /* google.protobuf.FloatValue min_odds */ 3:
+                case /* google.protobuf.FloatValue min_odds */ 2:
                     message.minOdds = FloatValue.internalBinaryRead(reader, reader.uint32(), options, message.minOdds);
                     break;
-                case /* google.protobuf.FloatValue max_odds */ 4:
+                case /* google.protobuf.FloatValue max_odds */ 3:
                     message.maxOdds = FloatValue.internalBinaryRead(reader, reader.uint32(), options, message.maxOdds);
                     break;
-                case /* statistico.StakingPlan staking_plan */ 5:
+                case /* statistico.StakingPlan staking_plan */ 4:
                     message.stakingPlan = StakingPlan.internalBinaryRead(reader, reader.uint32(), options, message.stakingPlan);
                     break;
-                case /* repeated uint64 competition_ids */ 6:
-                    if (wireType === WireType.LengthDelimited)
-                        for (let e = reader.int32() + reader.pos; reader.pos < e;)
-                            message.competitionIds.push(reader.uint64().toBigInt());
-                    else
-                        message.competitionIds.push(reader.uint64().toBigInt());
+                case /* uint64 competition_id */ 5:
+                    message.competitionId = reader.uint64().toBigInt();
+                    break;
+                case /* uint64 season_id */ 6:
+                    message.seasonId = reader.uint64().toBigInt();
                     break;
                 case /* float starting_fund */ 7:
                     message.startingFund = reader.float();
+                    break;
+                case /* statistico.StrategyStatusEnum status */ 8:
+                    message.status = reader.int32();
                     break;
                 default:
                     let u = options.readUnknownField;
@@ -514,31 +531,30 @@ class CreateStrategyRequest$Type extends MessageType<CreateStrategyRequest> {
         return message;
     }
     internalBinaryWrite(message: CreateStrategyRequest, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
-        /* string name = 1; */
-        if (message.name !== "")
-            writer.tag(1, WireType.LengthDelimited).string(message.name);
-        /* statistico.MarketEnum market = 2; */
+        /* statistico.MarketEnum market = 1; */
         if (message.market !== 0)
-            writer.tag(2, WireType.Varint).int32(message.market);
-        /* google.protobuf.FloatValue min_odds = 3; */
+            writer.tag(1, WireType.Varint).int32(message.market);
+        /* google.protobuf.FloatValue min_odds = 2; */
         if (message.minOdds)
-            FloatValue.internalBinaryWrite(message.minOdds, writer.tag(3, WireType.LengthDelimited).fork(), options).join();
-        /* google.protobuf.FloatValue max_odds = 4; */
+            FloatValue.internalBinaryWrite(message.minOdds, writer.tag(2, WireType.LengthDelimited).fork(), options).join();
+        /* google.protobuf.FloatValue max_odds = 3; */
         if (message.maxOdds)
-            FloatValue.internalBinaryWrite(message.maxOdds, writer.tag(4, WireType.LengthDelimited).fork(), options).join();
-        /* statistico.StakingPlan staking_plan = 5; */
+            FloatValue.internalBinaryWrite(message.maxOdds, writer.tag(3, WireType.LengthDelimited).fork(), options).join();
+        /* statistico.StakingPlan staking_plan = 4; */
         if (message.stakingPlan)
-            StakingPlan.internalBinaryWrite(message.stakingPlan, writer.tag(5, WireType.LengthDelimited).fork(), options).join();
-        /* repeated uint64 competition_ids = 6; */
-        if (message.competitionIds.length) {
-            writer.tag(6, WireType.LengthDelimited).fork();
-            for (let i = 0; i < message.competitionIds.length; i++)
-                writer.uint64(message.competitionIds[i]);
-            writer.join();
-        }
+            StakingPlan.internalBinaryWrite(message.stakingPlan, writer.tag(4, WireType.LengthDelimited).fork(), options).join();
+        /* uint64 competition_id = 5; */
+        if (message.competitionId !== 0n)
+            writer.tag(5, WireType.Varint).uint64(message.competitionId);
+        /* uint64 season_id = 6; */
+        if (message.seasonId !== 0n)
+            writer.tag(6, WireType.Varint).uint64(message.seasonId);
         /* float starting_fund = 7; */
         if (message.startingFund !== 0)
             writer.tag(7, WireType.Bit32).float(message.startingFund);
+        /* statistico.StrategyStatusEnum status = 8; */
+        if (message.status !== 0)
+            writer.tag(8, WireType.Varint).int32(message.status);
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
@@ -748,26 +764,34 @@ class HistoricalResultRequest$Type extends MessageType<HistoricalResultRequest> 
  */
 export const HistoricalResultRequest = new HistoricalResultRequest$Type();
 // @generated message type with reflection information, may provide speed optimized methods
-class ListUserStrategiesRequest$Type extends MessageType<ListUserStrategiesRequest> {
+class ListStrategiesRequest$Type extends MessageType<ListStrategiesRequest> {
     constructor() {
-        super("statistico.ListUserStrategiesRequest", [
-            { no: 1, name: "user_id", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
+        super("statistico.ListStrategiesRequest", [
+            { no: 1, name: "status", kind: "enum", T: () => ["statistico.StrategyStatusEnum", StrategyStatusEnum] },
+            { no: 2, name: "competition_id", kind: "message", T: () => UInt64Value },
+            { no: 3, name: "season_id", kind: "message", T: () => UInt64Value }
         ]);
     }
-    create(value?: PartialMessage<ListUserStrategiesRequest>): ListUserStrategiesRequest {
-        const message = { userId: "" };
+    create(value?: PartialMessage<ListStrategiesRequest>): ListStrategiesRequest {
+        const message = { status: 0 };
         globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this });
         if (value !== undefined)
-            reflectionMergePartial<ListUserStrategiesRequest>(this, message, value);
+            reflectionMergePartial<ListStrategiesRequest>(this, message, value);
         return message;
     }
-    internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: ListUserStrategiesRequest): ListUserStrategiesRequest {
+    internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: ListStrategiesRequest): ListStrategiesRequest {
         let message = target ?? this.create(), end = reader.pos + length;
         while (reader.pos < end) {
             let [fieldNo, wireType] = reader.tag();
             switch (fieldNo) {
-                case /* string user_id */ 1:
-                    message.userId = reader.string();
+                case /* statistico.StrategyStatusEnum status */ 1:
+                    message.status = reader.int32();
+                    break;
+                case /* google.protobuf.UInt64Value competition_id */ 2:
+                    message.competitionId = UInt64Value.internalBinaryRead(reader, reader.uint32(), options, message.competitionId);
+                    break;
+                case /* google.protobuf.UInt64Value season_id */ 3:
+                    message.seasonId = UInt64Value.internalBinaryRead(reader, reader.uint32(), options, message.seasonId);
                     break;
                 default:
                     let u = options.readUnknownField;
@@ -780,10 +804,16 @@ class ListUserStrategiesRequest$Type extends MessageType<ListUserStrategiesReque
         }
         return message;
     }
-    internalBinaryWrite(message: ListUserStrategiesRequest, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
-        /* string user_id = 1; */
-        if (message.userId !== "")
-            writer.tag(1, WireType.LengthDelimited).string(message.userId);
+    internalBinaryWrite(message: ListStrategiesRequest, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
+        /* statistico.StrategyStatusEnum status = 1; */
+        if (message.status !== 0)
+            writer.tag(1, WireType.Varint).int32(message.status);
+        /* google.protobuf.UInt64Value competition_id = 2; */
+        if (message.competitionId)
+            UInt64Value.internalBinaryWrite(message.competitionId, writer.tag(2, WireType.LengthDelimited).fork(), options).join();
+        /* google.protobuf.UInt64Value season_id = 3; */
+        if (message.seasonId)
+            UInt64Value.internalBinaryWrite(message.seasonId, writer.tag(3, WireType.LengthDelimited).fork(), options).join();
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
@@ -791,9 +821,9 @@ class ListUserStrategiesRequest$Type extends MessageType<ListUserStrategiesReque
     }
 }
 /**
- * @generated MessageType for protobuf message statistico.ListUserStrategiesRequest
+ * @generated MessageType for protobuf message statistico.ListStrategiesRequest
  */
-export const ListUserStrategiesRequest = new ListUserStrategiesRequest$Type();
+export const ListStrategiesRequest = new ListStrategiesRequest$Type();
 // @generated message type with reflection information, may provide speed optimized methods
 class ResultRequest$Type extends MessageType<ResultRequest> {
     constructor() {
@@ -848,10 +878,11 @@ class SearchTradesRequest$Type extends MessageType<SearchTradesRequest> {
             { no: 1, name: "strategy_id", kind: "message", T: () => StringValue },
             { no: 2, name: "market", kind: "message", T: () => StringValue },
             { no: 3, name: "competition_id", kind: "message", T: () => UInt64Value },
-            { no: 4, name: "status", kind: "message", T: () => StringValue },
-            { no: 5, name: "exchange", kind: "message", T: () => StringValue },
-            { no: 6, name: "date_from", kind: "message", T: () => Timestamp },
-            { no: 7, name: "date_to", kind: "message", T: () => Timestamp }
+            { no: 4, name: "season_id", kind: "message", T: () => UInt64Value },
+            { no: 5, name: "status", kind: "message", T: () => StringValue },
+            { no: 6, name: "exchange", kind: "message", T: () => StringValue },
+            { no: 7, name: "date_from", kind: "message", T: () => Timestamp },
+            { no: 8, name: "date_to", kind: "message", T: () => Timestamp }
         ]);
     }
     create(value?: PartialMessage<SearchTradesRequest>): SearchTradesRequest {
@@ -875,16 +906,19 @@ class SearchTradesRequest$Type extends MessageType<SearchTradesRequest> {
                 case /* google.protobuf.UInt64Value competition_id */ 3:
                     message.competitionId = UInt64Value.internalBinaryRead(reader, reader.uint32(), options, message.competitionId);
                     break;
-                case /* google.protobuf.StringValue status */ 4:
+                case /* google.protobuf.UInt64Value season_id */ 4:
+                    message.seasonId = UInt64Value.internalBinaryRead(reader, reader.uint32(), options, message.seasonId);
+                    break;
+                case /* google.protobuf.StringValue status */ 5:
                     message.status = StringValue.internalBinaryRead(reader, reader.uint32(), options, message.status);
                     break;
-                case /* google.protobuf.StringValue exchange */ 5:
+                case /* google.protobuf.StringValue exchange */ 6:
                     message.exchange = StringValue.internalBinaryRead(reader, reader.uint32(), options, message.exchange);
                     break;
-                case /* google.protobuf.Timestamp date_from */ 6:
+                case /* google.protobuf.Timestamp date_from */ 7:
                     message.dateFrom = Timestamp.internalBinaryRead(reader, reader.uint32(), options, message.dateFrom);
                     break;
-                case /* google.protobuf.Timestamp date_to */ 7:
+                case /* google.protobuf.Timestamp date_to */ 8:
                     message.dateTo = Timestamp.internalBinaryRead(reader, reader.uint32(), options, message.dateTo);
                     break;
                 default:
@@ -908,18 +942,21 @@ class SearchTradesRequest$Type extends MessageType<SearchTradesRequest> {
         /* google.protobuf.UInt64Value competition_id = 3; */
         if (message.competitionId)
             UInt64Value.internalBinaryWrite(message.competitionId, writer.tag(3, WireType.LengthDelimited).fork(), options).join();
-        /* google.protobuf.StringValue status = 4; */
+        /* google.protobuf.UInt64Value season_id = 4; */
+        if (message.seasonId)
+            UInt64Value.internalBinaryWrite(message.seasonId, writer.tag(4, WireType.LengthDelimited).fork(), options).join();
+        /* google.protobuf.StringValue status = 5; */
         if (message.status)
-            StringValue.internalBinaryWrite(message.status, writer.tag(4, WireType.LengthDelimited).fork(), options).join();
-        /* google.protobuf.StringValue exchange = 5; */
+            StringValue.internalBinaryWrite(message.status, writer.tag(5, WireType.LengthDelimited).fork(), options).join();
+        /* google.protobuf.StringValue exchange = 6; */
         if (message.exchange)
-            StringValue.internalBinaryWrite(message.exchange, writer.tag(5, WireType.LengthDelimited).fork(), options).join();
-        /* google.protobuf.Timestamp date_from = 6; */
+            StringValue.internalBinaryWrite(message.exchange, writer.tag(6, WireType.LengthDelimited).fork(), options).join();
+        /* google.protobuf.Timestamp date_from = 7; */
         if (message.dateFrom)
-            Timestamp.internalBinaryWrite(message.dateFrom, writer.tag(6, WireType.LengthDelimited).fork(), options).join();
-        /* google.protobuf.Timestamp date_to = 7; */
+            Timestamp.internalBinaryWrite(message.dateFrom, writer.tag(7, WireType.LengthDelimited).fork(), options).join();
+        /* google.protobuf.Timestamp date_to = 8; */
         if (message.dateTo)
-            Timestamp.internalBinaryWrite(message.dateTo, writer.tag(7, WireType.LengthDelimited).fork(), options).join();
+            Timestamp.internalBinaryWrite(message.dateTo, writer.tag(8, WireType.LengthDelimited).fork(), options).join();
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);

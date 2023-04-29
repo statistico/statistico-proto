@@ -19,13 +19,14 @@ message CompetitionRequest {
 }
 
 message CreateStrategyRequest {
-    string name = 1;
-    MarketEnum market = 2;
-    google.protobuf.FloatValue min_odds = 3;
-    google.protobuf.FloatValue max_odds = 4;
-    StakingPlan staking_plan = 5;
-    repeated uint64 competition_ids = 6;
+    MarketEnum market = 1;
+    google.protobuf.FloatValue min_odds = 2;
+    google.protobuf.FloatValue max_odds = 3;
+    StakingPlan staking_plan = 4;
+    uint64 competition_id = 5;
+    uint64 season_id = 6;
     float starting_fund = 7;
+    StrategyStatusEnum status = 8;
 }
 
 message FixtureRequest {
@@ -59,8 +60,10 @@ message HistoricalResultRequest {
     string date_before = 4;
 }
 
-message ListUserStrategiesRequest {
-    string user_id = 1;
+message ListStrategiesRequest {
+    StrategyStatusEnum status = 1;
+    google.protobuf.UInt64Value competition_id = 2;
+    google.protobuf.UInt64Value season_id = 3;
 }
 
 message ResultRequest {
@@ -71,10 +74,11 @@ message SearchTradesRequest {
     google.protobuf.StringValue strategy_id = 1;
     google.protobuf.StringValue market = 2;
     google.protobuf.UInt64Value competition_id = 3;
-    google.protobuf.StringValue status = 4;
-    google.protobuf.StringValue exchange = 5;
-    google.protobuf.Timestamp date_from = 6;
-    google.protobuf.Timestamp date_to = 7;
+    google.protobuf.UInt64Value season_id = 4;
+    google.protobuf.StringValue status = 5;
+    google.protobuf.StringValue exchange = 6;
+    google.protobuf.Timestamp date_from = 7;
+    google.protobuf.Timestamp date_to = 8;
 }
 
 message SeasonCompetitionRequest {

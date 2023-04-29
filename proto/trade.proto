@@ -21,11 +21,12 @@ message Trade {
   float exchange_price = 7;
   float statistico_price = 8;
   float stake = 9;
-  uint64 event_id = 10;
-  uint64 competition_id = 11;
-  uint64 season_id = 12;
-  uint64 event_date = 13;
-  TradeResultEnum result = 14;
-  uint64 created_at = 15;
-  uint64 updated_at = 16;
+  float matched = 10;
+  uint64 event_id = 11;
+  uint64 competition_id = 12;
+  uint64 season_id = 13;
+  uint64 event_date = 14;
+  TradeResultEnum result = 15;
+  uint64 created_at = 16;
+  uint64 updated_at = 17;
 }

@@ -55,31 +55,35 @@ export interface Trade {
      */
     stake: number;
     /**
-     * @generated from protobuf field: uint64 event_id = 10;
+     * @generated from protobuf field: float matched = 10;
+     */
+    matched: number;
+    /**
+     * @generated from protobuf field: uint64 event_id = 11;
      */
     eventId: bigint;
     /**
-     * @generated from protobuf field: uint64 competition_id = 11;
+     * @generated from protobuf field: uint64 competition_id = 12;
      */
     competitionId: bigint;
     /**
-     * @generated from protobuf field: uint64 season_id = 12;
+     * @generated from protobuf field: uint64 season_id = 13;
      */
     seasonId: bigint;
     /**
-     * @generated from protobuf field: uint64 event_date = 13;
+     * @generated from protobuf field: uint64 event_date = 14;
      */
     eventDate: bigint;
     /**
-     * @generated from protobuf field: statistico.TradeResultEnum result = 14;
+     * @generated from protobuf field: statistico.TradeResultEnum result = 15;
      */
     result: TradeResultEnum;
     /**
-     * @generated from protobuf field: uint64 created_at = 15;
+     * @generated from protobuf field: uint64 created_at = 16;
      */
     createdAt: bigint;
     /**
-     * @generated from protobuf field: uint64 updated_at = 16;
+     * @generated from protobuf field: uint64 updated_at = 17;
      */
     updatedAt: bigint;
 }
@@ -96,17 +100,18 @@ class Trade$Type extends MessageType<Trade> {
             { no: 7, name: "exchange_price", kind: "scalar", T: 2 /*ScalarType.FLOAT*/ },
             { no: 8, name: "statistico_price", kind: "scalar", T: 2 /*ScalarType.FLOAT*/ },
             { no: 9, name: "stake", kind: "scalar", T: 2 /*ScalarType.FLOAT*/ },
-            { no: 10, name: "event_id", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 0 /*LongType.BIGINT*/ },
-            { no: 11, name: "competition_id", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 0 /*LongType.BIGINT*/ },
-            { no: 12, name: "season_id", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 0 /*LongType.BIGINT*/ },
-            { no: 13, name: "event_date", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 0 /*LongType.BIGINT*/ },
-            { no: 14, name: "result", kind: "enum", T: () => ["statistico.TradeResultEnum", TradeResultEnum] },
-            { no: 15, name: "created_at", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 0 /*LongType.BIGINT*/ },
-            { no: 16, name: "updated_at", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 0 /*LongType.BIGINT*/ }
+            { no: 10, name: "matched", kind: "scalar", T: 2 /*ScalarType.FLOAT*/ },
+            { no: 11, name: "event_id", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 0 /*LongType.BIGINT*/ },
+            { no: 12, name: "competition_id", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 0 /*LongType.BIGINT*/ },
+            { no: 13, name: "season_id", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 0 /*LongType.BIGINT*/ },
+            { no: 14, name: "event_date", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 0 /*LongType.BIGINT*/ },
+            { no: 15, name: "result", kind: "enum", T: () => ["statistico.TradeResultEnum", TradeResultEnum] },
+            { no: 16, name: "created_at", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 0 /*LongType.BIGINT*/ },
+            { no: 17, name: "updated_at", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 0 /*LongType.BIGINT*/ }
         ]);
     }
     create(value?: PartialMessage<Trade>): Trade {
-        const message = { id: "", strategyId: "", exchange: "", exchangeRef: "", market: "", runner: "", exchangePrice: 0, statisticoPrice: 0, stake: 0, eventId: 0n, competitionId: 0n, seasonId: 0n, eventDate: 0n, result: 0, createdAt: 0n, updatedAt: 0n };
+        const message = { id: "", strategyId: "", exchange: "", exchangeRef: "", market: "", runner: "", exchangePrice: 0, statisticoPrice: 0, stake: 0, matched: 0, eventId: 0n, competitionId: 0n, seasonId: 0n, eventDate: 0n, result: 0, createdAt: 0n, updatedAt: 0n };
         globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this });
         if (value !== undefined)
             reflectionMergePartial<Trade>(this, message, value);
@@ -144,25 +149,28 @@ class Trade$Type extends MessageType<Trade> {
                 case /* float stake */ 9:
                     message.stake = reader.float();
                     break;
-                case /* uint64 event_id */ 10:
+                case /* float matched */ 10:
+                    message.matched = reader.float();
+                    break;
+                case /* uint64 event_id */ 11:
                     message.eventId = reader.uint64().toBigInt();
                     break;
-                case /* uint64 competition_id */ 11:
+                case /* uint64 competition_id */ 12:
                     message.competitionId = reader.uint64().toBigInt();
                     break;
-                case /* uint64 season_id */ 12:
+                case /* uint64 season_id */ 13:
                     message.seasonId = reader.uint64().toBigInt();
                     break;
-                case /* uint64 event_date */ 13:
+                case /* uint64 event_date */ 14:
                     message.eventDate = reader.uint64().toBigInt();
                     break;
-                case /* statistico.TradeResultEnum result */ 14:
+                case /* statistico.TradeResultEnum result */ 15:
                     message.result = reader.int32();
                     break;
-                case /* uint64 created_at */ 15:
+                case /* uint64 created_at */ 16:
                     message.createdAt = reader.uint64().toBigInt();
                     break;
-                case /* uint64 updated_at */ 16:
+                case /* uint64 updated_at */ 17:
                     message.updatedAt = reader.uint64().toBigInt();
                     break;
                 default:
@@ -204,27 +212,30 @@ class Trade$Type extends MessageType<Trade> {
         /* float stake = 9; */
         if (message.stake !== 0)
             writer.tag(9, WireType.Bit32).float(message.stake);
-        /* uint64 event_id = 10; */
+        /* float matched = 10; */
+        if (message.matched !== 0)
+            writer.tag(10, WireType.Bit32).float(message.matched);
+        /* uint64 event_id = 11; */
         if (message.eventId !== 0n)
-            writer.tag(10, WireType.Varint).uint64(message.eventId);
-        /* uint64 competition_id = 11; */
+            writer.tag(11, WireType.Varint).uint64(message.eventId);
+        /* uint64 competition_id = 12; */
         if (message.competitionId !== 0n)
-            writer.tag(11, WireType.Varint).uint64(message.competitionId);
-        /* uint64 season_id = 12; */
+            writer.tag(12, WireType.Varint).uint64(message.competitionId);
+        /* uint64 season_id = 13; */
         if (message.seasonId !== 0n)
-            writer.tag(12, WireType.Varint).uint64(message.seasonId);
-        /* uint64 event_date = 13; */
+            writer.tag(13, WireType.Varint).uint64(message.seasonId);
+        /* uint64 event_date = 14; */
         if (message.eventDate !== 0n)
-            writer.tag(13, WireType.Varint).uint64(message.eventDate);
-        /* statistico.TradeResultEnum result = 14; */
+            writer.tag(14, WireType.Varint).uint64(message.eventDate);
+        /* statistico.TradeResultEnum result = 15; */
         if (message.result !== 0)
-            writer.tag(14, WireType.Varint).int32(message.result);
-        /* uint64 created_at = 15; */
+            writer.tag(15, WireType.Varint).int32(message.result);
+        /* uint64 created_at = 16; */
         if (message.createdAt !== 0n)
-            writer.tag(15, WireType.Varint).uint64(message.createdAt);
-        /* uint64 updated_at = 16; */
+            writer.tag(16, WireType.Varint).uint64(message.createdAt);
+        /* uint64 updated_at = 17; */
         if (message.updatedAt !== 0n)
-            writer.tag(16, WireType.Varint).uint64(message.updatedAt);
+            writer.tag(17, WireType.Varint).uint64(message.updatedAt);
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);

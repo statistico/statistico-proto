@@ -4,7 +4,7 @@
 import type { RpcTransport } from "@protobuf-ts/runtime-rpc";
 import type { ServiceInfo } from "@protobuf-ts/runtime-rpc";
 import { StrategyService } from "./strategy";
-import type { ListUserStrategiesRequest } from "./requests";
+import type { ListStrategiesRequest } from "./requests";
 import type { ServerStreamingCall } from "@protobuf-ts/runtime-rpc";
 import { stackIntercept } from "@protobuf-ts/runtime-rpc";
 import type { Strategy } from "./strategy";
@@ -20,9 +20,9 @@ export interface IStrategyServiceClient {
      */
     createStrategy(input: CreateStrategyRequest, options?: RpcOptions): UnaryCall<CreateStrategyRequest, Strategy>;
     /**
-     * @generated from protobuf rpc: ListUserStrategies(statistico.ListUserStrategiesRequest) returns (stream statistico.Strategy);
+     * @generated from protobuf rpc: ListUserStrategies(statistico.ListStrategiesRequest) returns (stream statistico.Strategy);
      */
-    listUserStrategies(input: ListUserStrategiesRequest, options?: RpcOptions): ServerStreamingCall<ListUserStrategiesRequest, Strategy>;
+    listUserStrategies(input: ListStrategiesRequest, options?: RpcOptions): ServerStreamingCall<ListStrategiesRequest, Strategy>;
 }
 /**
  * @generated from protobuf service statistico.StrategyService
@@ -41,10 +41,10 @@ export class StrategyServiceClient implements IStrategyServiceClient, ServiceInf
         return stackIntercept<CreateStrategyRequest, Strategy>("unary", this._transport, method, opt, input);
     }
     /**
-     * @generated from protobuf rpc: ListUserStrategies(statistico.ListUserStrategiesRequest) returns (stream statistico.Strategy);
+     * @generated from protobuf rpc: ListUserStrategies(statistico.ListStrategiesRequest) returns (stream statistico.Strategy);
      */
-    listUserStrategies(input: ListUserStrategiesRequest, options?: RpcOptions): ServerStreamingCall<ListUserStrategiesRequest, Strategy> {
+    listUserStrategies(input: ListStrategiesRequest, options?: RpcOptions): ServerStreamingCall<ListStrategiesRequest, Strategy> {
         const method = this.methods[1], opt = this._transport.mergeOptions(options);
-        return stackIntercept<ListUserStrategiesRequest, Strategy>("serverStreaming", this._transport, method, opt, input);
+        return stackIntercept<ListStrategiesRequest, Strategy>("serverStreaming", this._transport, method, opt, input);
     }
 }

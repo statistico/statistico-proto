@@ -11,20 +11,19 @@ import "google/protobuf/wrappers.proto";
 
 service StrategyService {
   rpc CreateStrategy(CreateStrategyRequest) returns (Strategy) {}
-  rpc ListUserStrategies(ListUserStrategiesRequest) returns (stream Strategy) {}
+  rpc ListUserStrategies(ListStrategiesRequest) returns (stream Strategy) {}
 }
 
 message Strategy {
   string id = 1;
-  string name = 2;
-  string user_id = 3;
-  MarketEnum market = 4;
-  google.protobuf.FloatValue min_odds = 5;
-  google.protobuf.FloatValue max_odds = 6;
-  repeated uint64 competition_ids = 7;
-  StakingPlan staking_plan = 8;
-  StrategyStatusEnum status = 9;
-  float starting_fund = 10;
-  uint64 created_at = 11;
-  uint64 updated_at = 12;
+  MarketEnum market = 2;
+  google.protobuf.FloatValue min_odds = 3;
+  google.protobuf.FloatValue max_odds = 4;
+  uint64 competition_id = 5;
+  uint64 season_id = 6;
+  StakingPlan staking_plan = 7;
+  StrategyStatusEnum status = 8;
+  float starting_fund = 9;
+  uint64 created_at = 10;
+  uint64 updated_at = 11;
 }

@@ -22,7 +22,7 @@ class StrategyServiceStub(object):
                 )
         self.ListUserStrategies = channel.unary_stream(
                 '/statistico.StrategyService/ListUserStrategies',
-                request_serializer=requests__pb2.ListUserStrategiesRequest.SerializeToString,
+                request_serializer=requests__pb2.ListStrategiesRequest.SerializeToString,
                 response_deserializer=strategy__pb2.Strategy.FromString,
                 )
 
@@ -52,7 +52,7 @@ def add_StrategyServiceServicer_to_server(servicer, server):
             ),
             'ListUserStrategies': grpc.unary_stream_rpc_method_handler(
                     servicer.ListUserStrategies,
-                    request_deserializer=requests__pb2.ListUserStrategiesRequest.FromString,
+                    request_deserializer=requests__pb2.ListStrategiesRequest.FromString,
                     response_serializer=strategy__pb2.Strategy.SerializeToString,
             ),
     }
@@ -94,7 +94,7 @@ class StrategyService(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_stream(request, target, '/statistico.StrategyService/ListUserStrategies',
-            requests__pb2.ListUserStrategiesRequest.SerializeToString,
+            requests__pb2.ListStrategiesRequest.SerializeToString,
             strategy__pb2.Strategy.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

@@ -20,8 +20,8 @@ class StrategyServiceStub(object):
                 request_serializer=requests__pb2.CreateStrategyRequest.SerializeToString,
                 response_deserializer=strategy__pb2.Strategy.FromString,
                 )
-        self.ListUserStrategies = channel.unary_stream(
-                '/statistico.StrategyService/ListUserStrategies',
+        self.ListStrategies = channel.unary_stream(
+                '/statistico.StrategyService/ListStrategies',
                 request_serializer=requests__pb2.ListStrategiesRequest.SerializeToString,
                 response_deserializer=strategy__pb2.Strategy.FromString,
                 )
@@ -36,7 +36,7 @@ class StrategyServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def ListUserStrategies(self, request, context):
+    def ListStrategies(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -50,8 +50,8 @@ def add_StrategyServiceServicer_to_server(servicer, server):
                     request_deserializer=requests__pb2.CreateStrategyRequest.FromString,
                     response_serializer=strategy__pb2.Strategy.SerializeToString,
             ),
-            'ListUserStrategies': grpc.unary_stream_rpc_method_handler(
-                    servicer.ListUserStrategies,
+            'ListStrategies': grpc.unary_stream_rpc_method_handler(
+                    servicer.ListStrategies,
                     request_deserializer=requests__pb2.ListStrategiesRequest.FromString,
                     response_serializer=strategy__pb2.Strategy.SerializeToString,
             ),
@@ -83,7 +83,7 @@ class StrategyService(object):
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def ListUserStrategies(request,
+    def ListStrategies(request,
             target,
             options=(),
             channel_credentials=None,
@@ -93,7 +93,7 @@ class StrategyService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_stream(request, target, '/statistico.StrategyService/ListUserStrategies',
+        return grpc.experimental.unary_stream(request, target, '/statistico.StrategyService/ListStrategies',
             requests__pb2.ListStrategiesRequest.SerializeToString,
             strategy__pb2.Strategy.FromString,
             options, channel_credentials,

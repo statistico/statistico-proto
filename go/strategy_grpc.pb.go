@@ -23,7 +23,7 @@ const _ = grpc.SupportPackageIsVersion7
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type StrategyServiceClient interface {
 	CreateStrategy(ctx context.Context, in *CreateStrategyRequest, opts ...grpc.CallOption) (*Strategy, error)
-	ListUserStrategies(ctx context.Context, in *ListStrategiesRequest, opts ...grpc.CallOption) (StrategyService_ListUserStrategiesClient, error)
+	ListStrategies(ctx context.Context, in *ListStrategiesRequest, opts ...grpc.CallOption) (StrategyService_ListStrategiesClient, error)
 }
 
 type strategyServiceClient struct {
@@ -43,12 +43,12 @@ func (c *strategyServiceClient) CreateStrategy(ctx context.Context, in *CreateSt
 	return out, nil
 }
 
-func (c *strategyServiceClient) ListUserStrategies(ctx context.Context, in *ListStrategiesRequest, opts ...grpc.CallOption) (StrategyService_ListUserStrategiesClient, error) {
-	stream, err := c.cc.NewStream(ctx, &StrategyService_ServiceDesc.Streams[0], "/statistico.StrategyService/ListUserStrategies", opts...)
+func (c *strategyServiceClient) ListStrategies(ctx context.Context, in *ListStrategiesRequest, opts ...grpc.CallOption) (StrategyService_ListStrategiesClient, error) {
+	stream, err := c.cc.NewStream(ctx, &StrategyService_ServiceDesc.Streams[0], "/statistico.StrategyService/ListStrategies", opts...)
 	if err != nil {
 		return nil, err
 	}
-	x := &strategyServiceListUserStrategiesClient{stream}
+	x := &strategyServiceListStrategiesClient{stream}
 	if err := x.ClientStream.SendMsg(in); err != nil {
 		return nil, err
 	}
@@ -58,16 +58,16 @@ func (c *strategyServiceClient) ListUserStrategies(ctx context.Context, in *List
 	return x, nil
 }
 
-type StrategyService_ListUserStrategiesClient interface {
+type StrategyService_ListStrategiesClient interface {
 	Recv() (*Strategy, error)
 	grpc.ClientStream
 }
 
-type strategyServiceListUserStrategiesClient struct {
+type strategyServiceListStrategiesClient struct {
 	grpc.ClientStream
 }
 
-func (x *strategyServiceListUserStrategiesClient) Recv() (*Strategy, error) {
+func (x *strategyServiceListStrategiesClient) Recv() (*Strategy, error) {
 	m := new(Strategy)
 	if err := x.ClientStream.RecvMsg(m); err != nil {
 		return nil, err
@@ -80,7 +80,7 @@ func (x *strategyServiceListUserStrategiesClient) Recv() (*Strategy, error) {
 // for forward compatibility
 type StrategyServiceServer interface {
 	CreateStrategy(context.Context, *CreateStrategyRequest) (*Strategy, error)
-	ListUserStrategies(*ListStrategiesRequest, StrategyService_ListUserStrategiesServer) error
+	ListStrategies(*ListStrategiesRequest, StrategyService_ListStrategiesServer) error
 	mustEmbedUnimplementedStrategyServiceServer()
 }
 
@@ -91,8 +91,8 @@ type UnimplementedStrategyServiceServer struct {
 func (UnimplementedStrategyServiceServer) CreateStrategy(context.Context, *CreateStrategyRequest) (*Strategy, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateStrategy not implemented")
 }
-func (UnimplementedStrategyServiceServer) ListUserStrategies(*ListStrategiesRequest, StrategyService_ListUserStrategiesServer) error {
-	return status.Errorf(codes.Unimplemented, "method ListUserStrategies not implemented")
+func (UnimplementedStrategyServiceServer) ListStrategies(*ListStrategiesRequest, StrategyService_ListStrategiesServer) error {
+	return status.Errorf(codes.Unimplemented, "method ListStrategies not implemented")
 }
 func (UnimplementedStrategyServiceServer) mustEmbedUnimplementedStrategyServiceServer() {}
 
@@ -125,24 +125,24 @@ func _StrategyService_CreateStrategy_Handler(srv interface{}, ctx context.Contex
 	return interceptor(ctx, in, info, handler)
 }
 
-func _StrategyService_ListUserStrategies_Handler(srv interface{}, stream grpc.ServerStream) error {
+func _StrategyService_ListStrategies_Handler(srv interface{}, stream grpc.ServerStream) error {
 	m := new(ListStrategiesRequest)
 	if err := stream.RecvMsg(m); err != nil {
 		return err
 	}
-	return srv.(StrategyServiceServer).ListUserStrategies(m, &strategyServiceListUserStrategiesServer{stream})
+	return srv.(StrategyServiceServer).ListStrategies(m, &strategyServiceListStrategiesServer{stream})
 }
 
-type StrategyService_ListUserStrategiesServer interface {
+type StrategyService_ListStrategiesServer interface {
 	Send(*Strategy) error
 	grpc.ServerStream
 }
 
-type strategyServiceListUserStrategiesServer struct {
+type strategyServiceListStrategiesServer struct {
 	grpc.ServerStream
 }
 
-func (x *strategyServiceListUserStrategiesServer) Send(m *Strategy) error {
+func (x *strategyServiceListStrategiesServer) Send(m *Strategy) error {
 	return x.ServerStream.SendMsg(m)
 }
 
@@ -160,8 +160,8 @@ var StrategyService_ServiceDesc = grpc.ServiceDesc{
 	},
 	Streams: []grpc.StreamDesc{
 		{
-			StreamName:    "ListUserStrategies",
-			Handler:       _StrategyService_ListUserStrategies_Handler,
+			StreamName:    "ListStrategies",
+			Handler:       _StrategyService_ListStrategies_Handler,
 			ServerStreams: true,
 		},
 	},

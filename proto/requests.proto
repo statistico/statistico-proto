@@ -23,10 +23,11 @@ message CreateStrategyRequest {
     google.protobuf.FloatValue min_odds = 2;
     google.protobuf.FloatValue max_odds = 3;
     StakingPlan staking_plan = 4;
-    uint64 competition_id = 5;
-    uint64 season_id = 6;
-    float starting_fund = 7;
-    StrategyStatusEnum status = 8;
+    string model = 5;
+    uint64 competition_id = 6;
+    uint64 season_id = 7;
+    float starting_fund = 8;
+    StrategyStatusEnum status = 9;
 }
 
 message FixtureRequest {

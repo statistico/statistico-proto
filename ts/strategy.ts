@@ -47,23 +47,27 @@ export interface Strategy {
      */
     seasonId: bigint;
     /**
-     * @generated from protobuf field: statistico.StakingPlan staking_plan = 7;
+     * @generated from protobuf field: string model = 7;
+     */
+    model: string;
+    /**
+     * @generated from protobuf field: statistico.StakingPlan staking_plan = 8;
      */
     stakingPlan?: StakingPlan;
     /**
-     * @generated from protobuf field: statistico.StrategyStatusEnum status = 8;
+     * @generated from protobuf field: statistico.StrategyStatusEnum status = 9;
      */
     status: StrategyStatusEnum;
     /**
-     * @generated from protobuf field: float starting_fund = 9;
+     * @generated from protobuf field: float starting_fund = 10;
      */
     startingFund: number;
     /**
-     * @generated from protobuf field: uint64 created_at = 10;
+     * @generated from protobuf field: uint64 created_at = 11;
      */
     createdAt: bigint;
     /**
-     * @generated from protobuf field: uint64 updated_at = 11;
+     * @generated from protobuf field: uint64 updated_at = 12;
      */
     updatedAt: bigint;
 }
@@ -77,15 +81,16 @@ class Strategy$Type extends MessageType<Strategy> {
             { no: 4, name: "max_odds", kind: "message", T: () => FloatValue },
             { no: 5, name: "competition_id", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 0 /*LongType.BIGINT*/ },
             { no: 6, name: "season_id", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 0 /*LongType.BIGINT*/ },
-            { no: 7, name: "staking_plan", kind: "message", T: () => StakingPlan },
-            { no: 8, name: "status", kind: "enum", T: () => ["statistico.StrategyStatusEnum", StrategyStatusEnum] },
-            { no: 9, name: "starting_fund", kind: "scalar", T: 2 /*ScalarType.FLOAT*/ },
-            { no: 10, name: "created_at", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 0 /*LongType.BIGINT*/ },
-            { no: 11, name: "updated_at", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 0 /*LongType.BIGINT*/ }
+            { no: 7, name: "model", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 8, name: "staking_plan", kind: "message", T: () => StakingPlan },
+            { no: 9, name: "status", kind: "enum", T: () => ["statistico.StrategyStatusEnum", StrategyStatusEnum] },
+            { no: 10, name: "starting_fund", kind: "scalar", T: 2 /*ScalarType.FLOAT*/ },
+            { no: 11, name: "created_at", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 0 /*LongType.BIGINT*/ },
+            { no: 12, name: "updated_at", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 0 /*LongType.BIGINT*/ }
         ]);
     }
     create(value?: PartialMessage<Strategy>): Strategy {
-        const message = { id: "", market: 0, competitionId: 0n, seasonId: 0n, status: 0, startingFund: 0, createdAt: 0n, updatedAt: 0n };
+        const message = { id: "", market: 0, competitionId: 0n, seasonId: 0n, model: "", status: 0, startingFund: 0, createdAt: 0n, updatedAt: 0n };
         globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this });
         if (value !== undefined)
             reflectionMergePartial<Strategy>(this, message, value);
@@ -114,19 +119,22 @@ class Strategy$Type extends MessageType<Strategy> {
                 case /* uint64 season_id */ 6:
                     message.seasonId = reader.uint64().toBigInt();
                     break;
-                case /* statistico.StakingPlan staking_plan */ 7:
+                case /* string model */ 7:
+                    message.model = reader.string();
+                    break;
+                case /* statistico.StakingPlan staking_plan */ 8:
                     message.stakingPlan = StakingPlan.internalBinaryRead(reader, reader.uint32(), options, message.stakingPlan);
                     break;
-                case /* statistico.StrategyStatusEnum status */ 8:
+                case /* statistico.StrategyStatusEnum status */ 9:
                     message.status = reader.int32();
                     break;
-                case /* float starting_fund */ 9:
+                case /* float starting_fund */ 10:
                     message.startingFund = reader.float();
                     break;
-                case /* uint64 created_at */ 10:
+                case /* uint64 created_at */ 11:
                     message.createdAt = reader.uint64().toBigInt();
                     break;
-                case /* uint64 updated_at */ 11:
+                case /* uint64 updated_at */ 12:
                     message.updatedAt = reader.uint64().toBigInt();
                     break;
                 default:
@@ -159,21 +167,24 @@ class Strategy$Type extends MessageType<Strategy> {
         /* uint64 season_id = 6; */
         if (message.seasonId !== 0n)
             writer.tag(6, WireType.Varint).uint64(message.seasonId);
-        /* statistico.StakingPlan staking_plan = 7; */
+        /* string model = 7; */
+        if (message.model !== "")
+            writer.tag(7, WireType.LengthDelimited).string(message.model);
+        /* statistico.StakingPlan staking_plan = 8; */
         if (message.stakingPlan)
-            StakingPlan.internalBinaryWrite(message.stakingPlan, writer.tag(7, WireType.LengthDelimited).fork(), options).join();
-        /* statistico.StrategyStatusEnum status = 8; */
+            StakingPlan.internalBinaryWrite(message.stakingPlan, writer.tag(8, WireType.LengthDelimited).fork(), options).join();
+        /* statistico.StrategyStatusEnum status = 9; */
         if (message.status !== 0)
-            writer.tag(8, WireType.Varint).int32(message.status);
-        /* float starting_fund = 9; */
+            writer.tag(9, WireType.Varint).int32(message.status);
+        /* float starting_fund = 10; */
         if (message.startingFund !== 0)
-            writer.tag(9, WireType.Bit32).float(message.startingFund);
-        /* uint64 created_at = 10; */
+            writer.tag(10, WireType.Bit32).float(message.startingFund);
+        /* uint64 created_at = 11; */
         if (message.createdAt !== 0n)
-            writer.tag(10, WireType.Varint).uint64(message.createdAt);
-        /* uint64 updated_at = 11; */
+            writer.tag(11, WireType.Varint).uint64(message.createdAt);
+        /* uint64 updated_at = 12; */
         if (message.updatedAt !== 0n)
-            writer.tag(11, WireType.Varint).uint64(message.updatedAt);
+            writer.tag(12, WireType.Varint).uint64(message.updatedAt);
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
@@ -189,5 +200,5 @@ export const Strategy = new Strategy$Type();
  */
 export const StrategyService = new ServiceType("statistico.StrategyService", [
     { name: "CreateStrategy", options: {}, I: CreateStrategyRequest, O: Strategy },
-    { name: "ListUserStrategies", serverStreaming: true, options: {}, I: ListStrategiesRequest, O: Strategy }
+    { name: "ListStrategies", serverStreaming: true, options: {}, I: ListStrategiesRequest, O: Strategy }
 ]);

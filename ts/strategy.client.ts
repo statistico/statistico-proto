@@ -20,9 +20,9 @@ export interface IStrategyServiceClient {
      */
     createStrategy(input: CreateStrategyRequest, options?: RpcOptions): UnaryCall<CreateStrategyRequest, Strategy>;
     /**
-     * @generated from protobuf rpc: ListUserStrategies(statistico.ListStrategiesRequest) returns (stream statistico.Strategy);
+     * @generated from protobuf rpc: ListStrategies(statistico.ListStrategiesRequest) returns (stream statistico.Strategy);
      */
-    listUserStrategies(input: ListStrategiesRequest, options?: RpcOptions): ServerStreamingCall<ListStrategiesRequest, Strategy>;
+    listStrategies(input: ListStrategiesRequest, options?: RpcOptions): ServerStreamingCall<ListStrategiesRequest, Strategy>;
 }
 /**
  * @generated from protobuf service statistico.StrategyService
@@ -41,9 +41,9 @@ export class StrategyServiceClient implements IStrategyServiceClient, ServiceInf
         return stackIntercept<CreateStrategyRequest, Strategy>("unary", this._transport, method, opt, input);
     }
     /**
-     * @generated from protobuf rpc: ListUserStrategies(statistico.ListStrategiesRequest) returns (stream statistico.Strategy);
+     * @generated from protobuf rpc: ListStrategies(statistico.ListStrategiesRequest) returns (stream statistico.Strategy);
      */
-    listUserStrategies(input: ListStrategiesRequest, options?: RpcOptions): ServerStreamingCall<ListStrategiesRequest, Strategy> {
+    listStrategies(input: ListStrategiesRequest, options?: RpcOptions): ServerStreamingCall<ListStrategiesRequest, Strategy> {
         const method = this.methods[1], opt = this._transport.mergeOptions(options);
         return stackIntercept<ListStrategiesRequest, Strategy>("serverStreaming", this._transport, method, opt, input);
     }

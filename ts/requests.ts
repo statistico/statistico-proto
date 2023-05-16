@@ -171,6 +171,10 @@ export interface ListStrategiesRequest {
      * @generated from protobuf field: google.protobuf.UInt64Value season_id = 3;
      */
     seasonId?: UInt64Value;
+    /**
+     * @generated from protobuf field: google.protobuf.StringValue model = 4;
+     */
+    model?: StringValue;
 }
 /**
  * @generated from protobuf message statistico.ResultRequest
@@ -769,7 +773,8 @@ class ListStrategiesRequest$Type extends MessageType<ListStrategiesRequest> {
         super("statistico.ListStrategiesRequest", [
             { no: 1, name: "status", kind: "enum", T: () => ["statistico.StrategyStatusEnum", StrategyStatusEnum] },
             { no: 2, name: "competition_id", kind: "message", T: () => UInt64Value },
-            { no: 3, name: "season_id", kind: "message", T: () => UInt64Value }
+            { no: 3, name: "season_id", kind: "message", T: () => UInt64Value },
+            { no: 4, name: "model", kind: "message", T: () => StringValue }
         ]);
     }
     create(value?: PartialMessage<ListStrategiesRequest>): ListStrategiesRequest {
@@ -793,6 +798,9 @@ class ListStrategiesRequest$Type extends MessageType<ListStrategiesRequest> {
                 case /* google.protobuf.UInt64Value season_id */ 3:
                     message.seasonId = UInt64Value.internalBinaryRead(reader, reader.uint32(), options, message.seasonId);
                     break;
+                case /* google.protobuf.StringValue model */ 4:
+                    message.model = StringValue.internalBinaryRead(reader, reader.uint32(), options, message.model);
+                    break;
                 default:
                     let u = options.readUnknownField;
                     if (u === "throw")
@@ -814,6 +822,9 @@ class ListStrategiesRequest$Type extends MessageType<ListStrategiesRequest> {
         /* google.protobuf.UInt64Value season_id = 3; */
         if (message.seasonId)
             UInt64Value.internalBinaryWrite(message.seasonId, writer.tag(3, WireType.LengthDelimited).fork(), options).join();
+        /* google.protobuf.StringValue model = 4; */
+        if (message.model)
+            StringValue.internalBinaryWrite(message.model, writer.tag(4, WireType.LengthDelimited).fork(), options).join();
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);

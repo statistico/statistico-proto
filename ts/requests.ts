@@ -63,19 +63,23 @@ export interface CreateStrategyRequest {
      */
     stakingPlan?: StakingPlan;
     /**
-     * @generated from protobuf field: uint64 competition_id = 5;
+     * @generated from protobuf field: string model = 5;
+     */
+    model: string;
+    /**
+     * @generated from protobuf field: uint64 competition_id = 6;
      */
     competitionId: bigint;
     /**
-     * @generated from protobuf field: uint64 season_id = 6;
+     * @generated from protobuf field: uint64 season_id = 7;
      */
     seasonId: bigint;
     /**
-     * @generated from protobuf field: float starting_fund = 7;
+     * @generated from protobuf field: float starting_fund = 8;
      */
     startingFund: number;
     /**
-     * @generated from protobuf field: statistico.StrategyStatusEnum status = 8;
+     * @generated from protobuf field: statistico.StrategyStatusEnum status = 9;
      */
     status: StrategyStatusEnum;
 }
@@ -481,14 +485,15 @@ class CreateStrategyRequest$Type extends MessageType<CreateStrategyRequest> {
             { no: 2, name: "min_odds", kind: "message", T: () => FloatValue },
             { no: 3, name: "max_odds", kind: "message", T: () => FloatValue },
             { no: 4, name: "staking_plan", kind: "message", T: () => StakingPlan },
-            { no: 5, name: "competition_id", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 0 /*LongType.BIGINT*/ },
-            { no: 6, name: "season_id", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 0 /*LongType.BIGINT*/ },
-            { no: 7, name: "starting_fund", kind: "scalar", T: 2 /*ScalarType.FLOAT*/ },
-            { no: 8, name: "status", kind: "enum", T: () => ["statistico.StrategyStatusEnum", StrategyStatusEnum] }
+            { no: 5, name: "model", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 6, name: "competition_id", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 0 /*LongType.BIGINT*/ },
+            { no: 7, name: "season_id", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 0 /*LongType.BIGINT*/ },
+            { no: 8, name: "starting_fund", kind: "scalar", T: 2 /*ScalarType.FLOAT*/ },
+            { no: 9, name: "status", kind: "enum", T: () => ["statistico.StrategyStatusEnum", StrategyStatusEnum] }
         ]);
     }
     create(value?: PartialMessage<CreateStrategyRequest>): CreateStrategyRequest {
-        const message = { market: 0, competitionId: 0n, seasonId: 0n, startingFund: 0, status: 0 };
+        const message = { market: 0, model: "", competitionId: 0n, seasonId: 0n, startingFund: 0, status: 0 };
         globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this });
         if (value !== undefined)
             reflectionMergePartial<CreateStrategyRequest>(this, message, value);
@@ -511,16 +516,19 @@ class CreateStrategyRequest$Type extends MessageType<CreateStrategyRequest> {
                 case /* statistico.StakingPlan staking_plan */ 4:
                     message.stakingPlan = StakingPlan.internalBinaryRead(reader, reader.uint32(), options, message.stakingPlan);
                     break;
-                case /* uint64 competition_id */ 5:
+                case /* string model */ 5:
+                    message.model = reader.string();
+                    break;
+                case /* uint64 competition_id */ 6:
                     message.competitionId = reader.uint64().toBigInt();
                     break;
-                case /* uint64 season_id */ 6:
+                case /* uint64 season_id */ 7:
                     message.seasonId = reader.uint64().toBigInt();
                     break;
-                case /* float starting_fund */ 7:
+                case /* float starting_fund */ 8:
                     message.startingFund = reader.float();
                     break;
-                case /* statistico.StrategyStatusEnum status */ 8:
+                case /* statistico.StrategyStatusEnum status */ 9:
                     message.status = reader.int32();
                     break;
                 default:
@@ -547,18 +555,21 @@ class CreateStrategyRequest$Type extends MessageType<CreateStrategyRequest> {
         /* statistico.StakingPlan staking_plan = 4; */
         if (message.stakingPlan)
             StakingPlan.internalBinaryWrite(message.stakingPlan, writer.tag(4, WireType.LengthDelimited).fork(), options).join();
-        /* uint64 competition_id = 5; */
+        /* string model = 5; */
+        if (message.model !== "")
+            writer.tag(5, WireType.LengthDelimited).string(message.model);
+        /* uint64 competition_id = 6; */
         if (message.competitionId !== 0n)
-            writer.tag(5, WireType.Varint).uint64(message.competitionId);
-        /* uint64 season_id = 6; */
+            writer.tag(6, WireType.Varint).uint64(message.competitionId);
+        /* uint64 season_id = 7; */
         if (message.seasonId !== 0n)
-            writer.tag(6, WireType.Varint).uint64(message.seasonId);
-        /* float starting_fund = 7; */
+            writer.tag(7, WireType.Varint).uint64(message.seasonId);
+        /* float starting_fund = 8; */
         if (message.startingFund !== 0)
-            writer.tag(7, WireType.Bit32).float(message.startingFund);
-        /* statistico.StrategyStatusEnum status = 8; */
+            writer.tag(8, WireType.Bit32).float(message.startingFund);
+        /* statistico.StrategyStatusEnum status = 9; */
         if (message.status !== 0)
-            writer.tag(8, WireType.Varint).int32(message.status);
+            writer.tag(9, WireType.Varint).int32(message.status);
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);

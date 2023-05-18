@@ -59,8 +59,8 @@ enum StatEnum {
 }
 
 enum StrategyStatusEnum {
-  ARCHIVED = 0;
-  ACTIVE = 1;
+  ACTIVE = 0;
+  ARCHIVED = 1;
 }
 
 enum StrategyTypeEnum {

@@ -197,7 +197,7 @@ func (x *CreateStrategyRequest) GetStatus() StrategyStatusEnum {
 	if x != nil {
 		return x.Status
 	}
-	return StrategyStatusEnum_ARCHIVED
+	return StrategyStatusEnum_ACTIVE
 }
 
 func (x *CreateStrategyRequest) GetType() StrategyTypeEnum {

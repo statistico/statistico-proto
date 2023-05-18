@@ -133,7 +133,7 @@ func (x *Strategy) GetStatus() StrategyStatusEnum {
 	if x != nil {
 		return x.Status
 	}
-	return StrategyStatusEnum_ARCHIVED
+	return StrategyStatusEnum_ACTIVE
 }
 
 func (x *Strategy) GetType() StrategyTypeEnum {

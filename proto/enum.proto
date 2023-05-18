@@ -61,7 +61,11 @@ enum StatEnum {
 enum StrategyStatusEnum {
   ARCHIVED = 0;
   ACTIVE = 1;
-  SIMULATED = 2;
+}
+
+enum StrategyTypeEnum {
+  LIVE = 0;
+  SIMULATED = 1;
 }
 
 enum TeamEnum {

@@ -13,6 +13,7 @@ import { MESSAGE_TYPE } from "@protobuf-ts/runtime";
 import { MessageType } from "@protobuf-ts/runtime";
 import { Timestamp } from "./google/protobuf/timestamp";
 import { UInt64Value } from "./google/protobuf/wrappers";
+import { StrategyTypeEnum } from "./enum";
 import { StrategyStatusEnum } from "./enum";
 import { StakingPlan } from "./utility";
 import { FloatValue } from "./google/protobuf/wrappers";
@@ -82,6 +83,10 @@ export interface CreateStrategyRequest {
      * @generated from protobuf field: statistico.StrategyStatusEnum status = 9;
      */
     status: StrategyStatusEnum;
+    /**
+     * @generated from protobuf field: statistico.StrategyTypeEnum type = 10;
+     */
+    type: StrategyTypeEnum;
 }
 /**
  * @generated from protobuf message statistico.FixtureRequest
@@ -164,9 +169,9 @@ export interface HistoricalResultRequest {
  */
 export interface ListStrategiesRequest {
     /**
-     * @generated from protobuf field: statistico.StrategyStatusEnum status = 1;
+     * @generated from protobuf field: repeated statistico.StrategyStatusEnum status = 1;
      */
-    status: StrategyStatusEnum;
+    status: StrategyStatusEnum[];
     /**
      * @generated from protobuf field: google.protobuf.UInt64Value competition_id = 2;
      */
@@ -489,11 +494,12 @@ class CreateStrategyRequest$Type extends MessageType<CreateStrategyRequest> {
             { no: 6, name: "competition_id", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 0 /*LongType.BIGINT*/ },
             { no: 7, name: "season_id", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 0 /*LongType.BIGINT*/ },
             { no: 8, name: "starting_fund", kind: "scalar", T: 2 /*ScalarType.FLOAT*/ },
-            { no: 9, name: "status", kind: "enum", T: () => ["statistico.StrategyStatusEnum", StrategyStatusEnum] }
+            { no: 9, name: "status", kind: "enum", T: () => ["statistico.StrategyStatusEnum", StrategyStatusEnum] },
+            { no: 10, name: "type", kind: "enum", T: () => ["statistico.StrategyTypeEnum", StrategyTypeEnum] }
         ]);
     }
     create(value?: PartialMessage<CreateStrategyRequest>): CreateStrategyRequest {
-        const message = { market: 0, model: "", competitionId: 0n, seasonId: 0n, startingFund: 0, status: 0 };
+        const message = { market: 0, model: "", competitionId: 0n, seasonId: 0n, startingFund: 0, status: 0, type: 0 };
         globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this });
         if (value !== undefined)
             reflectionMergePartial<CreateStrategyRequest>(this, message, value);
@@ -530,6 +536,9 @@ class CreateStrategyRequest$Type extends MessageType<CreateStrategyRequest> {
                     break;
                 case /* statistico.StrategyStatusEnum status */ 9:
                     message.status = reader.int32();
+                    break;
+                case /* statistico.StrategyTypeEnum type */ 10:
+                    message.type = reader.int32();
                     break;
                 default:
                     let u = options.readUnknownField;
@@ -570,6 +579,9 @@ class CreateStrategyRequest$Type extends MessageType<CreateStrategyRequest> {
         /* statistico.StrategyStatusEnum status = 9; */
         if (message.status !== 0)
             writer.tag(9, WireType.Varint).int32(message.status);
+        /* statistico.StrategyTypeEnum type = 10; */
+        if (message.type !== 0)
+            writer.tag(10, WireType.Varint).int32(message.type);
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
@@ -782,14 +794,14 @@ export const HistoricalResultRequest = new HistoricalResultRequest$Type();
 class ListStrategiesRequest$Type extends MessageType<ListStrategiesRequest> {
     constructor() {
         super("statistico.ListStrategiesRequest", [
-            { no: 1, name: "status", kind: "enum", T: () => ["statistico.StrategyStatusEnum", StrategyStatusEnum] },
+            { no: 1, name: "status", kind: "enum", repeat: 1 /*RepeatType.PACKED*/, T: () => ["statistico.StrategyStatusEnum", StrategyStatusEnum] },
             { no: 2, name: "competition_id", kind: "message", T: () => UInt64Value },
             { no: 3, name: "season_id", kind: "message", T: () => UInt64Value },
             { no: 4, name: "model", kind: "message", T: () => StringValue }
         ]);
     }
     create(value?: PartialMessage<ListStrategiesRequest>): ListStrategiesRequest {
-        const message = { status: 0 };
+        const message = { status: [] };
         globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this });
         if (value !== undefined)
             reflectionMergePartial<ListStrategiesRequest>(this, message, value);
@@ -800,8 +812,12 @@ class ListStrategiesRequest$Type extends MessageType<ListStrategiesRequest> {
         while (reader.pos < end) {
             let [fieldNo, wireType] = reader.tag();
             switch (fieldNo) {
-                case /* statistico.StrategyStatusEnum status */ 1:
-                    message.status = reader.int32();
+                case /* repeated statistico.StrategyStatusEnum status */ 1:
+                    if (wireType === WireType.LengthDelimited)
+                        for (let e = reader.int32() + reader.pos; reader.pos < e;)
+                            message.status.push(reader.int32());
+                    else
+                        message.status.push(reader.int32());
                     break;
                 case /* google.protobuf.UInt64Value competition_id */ 2:
                     message.competitionId = UInt64Value.internalBinaryRead(reader, reader.uint32(), options, message.competitionId);
@@ -824,9 +840,13 @@ class ListStrategiesRequest$Type extends MessageType<ListStrategiesRequest> {
         return message;
     }
     internalBinaryWrite(message: ListStrategiesRequest, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
-        /* statistico.StrategyStatusEnum status = 1; */
-        if (message.status !== 0)
-            writer.tag(1, WireType.Varint).int32(message.status);
+        /* repeated statistico.StrategyStatusEnum status = 1; */
+        if (message.status.length) {
+            writer.tag(1, WireType.LengthDelimited).fork();
+            for (let i = 0; i < message.status.length; i++)
+                writer.int32(message.status[i]);
+            writer.join();
+        }
         /* google.protobuf.UInt64Value competition_id = 2; */
         if (message.competitionId)
             UInt64Value.internalBinaryWrite(message.competitionId, writer.tag(2, WireType.LengthDelimited).fork(), options).join();

@@ -28,6 +28,7 @@ message CreateStrategyRequest {
     uint64 season_id = 7;
     float starting_fund = 8;
     StrategyStatusEnum status = 9;
+    StrategyTypeEnum type = 10;
 }
 
 message FixtureRequest {
@@ -62,7 +63,7 @@ message HistoricalResultRequest {
 }
 
 message ListStrategiesRequest {
-    StrategyStatusEnum status = 1;
+    repeated StrategyStatusEnum status = 1;
     google.protobuf.UInt64Value competition_id = 2;
     google.protobuf.UInt64Value season_id = 3;
     google.protobuf.StringValue model = 4;

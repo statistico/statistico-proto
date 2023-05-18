@@ -20,4 +20,5 @@ message EventMarket {
   uint64 event_id = 1;
   string market = 2;
   repeated Odds odds = 3;
+  string model = 4;
 }

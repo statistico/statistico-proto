@@ -75,7 +75,7 @@ message ResultRequest {
 }
 
 message SearchTradesRequest {
-    google.protobuf.StringValue strategy_id = 1;
+    repeated string strategy_id = 1;
     google.protobuf.StringValue market = 2;
     google.protobuf.UInt64Value competition_id = 3;
     google.protobuf.UInt64Value season_id = 4;

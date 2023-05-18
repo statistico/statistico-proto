@@ -203,9 +203,9 @@ export interface ResultRequest {
  */
 export interface SearchTradesRequest {
     /**
-     * @generated from protobuf field: google.protobuf.StringValue strategy_id = 1;
+     * @generated from protobuf field: repeated string strategy_id = 1;
      */
-    strategyId?: StringValue;
+    strategyId: string[];
     /**
      * @generated from protobuf field: google.protobuf.StringValue market = 2;
      */
@@ -936,7 +936,7 @@ export const ResultRequest = new ResultRequest$Type();
 class SearchTradesRequest$Type extends MessageType<SearchTradesRequest> {
     constructor() {
         super("statistico.SearchTradesRequest", [
-            { no: 1, name: "strategy_id", kind: "message", T: () => StringValue },
+            { no: 1, name: "strategy_id", kind: "scalar", repeat: 2 /*RepeatType.UNPACKED*/, T: 9 /*ScalarType.STRING*/ },
             { no: 2, name: "market", kind: "message", T: () => StringValue },
             { no: 3, name: "competition_id", kind: "message", T: () => UInt64Value },
             { no: 4, name: "season_id", kind: "message", T: () => UInt64Value },
@@ -947,7 +947,7 @@ class SearchTradesRequest$Type extends MessageType<SearchTradesRequest> {
         ]);
     }
     create(value?: PartialMessage<SearchTradesRequest>): SearchTradesRequest {
-        const message = {};
+        const message = { strategyId: [] };
         globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this });
         if (value !== undefined)
             reflectionMergePartial<SearchTradesRequest>(this, message, value);
@@ -958,8 +958,8 @@ class SearchTradesRequest$Type extends MessageType<SearchTradesRequest> {
         while (reader.pos < end) {
             let [fieldNo, wireType] = reader.tag();
             switch (fieldNo) {
-                case /* google.protobuf.StringValue strategy_id */ 1:
-                    message.strategyId = StringValue.internalBinaryRead(reader, reader.uint32(), options, message.strategyId);
+                case /* repeated string strategy_id */ 1:
+                    message.strategyId.push(reader.string());
                     break;
                 case /* google.protobuf.StringValue market */ 2:
                     message.market = StringValue.internalBinaryRead(reader, reader.uint32(), options, message.market);
@@ -994,9 +994,9 @@ class SearchTradesRequest$Type extends MessageType<SearchTradesRequest> {
         return message;
     }
     internalBinaryWrite(message: SearchTradesRequest, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
-        /* google.protobuf.StringValue strategy_id = 1; */
-        if (message.strategyId)
-            StringValue.internalBinaryWrite(message.strategyId, writer.tag(1, WireType.LengthDelimited).fork(), options).join();
+        /* repeated string strategy_id = 1; */
+        for (let i = 0; i < message.strategyId.length; i++)
+            writer.tag(1, WireType.LengthDelimited).string(message.strategyId[i]);
         /* google.protobuf.StringValue market = 2; */
         if (message.market)
             StringValue.internalBinaryWrite(message.market, writer.tag(2, WireType.LengthDelimited).fork(), options).join();

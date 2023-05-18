@@ -152,17 +152,26 @@ export enum StatEnum {
  */
 export enum StrategyStatusEnum {
     /**
-     * @generated from protobuf enum value: ARCHIVED = 0;
+     * @generated from protobuf enum value: ACTIVE = 0;
      */
-    ARCHIVED = 0,
+    ACTIVE = 0,
     /**
-     * @generated from protobuf enum value: ACTIVE = 1;
+     * @generated from protobuf enum value: ARCHIVED = 1;
      */
-    ACTIVE = 1,
+    ARCHIVED = 1
+}
+/**
+ * @generated from protobuf enum statistico.StrategyTypeEnum
+ */
+export enum StrategyTypeEnum {
     /**
-     * @generated from protobuf enum value: SIMULATED = 2;
+     * @generated from protobuf enum value: LIVE = 0;
      */
-    SIMULATED = 2
+    LIVE = 0,
+    /**
+     * @generated from protobuf enum value: SIMULATED = 1;
+     */
+    SIMULATED = 1
 }
 /**
  * @generated from protobuf enum statistico.TeamEnum

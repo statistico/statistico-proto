@@ -42,6 +42,10 @@ export interface EventMarket {
      * @generated from protobuf field: repeated statistico.Odds odds = 3;
      */
     odds: Odds[];
+    /**
+     * @generated from protobuf field: string model = 4;
+     */
+    model: string;
 }
 // @generated message type with reflection information, may provide speed optimized methods
 class EventRequest$Type extends MessageType<EventRequest> {
@@ -103,11 +107,12 @@ class EventMarket$Type extends MessageType<EventMarket> {
         super("statistico.EventMarket", [
             { no: 1, name: "event_id", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 0 /*LongType.BIGINT*/ },
             { no: 2, name: "market", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 3, name: "odds", kind: "message", repeat: 1 /*RepeatType.PACKED*/, T: () => Odds }
+            { no: 3, name: "odds", kind: "message", repeat: 1 /*RepeatType.PACKED*/, T: () => Odds },
+            { no: 4, name: "model", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
         ]);
     }
     create(value?: PartialMessage<EventMarket>): EventMarket {
-        const message = { eventId: 0n, market: "", odds: [] };
+        const message = { eventId: 0n, market: "", odds: [], model: "" };
         globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this });
         if (value !== undefined)
             reflectionMergePartial<EventMarket>(this, message, value);
@@ -126,6 +131,9 @@ class EventMarket$Type extends MessageType<EventMarket> {
                     break;
                 case /* repeated statistico.Odds odds */ 3:
                     message.odds.push(Odds.internalBinaryRead(reader, reader.uint32(), options));
+                    break;
+                case /* string model */ 4:
+                    message.model = reader.string();
                     break;
                 default:
                     let u = options.readUnknownField;
@@ -148,6 +156,9 @@ class EventMarket$Type extends MessageType<EventMarket> {
         /* repeated statistico.Odds odds = 3; */
         for (let i = 0; i < message.odds.length; i++)
             Odds.internalBinaryWrite(message.odds[i], writer.tag(3, WireType.LengthDelimited).fork(), options).join();
+        /* string model = 4; */
+        if (message.model !== "")
+            writer.tag(4, WireType.LengthDelimited).string(message.model);
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);

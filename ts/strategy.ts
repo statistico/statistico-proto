@@ -14,6 +14,7 @@ import type { PartialMessage } from "@protobuf-ts/runtime";
 import { reflectionMergePartial } from "@protobuf-ts/runtime";
 import { MESSAGE_TYPE } from "@protobuf-ts/runtime";
 import { MessageType } from "@protobuf-ts/runtime";
+import { StrategyTypeEnum } from "./enum";
 import { StrategyStatusEnum } from "./enum";
 import { StakingPlan } from "./utility";
 import { FloatValue } from "./google/protobuf/wrappers";
@@ -59,15 +60,19 @@ export interface Strategy {
      */
     status: StrategyStatusEnum;
     /**
-     * @generated from protobuf field: float starting_fund = 10;
+     * @generated from protobuf field: statistico.StrategyTypeEnum type = 10;
+     */
+    type: StrategyTypeEnum;
+    /**
+     * @generated from protobuf field: float starting_fund = 11;
      */
     startingFund: number;
     /**
-     * @generated from protobuf field: uint64 created_at = 11;
+     * @generated from protobuf field: uint64 created_at = 12;
      */
     createdAt: bigint;
     /**
-     * @generated from protobuf field: uint64 updated_at = 12;
+     * @generated from protobuf field: uint64 updated_at = 13;
      */
     updatedAt: bigint;
 }
@@ -84,13 +89,14 @@ class Strategy$Type extends MessageType<Strategy> {
             { no: 7, name: "model", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
             { no: 8, name: "staking_plan", kind: "message", T: () => StakingPlan },
             { no: 9, name: "status", kind: "enum", T: () => ["statistico.StrategyStatusEnum", StrategyStatusEnum] },
-            { no: 10, name: "starting_fund", kind: "scalar", T: 2 /*ScalarType.FLOAT*/ },
-            { no: 11, name: "created_at", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 0 /*LongType.BIGINT*/ },
-            { no: 12, name: "updated_at", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 0 /*LongType.BIGINT*/ }
+            { no: 10, name: "type", kind: "enum", T: () => ["statistico.StrategyTypeEnum", StrategyTypeEnum] },
+            { no: 11, name: "starting_fund", kind: "scalar", T: 2 /*ScalarType.FLOAT*/ },
+            { no: 12, name: "created_at", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 0 /*LongType.BIGINT*/ },
+            { no: 13, name: "updated_at", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 0 /*LongType.BIGINT*/ }
         ]);
     }
     create(value?: PartialMessage<Strategy>): Strategy {
-        const message = { id: "", market: 0, competitionId: 0n, seasonId: 0n, model: "", status: 0, startingFund: 0, createdAt: 0n, updatedAt: 0n };
+        const message = { id: "", market: 0, competitionId: 0n, seasonId: 0n, model: "", status: 0, type: 0, startingFund: 0, createdAt: 0n, updatedAt: 0n };
         globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this });
         if (value !== undefined)
             reflectionMergePartial<Strategy>(this, message, value);
@@ -128,13 +134,16 @@ class Strategy$Type extends MessageType<Strategy> {
                 case /* statistico.StrategyStatusEnum status */ 9:
                     message.status = reader.int32();
                     break;
-                case /* float starting_fund */ 10:
+                case /* statistico.StrategyTypeEnum type */ 10:
+                    message.type = reader.int32();
+                    break;
+                case /* float starting_fund */ 11:
                     message.startingFund = reader.float();
                     break;
-                case /* uint64 created_at */ 11:
+                case /* uint64 created_at */ 12:
                     message.createdAt = reader.uint64().toBigInt();
                     break;
-                case /* uint64 updated_at */ 12:
+                case /* uint64 updated_at */ 13:
                     message.updatedAt = reader.uint64().toBigInt();
                     break;
                 default:
@@ -176,15 +185,18 @@ class Strategy$Type extends MessageType<Strategy> {
         /* statistico.StrategyStatusEnum status = 9; */
         if (message.status !== 0)
             writer.tag(9, WireType.Varint).int32(message.status);
-        /* float starting_fund = 10; */
+        /* statistico.StrategyTypeEnum type = 10; */
+        if (message.type !== 0)
+            writer.tag(10, WireType.Varint).int32(message.type);
+        /* float starting_fund = 11; */
         if (message.startingFund !== 0)
-            writer.tag(10, WireType.Bit32).float(message.startingFund);
-        /* uint64 created_at = 11; */
+            writer.tag(11, WireType.Bit32).float(message.startingFund);
+        /* uint64 created_at = 12; */
         if (message.createdAt !== 0n)
-            writer.tag(11, WireType.Varint).uint64(message.createdAt);
-        /* uint64 updated_at = 12; */
+            writer.tag(12, WireType.Varint).uint64(message.createdAt);
+        /* uint64 updated_at = 13; */
         if (message.updatedAt !== 0n)
-            writer.tag(12, WireType.Varint).uint64(message.updatedAt);
+            writer.tag(13, WireType.Varint).uint64(message.updatedAt);
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);

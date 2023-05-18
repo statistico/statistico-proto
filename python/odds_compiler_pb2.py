@@ -14,7 +14,7 @@ _sym_db = _symbol_database.Default()
 import common_pb2 as common__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x13odds_compiler.proto\x12\nstatistico\x1a\x0c\x63ommon.proto\"0\n\x0c\x45ventRequest\x12\x10\n\x08\x65vent_id\x18\x01 \x01(\x04\x12\x0e\n\x06market\x18\x02 \x01(\t\"O\n\x0b\x45ventMarket\x12\x10\n\x08\x65vent_id\x18\x01 \x01(\x04\x12\x0e\n\x06market\x18\x02 \x01(\t\x12\x1e\n\x04odds\x18\x03 \x03(\x0b\x32\x10.statistico.Odds2\\\n\x13OddsCompilerService\x12\x45\n\x0eGetEventMarket\x12\x18.statistico.EventRequest\x1a\x17.statistico.EventMarket\"\x00\x42\x33Z1github.com/statistico/statistico-proto;statisticob\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x13odds_compiler.proto\x12\nstatistico\x1a\x0c\x63ommon.proto\"0\n\x0c\x45ventRequest\x12\x10\n\x08\x65vent_id\x18\x01 \x01(\x04\x12\x0e\n\x06market\x18\x02 \x01(\t\"^\n\x0b\x45ventMarket\x12\x10\n\x08\x65vent_id\x18\x01 \x01(\x04\x12\x0e\n\x06market\x18\x02 \x01(\t\x12\x1e\n\x04odds\x18\x03 \x03(\x0b\x32\x10.statistico.Odds\x12\r\n\x05model\x18\x04 \x01(\t2\\\n\x13OddsCompilerService\x12\x45\n\x0eGetEventMarket\x12\x18.statistico.EventRequest\x1a\x17.statistico.EventMarket\"\x00\x42\x33Z1github.com/statistico/statistico-proto;statisticob\x06proto3')
 
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, globals())
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'odds_compiler_pb2', globals())
@@ -25,7 +25,7 @@ if _descriptor._USE_C_DESCRIPTORS == False:
   _EVENTREQUEST._serialized_start=49
   _EVENTREQUEST._serialized_end=97
   _EVENTMARKET._serialized_start=99
-  _EVENTMARKET._serialized_end=178
-  _ODDSCOMPILERSERVICE._serialized_start=180
-  _ODDSCOMPILERSERVICE._serialized_end=272
+  _EVENTMARKET._serialized_end=193
+  _ODDSCOMPILERSERVICE._serialized_start=195
+  _ODDSCOMPILERSERVICE._serialized_end=287
 # @@protoc_insertion_point(module_scope)

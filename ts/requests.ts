@@ -173,15 +173,19 @@ export interface ListStrategiesRequest {
      */
     status: StrategyStatusEnum[];
     /**
-     * @generated from protobuf field: google.protobuf.UInt64Value competition_id = 2;
+     * @generated from protobuf field: repeated statistico.StrategyTypeEnum type = 2;
+     */
+    type: StrategyTypeEnum[];
+    /**
+     * @generated from protobuf field: google.protobuf.UInt64Value competition_id = 3;
      */
     competitionId?: UInt64Value;
     /**
-     * @generated from protobuf field: google.protobuf.UInt64Value season_id = 3;
+     * @generated from protobuf field: google.protobuf.UInt64Value season_id = 4;
      */
     seasonId?: UInt64Value;
     /**
-     * @generated from protobuf field: google.protobuf.StringValue model = 4;
+     * @generated from protobuf field: google.protobuf.StringValue model = 5;
      */
     model?: StringValue;
 }
@@ -795,13 +799,14 @@ class ListStrategiesRequest$Type extends MessageType<ListStrategiesRequest> {
     constructor() {
         super("statistico.ListStrategiesRequest", [
             { no: 1, name: "status", kind: "enum", repeat: 1 /*RepeatType.PACKED*/, T: () => ["statistico.StrategyStatusEnum", StrategyStatusEnum] },
-            { no: 2, name: "competition_id", kind: "message", T: () => UInt64Value },
-            { no: 3, name: "season_id", kind: "message", T: () => UInt64Value },
-            { no: 4, name: "model", kind: "message", T: () => StringValue }
+            { no: 2, name: "type", kind: "enum", repeat: 1 /*RepeatType.PACKED*/, T: () => ["statistico.StrategyTypeEnum", StrategyTypeEnum] },
+            { no: 3, name: "competition_id", kind: "message", T: () => UInt64Value },
+            { no: 4, name: "season_id", kind: "message", T: () => UInt64Value },
+            { no: 5, name: "model", kind: "message", T: () => StringValue }
         ]);
     }
     create(value?: PartialMessage<ListStrategiesRequest>): ListStrategiesRequest {
-        const message = { status: [] };
+        const message = { status: [], type: [] };
         globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this });
         if (value !== undefined)
             reflectionMergePartial<ListStrategiesRequest>(this, message, value);
@@ -819,13 +824,20 @@ class ListStrategiesRequest$Type extends MessageType<ListStrategiesRequest> {
                     else
                         message.status.push(reader.int32());
                     break;
-                case /* google.protobuf.UInt64Value competition_id */ 2:
+                case /* repeated statistico.StrategyTypeEnum type */ 2:
+                    if (wireType === WireType.LengthDelimited)
+                        for (let e = reader.int32() + reader.pos; reader.pos < e;)
+                            message.type.push(reader.int32());
+                    else
+                        message.type.push(reader.int32());
+                    break;
+                case /* google.protobuf.UInt64Value competition_id */ 3:
                     message.competitionId = UInt64Value.internalBinaryRead(reader, reader.uint32(), options, message.competitionId);
                     break;
-                case /* google.protobuf.UInt64Value season_id */ 3:
+                case /* google.protobuf.UInt64Value season_id */ 4:
                     message.seasonId = UInt64Value.internalBinaryRead(reader, reader.uint32(), options, message.seasonId);
                     break;
-                case /* google.protobuf.StringValue model */ 4:
+                case /* google.protobuf.StringValue model */ 5:
                     message.model = StringValue.internalBinaryRead(reader, reader.uint32(), options, message.model);
                     break;
                 default:
@@ -847,15 +859,22 @@ class ListStrategiesRequest$Type extends MessageType<ListStrategiesRequest> {
                 writer.int32(message.status[i]);
             writer.join();
         }
-        /* google.protobuf.UInt64Value competition_id = 2; */
+        /* repeated statistico.StrategyTypeEnum type = 2; */
+        if (message.type.length) {
+            writer.tag(2, WireType.LengthDelimited).fork();
+            for (let i = 0; i < message.type.length; i++)
+                writer.int32(message.type[i]);
+            writer.join();
+        }
+        /* google.protobuf.UInt64Value competition_id = 3; */
         if (message.competitionId)
-            UInt64Value.internalBinaryWrite(message.competitionId, writer.tag(2, WireType.LengthDelimited).fork(), options).join();
-        /* google.protobuf.UInt64Value season_id = 3; */
+            UInt64Value.internalBinaryWrite(message.competitionId, writer.tag(3, WireType.LengthDelimited).fork(), options).join();
+        /* google.protobuf.UInt64Value season_id = 4; */
         if (message.seasonId)
-            UInt64Value.internalBinaryWrite(message.seasonId, writer.tag(3, WireType.LengthDelimited).fork(), options).join();
-        /* google.protobuf.StringValue model = 4; */
+            UInt64Value.internalBinaryWrite(message.seasonId, writer.tag(4, WireType.LengthDelimited).fork(), options).join();
+        /* google.protobuf.StringValue model = 5; */
         if (message.model)
-            StringValue.internalBinaryWrite(message.model, writer.tag(4, WireType.LengthDelimited).fork(), options).join();
+            StringValue.internalBinaryWrite(message.model, writer.tag(5, WireType.LengthDelimited).fork(), options).join();
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);

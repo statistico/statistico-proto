@@ -64,9 +64,10 @@ message HistoricalResultRequest {
 
 message ListStrategiesRequest {
     repeated StrategyStatusEnum status = 1;
-    google.protobuf.UInt64Value competition_id = 2;
-    google.protobuf.UInt64Value season_id = 3;
-    google.protobuf.StringValue model = 4;
+    repeated StrategyTypeEnum type = 2;
+    google.protobuf.UInt64Value competition_id = 3;
+    google.protobuf.UInt64Value season_id = 4;
+    google.protobuf.StringValue model = 5;
 }
 
 message ResultRequest {

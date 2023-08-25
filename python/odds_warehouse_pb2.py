@@ -13,7 +13,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x14odds_warehouse.proto\x12\nstatistico\"h\n\x13\x45xchangeOddsRequest\x12\x10\n\x08\x65vent_id\x18\x01 \x01(\x04\x12\x0e\n\x06market\x18\x02 \x01(\t\x12\x10\n\x08\x65xchange\x18\x03 \x01(\t\x12\x0e\n\x06runner\x18\x04 \x01(\t\x12\r\n\x05limit\x18\x05 \x01(\r\"0\n\x0c\x45xchangeOdds\x12\r\n\x05price\x18\x01 \x01(\x02\x12\x11\n\ttimestamp\x18\x02 \x01(\x04\x32h\n\x14OddsWarehouseService\x12P\n\x0fGetExchangeOdds\x12\x1f.statistico.ExchangeOddsRequest\x1a\x18.statistico.ExchangeOdds\"\x00\x30\x01\x42\x33Z1github.com/statistico/statistico-proto;statisticob\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x14odds_warehouse.proto\x12\nstatistico\"h\n\x13\x45xchangeOddsRequest\x12\x10\n\x08\x65vent_id\x18\x01 \x01(\x04\x12\x0e\n\x06market\x18\x02 \x01(\t\x12\x10\n\x08\x65xchange\x18\x03 \x01(\t\x12\x0e\n\x06runner\x18\x04 \x01(\t\x12\r\n\x05limit\x18\x05 \x01(\r\">\n\x0c\x45xchangeOdds\x12\r\n\x05price\x18\x01 \x01(\x02\x12\x0c\n\x04size\x18\x02 \x01(\x02\x12\x11\n\ttimestamp\x18\x03 \x01(\x04\x32h\n\x14OddsWarehouseService\x12P\n\x0fGetExchangeOdds\x12\x1f.statistico.ExchangeOddsRequest\x1a\x18.statistico.ExchangeOdds\"\x00\x30\x01\x42\x33Z1github.com/statistico/statistico-proto;statisticob\x06proto3')
 
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, globals())
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'odds_warehouse_pb2', globals())
@@ -24,7 +24,7 @@ if _descriptor._USE_C_DESCRIPTORS == False:
   _EXCHANGEODDSREQUEST._serialized_start=36
   _EXCHANGEODDSREQUEST._serialized_end=140
   _EXCHANGEODDS._serialized_start=142
-  _EXCHANGEODDS._serialized_end=190
-  _ODDSWAREHOUSESERVICE._serialized_start=192
-  _ODDSWAREHOUSESERVICE._serialized_end=296
+  _EXCHANGEODDS._serialized_end=204
+  _ODDSWAREHOUSESERVICE._serialized_start=206
+  _ODDSWAREHOUSESERVICE._serialized_end=310
 # @@protoc_insertion_point(module_scope)

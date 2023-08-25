@@ -18,5 +18,6 @@ message ExchangeOddsRequest {
 
 message ExchangeOdds {
   float price = 1;
-  uint64 timestamp = 2;
+  float size = 2;
+  uint64 timestamp = 3;
 }

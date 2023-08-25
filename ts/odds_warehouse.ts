@@ -46,7 +46,11 @@ export interface ExchangeOdds {
      */
     price: number;
     /**
-     * @generated from protobuf field: uint64 timestamp = 2;
+     * @generated from protobuf field: float size = 2;
+     */
+    size: number;
+    /**
+     * @generated from protobuf field: uint64 timestamp = 3;
      */
     timestamp: bigint;
 }
@@ -130,11 +134,12 @@ class ExchangeOdds$Type extends MessageType<ExchangeOdds> {
     constructor() {
         super("statistico.ExchangeOdds", [
             { no: 1, name: "price", kind: "scalar", T: 2 /*ScalarType.FLOAT*/ },
-            { no: 2, name: "timestamp", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 0 /*LongType.BIGINT*/ }
+            { no: 2, name: "size", kind: "scalar", T: 2 /*ScalarType.FLOAT*/ },
+            { no: 3, name: "timestamp", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 0 /*LongType.BIGINT*/ }
         ]);
     }
     create(value?: PartialMessage<ExchangeOdds>): ExchangeOdds {
-        const message = { price: 0, timestamp: 0n };
+        const message = { price: 0, size: 0, timestamp: 0n };
         globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this });
         if (value !== undefined)
             reflectionMergePartial<ExchangeOdds>(this, message, value);
@@ -148,7 +153,10 @@ class ExchangeOdds$Type extends MessageType<ExchangeOdds> {
                 case /* float price */ 1:
                     message.price = reader.float();
                     break;
-                case /* uint64 timestamp */ 2:
+                case /* float size */ 2:
+                    message.size = reader.float();
+                    break;
+                case /* uint64 timestamp */ 3:
                     message.timestamp = reader.uint64().toBigInt();
                     break;
                 default:
@@ -166,9 +174,12 @@ class ExchangeOdds$Type extends MessageType<ExchangeOdds> {
         /* float price = 1; */
         if (message.price !== 0)
             writer.tag(1, WireType.Bit32).float(message.price);
-        /* uint64 timestamp = 2; */
+        /* float size = 2; */
+        if (message.size !== 0)
+            writer.tag(2, WireType.Bit32).float(message.size);
+        /* uint64 timestamp = 3; */
         if (message.timestamp !== 0n)
-            writer.tag(2, WireType.Varint).uint64(message.timestamp);
+            writer.tag(3, WireType.Varint).uint64(message.timestamp);
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);

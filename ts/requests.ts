@@ -89,6 +89,48 @@ export interface CreateStrategyRequest {
     type: StrategyTypeEnum;
 }
 /**
+ * @generated from protobuf message statistico.ExchangeOddsRequest
+ */
+export interface ExchangeOddsRequest {
+    /**
+     * @generated from protobuf field: uint64 event_id = 1;
+     */
+    eventId: bigint;
+    /**
+     * @generated from protobuf field: string market = 2;
+     */
+    market: string;
+    /**
+     * @generated from protobuf field: string exchange = 3;
+     */
+    exchange: string;
+    /**
+     * @generated from protobuf field: string runner = 4;
+     */
+    runner: string;
+    /**
+     * @generated from protobuf field: uint32 limit = 5;
+     */
+    limit: number;
+}
+/**
+ * @generated from protobuf message statistico.EventMarketRequest
+ */
+export interface EventMarketRequest {
+    /**
+     * @generated from protobuf field: uint64 event_id = 1;
+     */
+    eventId: bigint;
+    /**
+     * @generated from protobuf field: repeated string market = 2;
+     */
+    market: string[];
+    /**
+     * @generated from protobuf field: repeated string exchange = 3;
+     */
+    exchange: string[];
+}
+/**
  * @generated from protobuf message statistico.FixtureRequest
  */
 export interface FixtureRequest {
@@ -596,6 +638,142 @@ class CreateStrategyRequest$Type extends MessageType<CreateStrategyRequest> {
  * @generated MessageType for protobuf message statistico.CreateStrategyRequest
  */
 export const CreateStrategyRequest = new CreateStrategyRequest$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class ExchangeOddsRequest$Type extends MessageType<ExchangeOddsRequest> {
+    constructor() {
+        super("statistico.ExchangeOddsRequest", [
+            { no: 1, name: "event_id", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 0 /*LongType.BIGINT*/ },
+            { no: 2, name: "market", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 3, name: "exchange", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 4, name: "runner", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 5, name: "limit", kind: "scalar", T: 13 /*ScalarType.UINT32*/ }
+        ]);
+    }
+    create(value?: PartialMessage<ExchangeOddsRequest>): ExchangeOddsRequest {
+        const message = { eventId: 0n, market: "", exchange: "", runner: "", limit: 0 };
+        globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this });
+        if (value !== undefined)
+            reflectionMergePartial<ExchangeOddsRequest>(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: ExchangeOddsRequest): ExchangeOddsRequest {
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* uint64 event_id */ 1:
+                    message.eventId = reader.uint64().toBigInt();
+                    break;
+                case /* string market */ 2:
+                    message.market = reader.string();
+                    break;
+                case /* string exchange */ 3:
+                    message.exchange = reader.string();
+                    break;
+                case /* string runner */ 4:
+                    message.runner = reader.string();
+                    break;
+                case /* uint32 limit */ 5:
+                    message.limit = reader.uint32();
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
+    }
+    internalBinaryWrite(message: ExchangeOddsRequest, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
+        /* uint64 event_id = 1; */
+        if (message.eventId !== 0n)
+            writer.tag(1, WireType.Varint).uint64(message.eventId);
+        /* string market = 2; */
+        if (message.market !== "")
+            writer.tag(2, WireType.LengthDelimited).string(message.market);
+        /* string exchange = 3; */
+        if (message.exchange !== "")
+            writer.tag(3, WireType.LengthDelimited).string(message.exchange);
+        /* string runner = 4; */
+        if (message.runner !== "")
+            writer.tag(4, WireType.LengthDelimited).string(message.runner);
+        /* uint32 limit = 5; */
+        if (message.limit !== 0)
+            writer.tag(5, WireType.Varint).uint32(message.limit);
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message statistico.ExchangeOddsRequest
+ */
+export const ExchangeOddsRequest = new ExchangeOddsRequest$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class EventMarketRequest$Type extends MessageType<EventMarketRequest> {
+    constructor() {
+        super("statistico.EventMarketRequest", [
+            { no: 1, name: "event_id", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 0 /*LongType.BIGINT*/ },
+            { no: 2, name: "market", kind: "scalar", repeat: 2 /*RepeatType.UNPACKED*/, T: 9 /*ScalarType.STRING*/ },
+            { no: 3, name: "exchange", kind: "scalar", repeat: 2 /*RepeatType.UNPACKED*/, T: 9 /*ScalarType.STRING*/ }
+        ]);
+    }
+    create(value?: PartialMessage<EventMarketRequest>): EventMarketRequest {
+        const message = { eventId: 0n, market: [], exchange: [] };
+        globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this });
+        if (value !== undefined)
+            reflectionMergePartial<EventMarketRequest>(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: EventMarketRequest): EventMarketRequest {
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* uint64 event_id */ 1:
+                    message.eventId = reader.uint64().toBigInt();
+                    break;
+                case /* repeated string market */ 2:
+                    message.market.push(reader.string());
+                    break;
+                case /* repeated string exchange */ 3:
+                    message.exchange.push(reader.string());
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
+    }
+    internalBinaryWrite(message: EventMarketRequest, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
+        /* uint64 event_id = 1; */
+        if (message.eventId !== 0n)
+            writer.tag(1, WireType.Varint).uint64(message.eventId);
+        /* repeated string market = 2; */
+        for (let i = 0; i < message.market.length; i++)
+            writer.tag(2, WireType.LengthDelimited).string(message.market[i]);
+        /* repeated string exchange = 3; */
+        for (let i = 0; i < message.exchange.length; i++)
+            writer.tag(3, WireType.LengthDelimited).string(message.exchange[i]);
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message statistico.EventMarketRequest
+ */
+export const EventMarketRequest = new EventMarketRequest$Type();
 // @generated message type with reflection information, may provide speed optimized methods
 class FixtureRequest$Type extends MessageType<FixtureRequest> {
     constructor() {

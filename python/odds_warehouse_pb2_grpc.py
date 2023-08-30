@@ -3,6 +3,7 @@
 import grpc
 
 import odds_warehouse_pb2 as odds__warehouse__pb2
+import requests_pb2 as requests__pb2
 
 
 class OddsWarehouseServiceStub(object):
@@ -16,8 +17,13 @@ class OddsWarehouseServiceStub(object):
         """
         self.GetExchangeOdds = channel.unary_stream(
                 '/statistico.OddsWarehouseService/GetExchangeOdds',
-                request_serializer=odds__warehouse__pb2.ExchangeOddsRequest.SerializeToString,
+                request_serializer=requests__pb2.ExchangeOddsRequest.SerializeToString,
                 response_deserializer=odds__warehouse__pb2.ExchangeOdds.FromString,
+                )
+        self.GetEventMarkets = channel.unary_stream(
+                '/statistico.OddsWarehouseService/GetEventMarkets',
+                request_serializer=requests__pb2.EventMarketRequest.SerializeToString,
+                response_deserializer=odds__warehouse__pb2.Market.FromString,
                 )
 
 
@@ -30,13 +36,24 @@ class OddsWarehouseServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def GetEventMarkets(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_OddsWarehouseServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
             'GetExchangeOdds': grpc.unary_stream_rpc_method_handler(
                     servicer.GetExchangeOdds,
-                    request_deserializer=odds__warehouse__pb2.ExchangeOddsRequest.FromString,
+                    request_deserializer=requests__pb2.ExchangeOddsRequest.FromString,
                     response_serializer=odds__warehouse__pb2.ExchangeOdds.SerializeToString,
+            ),
+            'GetEventMarkets': grpc.unary_stream_rpc_method_handler(
+                    servicer.GetEventMarkets,
+                    request_deserializer=requests__pb2.EventMarketRequest.FromString,
+                    response_serializer=odds__warehouse__pb2.Market.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -60,7 +77,24 @@ class OddsWarehouseService(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_stream(request, target, '/statistico.OddsWarehouseService/GetExchangeOdds',
-            odds__warehouse__pb2.ExchangeOddsRequest.SerializeToString,
+            requests__pb2.ExchangeOddsRequest.SerializeToString,
             odds__warehouse__pb2.ExchangeOdds.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetEventMarkets(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_stream(request, target, '/statistico.OddsWarehouseService/GetEventMarkets',
+            requests__pb2.EventMarketRequest.SerializeToString,
+            odds__warehouse__pb2.Market.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

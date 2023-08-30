@@ -31,6 +31,20 @@ message CreateStrategyRequest {
     StrategyTypeEnum type = 10;
 }
 
+message ExchangeOddsRequest {
+    uint64 event_id = 1;
+    string market = 2;
+    string exchange = 3;
+    string runner = 4;
+    uint32 limit = 5;
+}
+
+message EventMarketRequest {
+    uint64 event_id = 1;
+    repeated string market = 2;
+    repeated string exchange = 3;
+}
+
 message FixtureRequest {
     uint64 fixture_id = 1;
 }

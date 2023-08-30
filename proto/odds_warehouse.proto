@@ -4,19 +4,34 @@ package statistico;
 
 option go_package = "github.com/statistico/statistico-proto;statistico";
 
+import "common.proto";
+import "requests.proto";
+
 service OddsWarehouseService {
   rpc GetExchangeOdds(ExchangeOddsRequest) returns (stream ExchangeOdds) {}
-}
-
-message ExchangeOddsRequest {
-  uint64 event_id = 1;
-  string market = 2;
-  string exchange = 3;
-  string runner = 4;
-  uint32 limit = 5;
+  rpc GetEventMarkets(EventMarketRequest) returns (stream Market) {}
 }
 
 message ExchangeOdds {
   float price = 1;
-  uint64 timestamp = 2;
+  float size = 2;
+  string side = 3;
+  uint64 timestamp = 4;
+}
+
+message Market {
+  string id = 1;
+  string name = 2;
+  uint64 event_id = 3;
+  uint64 competition_id = 4;
+  uint64 season_id = 5;
+  string exchange = 6;
+  Date date_time = 7;
+  repeated Runner runners = 8;
+}
+
+message Runner {
+  uint64 id = 1;
+  string name = 2;
+  ExchangeOdds back_odds = 3;
 }

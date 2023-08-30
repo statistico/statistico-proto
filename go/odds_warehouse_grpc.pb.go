@@ -23,6 +23,7 @@ const _ = grpc.SupportPackageIsVersion7
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type OddsWarehouseServiceClient interface {
 	GetExchangeOdds(ctx context.Context, in *ExchangeOddsRequest, opts ...grpc.CallOption) (OddsWarehouseService_GetExchangeOddsClient, error)
+	GetEventMarkets(ctx context.Context, in *EventMarketRequest, opts ...grpc.CallOption) (OddsWarehouseService_GetEventMarketsClient, error)
 }
 
 type oddsWarehouseServiceClient struct {
@@ -65,11 +66,44 @@ func (x *oddsWarehouseServiceGetExchangeOddsClient) Recv() (*ExchangeOdds, error
 	return m, nil
 }
 
+func (c *oddsWarehouseServiceClient) GetEventMarkets(ctx context.Context, in *EventMarketRequest, opts ...grpc.CallOption) (OddsWarehouseService_GetEventMarketsClient, error) {
+	stream, err := c.cc.NewStream(ctx, &OddsWarehouseService_ServiceDesc.Streams[1], "/statistico.OddsWarehouseService/GetEventMarkets", opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &oddsWarehouseServiceGetEventMarketsClient{stream}
+	if err := x.ClientStream.SendMsg(in); err != nil {
+		return nil, err
+	}
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	return x, nil
+}
+
+type OddsWarehouseService_GetEventMarketsClient interface {
+	Recv() (*Market, error)
+	grpc.ClientStream
+}
+
+type oddsWarehouseServiceGetEventMarketsClient struct {
+	grpc.ClientStream
+}
+
+func (x *oddsWarehouseServiceGetEventMarketsClient) Recv() (*Market, error) {
+	m := new(Market)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
 // OddsWarehouseServiceServer is the server API for OddsWarehouseService service.
 // All implementations must embed UnimplementedOddsWarehouseServiceServer
 // for forward compatibility
 type OddsWarehouseServiceServer interface {
 	GetExchangeOdds(*ExchangeOddsRequest, OddsWarehouseService_GetExchangeOddsServer) error
+	GetEventMarkets(*EventMarketRequest, OddsWarehouseService_GetEventMarketsServer) error
 	mustEmbedUnimplementedOddsWarehouseServiceServer()
 }
 
@@ -79,6 +113,9 @@ type UnimplementedOddsWarehouseServiceServer struct {
 
 func (UnimplementedOddsWarehouseServiceServer) GetExchangeOdds(*ExchangeOddsRequest, OddsWarehouseService_GetExchangeOddsServer) error {
 	return status.Errorf(codes.Unimplemented, "method GetExchangeOdds not implemented")
+}
+func (UnimplementedOddsWarehouseServiceServer) GetEventMarkets(*EventMarketRequest, OddsWarehouseService_GetEventMarketsServer) error {
+	return status.Errorf(codes.Unimplemented, "method GetEventMarkets not implemented")
 }
 func (UnimplementedOddsWarehouseServiceServer) mustEmbedUnimplementedOddsWarehouseServiceServer() {}
 
@@ -114,6 +151,27 @@ func (x *oddsWarehouseServiceGetExchangeOddsServer) Send(m *ExchangeOdds) error 
 	return x.ServerStream.SendMsg(m)
 }
 
+func _OddsWarehouseService_GetEventMarkets_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(EventMarketRequest)
+	if err := stream.RecvMsg(m); err != nil {
+		return err
+	}
+	return srv.(OddsWarehouseServiceServer).GetEventMarkets(m, &oddsWarehouseServiceGetEventMarketsServer{stream})
+}
+
+type OddsWarehouseService_GetEventMarketsServer interface {
+	Send(*Market) error
+	grpc.ServerStream
+}
+
+type oddsWarehouseServiceGetEventMarketsServer struct {
+	grpc.ServerStream
+}
+
+func (x *oddsWarehouseServiceGetEventMarketsServer) Send(m *Market) error {
+	return x.ServerStream.SendMsg(m)
+}
+
 // OddsWarehouseService_ServiceDesc is the grpc.ServiceDesc for OddsWarehouseService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -125,6 +183,11 @@ var OddsWarehouseService_ServiceDesc = grpc.ServiceDesc{
 		{
 			StreamName:    "GetExchangeOdds",
 			Handler:       _OddsWarehouseService_GetExchangeOdds_Handler,
+			ServerStreams: true,
+		},
+		{
+			StreamName:    "GetEventMarkets",
+			Handler:       _OddsWarehouseService_GetEventMarkets_Handler,
 			ServerStreams: true,
 		},
 	},

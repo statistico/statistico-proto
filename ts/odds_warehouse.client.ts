@@ -4,9 +4,11 @@
 import type { RpcTransport } from "@protobuf-ts/runtime-rpc";
 import type { ServiceInfo } from "@protobuf-ts/runtime-rpc";
 import { OddsWarehouseService } from "./odds_warehouse";
+import type { Market } from "./odds_warehouse";
+import type { EventMarketRequest } from "./requests";
 import { stackIntercept } from "@protobuf-ts/runtime-rpc";
 import type { ExchangeOdds } from "./odds_warehouse";
-import type { ExchangeOddsRequest } from "./odds_warehouse";
+import type { ExchangeOddsRequest } from "./requests";
 import type { ServerStreamingCall } from "@protobuf-ts/runtime-rpc";
 import type { RpcOptions } from "@protobuf-ts/runtime-rpc";
 /**
@@ -17,6 +19,10 @@ export interface IOddsWarehouseServiceClient {
      * @generated from protobuf rpc: GetExchangeOdds(statistico.ExchangeOddsRequest) returns (stream statistico.ExchangeOdds);
      */
     getExchangeOdds(input: ExchangeOddsRequest, options?: RpcOptions): ServerStreamingCall<ExchangeOddsRequest, ExchangeOdds>;
+    /**
+     * @generated from protobuf rpc: GetEventMarkets(statistico.EventMarketRequest) returns (stream statistico.Market);
+     */
+    getEventMarkets(input: EventMarketRequest, options?: RpcOptions): ServerStreamingCall<EventMarketRequest, Market>;
 }
 /**
  * @generated from protobuf service statistico.OddsWarehouseService
@@ -33,5 +39,12 @@ export class OddsWarehouseServiceClient implements IOddsWarehouseServiceClient, 
     getExchangeOdds(input: ExchangeOddsRequest, options?: RpcOptions): ServerStreamingCall<ExchangeOddsRequest, ExchangeOdds> {
         const method = this.methods[0], opt = this._transport.mergeOptions(options);
         return stackIntercept<ExchangeOddsRequest, ExchangeOdds>("serverStreaming", this._transport, method, opt, input);
+    }
+    /**
+     * @generated from protobuf rpc: GetEventMarkets(statistico.EventMarketRequest) returns (stream statistico.Market);
+     */
+    getEventMarkets(input: EventMarketRequest, options?: RpcOptions): ServerStreamingCall<EventMarketRequest, Market> {
+        const method = this.methods[1], opt = this._transport.mergeOptions(options);
+        return stackIntercept<EventMarketRequest, Market>("serverStreaming", this._transport, method, opt, input);
     }
 }

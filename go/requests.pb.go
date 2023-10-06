@@ -141,7 +141,7 @@ func (x *CreateStrategyRequest) GetMarket() MarketEnum {
 	if x != nil {
 		return x.Market
 	}
-	return MarketEnum_OVER_UNDER_25
+	return MarketEnum_OVER_UNDER_05
 }
 
 func (x *CreateStrategyRequest) GetMinOdds() *wrappers.FloatValue {

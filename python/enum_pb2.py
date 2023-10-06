@@ -13,7 +13,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\nenum.proto\x12\nstatistico*\"\n\nActionEnum\x12\x07\n\x03\x46OR\x10\x00\x12\x0b\n\x07\x41GAINST\x10\x01*)\n\x0c\x45xchangeEnum\x12\x0b\n\x07\x42\x45TFAIR\x10\x00\x12\x0c\n\x08PINNACLE\x10\x01* \n\x08LineEnum\x12\x0b\n\x07\x43LOSING\x10\x00\x12\x07\n\x03MAX\x10\x01*\x1f\n\nMarketEnum\x12\x11\n\rOVER_UNDER_25\x10\x00*5\n\x0bMeasureEnum\x12\t\n\x05TOTAL\x10\x00\x12\x0b\n\x07\x41VERAGE\x10\x01\x12\x0e\n\nCONTINUOUS\x10\x02*\x1e\n\nMetricEnum\x12\x07\n\x03GTE\x10\x00\x12\x07\n\x03LTE\x10\x01*T\n\nResultEnum\x12\x07\n\x03WIN\x10\x00\x12\x08\n\x04LOSE\x10\x01\x12\x08\n\x04\x44RAW\x10\x02\x12\x0c\n\x08WIN_DRAW\x10\x03\x12\r\n\tLOSE_DRAW\x10\x04\x12\x0c\n\x08WIN_LOSE\x10\x05*\x1d\n\x08SideEnum\x12\x08\n\x04\x42\x41\x43K\x10\x00\x12\x07\n\x03LAY\x10\x01*5\n\x0fStakingPlanEnum\x12\r\n\tFLAT_RATE\x10\x00\x12\x13\n\x0fKELLY_CRITERION\x10\x01*(\n\x08StatEnum\x12\t\n\x05GOALS\x10\x00\x12\x11\n\rSHOTS_ON_GOAL\x10\x01*.\n\x12StrategyStatusEnum\x12\n\n\x06\x41\x43TIVE\x10\x00\x12\x0c\n\x08\x41RCHIVED\x10\x01*+\n\x10StrategyTypeEnum\x12\x08\n\x04LIVE\x10\x00\x12\r\n\tSIMULATED\x10\x01*(\n\x08TeamEnum\x12\r\n\tHOME_TEAM\x10\x00\x12\r\n\tAWAY_TEAM\x10\x01*4\n\x0fTradeResultEnum\x12\n\n\x06PLACED\x10\x00\x12\x08\n\x04\x46\x41IL\x10\x01\x12\x0b\n\x07SUCCESS\x10\x02*.\n\tVenueEnum\x12\x08\n\x04HOME\x10\x00\x12\x08\n\x04\x41WAY\x10\x01\x12\r\n\tHOME_AWAY\x10\x02*)\n\x0eVisibilityEnum\x12\n\n\x06PUBLIC\x10\x00\x12\x0b\n\x07PRIVATE\x10\x01\x42\x33Z1github.com/statistico/statistico-proto;statisticob\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\nenum.proto\x12\nstatistico*\"\n\nActionEnum\x12\x07\n\x03\x46OR\x10\x00\x12\x0b\n\x07\x41GAINST\x10\x01*)\n\x0c\x45xchangeEnum\x12\x0b\n\x07\x42\x45TFAIR\x10\x00\x12\x0c\n\x08PINNACLE\x10\x01* \n\x08LineEnum\x12\x0b\n\x07\x43LOSING\x10\x00\x12\x07\n\x03MAX\x10\x01*X\n\nMarketEnum\x12\x11\n\rOVER_UNDER_05\x10\x00\x12\x11\n\rOVER_UNDER_15\x10\x01\x12\x11\n\rOVER_UNDER_25\x10\x02\x12\x11\n\rOVER_UNDER_35\x10\x03*5\n\x0bMeasureEnum\x12\t\n\x05TOTAL\x10\x00\x12\x0b\n\x07\x41VERAGE\x10\x01\x12\x0e\n\nCONTINUOUS\x10\x02*\x1e\n\nMetricEnum\x12\x07\n\x03GTE\x10\x00\x12\x07\n\x03LTE\x10\x01*T\n\nResultEnum\x12\x07\n\x03WIN\x10\x00\x12\x08\n\x04LOSE\x10\x01\x12\x08\n\x04\x44RAW\x10\x02\x12\x0c\n\x08WIN_DRAW\x10\x03\x12\r\n\tLOSE_DRAW\x10\x04\x12\x0c\n\x08WIN_LOSE\x10\x05*\x1d\n\x08SideEnum\x12\x08\n\x04\x42\x41\x43K\x10\x00\x12\x07\n\x03LAY\x10\x01*5\n\x0fStakingPlanEnum\x12\r\n\tFLAT_RATE\x10\x00\x12\x13\n\x0fKELLY_CRITERION\x10\x01*(\n\x08StatEnum\x12\t\n\x05GOALS\x10\x00\x12\x11\n\rSHOTS_ON_GOAL\x10\x01*.\n\x12StrategyStatusEnum\x12\n\n\x06\x41\x43TIVE\x10\x00\x12\x0c\n\x08\x41RCHIVED\x10\x01*+\n\x10StrategyTypeEnum\x12\x08\n\x04LIVE\x10\x00\x12\r\n\tSIMULATED\x10\x01*(\n\x08TeamEnum\x12\r\n\tHOME_TEAM\x10\x00\x12\r\n\tAWAY_TEAM\x10\x01*4\n\x0fTradeResultEnum\x12\n\n\x06PLACED\x10\x00\x12\x08\n\x04\x46\x41IL\x10\x01\x12\x0b\n\x07SUCCESS\x10\x02*.\n\tVenueEnum\x12\x08\n\x04HOME\x10\x00\x12\x08\n\x04\x41WAY\x10\x01\x12\r\n\tHOME_AWAY\x10\x02*)\n\x0eVisibilityEnum\x12\n\n\x06PUBLIC\x10\x00\x12\x0b\n\x07PRIVATE\x10\x01\x42\x33Z1github.com/statistico/statistico-proto;statisticob\x06proto3')
 
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, globals())
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'enum_pb2', globals())
@@ -28,29 +28,29 @@ if _descriptor._USE_C_DESCRIPTORS == False:
   _LINEENUM._serialized_start=105
   _LINEENUM._serialized_end=137
   _MARKETENUM._serialized_start=139
-  _MARKETENUM._serialized_end=170
-  _MEASUREENUM._serialized_start=172
-  _MEASUREENUM._serialized_end=225
-  _METRICENUM._serialized_start=227
-  _METRICENUM._serialized_end=257
-  _RESULTENUM._serialized_start=259
-  _RESULTENUM._serialized_end=343
-  _SIDEENUM._serialized_start=345
-  _SIDEENUM._serialized_end=374
-  _STAKINGPLANENUM._serialized_start=376
-  _STAKINGPLANENUM._serialized_end=429
-  _STATENUM._serialized_start=431
-  _STATENUM._serialized_end=471
-  _STRATEGYSTATUSENUM._serialized_start=473
-  _STRATEGYSTATUSENUM._serialized_end=519
-  _STRATEGYTYPEENUM._serialized_start=521
-  _STRATEGYTYPEENUM._serialized_end=564
-  _TEAMENUM._serialized_start=566
-  _TEAMENUM._serialized_end=606
-  _TRADERESULTENUM._serialized_start=608
-  _TRADERESULTENUM._serialized_end=660
-  _VENUEENUM._serialized_start=662
-  _VENUEENUM._serialized_end=708
-  _VISIBILITYENUM._serialized_start=710
-  _VISIBILITYENUM._serialized_end=751
+  _MARKETENUM._serialized_end=227
+  _MEASUREENUM._serialized_start=229
+  _MEASUREENUM._serialized_end=282
+  _METRICENUM._serialized_start=284
+  _METRICENUM._serialized_end=314
+  _RESULTENUM._serialized_start=316
+  _RESULTENUM._serialized_end=400
+  _SIDEENUM._serialized_start=402
+  _SIDEENUM._serialized_end=431
+  _STAKINGPLANENUM._serialized_start=433
+  _STAKINGPLANENUM._serialized_end=486
+  _STATENUM._serialized_start=488
+  _STATENUM._serialized_end=528
+  _STRATEGYSTATUSENUM._serialized_start=530
+  _STRATEGYSTATUSENUM._serialized_end=576
+  _STRATEGYTYPEENUM._serialized_start=578
+  _STRATEGYTYPEENUM._serialized_end=621
+  _TEAMENUM._serialized_start=623
+  _TEAMENUM._serialized_end=663
+  _TRADERESULTENUM._serialized_start=665
+  _TRADERESULTENUM._serialized_end=717
+  _VENUEENUM._serialized_start=719
+  _VENUEENUM._serialized_end=765
+  _VISIBILITYENUM._serialized_start=767
+  _VISIBILITYENUM._serialized_end=808
 # @@protoc_insertion_point(module_scope)

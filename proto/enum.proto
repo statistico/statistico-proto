@@ -20,7 +20,10 @@ enum LineEnum {
 }
 
 enum MarketEnum {
-  OVER_UNDER_25 = 0;
+  OVER_UNDER_05 = 0;
+  OVER_UNDER_15 = 1;
+  OVER_UNDER_25 = 2;
+  OVER_UNDER_35 = 3;
 }
 
 enum MeasureEnum {

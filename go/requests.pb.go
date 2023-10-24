@@ -565,9 +565,10 @@ type ListStrategiesRequest struct {
 
 	Status        []StrategyStatusEnum  `protobuf:"varint,1,rep,packed,name=status,proto3,enum=statistico.StrategyStatusEnum" json:"status,omitempty"`
 	Type          []StrategyTypeEnum    `protobuf:"varint,2,rep,packed,name=type,proto3,enum=statistico.StrategyTypeEnum" json:"type,omitempty"`
-	CompetitionId *wrappers.UInt64Value `protobuf:"bytes,3,opt,name=competition_id,json=competitionId,proto3" json:"competition_id,omitempty"`
-	SeasonId      *wrappers.UInt64Value `protobuf:"bytes,4,opt,name=season_id,json=seasonId,proto3" json:"season_id,omitempty"`
-	Model         *wrappers.StringValue `protobuf:"bytes,5,opt,name=model,proto3" json:"model,omitempty"`
+	Market        []MarketEnum          `protobuf:"varint,3,rep,packed,name=market,proto3,enum=statistico.MarketEnum" json:"market,omitempty"`
+	CompetitionId *wrappers.UInt64Value `protobuf:"bytes,4,opt,name=competition_id,json=competitionId,proto3" json:"competition_id,omitempty"`
+	SeasonId      *wrappers.UInt64Value `protobuf:"bytes,5,opt,name=season_id,json=seasonId,proto3" json:"season_id,omitempty"`
+	Model         *wrappers.StringValue `protobuf:"bytes,6,opt,name=model,proto3" json:"model,omitempty"`
 }
 
 func (x *ListStrategiesRequest) Reset() {
@@ -612,6 +613,13 @@ func (x *ListStrategiesRequest) GetStatus() []StrategyStatusEnum {
 func (x *ListStrategiesRequest) GetType() []StrategyTypeEnum {
 	if x != nil {
 		return x.Type
+	}
+	return nil
+}
+
+func (x *ListStrategiesRequest) GetMarket() []MarketEnum {
+	if x != nil {
+		return x.Market
 	}
 	return nil
 }
@@ -1383,7 +1391,7 @@ var file_requests_proto_rawDesc = []byte{
 	0x69, 0x74, 0x18, 0x03, 0x20, 0x01, 0x28, 0x0d, 0x52, 0x05, 0x6c, 0x69, 0x6d, 0x69, 0x74, 0x12,
 	0x1f, 0x0a, 0x0b, 0x64, 0x61, 0x74, 0x65, 0x5f, 0x62, 0x65, 0x66, 0x6f, 0x72, 0x65, 0x18, 0x04,
 	0x20, 0x01, 0x28, 0x09, 0x52, 0x0a, 0x64, 0x61, 0x74, 0x65, 0x42, 0x65, 0x66, 0x6f, 0x72, 0x65,
-	0x22, 0xb5, 0x02, 0x0a, 0x15, 0x4c, 0x69, 0x73, 0x74, 0x53, 0x74, 0x72, 0x61, 0x74, 0x65, 0x67,
+	0x22, 0xe5, 0x02, 0x0a, 0x15, 0x4c, 0x69, 0x73, 0x74, 0x53, 0x74, 0x72, 0x61, 0x74, 0x65, 0x67,
 	0x69, 0x65, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x36, 0x0a, 0x06, 0x73, 0x74,
 	0x61, 0x74, 0x75, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0e, 0x32, 0x1e, 0x2e, 0x73, 0x74, 0x61,
 	0x74, 0x69, 0x73, 0x74, 0x69, 0x63, 0x6f, 0x2e, 0x53, 0x74, 0x72, 0x61, 0x74, 0x65, 0x67, 0x79,
@@ -1391,15 +1399,18 @@ var file_requests_proto_rawDesc = []byte{
 	0x75, 0x73, 0x12, 0x30, 0x0a, 0x04, 0x74, 0x79, 0x70, 0x65, 0x18, 0x02, 0x20, 0x03, 0x28, 0x0e,
 	0x32, 0x1c, 0x2e, 0x73, 0x74, 0x61, 0x74, 0x69, 0x73, 0x74, 0x69, 0x63, 0x6f, 0x2e, 0x53, 0x74,
 	0x72, 0x61, 0x74, 0x65, 0x67, 0x79, 0x54, 0x79, 0x70, 0x65, 0x45, 0x6e, 0x75, 0x6d, 0x52, 0x04,
-	0x74, 0x79, 0x70, 0x65, 0x12, 0x43, 0x0a, 0x0e, 0x63, 0x6f, 0x6d, 0x70, 0x65, 0x74, 0x69, 0x74,
-	0x69, 0x6f, 0x6e, 0x5f, 0x69, 0x64, 0x18, 0x03, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1c, 0x2e, 0x67,
+	0x74, 0x79, 0x70, 0x65, 0x12, 0x2e, 0x0a, 0x06, 0x6d, 0x61, 0x72, 0x6b, 0x65, 0x74, 0x18, 0x03,
+	0x20, 0x03, 0x28, 0x0e, 0x32, 0x16, 0x2e, 0x73, 0x74, 0x61, 0x74, 0x69, 0x73, 0x74, 0x69, 0x63,
+	0x6f, 0x2e, 0x4d, 0x61, 0x72, 0x6b, 0x65, 0x74, 0x45, 0x6e, 0x75, 0x6d, 0x52, 0x06, 0x6d, 0x61,
+	0x72, 0x6b, 0x65, 0x74, 0x12, 0x43, 0x0a, 0x0e, 0x63, 0x6f, 0x6d, 0x70, 0x65, 0x74, 0x69, 0x74,
+	0x69, 0x6f, 0x6e, 0x5f, 0x69, 0x64, 0x18, 0x04, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1c, 0x2e, 0x67,
 	0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x55,
 	0x49, 0x6e, 0x74, 0x36, 0x34, 0x56, 0x61, 0x6c, 0x75, 0x65, 0x52, 0x0d, 0x63, 0x6f, 0x6d, 0x70,
 	0x65, 0x74, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x49, 0x64, 0x12, 0x39, 0x0a, 0x09, 0x73, 0x65, 0x61,
-	0x73, 0x6f, 0x6e, 0x5f, 0x69, 0x64, 0x18, 0x04, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1c, 0x2e, 0x67,
+	0x73, 0x6f, 0x6e, 0x5f, 0x69, 0x64, 0x18, 0x05, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1c, 0x2e, 0x67,
 	0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x55,
 	0x49, 0x6e, 0x74, 0x36, 0x34, 0x56, 0x61, 0x6c, 0x75, 0x65, 0x52, 0x08, 0x73, 0x65, 0x61, 0x73,
-	0x6f, 0x6e, 0x49, 0x64, 0x12, 0x32, 0x0a, 0x05, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x18, 0x05, 0x20,
+	0x6f, 0x6e, 0x49, 0x64, 0x12, 0x32, 0x0a, 0x05, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x18, 0x06, 0x20,
 	0x01, 0x28, 0x0b, 0x32, 0x1c, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f,
 	0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x56, 0x61, 0x6c, 0x75,
 	0x65, 0x52, 0x05, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x22, 0x2e, 0x0a, 0x0d, 0x52, 0x65, 0x73, 0x75,
@@ -1570,33 +1581,34 @@ var file_requests_proto_depIdxs = []int32{
 	17, // 11: statistico.FixtureSearchRequest.sort:type_name -> google.protobuf.StringValue
 	22, // 12: statistico.ListStrategiesRequest.status:type_name -> statistico.StrategyStatusEnum
 	23, // 13: statistico.ListStrategiesRequest.type:type_name -> statistico.StrategyTypeEnum
-	24, // 14: statistico.ListStrategiesRequest.competition_id:type_name -> google.protobuf.UInt64Value
-	24, // 15: statistico.ListStrategiesRequest.season_id:type_name -> google.protobuf.UInt64Value
-	17, // 16: statistico.ListStrategiesRequest.model:type_name -> google.protobuf.StringValue
-	17, // 17: statistico.SearchTradesRequest.market:type_name -> google.protobuf.StringValue
-	24, // 18: statistico.SearchTradesRequest.competition_id:type_name -> google.protobuf.UInt64Value
-	24, // 19: statistico.SearchTradesRequest.season_id:type_name -> google.protobuf.UInt64Value
-	17, // 20: statistico.SearchTradesRequest.status:type_name -> google.protobuf.StringValue
-	17, // 21: statistico.SearchTradesRequest.exchange:type_name -> google.protobuf.StringValue
-	25, // 22: statistico.SearchTradesRequest.date_from:type_name -> google.protobuf.Timestamp
-	25, // 23: statistico.SearchTradesRequest.date_to:type_name -> google.protobuf.Timestamp
-	17, // 24: statistico.SeasonCompetitionRequest.sort:type_name -> google.protobuf.StringValue
-	24, // 25: statistico.TeamResultRequest.limit:type_name -> google.protobuf.UInt64Value
-	17, // 26: statistico.TeamResultRequest.date_before:type_name -> google.protobuf.StringValue
-	17, // 27: statistico.TeamResultRequest.date_after:type_name -> google.protobuf.StringValue
-	17, // 28: statistico.TeamResultRequest.venue:type_name -> google.protobuf.StringValue
-	17, // 29: statistico.TeamResultRequest.sort:type_name -> google.protobuf.StringValue
-	24, // 30: statistico.TeamStatRequest.limit:type_name -> google.protobuf.UInt64Value
-	17, // 31: statistico.TeamStatRequest.date_before:type_name -> google.protobuf.StringValue
-	17, // 32: statistico.TeamStatRequest.date_after:type_name -> google.protobuf.StringValue
-	17, // 33: statistico.TeamStatRequest.venue:type_name -> google.protobuf.StringValue
-	17, // 34: statistico.TeamStatRequest.sort:type_name -> google.protobuf.StringValue
-	18, // 35: statistico.TeamStatRequest.opponent:type_name -> google.protobuf.BoolValue
-	36, // [36:36] is the sub-list for method output_type
-	36, // [36:36] is the sub-list for method input_type
-	36, // [36:36] is the sub-list for extension type_name
-	36, // [36:36] is the sub-list for extension extendee
-	0,  // [0:36] is the sub-list for field type_name
+	19, // 14: statistico.ListStrategiesRequest.market:type_name -> statistico.MarketEnum
+	24, // 15: statistico.ListStrategiesRequest.competition_id:type_name -> google.protobuf.UInt64Value
+	24, // 16: statistico.ListStrategiesRequest.season_id:type_name -> google.protobuf.UInt64Value
+	17, // 17: statistico.ListStrategiesRequest.model:type_name -> google.protobuf.StringValue
+	17, // 18: statistico.SearchTradesRequest.market:type_name -> google.protobuf.StringValue
+	24, // 19: statistico.SearchTradesRequest.competition_id:type_name -> google.protobuf.UInt64Value
+	24, // 20: statistico.SearchTradesRequest.season_id:type_name -> google.protobuf.UInt64Value
+	17, // 21: statistico.SearchTradesRequest.status:type_name -> google.protobuf.StringValue
+	17, // 22: statistico.SearchTradesRequest.exchange:type_name -> google.protobuf.StringValue
+	25, // 23: statistico.SearchTradesRequest.date_from:type_name -> google.protobuf.Timestamp
+	25, // 24: statistico.SearchTradesRequest.date_to:type_name -> google.protobuf.Timestamp
+	17, // 25: statistico.SeasonCompetitionRequest.sort:type_name -> google.protobuf.StringValue
+	24, // 26: statistico.TeamResultRequest.limit:type_name -> google.protobuf.UInt64Value
+	17, // 27: statistico.TeamResultRequest.date_before:type_name -> google.protobuf.StringValue
+	17, // 28: statistico.TeamResultRequest.date_after:type_name -> google.protobuf.StringValue
+	17, // 29: statistico.TeamResultRequest.venue:type_name -> google.protobuf.StringValue
+	17, // 30: statistico.TeamResultRequest.sort:type_name -> google.protobuf.StringValue
+	24, // 31: statistico.TeamStatRequest.limit:type_name -> google.protobuf.UInt64Value
+	17, // 32: statistico.TeamStatRequest.date_before:type_name -> google.protobuf.StringValue
+	17, // 33: statistico.TeamStatRequest.date_after:type_name -> google.protobuf.StringValue
+	17, // 34: statistico.TeamStatRequest.venue:type_name -> google.protobuf.StringValue
+	17, // 35: statistico.TeamStatRequest.sort:type_name -> google.protobuf.StringValue
+	18, // 36: statistico.TeamStatRequest.opponent:type_name -> google.protobuf.BoolValue
+	37, // [37:37] is the sub-list for method output_type
+	37, // [37:37] is the sub-list for method input_type
+	37, // [37:37] is the sub-list for extension type_name
+	37, // [37:37] is the sub-list for extension extendee
+	0,  // [0:37] is the sub-list for field type_name
 }
 
 func init() { file_requests_proto_init() }

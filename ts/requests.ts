@@ -463,6 +463,15 @@ export interface TeamStatRequest {
      */
     opponent?: BoolValue;
 }
+/**
+ * @generated from protobuf message statistico.UpdateStrategyRequest
+ */
+export interface UpdateStrategyRequest {
+    /**
+     * @generated from protobuf field: statistico.StrategyTypeEnum type = 1;
+     */
+    type: StrategyTypeEnum;
+}
 // @generated message type with reflection information, may provide speed optimized methods
 class CompetitionRequest$Type extends MessageType<CompetitionRequest> {
     constructor() {
@@ -1696,3 +1705,50 @@ class TeamStatRequest$Type extends MessageType<TeamStatRequest> {
  * @generated MessageType for protobuf message statistico.TeamStatRequest
  */
 export const TeamStatRequest = new TeamStatRequest$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class UpdateStrategyRequest$Type extends MessageType<UpdateStrategyRequest> {
+    constructor() {
+        super("statistico.UpdateStrategyRequest", [
+            { no: 1, name: "type", kind: "enum", T: () => ["statistico.StrategyTypeEnum", StrategyTypeEnum] }
+        ]);
+    }
+    create(value?: PartialMessage<UpdateStrategyRequest>): UpdateStrategyRequest {
+        const message = { type: 0 };
+        globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this });
+        if (value !== undefined)
+            reflectionMergePartial<UpdateStrategyRequest>(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: UpdateStrategyRequest): UpdateStrategyRequest {
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* statistico.StrategyTypeEnum type */ 1:
+                    message.type = reader.int32();
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
+    }
+    internalBinaryWrite(message: UpdateStrategyRequest, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
+        /* statistico.StrategyTypeEnum type = 1; */
+        if (message.type !== 0)
+            writer.tag(1, WireType.Varint).int32(message.type);
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message statistico.UpdateStrategyRequest
+ */
+export const UpdateStrategyRequest = new UpdateStrategyRequest$Type();

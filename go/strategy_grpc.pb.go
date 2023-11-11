@@ -8,6 +8,7 @@ package statistico
 
 import (
 	context "context"
+	empty "github.com/golang/protobuf/ptypes/empty"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -24,6 +25,7 @@ const _ = grpc.SupportPackageIsVersion7
 type StrategyServiceClient interface {
 	CreateStrategy(ctx context.Context, in *CreateStrategyRequest, opts ...grpc.CallOption) (*Strategy, error)
 	ListStrategies(ctx context.Context, in *ListStrategiesRequest, opts ...grpc.CallOption) (StrategyService_ListStrategiesClient, error)
+	UpdateStrategy(ctx context.Context, in *UpdateStrategyRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 }
 
 type strategyServiceClient struct {
@@ -75,12 +77,22 @@ func (x *strategyServiceListStrategiesClient) Recv() (*Strategy, error) {
 	return m, nil
 }
 
+func (c *strategyServiceClient) UpdateStrategy(ctx context.Context, in *UpdateStrategyRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
+	err := c.cc.Invoke(ctx, "/statistico.StrategyService/UpdateStrategy", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // StrategyServiceServer is the server API for StrategyService service.
 // All implementations must embed UnimplementedStrategyServiceServer
 // for forward compatibility
 type StrategyServiceServer interface {
 	CreateStrategy(context.Context, *CreateStrategyRequest) (*Strategy, error)
 	ListStrategies(*ListStrategiesRequest, StrategyService_ListStrategiesServer) error
+	UpdateStrategy(context.Context, *UpdateStrategyRequest) (*empty.Empty, error)
 	mustEmbedUnimplementedStrategyServiceServer()
 }
 
@@ -93,6 +105,9 @@ func (UnimplementedStrategyServiceServer) CreateStrategy(context.Context, *Creat
 }
 func (UnimplementedStrategyServiceServer) ListStrategies(*ListStrategiesRequest, StrategyService_ListStrategiesServer) error {
 	return status.Errorf(codes.Unimplemented, "method ListStrategies not implemented")
+}
+func (UnimplementedStrategyServiceServer) UpdateStrategy(context.Context, *UpdateStrategyRequest) (*empty.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateStrategy not implemented")
 }
 func (UnimplementedStrategyServiceServer) mustEmbedUnimplementedStrategyServiceServer() {}
 
@@ -146,6 +161,24 @@ func (x *strategyServiceListStrategiesServer) Send(m *Strategy) error {
 	return x.ServerStream.SendMsg(m)
 }
 
+func _StrategyService_UpdateStrategy_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateStrategyRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(StrategyServiceServer).UpdateStrategy(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/statistico.StrategyService/UpdateStrategy",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(StrategyServiceServer).UpdateStrategy(ctx, req.(*UpdateStrategyRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // StrategyService_ServiceDesc is the grpc.ServiceDesc for StrategyService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -156,6 +189,10 @@ var StrategyService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "CreateStrategy",
 			Handler:    _StrategyService_CreateStrategy_Handler,
+		},
+		{
+			MethodName: "UpdateStrategy",
+			Handler:    _StrategyService_UpdateStrategy_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{

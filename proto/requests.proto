@@ -172,3 +172,7 @@ message TeamStatRequest {
     // Return stats for opposing team
     google.protobuf.BoolValue opponent = 9;
 }
+
+message UpdateStrategyRequest {
+    StrategyTypeEnum type = 1;
+}

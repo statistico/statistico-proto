@@ -2,6 +2,7 @@
 """Client and server classes corresponding to protobuf-defined services."""
 import grpc
 
+from google.protobuf import empty_pb2 as google_dot_protobuf_dot_empty__pb2
 import requests_pb2 as requests__pb2
 import strategy_pb2 as strategy__pb2
 
@@ -25,6 +26,11 @@ class StrategyServiceStub(object):
                 request_serializer=requests__pb2.ListStrategiesRequest.SerializeToString,
                 response_deserializer=strategy__pb2.Strategy.FromString,
                 )
+        self.UpdateStrategy = channel.unary_unary(
+                '/statistico.StrategyService/UpdateStrategy',
+                request_serializer=requests__pb2.UpdateStrategyRequest.SerializeToString,
+                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                )
 
 
 class StrategyServiceServicer(object):
@@ -42,6 +48,12 @@ class StrategyServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def UpdateStrategy(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_StrategyServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -54,6 +66,11 @@ def add_StrategyServiceServicer_to_server(servicer, server):
                     servicer.ListStrategies,
                     request_deserializer=requests__pb2.ListStrategiesRequest.FromString,
                     response_serializer=strategy__pb2.Strategy.SerializeToString,
+            ),
+            'UpdateStrategy': grpc.unary_unary_rpc_method_handler(
+                    servicer.UpdateStrategy,
+                    request_deserializer=requests__pb2.UpdateStrategyRequest.FromString,
+                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -96,5 +113,22 @@ class StrategyService(object):
         return grpc.experimental.unary_stream(request, target, '/statistico.StrategyService/ListStrategies',
             requests__pb2.ListStrategiesRequest.SerializeToString,
             strategy__pb2.Strategy.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def UpdateStrategy(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/statistico.StrategyService/UpdateStrategy',
+            requests__pb2.UpdateStrategyRequest.SerializeToString,
+            google_dot_protobuf_dot_empty__pb2.Empty.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

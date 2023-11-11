@@ -4,6 +4,8 @@
 import type { RpcTransport } from "@protobuf-ts/runtime-rpc";
 import type { ServiceInfo } from "@protobuf-ts/runtime-rpc";
 import { StrategyService } from "./strategy";
+import type { Empty } from "./google/protobuf/empty";
+import type { UpdateStrategyRequest } from "./requests";
 import type { ListStrategiesRequest } from "./requests";
 import type { ServerStreamingCall } from "@protobuf-ts/runtime-rpc";
 import { stackIntercept } from "@protobuf-ts/runtime-rpc";
@@ -23,6 +25,10 @@ export interface IStrategyServiceClient {
      * @generated from protobuf rpc: ListStrategies(statistico.ListStrategiesRequest) returns (stream statistico.Strategy);
      */
     listStrategies(input: ListStrategiesRequest, options?: RpcOptions): ServerStreamingCall<ListStrategiesRequest, Strategy>;
+    /**
+     * @generated from protobuf rpc: UpdateStrategy(statistico.UpdateStrategyRequest) returns (google.protobuf.Empty);
+     */
+    updateStrategy(input: UpdateStrategyRequest, options?: RpcOptions): UnaryCall<UpdateStrategyRequest, Empty>;
 }
 /**
  * @generated from protobuf service statistico.StrategyService
@@ -46,5 +52,12 @@ export class StrategyServiceClient implements IStrategyServiceClient, ServiceInf
     listStrategies(input: ListStrategiesRequest, options?: RpcOptions): ServerStreamingCall<ListStrategiesRequest, Strategy> {
         const method = this.methods[1], opt = this._transport.mergeOptions(options);
         return stackIntercept<ListStrategiesRequest, Strategy>("serverStreaming", this._transport, method, opt, input);
+    }
+    /**
+     * @generated from protobuf rpc: UpdateStrategy(statistico.UpdateStrategyRequest) returns (google.protobuf.Empty);
+     */
+    updateStrategy(input: UpdateStrategyRequest, options?: RpcOptions): UnaryCall<UpdateStrategyRequest, Empty> {
+        const method = this.methods[2], opt = this._transport.mergeOptions(options);
+        return stackIntercept<UpdateStrategyRequest, Empty>("unary", this._transport, method, opt, input);
     }
 }

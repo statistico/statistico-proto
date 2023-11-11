@@ -7,11 +7,13 @@ option go_package = "github.com/statistico/statistico-proto;statistico";
 import "enum.proto";
 import "requests.proto";
 import "utility.proto";
+import "google/protobuf/empty.proto";
 import "google/protobuf/wrappers.proto";
 
 service StrategyService {
   rpc CreateStrategy(CreateStrategyRequest) returns (Strategy) {}
   rpc ListStrategies(ListStrategiesRequest) returns (stream Strategy) {}
+  rpc UpdateStrategy(UpdateStrategyRequest) returns (google.protobuf.Empty) {}
 }
 
 message Strategy {

@@ -5,54 +5,100 @@ package statistico;
 option go_package = "github.com/statistico/statistico-proto;statistico";
 
 import "google/protobuf/wrappers.proto";
+import "common.proto";
 import "requests.proto";
 
 service TeamStatsService {
     rpc GetTeamStatsForFixture(FixtureRequest) returns (TeamStatsResponse) {}
-    rpc GetStatForTeam(TeamStatRequest) returns (stream TeamStat) {}
 }
 
 message TeamStatsResponse {
     TeamStats home_team = 1;
     TeamStats away_team = 2;
-    TeamXG    team_xg   = 3;
-}
-
-message TeamStat {
-    uint64 fixture_id = 1;
-    string stat = 2;
-    google.protobuf.UInt32Value value = 3;
 }
 
 message TeamStats {
     uint64 team_id = 1;
-    google.protobuf.UInt32Value shots_total = 2;
-    google.protobuf.UInt32Value shots_on_goal = 3;
-    google.protobuf.UInt32Value shots_off_goal = 4;
-    google.protobuf.UInt32Value shots_blocked = 5;
-    google.protobuf.UInt32Value shots_inside_box = 6;
-    google.protobuf.UInt32Value shots_outside_box = 7;
-    google.protobuf.UInt32Value passes_total = 8;
-    google.protobuf.UInt32Value passes_accuracy = 9;
-    google.protobuf.UInt32Value passes_percentage = 10;
-    google.protobuf.UInt32Value attacks_total = 11;
-    google.protobuf.UInt32Value attacks_dangerous = 12;
-    google.protobuf.UInt32Value goals = 13;
-    google.protobuf.UInt32Value fouls = 14;
-    google.protobuf.UInt32Value corners = 15;
-    google.protobuf.UInt32Value offsides = 16;
-    google.protobuf.UInt32Value possession = 17;
-    google.protobuf.UInt32Value yellow_cards = 18;
-    google.protobuf.UInt32Value red_cards = 19;
-    google.protobuf.UInt32Value saves = 20;
-    google.protobuf.UInt32Value substitutions = 21;
-    google.protobuf.UInt32Value goal_kicks = 22;
-    google.protobuf.UInt32Value goal_attempts = 23;
-    google.protobuf.UInt32Value free_kicks = 24;
-    google.protobuf.UInt32Value throw_ins = 25;
+    uint64 fixture_id = 2;
+    google.protobuf.Int32Value assists = 3;
+    google.protobuf.Int32Value ball_possession = 4;
+    google.protobuf.Int32Value ball_safe = 5;
+    google.protobuf.Int32Value challenges = 6;
+    google.protobuf.Int32Value corners = 7;
+    google.protobuf.Int32Value duels_won = 8;
+    google.protobuf.Int32Value free_kicks = 9;
+    google.protobuf.Int32Value fouls = 10;
+    google.protobuf.Int32Value goal_kicks = 11;
+    google.protobuf.Int32Value hit_woodwork = 12;
+    google.protobuf.Int32Value injuries = 13;
+    google.protobuf.Int32Value interceptions = 14;
+    google.protobuf.Int32Value offsides = 15;
+    google.protobuf.Int32Value penalties = 16;
+    google.protobuf.Int32Value saves = 17;
+    google.protobuf.Int32Value substitutions = 18;
+    google.protobuf.Int32Value tackles = 19;
+    TeamAttacks team_attacks = 20;
+    TeamCards team_cards = 21;
+    TeamCrosses team_crosses = 22;
+    TeamDribbles team_dribbles = 23;
+    TeamGoals team_goals = 24;
+    TeamHeaders team_headers = 25;
+    TeamPasses team_passes = 26;
+    TeamShots team_shots = 27;
+    google.protobuf.Int32Value throw_ins = 28;
+    google.protobuf.Int32Value treatments = 29;
+    Date created_at = 30;
+    Date updated_at = 31;
 }
 
-message TeamXG {
-    google.protobuf.FloatValue home = 1;
-    google.protobuf.FloatValue away = 2;
+message TeamCards {
+    google.protobuf.Int32Value red = 1;
+    google.protobuf.Int32Value yellow = 2;
+    google.protobuf.Int32Value yellow_red = 3;
+}
+
+message TeamCrosses {
+    google.protobuf.Int32Value total = 1;
+    google.protobuf.Int32Value accurate = 2;
+}
+
+message TeamDribbles {
+    google.protobuf.Int32Value total = 1;
+    google.protobuf.Int32Value success = 2;
+}
+
+message TeamGoals {
+    google.protobuf.Int32Value scored = 1;
+    google.protobuf.Int32Value scored_half_time = 2;
+    google.protobuf.Int32Value conceded = 3;
+    google.protobuf.Int32Value conceded_half_time = 4;
+    google.protobuf.Int32Value attempts = 5;
+}
+
+message TeamHeaders {
+    google.protobuf.Int32Value total = 1;
+    google.protobuf.Int32Value success = 2;
+}
+
+message TeamShots {
+    google.protobuf.Int32Value total = 1;
+    google.protobuf.Int32Value on_goal = 2;
+    google.protobuf.Int32Value off_goal = 3;
+    google.protobuf.Int32Value blocked = 4;
+    google.protobuf.Int32Value inside_box = 5;
+    google.protobuf.Int32Value outside_box = 6;
+}
+
+message TeamPasses {
+    google.protobuf.Int32Value total = 1;
+    google.protobuf.Int32Value success = 2;
+    google.protobuf.Int32Value percentage = 3;
+    google.protobuf.Int32Value key = 4;
+    google.protobuf.Int32Value long = 5;
+}
+
+message TeamAttacks {
+    google.protobuf.Int32Value counter = 1;
+    google.protobuf.Int32Value total = 2;
+    google.protobuf.Int32Value dangerous = 3;
 }

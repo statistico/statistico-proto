@@ -8,10 +8,15 @@ workflows:
             tags:
               only: /^v.*/
 
+executors:
+  machine-executor:
+    machine:
+      image: ubuntu-2004:2023.10.1
+
 jobs:
   build-release:
     working_directory: ~/go/src/github.com/statistico/statistico-proto
-    machine: true
+    executor: machine-executor
     environment:
       GOPATH: /home/circleci/go
     steps:

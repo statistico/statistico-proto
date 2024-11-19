@@ -13,7 +13,7 @@ service CompetitionService {
 message Competition {
     uint64 id = 1;
     string name = 2;
-    bool is_cup = 3;
-    uint64 country_id = 4;
-    string logo = 5;
+    uint64 country_id = 3;
+    string image_path = 4;
+    string type = 5;
 }

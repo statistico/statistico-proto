@@ -25,7 +25,7 @@ _sym_db = _symbol_database.Default()
 import requests_pb2 as requests__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x11\x63ompetition.proto\x12\nstatistico\x1a\x0erequests.proto\"Y\n\x0b\x43ompetition\x12\n\n\x02id\x18\x01 \x01(\x04\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x0e\n\x06is_cup\x18\x03 \x01(\x08\x12\x12\n\ncountry_id\x18\x04 \x01(\x04\x12\x0c\n\x04logo\x18\x05 \x01(\t2e\n\x12\x43ompetitionService\x12O\n\x10ListCompetitions\x12\x1e.statistico.CompetitionRequest\x1a\x17.statistico.Competition\"\x00\x30\x01\x42\x33Z1github.com/statistico/statistico-proto;statisticob\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x11\x63ompetition.proto\x12\nstatistico\x1a\x0erequests.proto\"]\n\x0b\x43ompetition\x12\n\n\x02id\x18\x01 \x01(\x04\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x12\n\ncountry_id\x18\x03 \x01(\x04\x12\x12\n\nimage_path\x18\x04 \x01(\t\x12\x0c\n\x04type\x18\x05 \x01(\t2e\n\x12\x43ompetitionService\x12O\n\x10ListCompetitions\x12\x1e.statistico.CompetitionRequest\x1a\x17.statistico.Competition\"\x00\x30\x01\x42\x33Z1github.com/statistico/statistico-proto;statisticob\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -34,7 +34,7 @@ if not _descriptor._USE_C_DESCRIPTORS:
   _globals['DESCRIPTOR']._loaded_options = None
   _globals['DESCRIPTOR']._serialized_options = b'Z1github.com/statistico/statistico-proto;statistico'
   _globals['_COMPETITION']._serialized_start=49
-  _globals['_COMPETITION']._serialized_end=138
-  _globals['_COMPETITIONSERVICE']._serialized_start=140
-  _globals['_COMPETITIONSERVICE']._serialized_end=241
+  _globals['_COMPETITION']._serialized_end=142
+  _globals['_COMPETITIONSERVICE']._serialized_start=144
+  _globals['_COMPETITIONSERVICE']._serialized_end=245
 # @@protoc_insertion_point(module_scope)

@@ -19,9 +19,10 @@ message Team {
     google.protobuf.StringValue short_code = 3;
     uint64 country_id = 4;
     uint64 venue_id = 5;
-    google.protobuf.BoolValue is_national_team = 6;
-    google.protobuf.UInt64Value founded = 7;
-    google.protobuf.StringValue logo = 8;
+    string type = 6;
+    string gender = 7;
+    google.protobuf.UInt64Value founded = 8;
+    string logo = 9;
 }
 
 message CompetitionTeamsRequest {

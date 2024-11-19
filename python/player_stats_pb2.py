@@ -23,10 +23,11 @@ _sym_db = _symbol_database.Default()
 
 
 from google.protobuf import wrappers_pb2 as google_dot_protobuf_dot_wrappers__pb2
+import common_pb2 as common__pb2
 import requests_pb2 as requests__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x12player_stats.proto\x12\nstatistico\x1a\x1egoogle/protobuf/wrappers.proto\x1a\x0erequests.proto\"U\n\x1aTeamSeasonPlayStatsRequest\x12\x0f\n\x07team_id\x18\x01 \x01(\x04\x12\x11\n\tseason_id\x18\x02 \x01(\x04\x12\x13\n\x0b\x64\x61te_before\x18\x03 \x01(\x04\"m\n\x13PlayerStatsResponse\x12*\n\thome_team\x18\x01 \x03(\x0b\x32\x17.statistico.PlayerStats\x12*\n\taway_team\x18\x02 \x03(\x0b\x32\x17.statistico.PlayerStats\"^\n\x0eLineupResponse\x12%\n\thome_team\x18\x01 \x01(\x0b\x32\x12.statistico.Lineup\x12%\n\taway_team\x18\x02 \x01(\x0b\x32\x12.statistico.Lineup\"\xd8\x02\n\x0bPlayerStats\x12\x11\n\tplayer_id\x18\x01 \x01(\x04\x12\x0f\n\x07team_id\x18\x02 \x01(\x04\x12\x12\n\nfixture_id\x18\x03 \x01(\x04\x12\x15\n\ris_substitute\x18\x04 \x01(\x08\x12\x30\n\x0bshots_total\x18\x05 \x01(\x0b\x32\x1b.google.protobuf.Int32Value\x12\x32\n\rshots_on_goal\x18\x06 \x01(\x0b\x32\x1b.google.protobuf.Int32Value\x12\x31\n\x0cgoals_scored\x18\x07 \x01(\x0b\x32\x1b.google.protobuf.Int32Value\x12\x33\n\x0egoals_conceded\x18\x08 \x01(\x0b\x32\x1b.google.protobuf.Int32Value\x12,\n\x07\x61ssists\x18\t \x01(\x0b\x32\x1b.google.protobuf.Int32Value\"Z\n\x06Lineup\x12\'\n\x05start\x18\x01 \x03(\x0b\x32\x18.statistico.LineupPlayer\x12\'\n\x05\x62\x65nch\x18\x02 \x03(\x0b\x32\x18.statistico.LineupPlayer\"\x84\x01\n\x0cLineupPlayer\x12\x11\n\tplayer_id\x18\x01 \x01(\x04\x12\x10\n\x08position\x18\x02 \x01(\t\x12\x38\n\x12\x66ormation_position\x18\x03 \x01(\x0b\x32\x1c.google.protobuf.UInt32Value\x12\x15\n\ris_substitute\x18\x04 \x01(\x08\x32\xa1\x02\n\x12PlayerStatsService\x12Y\n\x18GetPlayerStatsForFixture\x12\x1a.statistico.FixtureRequest\x1a\x1f.statistico.PlayerStatsResponse\"\x00\x12O\n\x13GetLineUpForFixture\x12\x1a.statistico.FixtureRequest\x1a\x1a.statistico.LineupResponse\"\x00\x12_\n\x18GetTeamSeasonPlayerStats\x12&.statistico.TeamSeasonPlayStatsRequest\x1a\x17.statistico.PlayerStats\"\x00\x30\x01\x42\x33Z1github.com/statistico/statistico-proto;statisticob\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x12player_stats.proto\x12\nstatistico\x1a\x1egoogle/protobuf/wrappers.proto\x1a\x0c\x63ommon.proto\x1a\x0erequests.proto\"U\n\x1aTeamSeasonPlayStatsRequest\x12\x0f\n\x07team_id\x18\x01 \x01(\x04\x12\x11\n\tseason_id\x18\x02 \x01(\x04\x12\x13\n\x0b\x64\x61te_before\x18\x03 \x01(\x04\"m\n\x13PlayerStatsResponse\x12*\n\thome_team\x18\x01 \x03(\x0b\x32\x17.statistico.PlayerStats\x12*\n\taway_team\x18\x02 \x03(\x0b\x32\x17.statistico.PlayerStats\"^\n\x0eLineupResponse\x12%\n\thome_team\x18\x01 \x01(\x0b\x32\x12.statistico.Lineup\x12%\n\taway_team\x18\x02 \x01(\x0b\x32\x12.statistico.Lineup\"\xb5\x0c\n\x0bPlayerStats\x12\x11\n\tplayer_id\x18\x01 \x01(\x04\x12\x11\n\tseason_id\x18\x02 \x01(\x04\x12\x0f\n\x07team_id\x18\x03 \x01(\x04\x12\x12\n\nfixture_id\x18\x04 \x01(\x04\x12\x13\n\x0bplayer_name\x18\x05 \x01(\t\x12\x30\n\x0b\x61\x65rials_won\x18\x06 \x01(\x0b\x32\x1b.google.protobuf.Int32Value\x12 \n\x05shots\x18\x07 \x01(\x0b\x32\x11.statistico.Shots\x12 \n\x05goals\x18\x08 \x01(\x0b\x32\x11.statistico.Goals\x12 \n\x05\x66ouls\x18\t \x01(\x0b\x32\x11.statistico.Fouls\x12+\n\x0bgoal_keeper\x18\n \x01(\x0b\x32\x16.statistico.GoalKeeper\x12\x38\n\x13\x62ig_chances_created\x18\x0b \x01(\x0b\x32\x1b.google.protobuf.Int32Value\x12\x37\n\x12\x62ig_chances_missed\x18\x0c \x01(\x0b\x32\x1b.google.protobuf.Int32Value\x12,\n\x07\x61ssists\x18\r \x01(\x0b\x32\x1b.google.protobuf.Int32Value\x12\x31\n\x0c\x64ispossessed\x18\x0e \x01(\x0b\x32\x1b.google.protobuf.Int32Value\x12\x31\n\x0cyellow_cards\x18\x0f \x01(\x0b\x32\x1b.google.protobuf.Int32Value\x12-\n\x08red_card\x18\x10 \x01(\x0b\x32\x1b.google.protobuf.Int32Value\x12\x34\n\x0fyellow_red_card\x18\x11 \x01(\x0b\x32\x1b.google.protobuf.Int32Value\x12(\n\tpenalties\x18\x12 \x01(\x0b\x32\x15.statistico.Penalties\x12$\n\x07\x63rosses\x18\x13 \x01(\x0b\x32\x13.statistico.Crosses\x12\"\n\x06passes\x18\x14 \x01(\x0b\x32\x12.statistico.Passes\x12/\n\rthrough_balls\x18\x15 \x01(\x0b\x32\x18.statistico.ThroughBalls\x12 \n\x05\x64uels\x18\x16 \x01(\x0b\x32\x11.statistico.Duels\x12&\n\x08\x64ribbles\x18\x17 \x01(\x0b\x32\x14.statistico.Dribbles\x12\x33\n\x0elong_balls_won\x18\x18 \x01(\x0b\x32\x1b.google.protobuf.Int32Value\x12-\n\x08offsides\x18\x19 \x01(\x0b\x32\x1b.google.protobuf.Int32Value\x12\x31\n\x0chit_woodwork\x18\x1a \x01(\x0b\x32\x1b.google.protobuf.Int32Value\x12,\n\x07tackles\x18\x1b \x01(\x0b\x32\x1b.google.protobuf.Int32Value\x12\x32\n\rinterceptions\x18\x1c \x01(\x0b\x32\x1b.google.protobuf.Int32Value\x12/\n\nclearances\x18\x1d \x01(\x0b\x32\x1b.google.protobuf.Int32Value\x12\x38\n\x13\x63learances_off_line\x18\x1e \x01(\x0b\x32\x1b.google.protobuf.Int32Value\x12,\n\x07touches\x18\x1f \x01(\x0b\x32\x1b.google.protobuf.Int32Value\x12\x33\n\x0eminutes_played\x18  \x01(\x0b\x32\x1b.google.protobuf.Int32Value\x12+\n\x06rating\x18! \x01(\x0b\x32\x1b.google.protobuf.FloatValue\x12.\n\town_goals\x18\" \x01(\x0b\x32\x1b.google.protobuf.Int32Value\x12\x36\n\x11\x65rror_led_to_goal\x18# \x01(\x0b\x32\x1b.google.protobuf.Int32Value\x12$\n\ncreated_at\x18$ \x01(\x0b\x32\x10.statistico.Date\x12$\n\nupdated_at\x18% \x01(\x0b\x32\x10.statistico.Date\"\xf0\x01\n\x05Shots\x12*\n\x05total\x18\x01 \x01(\x0b\x32\x1b.google.protobuf.Int32Value\x12.\n\ton_target\x18\x02 \x01(\x0b\x32\x1b.google.protobuf.Int32Value\x12/\n\noff_target\x18\x03 \x01(\x0b\x32\x1b.google.protobuf.Int32Value\x12,\n\x07\x62locked\x18\x04 \x01(\x0b\x32\x1b.google.protobuf.Int32Value\x12,\n\x07stopped\x18\x05 \x01(\x0b\x32\x1b.google.protobuf.Int32Value\"c\n\x05Goals\x12+\n\x06scored\x18\x01 \x01(\x0b\x32\x1b.google.protobuf.Int32Value\x12-\n\x08\x63onceded\x18\x02 \x01(\x0b\x32\x1b.google.protobuf.Int32Value\"c\n\x05\x46ouls\x12*\n\x05\x64rawn\x18\x01 \x01(\x0b\x32\x1b.google.protobuf.Int32Value\x12.\n\tcommitted\x18\x02 \x01(\x0b\x32\x1b.google.protobuf.Int32Value\"\xd8\x01\n\nGoalKeeper\x12\x30\n\x0bsaves_total\x18\x01 \x01(\x0b\x32\x1b.google.protobuf.Int32Value\x12\x35\n\x10saves_inside_box\x18\x02 \x01(\x0b\x32\x1b.google.protobuf.Int32Value\x12\x33\n\x0egoals_conceded\x18\x03 \x01(\x0b\x32\x1b.google.protobuf.Int32Value\x12,\n\x07punches\x18\x04 \x01(\x0b\x32\x1b.google.protobuf.Int32Value\"\xeb\x01\n\tPenalties\x12+\n\x06scored\x18\x01 \x01(\x0b\x32\x1b.google.protobuf.Int32Value\x12+\n\x06missed\x18\x02 \x01(\x0b\x32\x1b.google.protobuf.Int32Value\x12*\n\x05saved\x18\x03 \x01(\x0b\x32\x1b.google.protobuf.Int32Value\x12.\n\tcommitted\x18\x04 \x01(\x0b\x32\x1b.google.protobuf.Int32Value\x12(\n\x03won\x18\x05 \x01(\x0b\x32\x1b.google.protobuf.Int32Value\"d\n\x07\x43rosses\x12*\n\x05total\x18\x01 \x01(\x0b\x32\x1b.google.protobuf.Int32Value\x12-\n\x08\x61\x63\x63urate\x18\x02 \x01(\x0b\x32\x1b.google.protobuf.Int32Value\"\xe7\x01\n\x06Passes\x12*\n\x05total\x18\x01 \x01(\x0b\x32\x1b.google.protobuf.Int32Value\x12-\n\x08\x61\x63\x63urate\x18\x02 \x01(\x0b\x32\x1b.google.protobuf.Int32Value\x12-\n\x08\x61\x63\x63uracy\x18\x03 \x01(\x0b\x32\x1b.google.protobuf.Int32Value\x12(\n\x03key\x18\x04 \x01(\x0b\x32\x1b.google.protobuf.Int32Value\x12)\n\x04long\x18\x05 \x01(\x0b\x32\x1b.google.protobuf.Int32Value\"d\n\x0cThroughBalls\x12*\n\x05total\x18\x01 \x01(\x0b\x32\x1b.google.protobuf.Int32Value\x12(\n\x03won\x18\x02 \x01(\x0b\x32\x1b.google.protobuf.Int32Value\"\x88\x01\n\x05\x44uels\x12*\n\x05total\x18\x01 \x01(\x0b\x32\x1b.google.protobuf.Int32Value\x12(\n\x03won\x18\x02 \x01(\x0b\x32\x1b.google.protobuf.Int32Value\x12)\n\x04lost\x18\x03 \x01(\x0b\x32\x1b.google.protobuf.Int32Value\"\x92\x01\n\x08\x44ribbles\x12-\n\x08\x61ttempts\x18\x01 \x01(\x0b\x32\x1b.google.protobuf.Int32Value\x12,\n\x07success\x18\x02 \x01(\x0b\x32\x1b.google.protobuf.Int32Value\x12)\n\x04past\x18\x03 \x01(\x0b\x32\x1b.google.protobuf.Int32Value\"Z\n\x06Lineup\x12\'\n\x05start\x18\x01 \x03(\x0b\x32\x18.statistico.LineupPlayer\x12\'\n\x05\x62\x65nch\x18\x02 \x03(\x0b\x32\x18.statistico.LineupPlayer\"\x84\x01\n\x0cLineupPlayer\x12\x11\n\tplayer_id\x18\x01 \x01(\x04\x12\x10\n\x08position\x18\x02 \x01(\t\x12\x38\n\x12\x66ormation_position\x18\x03 \x01(\x0b\x32\x1c.google.protobuf.UInt32Value\x12\x15\n\ris_substitute\x18\x04 \x01(\x08\x32\xa1\x02\n\x12PlayerStatsService\x12Y\n\x18GetPlayerStatsForFixture\x12\x1a.statistico.FixtureRequest\x1a\x1f.statistico.PlayerStatsResponse\"\x00\x12O\n\x13GetLineUpForFixture\x12\x1a.statistico.FixtureRequest\x1a\x1a.statistico.LineupResponse\"\x00\x12_\n\x18GetTeamSeasonPlayerStats\x12&.statistico.TeamSeasonPlayStatsRequest\x1a\x17.statistico.PlayerStats\"\x00\x30\x01\x42\x33Z1github.com/statistico/statistico-proto;statisticob\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -34,18 +35,38 @@ _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'player_stats_pb2', _globals
 if not _descriptor._USE_C_DESCRIPTORS:
   _globals['DESCRIPTOR']._loaded_options = None
   _globals['DESCRIPTOR']._serialized_options = b'Z1github.com/statistico/statistico-proto;statistico'
-  _globals['_TEAMSEASONPLAYSTATSREQUEST']._serialized_start=82
-  _globals['_TEAMSEASONPLAYSTATSREQUEST']._serialized_end=167
-  _globals['_PLAYERSTATSRESPONSE']._serialized_start=169
-  _globals['_PLAYERSTATSRESPONSE']._serialized_end=278
-  _globals['_LINEUPRESPONSE']._serialized_start=280
-  _globals['_LINEUPRESPONSE']._serialized_end=374
-  _globals['_PLAYERSTATS']._serialized_start=377
-  _globals['_PLAYERSTATS']._serialized_end=721
-  _globals['_LINEUP']._serialized_start=723
-  _globals['_LINEUP']._serialized_end=813
-  _globals['_LINEUPPLAYER']._serialized_start=816
-  _globals['_LINEUPPLAYER']._serialized_end=948
-  _globals['_PLAYERSTATSSERVICE']._serialized_start=951
-  _globals['_PLAYERSTATSSERVICE']._serialized_end=1240
+  _globals['_TEAMSEASONPLAYSTATSREQUEST']._serialized_start=96
+  _globals['_TEAMSEASONPLAYSTATSREQUEST']._serialized_end=181
+  _globals['_PLAYERSTATSRESPONSE']._serialized_start=183
+  _globals['_PLAYERSTATSRESPONSE']._serialized_end=292
+  _globals['_LINEUPRESPONSE']._serialized_start=294
+  _globals['_LINEUPRESPONSE']._serialized_end=388
+  _globals['_PLAYERSTATS']._serialized_start=391
+  _globals['_PLAYERSTATS']._serialized_end=1980
+  _globals['_SHOTS']._serialized_start=1983
+  _globals['_SHOTS']._serialized_end=2223
+  _globals['_GOALS']._serialized_start=2225
+  _globals['_GOALS']._serialized_end=2324
+  _globals['_FOULS']._serialized_start=2326
+  _globals['_FOULS']._serialized_end=2425
+  _globals['_GOALKEEPER']._serialized_start=2428
+  _globals['_GOALKEEPER']._serialized_end=2644
+  _globals['_PENALTIES']._serialized_start=2647
+  _globals['_PENALTIES']._serialized_end=2882
+  _globals['_CROSSES']._serialized_start=2884
+  _globals['_CROSSES']._serialized_end=2984
+  _globals['_PASSES']._serialized_start=2987
+  _globals['_PASSES']._serialized_end=3218
+  _globals['_THROUGHBALLS']._serialized_start=3220
+  _globals['_THROUGHBALLS']._serialized_end=3320
+  _globals['_DUELS']._serialized_start=3323
+  _globals['_DUELS']._serialized_end=3459
+  _globals['_DRIBBLES']._serialized_start=3462
+  _globals['_DRIBBLES']._serialized_end=3608
+  _globals['_LINEUP']._serialized_start=3610
+  _globals['_LINEUP']._serialized_end=3700
+  _globals['_LINEUPPLAYER']._serialized_start=3703
+  _globals['_LINEUPPLAYER']._serialized_end=3835
+  _globals['_PLAYERSTATSSERVICE']._serialized_start=3838
+  _globals['_PLAYERSTATSSERVICE']._serialized_end=4127
 # @@protoc_insertion_point(module_scope)

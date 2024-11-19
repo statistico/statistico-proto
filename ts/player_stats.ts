@@ -4,7 +4,8 @@
  * source: player_stats.proto
  * git: https://github.com/thesayyn/protoc-gen-ts */
 import * as dependency_1 from "./google/protobuf/wrappers";
-import * as dependency_2 from "./requests";
+import * as dependency_2 from "./common";
+import * as dependency_3 from "./requests";
 import * as pb_1 from "google-protobuf";
 import * as grpc_1 from "@grpc/grpc-js";
 export namespace statistico {
@@ -311,14 +312,42 @@ export namespace statistico {
         #one_of_decls: number[][] = [];
         constructor(data?: any[] | {
             player_id?: number;
+            season_id?: number;
             team_id?: number;
             fixture_id?: number;
-            is_substitute?: boolean;
-            shots_total?: dependency_1.google.protobuf.Int32Value;
-            shots_on_goal?: dependency_1.google.protobuf.Int32Value;
-            goals_scored?: dependency_1.google.protobuf.Int32Value;
-            goals_conceded?: dependency_1.google.protobuf.Int32Value;
+            player_name?: string;
+            aerials_won?: dependency_1.google.protobuf.Int32Value;
+            shots?: Shots;
+            goals?: Goals;
+            fouls?: Fouls;
+            goal_keeper?: GoalKeeper;
+            big_chances_created?: dependency_1.google.protobuf.Int32Value;
+            big_chances_missed?: dependency_1.google.protobuf.Int32Value;
             assists?: dependency_1.google.protobuf.Int32Value;
+            dispossessed?: dependency_1.google.protobuf.Int32Value;
+            yellow_cards?: dependency_1.google.protobuf.Int32Value;
+            red_card?: dependency_1.google.protobuf.Int32Value;
+            yellow_red_card?: dependency_1.google.protobuf.Int32Value;
+            penalties?: Penalties;
+            crosses?: Crosses;
+            passes?: Passes;
+            through_balls?: ThroughBalls;
+            duels?: Duels;
+            dribbles?: Dribbles;
+            long_balls_won?: dependency_1.google.protobuf.Int32Value;
+            offsides?: dependency_1.google.protobuf.Int32Value;
+            hit_woodwork?: dependency_1.google.protobuf.Int32Value;
+            tackles?: dependency_1.google.protobuf.Int32Value;
+            interceptions?: dependency_1.google.protobuf.Int32Value;
+            clearances?: dependency_1.google.protobuf.Int32Value;
+            clearances_off_line?: dependency_1.google.protobuf.Int32Value;
+            touches?: dependency_1.google.protobuf.Int32Value;
+            minutes_played?: dependency_1.google.protobuf.Int32Value;
+            rating?: dependency_1.google.protobuf.FloatValue;
+            own_goals?: dependency_1.google.protobuf.Int32Value;
+            error_led_to_goal?: dependency_1.google.protobuf.Int32Value;
+            created_at?: dependency_2.statistico.Date;
+            updated_at?: dependency_2.statistico.Date;
         }) {
             super();
             pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [], this.#one_of_decls);
@@ -326,29 +355,113 @@ export namespace statistico {
                 if ("player_id" in data && data.player_id != undefined) {
                     this.player_id = data.player_id;
                 }
+                if ("season_id" in data && data.season_id != undefined) {
+                    this.season_id = data.season_id;
+                }
                 if ("team_id" in data && data.team_id != undefined) {
                     this.team_id = data.team_id;
                 }
                 if ("fixture_id" in data && data.fixture_id != undefined) {
                     this.fixture_id = data.fixture_id;
                 }
-                if ("is_substitute" in data && data.is_substitute != undefined) {
-                    this.is_substitute = data.is_substitute;
+                if ("player_name" in data && data.player_name != undefined) {
+                    this.player_name = data.player_name;
                 }
-                if ("shots_total" in data && data.shots_total != undefined) {
-                    this.shots_total = data.shots_total;
+                if ("aerials_won" in data && data.aerials_won != undefined) {
+                    this.aerials_won = data.aerials_won;
                 }
-                if ("shots_on_goal" in data && data.shots_on_goal != undefined) {
-                    this.shots_on_goal = data.shots_on_goal;
+                if ("shots" in data && data.shots != undefined) {
+                    this.shots = data.shots;
                 }
-                if ("goals_scored" in data && data.goals_scored != undefined) {
-                    this.goals_scored = data.goals_scored;
+                if ("goals" in data && data.goals != undefined) {
+                    this.goals = data.goals;
                 }
-                if ("goals_conceded" in data && data.goals_conceded != undefined) {
-                    this.goals_conceded = data.goals_conceded;
+                if ("fouls" in data && data.fouls != undefined) {
+                    this.fouls = data.fouls;
+                }
+                if ("goal_keeper" in data && data.goal_keeper != undefined) {
+                    this.goal_keeper = data.goal_keeper;
+                }
+                if ("big_chances_created" in data && data.big_chances_created != undefined) {
+                    this.big_chances_created = data.big_chances_created;
+                }
+                if ("big_chances_missed" in data && data.big_chances_missed != undefined) {
+                    this.big_chances_missed = data.big_chances_missed;
                 }
                 if ("assists" in data && data.assists != undefined) {
                     this.assists = data.assists;
+                }
+                if ("dispossessed" in data && data.dispossessed != undefined) {
+                    this.dispossessed = data.dispossessed;
+                }
+                if ("yellow_cards" in data && data.yellow_cards != undefined) {
+                    this.yellow_cards = data.yellow_cards;
+                }
+                if ("red_card" in data && data.red_card != undefined) {
+                    this.red_card = data.red_card;
+                }
+                if ("yellow_red_card" in data && data.yellow_red_card != undefined) {
+                    this.yellow_red_card = data.yellow_red_card;
+                }
+                if ("penalties" in data && data.penalties != undefined) {
+                    this.penalties = data.penalties;
+                }
+                if ("crosses" in data && data.crosses != undefined) {
+                    this.crosses = data.crosses;
+                }
+                if ("passes" in data && data.passes != undefined) {
+                    this.passes = data.passes;
+                }
+                if ("through_balls" in data && data.through_balls != undefined) {
+                    this.through_balls = data.through_balls;
+                }
+                if ("duels" in data && data.duels != undefined) {
+                    this.duels = data.duels;
+                }
+                if ("dribbles" in data && data.dribbles != undefined) {
+                    this.dribbles = data.dribbles;
+                }
+                if ("long_balls_won" in data && data.long_balls_won != undefined) {
+                    this.long_balls_won = data.long_balls_won;
+                }
+                if ("offsides" in data && data.offsides != undefined) {
+                    this.offsides = data.offsides;
+                }
+                if ("hit_woodwork" in data && data.hit_woodwork != undefined) {
+                    this.hit_woodwork = data.hit_woodwork;
+                }
+                if ("tackles" in data && data.tackles != undefined) {
+                    this.tackles = data.tackles;
+                }
+                if ("interceptions" in data && data.interceptions != undefined) {
+                    this.interceptions = data.interceptions;
+                }
+                if ("clearances" in data && data.clearances != undefined) {
+                    this.clearances = data.clearances;
+                }
+                if ("clearances_off_line" in data && data.clearances_off_line != undefined) {
+                    this.clearances_off_line = data.clearances_off_line;
+                }
+                if ("touches" in data && data.touches != undefined) {
+                    this.touches = data.touches;
+                }
+                if ("minutes_played" in data && data.minutes_played != undefined) {
+                    this.minutes_played = data.minutes_played;
+                }
+                if ("rating" in data && data.rating != undefined) {
+                    this.rating = data.rating;
+                }
+                if ("own_goals" in data && data.own_goals != undefined) {
+                    this.own_goals = data.own_goals;
+                }
+                if ("error_led_to_goal" in data && data.error_led_to_goal != undefined) {
+                    this.error_led_to_goal = data.error_led_to_goal;
+                }
+                if ("created_at" in data && data.created_at != undefined) {
+                    this.created_at = data.created_at;
+                }
+                if ("updated_at" in data && data.updated_at != undefined) {
+                    this.updated_at = data.updated_at;
                 }
             }
         }
@@ -358,83 +471,363 @@ export namespace statistico {
         set player_id(value: number) {
             pb_1.Message.setField(this, 1, value);
         }
-        get team_id() {
+        get season_id() {
             return pb_1.Message.getFieldWithDefault(this, 2, 0) as number;
         }
-        set team_id(value: number) {
+        set season_id(value: number) {
             pb_1.Message.setField(this, 2, value);
         }
-        get fixture_id() {
+        get team_id() {
             return pb_1.Message.getFieldWithDefault(this, 3, 0) as number;
         }
-        set fixture_id(value: number) {
+        set team_id(value: number) {
             pb_1.Message.setField(this, 3, value);
         }
-        get is_substitute() {
-            return pb_1.Message.getFieldWithDefault(this, 4, false) as boolean;
+        get fixture_id() {
+            return pb_1.Message.getFieldWithDefault(this, 4, 0) as number;
         }
-        set is_substitute(value: boolean) {
+        set fixture_id(value: number) {
             pb_1.Message.setField(this, 4, value);
         }
-        get shots_total() {
-            return pb_1.Message.getWrapperField(this, dependency_1.google.protobuf.Int32Value, 5) as dependency_1.google.protobuf.Int32Value;
+        get player_name() {
+            return pb_1.Message.getFieldWithDefault(this, 5, "") as string;
         }
-        set shots_total(value: dependency_1.google.protobuf.Int32Value) {
-            pb_1.Message.setWrapperField(this, 5, value);
+        set player_name(value: string) {
+            pb_1.Message.setField(this, 5, value);
         }
-        get has_shots_total() {
-            return pb_1.Message.getField(this, 5) != null;
-        }
-        get shots_on_goal() {
+        get aerials_won() {
             return pb_1.Message.getWrapperField(this, dependency_1.google.protobuf.Int32Value, 6) as dependency_1.google.protobuf.Int32Value;
         }
-        set shots_on_goal(value: dependency_1.google.protobuf.Int32Value) {
+        set aerials_won(value: dependency_1.google.protobuf.Int32Value) {
             pb_1.Message.setWrapperField(this, 6, value);
         }
-        get has_shots_on_goal() {
+        get has_aerials_won() {
             return pb_1.Message.getField(this, 6) != null;
         }
-        get goals_scored() {
-            return pb_1.Message.getWrapperField(this, dependency_1.google.protobuf.Int32Value, 7) as dependency_1.google.protobuf.Int32Value;
+        get shots() {
+            return pb_1.Message.getWrapperField(this, Shots, 7) as Shots;
         }
-        set goals_scored(value: dependency_1.google.protobuf.Int32Value) {
+        set shots(value: Shots) {
             pb_1.Message.setWrapperField(this, 7, value);
         }
-        get has_goals_scored() {
+        get has_shots() {
             return pb_1.Message.getField(this, 7) != null;
         }
-        get goals_conceded() {
-            return pb_1.Message.getWrapperField(this, dependency_1.google.protobuf.Int32Value, 8) as dependency_1.google.protobuf.Int32Value;
+        get goals() {
+            return pb_1.Message.getWrapperField(this, Goals, 8) as Goals;
         }
-        set goals_conceded(value: dependency_1.google.protobuf.Int32Value) {
+        set goals(value: Goals) {
             pb_1.Message.setWrapperField(this, 8, value);
         }
-        get has_goals_conceded() {
+        get has_goals() {
             return pb_1.Message.getField(this, 8) != null;
         }
-        get assists() {
-            return pb_1.Message.getWrapperField(this, dependency_1.google.protobuf.Int32Value, 9) as dependency_1.google.protobuf.Int32Value;
+        get fouls() {
+            return pb_1.Message.getWrapperField(this, Fouls, 9) as Fouls;
         }
-        set assists(value: dependency_1.google.protobuf.Int32Value) {
+        set fouls(value: Fouls) {
             pb_1.Message.setWrapperField(this, 9, value);
         }
-        get has_assists() {
+        get has_fouls() {
             return pb_1.Message.getField(this, 9) != null;
+        }
+        get goal_keeper() {
+            return pb_1.Message.getWrapperField(this, GoalKeeper, 10) as GoalKeeper;
+        }
+        set goal_keeper(value: GoalKeeper) {
+            pb_1.Message.setWrapperField(this, 10, value);
+        }
+        get has_goal_keeper() {
+            return pb_1.Message.getField(this, 10) != null;
+        }
+        get big_chances_created() {
+            return pb_1.Message.getWrapperField(this, dependency_1.google.protobuf.Int32Value, 11) as dependency_1.google.protobuf.Int32Value;
+        }
+        set big_chances_created(value: dependency_1.google.protobuf.Int32Value) {
+            pb_1.Message.setWrapperField(this, 11, value);
+        }
+        get has_big_chances_created() {
+            return pb_1.Message.getField(this, 11) != null;
+        }
+        get big_chances_missed() {
+            return pb_1.Message.getWrapperField(this, dependency_1.google.protobuf.Int32Value, 12) as dependency_1.google.protobuf.Int32Value;
+        }
+        set big_chances_missed(value: dependency_1.google.protobuf.Int32Value) {
+            pb_1.Message.setWrapperField(this, 12, value);
+        }
+        get has_big_chances_missed() {
+            return pb_1.Message.getField(this, 12) != null;
+        }
+        get assists() {
+            return pb_1.Message.getWrapperField(this, dependency_1.google.protobuf.Int32Value, 13) as dependency_1.google.protobuf.Int32Value;
+        }
+        set assists(value: dependency_1.google.protobuf.Int32Value) {
+            pb_1.Message.setWrapperField(this, 13, value);
+        }
+        get has_assists() {
+            return pb_1.Message.getField(this, 13) != null;
+        }
+        get dispossessed() {
+            return pb_1.Message.getWrapperField(this, dependency_1.google.protobuf.Int32Value, 14) as dependency_1.google.protobuf.Int32Value;
+        }
+        set dispossessed(value: dependency_1.google.protobuf.Int32Value) {
+            pb_1.Message.setWrapperField(this, 14, value);
+        }
+        get has_dispossessed() {
+            return pb_1.Message.getField(this, 14) != null;
+        }
+        get yellow_cards() {
+            return pb_1.Message.getWrapperField(this, dependency_1.google.protobuf.Int32Value, 15) as dependency_1.google.protobuf.Int32Value;
+        }
+        set yellow_cards(value: dependency_1.google.protobuf.Int32Value) {
+            pb_1.Message.setWrapperField(this, 15, value);
+        }
+        get has_yellow_cards() {
+            return pb_1.Message.getField(this, 15) != null;
+        }
+        get red_card() {
+            return pb_1.Message.getWrapperField(this, dependency_1.google.protobuf.Int32Value, 16) as dependency_1.google.protobuf.Int32Value;
+        }
+        set red_card(value: dependency_1.google.protobuf.Int32Value) {
+            pb_1.Message.setWrapperField(this, 16, value);
+        }
+        get has_red_card() {
+            return pb_1.Message.getField(this, 16) != null;
+        }
+        get yellow_red_card() {
+            return pb_1.Message.getWrapperField(this, dependency_1.google.protobuf.Int32Value, 17) as dependency_1.google.protobuf.Int32Value;
+        }
+        set yellow_red_card(value: dependency_1.google.protobuf.Int32Value) {
+            pb_1.Message.setWrapperField(this, 17, value);
+        }
+        get has_yellow_red_card() {
+            return pb_1.Message.getField(this, 17) != null;
+        }
+        get penalties() {
+            return pb_1.Message.getWrapperField(this, Penalties, 18) as Penalties;
+        }
+        set penalties(value: Penalties) {
+            pb_1.Message.setWrapperField(this, 18, value);
+        }
+        get has_penalties() {
+            return pb_1.Message.getField(this, 18) != null;
+        }
+        get crosses() {
+            return pb_1.Message.getWrapperField(this, Crosses, 19) as Crosses;
+        }
+        set crosses(value: Crosses) {
+            pb_1.Message.setWrapperField(this, 19, value);
+        }
+        get has_crosses() {
+            return pb_1.Message.getField(this, 19) != null;
+        }
+        get passes() {
+            return pb_1.Message.getWrapperField(this, Passes, 20) as Passes;
+        }
+        set passes(value: Passes) {
+            pb_1.Message.setWrapperField(this, 20, value);
+        }
+        get has_passes() {
+            return pb_1.Message.getField(this, 20) != null;
+        }
+        get through_balls() {
+            return pb_1.Message.getWrapperField(this, ThroughBalls, 21) as ThroughBalls;
+        }
+        set through_balls(value: ThroughBalls) {
+            pb_1.Message.setWrapperField(this, 21, value);
+        }
+        get has_through_balls() {
+            return pb_1.Message.getField(this, 21) != null;
+        }
+        get duels() {
+            return pb_1.Message.getWrapperField(this, Duels, 22) as Duels;
+        }
+        set duels(value: Duels) {
+            pb_1.Message.setWrapperField(this, 22, value);
+        }
+        get has_duels() {
+            return pb_1.Message.getField(this, 22) != null;
+        }
+        get dribbles() {
+            return pb_1.Message.getWrapperField(this, Dribbles, 23) as Dribbles;
+        }
+        set dribbles(value: Dribbles) {
+            pb_1.Message.setWrapperField(this, 23, value);
+        }
+        get has_dribbles() {
+            return pb_1.Message.getField(this, 23) != null;
+        }
+        get long_balls_won() {
+            return pb_1.Message.getWrapperField(this, dependency_1.google.protobuf.Int32Value, 24) as dependency_1.google.protobuf.Int32Value;
+        }
+        set long_balls_won(value: dependency_1.google.protobuf.Int32Value) {
+            pb_1.Message.setWrapperField(this, 24, value);
+        }
+        get has_long_balls_won() {
+            return pb_1.Message.getField(this, 24) != null;
+        }
+        get offsides() {
+            return pb_1.Message.getWrapperField(this, dependency_1.google.protobuf.Int32Value, 25) as dependency_1.google.protobuf.Int32Value;
+        }
+        set offsides(value: dependency_1.google.protobuf.Int32Value) {
+            pb_1.Message.setWrapperField(this, 25, value);
+        }
+        get has_offsides() {
+            return pb_1.Message.getField(this, 25) != null;
+        }
+        get hit_woodwork() {
+            return pb_1.Message.getWrapperField(this, dependency_1.google.protobuf.Int32Value, 26) as dependency_1.google.protobuf.Int32Value;
+        }
+        set hit_woodwork(value: dependency_1.google.protobuf.Int32Value) {
+            pb_1.Message.setWrapperField(this, 26, value);
+        }
+        get has_hit_woodwork() {
+            return pb_1.Message.getField(this, 26) != null;
+        }
+        get tackles() {
+            return pb_1.Message.getWrapperField(this, dependency_1.google.protobuf.Int32Value, 27) as dependency_1.google.protobuf.Int32Value;
+        }
+        set tackles(value: dependency_1.google.protobuf.Int32Value) {
+            pb_1.Message.setWrapperField(this, 27, value);
+        }
+        get has_tackles() {
+            return pb_1.Message.getField(this, 27) != null;
+        }
+        get interceptions() {
+            return pb_1.Message.getWrapperField(this, dependency_1.google.protobuf.Int32Value, 28) as dependency_1.google.protobuf.Int32Value;
+        }
+        set interceptions(value: dependency_1.google.protobuf.Int32Value) {
+            pb_1.Message.setWrapperField(this, 28, value);
+        }
+        get has_interceptions() {
+            return pb_1.Message.getField(this, 28) != null;
+        }
+        get clearances() {
+            return pb_1.Message.getWrapperField(this, dependency_1.google.protobuf.Int32Value, 29) as dependency_1.google.protobuf.Int32Value;
+        }
+        set clearances(value: dependency_1.google.protobuf.Int32Value) {
+            pb_1.Message.setWrapperField(this, 29, value);
+        }
+        get has_clearances() {
+            return pb_1.Message.getField(this, 29) != null;
+        }
+        get clearances_off_line() {
+            return pb_1.Message.getWrapperField(this, dependency_1.google.protobuf.Int32Value, 30) as dependency_1.google.protobuf.Int32Value;
+        }
+        set clearances_off_line(value: dependency_1.google.protobuf.Int32Value) {
+            pb_1.Message.setWrapperField(this, 30, value);
+        }
+        get has_clearances_off_line() {
+            return pb_1.Message.getField(this, 30) != null;
+        }
+        get touches() {
+            return pb_1.Message.getWrapperField(this, dependency_1.google.protobuf.Int32Value, 31) as dependency_1.google.protobuf.Int32Value;
+        }
+        set touches(value: dependency_1.google.protobuf.Int32Value) {
+            pb_1.Message.setWrapperField(this, 31, value);
+        }
+        get has_touches() {
+            return pb_1.Message.getField(this, 31) != null;
+        }
+        get minutes_played() {
+            return pb_1.Message.getWrapperField(this, dependency_1.google.protobuf.Int32Value, 32) as dependency_1.google.protobuf.Int32Value;
+        }
+        set minutes_played(value: dependency_1.google.protobuf.Int32Value) {
+            pb_1.Message.setWrapperField(this, 32, value);
+        }
+        get has_minutes_played() {
+            return pb_1.Message.getField(this, 32) != null;
+        }
+        get rating() {
+            return pb_1.Message.getWrapperField(this, dependency_1.google.protobuf.FloatValue, 33) as dependency_1.google.protobuf.FloatValue;
+        }
+        set rating(value: dependency_1.google.protobuf.FloatValue) {
+            pb_1.Message.setWrapperField(this, 33, value);
+        }
+        get has_rating() {
+            return pb_1.Message.getField(this, 33) != null;
+        }
+        get own_goals() {
+            return pb_1.Message.getWrapperField(this, dependency_1.google.protobuf.Int32Value, 34) as dependency_1.google.protobuf.Int32Value;
+        }
+        set own_goals(value: dependency_1.google.protobuf.Int32Value) {
+            pb_1.Message.setWrapperField(this, 34, value);
+        }
+        get has_own_goals() {
+            return pb_1.Message.getField(this, 34) != null;
+        }
+        get error_led_to_goal() {
+            return pb_1.Message.getWrapperField(this, dependency_1.google.protobuf.Int32Value, 35) as dependency_1.google.protobuf.Int32Value;
+        }
+        set error_led_to_goal(value: dependency_1.google.protobuf.Int32Value) {
+            pb_1.Message.setWrapperField(this, 35, value);
+        }
+        get has_error_led_to_goal() {
+            return pb_1.Message.getField(this, 35) != null;
+        }
+        get created_at() {
+            return pb_1.Message.getWrapperField(this, dependency_2.statistico.Date, 36) as dependency_2.statistico.Date;
+        }
+        set created_at(value: dependency_2.statistico.Date) {
+            pb_1.Message.setWrapperField(this, 36, value);
+        }
+        get has_created_at() {
+            return pb_1.Message.getField(this, 36) != null;
+        }
+        get updated_at() {
+            return pb_1.Message.getWrapperField(this, dependency_2.statistico.Date, 37) as dependency_2.statistico.Date;
+        }
+        set updated_at(value: dependency_2.statistico.Date) {
+            pb_1.Message.setWrapperField(this, 37, value);
+        }
+        get has_updated_at() {
+            return pb_1.Message.getField(this, 37) != null;
         }
         static fromObject(data: {
             player_id?: number;
+            season_id?: number;
             team_id?: number;
             fixture_id?: number;
-            is_substitute?: boolean;
-            shots_total?: ReturnType<typeof dependency_1.google.protobuf.Int32Value.prototype.toObject>;
-            shots_on_goal?: ReturnType<typeof dependency_1.google.protobuf.Int32Value.prototype.toObject>;
-            goals_scored?: ReturnType<typeof dependency_1.google.protobuf.Int32Value.prototype.toObject>;
-            goals_conceded?: ReturnType<typeof dependency_1.google.protobuf.Int32Value.prototype.toObject>;
+            player_name?: string;
+            aerials_won?: ReturnType<typeof dependency_1.google.protobuf.Int32Value.prototype.toObject>;
+            shots?: ReturnType<typeof Shots.prototype.toObject>;
+            goals?: ReturnType<typeof Goals.prototype.toObject>;
+            fouls?: ReturnType<typeof Fouls.prototype.toObject>;
+            goal_keeper?: ReturnType<typeof GoalKeeper.prototype.toObject>;
+            big_chances_created?: ReturnType<typeof dependency_1.google.protobuf.Int32Value.prototype.toObject>;
+            big_chances_missed?: ReturnType<typeof dependency_1.google.protobuf.Int32Value.prototype.toObject>;
             assists?: ReturnType<typeof dependency_1.google.protobuf.Int32Value.prototype.toObject>;
+            dispossessed?: ReturnType<typeof dependency_1.google.protobuf.Int32Value.prototype.toObject>;
+            yellow_cards?: ReturnType<typeof dependency_1.google.protobuf.Int32Value.prototype.toObject>;
+            red_card?: ReturnType<typeof dependency_1.google.protobuf.Int32Value.prototype.toObject>;
+            yellow_red_card?: ReturnType<typeof dependency_1.google.protobuf.Int32Value.prototype.toObject>;
+            penalties?: ReturnType<typeof Penalties.prototype.toObject>;
+            crosses?: ReturnType<typeof Crosses.prototype.toObject>;
+            passes?: ReturnType<typeof Passes.prototype.toObject>;
+            through_balls?: ReturnType<typeof ThroughBalls.prototype.toObject>;
+            duels?: ReturnType<typeof Duels.prototype.toObject>;
+            dribbles?: ReturnType<typeof Dribbles.prototype.toObject>;
+            long_balls_won?: ReturnType<typeof dependency_1.google.protobuf.Int32Value.prototype.toObject>;
+            offsides?: ReturnType<typeof dependency_1.google.protobuf.Int32Value.prototype.toObject>;
+            hit_woodwork?: ReturnType<typeof dependency_1.google.protobuf.Int32Value.prototype.toObject>;
+            tackles?: ReturnType<typeof dependency_1.google.protobuf.Int32Value.prototype.toObject>;
+            interceptions?: ReturnType<typeof dependency_1.google.protobuf.Int32Value.prototype.toObject>;
+            clearances?: ReturnType<typeof dependency_1.google.protobuf.Int32Value.prototype.toObject>;
+            clearances_off_line?: ReturnType<typeof dependency_1.google.protobuf.Int32Value.prototype.toObject>;
+            touches?: ReturnType<typeof dependency_1.google.protobuf.Int32Value.prototype.toObject>;
+            minutes_played?: ReturnType<typeof dependency_1.google.protobuf.Int32Value.prototype.toObject>;
+            rating?: ReturnType<typeof dependency_1.google.protobuf.FloatValue.prototype.toObject>;
+            own_goals?: ReturnType<typeof dependency_1.google.protobuf.Int32Value.prototype.toObject>;
+            error_led_to_goal?: ReturnType<typeof dependency_1.google.protobuf.Int32Value.prototype.toObject>;
+            created_at?: ReturnType<typeof dependency_2.statistico.Date.prototype.toObject>;
+            updated_at?: ReturnType<typeof dependency_2.statistico.Date.prototype.toObject>;
         }): PlayerStats {
             const message = new PlayerStats({});
             if (data.player_id != null) {
                 message.player_id = data.player_id;
+            }
+            if (data.season_id != null) {
+                message.season_id = data.season_id;
             }
             if (data.team_id != null) {
                 message.team_id = data.team_id;
@@ -442,40 +835,152 @@ export namespace statistico {
             if (data.fixture_id != null) {
                 message.fixture_id = data.fixture_id;
             }
-            if (data.is_substitute != null) {
-                message.is_substitute = data.is_substitute;
+            if (data.player_name != null) {
+                message.player_name = data.player_name;
             }
-            if (data.shots_total != null) {
-                message.shots_total = dependency_1.google.protobuf.Int32Value.fromObject(data.shots_total);
+            if (data.aerials_won != null) {
+                message.aerials_won = dependency_1.google.protobuf.Int32Value.fromObject(data.aerials_won);
             }
-            if (data.shots_on_goal != null) {
-                message.shots_on_goal = dependency_1.google.protobuf.Int32Value.fromObject(data.shots_on_goal);
+            if (data.shots != null) {
+                message.shots = Shots.fromObject(data.shots);
             }
-            if (data.goals_scored != null) {
-                message.goals_scored = dependency_1.google.protobuf.Int32Value.fromObject(data.goals_scored);
+            if (data.goals != null) {
+                message.goals = Goals.fromObject(data.goals);
             }
-            if (data.goals_conceded != null) {
-                message.goals_conceded = dependency_1.google.protobuf.Int32Value.fromObject(data.goals_conceded);
+            if (data.fouls != null) {
+                message.fouls = Fouls.fromObject(data.fouls);
+            }
+            if (data.goal_keeper != null) {
+                message.goal_keeper = GoalKeeper.fromObject(data.goal_keeper);
+            }
+            if (data.big_chances_created != null) {
+                message.big_chances_created = dependency_1.google.protobuf.Int32Value.fromObject(data.big_chances_created);
+            }
+            if (data.big_chances_missed != null) {
+                message.big_chances_missed = dependency_1.google.protobuf.Int32Value.fromObject(data.big_chances_missed);
             }
             if (data.assists != null) {
                 message.assists = dependency_1.google.protobuf.Int32Value.fromObject(data.assists);
+            }
+            if (data.dispossessed != null) {
+                message.dispossessed = dependency_1.google.protobuf.Int32Value.fromObject(data.dispossessed);
+            }
+            if (data.yellow_cards != null) {
+                message.yellow_cards = dependency_1.google.protobuf.Int32Value.fromObject(data.yellow_cards);
+            }
+            if (data.red_card != null) {
+                message.red_card = dependency_1.google.protobuf.Int32Value.fromObject(data.red_card);
+            }
+            if (data.yellow_red_card != null) {
+                message.yellow_red_card = dependency_1.google.protobuf.Int32Value.fromObject(data.yellow_red_card);
+            }
+            if (data.penalties != null) {
+                message.penalties = Penalties.fromObject(data.penalties);
+            }
+            if (data.crosses != null) {
+                message.crosses = Crosses.fromObject(data.crosses);
+            }
+            if (data.passes != null) {
+                message.passes = Passes.fromObject(data.passes);
+            }
+            if (data.through_balls != null) {
+                message.through_balls = ThroughBalls.fromObject(data.through_balls);
+            }
+            if (data.duels != null) {
+                message.duels = Duels.fromObject(data.duels);
+            }
+            if (data.dribbles != null) {
+                message.dribbles = Dribbles.fromObject(data.dribbles);
+            }
+            if (data.long_balls_won != null) {
+                message.long_balls_won = dependency_1.google.protobuf.Int32Value.fromObject(data.long_balls_won);
+            }
+            if (data.offsides != null) {
+                message.offsides = dependency_1.google.protobuf.Int32Value.fromObject(data.offsides);
+            }
+            if (data.hit_woodwork != null) {
+                message.hit_woodwork = dependency_1.google.protobuf.Int32Value.fromObject(data.hit_woodwork);
+            }
+            if (data.tackles != null) {
+                message.tackles = dependency_1.google.protobuf.Int32Value.fromObject(data.tackles);
+            }
+            if (data.interceptions != null) {
+                message.interceptions = dependency_1.google.protobuf.Int32Value.fromObject(data.interceptions);
+            }
+            if (data.clearances != null) {
+                message.clearances = dependency_1.google.protobuf.Int32Value.fromObject(data.clearances);
+            }
+            if (data.clearances_off_line != null) {
+                message.clearances_off_line = dependency_1.google.protobuf.Int32Value.fromObject(data.clearances_off_line);
+            }
+            if (data.touches != null) {
+                message.touches = dependency_1.google.protobuf.Int32Value.fromObject(data.touches);
+            }
+            if (data.minutes_played != null) {
+                message.minutes_played = dependency_1.google.protobuf.Int32Value.fromObject(data.minutes_played);
+            }
+            if (data.rating != null) {
+                message.rating = dependency_1.google.protobuf.FloatValue.fromObject(data.rating);
+            }
+            if (data.own_goals != null) {
+                message.own_goals = dependency_1.google.protobuf.Int32Value.fromObject(data.own_goals);
+            }
+            if (data.error_led_to_goal != null) {
+                message.error_led_to_goal = dependency_1.google.protobuf.Int32Value.fromObject(data.error_led_to_goal);
+            }
+            if (data.created_at != null) {
+                message.created_at = dependency_2.statistico.Date.fromObject(data.created_at);
+            }
+            if (data.updated_at != null) {
+                message.updated_at = dependency_2.statistico.Date.fromObject(data.updated_at);
             }
             return message;
         }
         toObject() {
             const data: {
                 player_id?: number;
+                season_id?: number;
                 team_id?: number;
                 fixture_id?: number;
-                is_substitute?: boolean;
-                shots_total?: ReturnType<typeof dependency_1.google.protobuf.Int32Value.prototype.toObject>;
-                shots_on_goal?: ReturnType<typeof dependency_1.google.protobuf.Int32Value.prototype.toObject>;
-                goals_scored?: ReturnType<typeof dependency_1.google.protobuf.Int32Value.prototype.toObject>;
-                goals_conceded?: ReturnType<typeof dependency_1.google.protobuf.Int32Value.prototype.toObject>;
+                player_name?: string;
+                aerials_won?: ReturnType<typeof dependency_1.google.protobuf.Int32Value.prototype.toObject>;
+                shots?: ReturnType<typeof Shots.prototype.toObject>;
+                goals?: ReturnType<typeof Goals.prototype.toObject>;
+                fouls?: ReturnType<typeof Fouls.prototype.toObject>;
+                goal_keeper?: ReturnType<typeof GoalKeeper.prototype.toObject>;
+                big_chances_created?: ReturnType<typeof dependency_1.google.protobuf.Int32Value.prototype.toObject>;
+                big_chances_missed?: ReturnType<typeof dependency_1.google.protobuf.Int32Value.prototype.toObject>;
                 assists?: ReturnType<typeof dependency_1.google.protobuf.Int32Value.prototype.toObject>;
+                dispossessed?: ReturnType<typeof dependency_1.google.protobuf.Int32Value.prototype.toObject>;
+                yellow_cards?: ReturnType<typeof dependency_1.google.protobuf.Int32Value.prototype.toObject>;
+                red_card?: ReturnType<typeof dependency_1.google.protobuf.Int32Value.prototype.toObject>;
+                yellow_red_card?: ReturnType<typeof dependency_1.google.protobuf.Int32Value.prototype.toObject>;
+                penalties?: ReturnType<typeof Penalties.prototype.toObject>;
+                crosses?: ReturnType<typeof Crosses.prototype.toObject>;
+                passes?: ReturnType<typeof Passes.prototype.toObject>;
+                through_balls?: ReturnType<typeof ThroughBalls.prototype.toObject>;
+                duels?: ReturnType<typeof Duels.prototype.toObject>;
+                dribbles?: ReturnType<typeof Dribbles.prototype.toObject>;
+                long_balls_won?: ReturnType<typeof dependency_1.google.protobuf.Int32Value.prototype.toObject>;
+                offsides?: ReturnType<typeof dependency_1.google.protobuf.Int32Value.prototype.toObject>;
+                hit_woodwork?: ReturnType<typeof dependency_1.google.protobuf.Int32Value.prototype.toObject>;
+                tackles?: ReturnType<typeof dependency_1.google.protobuf.Int32Value.prototype.toObject>;
+                interceptions?: ReturnType<typeof dependency_1.google.protobuf.Int32Value.prototype.toObject>;
+                clearances?: ReturnType<typeof dependency_1.google.protobuf.Int32Value.prototype.toObject>;
+                clearances_off_line?: ReturnType<typeof dependency_1.google.protobuf.Int32Value.prototype.toObject>;
+                touches?: ReturnType<typeof dependency_1.google.protobuf.Int32Value.prototype.toObject>;
+                minutes_played?: ReturnType<typeof dependency_1.google.protobuf.Int32Value.prototype.toObject>;
+                rating?: ReturnType<typeof dependency_1.google.protobuf.FloatValue.prototype.toObject>;
+                own_goals?: ReturnType<typeof dependency_1.google.protobuf.Int32Value.prototype.toObject>;
+                error_led_to_goal?: ReturnType<typeof dependency_1.google.protobuf.Int32Value.prototype.toObject>;
+                created_at?: ReturnType<typeof dependency_2.statistico.Date.prototype.toObject>;
+                updated_at?: ReturnType<typeof dependency_2.statistico.Date.prototype.toObject>;
             } = {};
             if (this.player_id != null) {
                 data.player_id = this.player_id;
+            }
+            if (this.season_id != null) {
+                data.season_id = this.season_id;
             }
             if (this.team_id != null) {
                 data.team_id = this.team_id;
@@ -483,23 +988,104 @@ export namespace statistico {
             if (this.fixture_id != null) {
                 data.fixture_id = this.fixture_id;
             }
-            if (this.is_substitute != null) {
-                data.is_substitute = this.is_substitute;
+            if (this.player_name != null) {
+                data.player_name = this.player_name;
             }
-            if (this.shots_total != null) {
-                data.shots_total = this.shots_total.toObject();
+            if (this.aerials_won != null) {
+                data.aerials_won = this.aerials_won.toObject();
             }
-            if (this.shots_on_goal != null) {
-                data.shots_on_goal = this.shots_on_goal.toObject();
+            if (this.shots != null) {
+                data.shots = this.shots.toObject();
             }
-            if (this.goals_scored != null) {
-                data.goals_scored = this.goals_scored.toObject();
+            if (this.goals != null) {
+                data.goals = this.goals.toObject();
             }
-            if (this.goals_conceded != null) {
-                data.goals_conceded = this.goals_conceded.toObject();
+            if (this.fouls != null) {
+                data.fouls = this.fouls.toObject();
+            }
+            if (this.goal_keeper != null) {
+                data.goal_keeper = this.goal_keeper.toObject();
+            }
+            if (this.big_chances_created != null) {
+                data.big_chances_created = this.big_chances_created.toObject();
+            }
+            if (this.big_chances_missed != null) {
+                data.big_chances_missed = this.big_chances_missed.toObject();
             }
             if (this.assists != null) {
                 data.assists = this.assists.toObject();
+            }
+            if (this.dispossessed != null) {
+                data.dispossessed = this.dispossessed.toObject();
+            }
+            if (this.yellow_cards != null) {
+                data.yellow_cards = this.yellow_cards.toObject();
+            }
+            if (this.red_card != null) {
+                data.red_card = this.red_card.toObject();
+            }
+            if (this.yellow_red_card != null) {
+                data.yellow_red_card = this.yellow_red_card.toObject();
+            }
+            if (this.penalties != null) {
+                data.penalties = this.penalties.toObject();
+            }
+            if (this.crosses != null) {
+                data.crosses = this.crosses.toObject();
+            }
+            if (this.passes != null) {
+                data.passes = this.passes.toObject();
+            }
+            if (this.through_balls != null) {
+                data.through_balls = this.through_balls.toObject();
+            }
+            if (this.duels != null) {
+                data.duels = this.duels.toObject();
+            }
+            if (this.dribbles != null) {
+                data.dribbles = this.dribbles.toObject();
+            }
+            if (this.long_balls_won != null) {
+                data.long_balls_won = this.long_balls_won.toObject();
+            }
+            if (this.offsides != null) {
+                data.offsides = this.offsides.toObject();
+            }
+            if (this.hit_woodwork != null) {
+                data.hit_woodwork = this.hit_woodwork.toObject();
+            }
+            if (this.tackles != null) {
+                data.tackles = this.tackles.toObject();
+            }
+            if (this.interceptions != null) {
+                data.interceptions = this.interceptions.toObject();
+            }
+            if (this.clearances != null) {
+                data.clearances = this.clearances.toObject();
+            }
+            if (this.clearances_off_line != null) {
+                data.clearances_off_line = this.clearances_off_line.toObject();
+            }
+            if (this.touches != null) {
+                data.touches = this.touches.toObject();
+            }
+            if (this.minutes_played != null) {
+                data.minutes_played = this.minutes_played.toObject();
+            }
+            if (this.rating != null) {
+                data.rating = this.rating.toObject();
+            }
+            if (this.own_goals != null) {
+                data.own_goals = this.own_goals.toObject();
+            }
+            if (this.error_led_to_goal != null) {
+                data.error_led_to_goal = this.error_led_to_goal.toObject();
+            }
+            if (this.created_at != null) {
+                data.created_at = this.created_at.toObject();
+            }
+            if (this.updated_at != null) {
+                data.updated_at = this.updated_at.toObject();
             }
             return data;
         }
@@ -509,22 +1095,78 @@ export namespace statistico {
             const writer = w || new pb_1.BinaryWriter();
             if (this.player_id != 0)
                 writer.writeUint64(1, this.player_id);
+            if (this.season_id != 0)
+                writer.writeUint64(2, this.season_id);
             if (this.team_id != 0)
-                writer.writeUint64(2, this.team_id);
+                writer.writeUint64(3, this.team_id);
             if (this.fixture_id != 0)
-                writer.writeUint64(3, this.fixture_id);
-            if (this.is_substitute != false)
-                writer.writeBool(4, this.is_substitute);
-            if (this.has_shots_total)
-                writer.writeMessage(5, this.shots_total, () => this.shots_total.serialize(writer));
-            if (this.has_shots_on_goal)
-                writer.writeMessage(6, this.shots_on_goal, () => this.shots_on_goal.serialize(writer));
-            if (this.has_goals_scored)
-                writer.writeMessage(7, this.goals_scored, () => this.goals_scored.serialize(writer));
-            if (this.has_goals_conceded)
-                writer.writeMessage(8, this.goals_conceded, () => this.goals_conceded.serialize(writer));
+                writer.writeUint64(4, this.fixture_id);
+            if (this.player_name.length)
+                writer.writeString(5, this.player_name);
+            if (this.has_aerials_won)
+                writer.writeMessage(6, this.aerials_won, () => this.aerials_won.serialize(writer));
+            if (this.has_shots)
+                writer.writeMessage(7, this.shots, () => this.shots.serialize(writer));
+            if (this.has_goals)
+                writer.writeMessage(8, this.goals, () => this.goals.serialize(writer));
+            if (this.has_fouls)
+                writer.writeMessage(9, this.fouls, () => this.fouls.serialize(writer));
+            if (this.has_goal_keeper)
+                writer.writeMessage(10, this.goal_keeper, () => this.goal_keeper.serialize(writer));
+            if (this.has_big_chances_created)
+                writer.writeMessage(11, this.big_chances_created, () => this.big_chances_created.serialize(writer));
+            if (this.has_big_chances_missed)
+                writer.writeMessage(12, this.big_chances_missed, () => this.big_chances_missed.serialize(writer));
             if (this.has_assists)
-                writer.writeMessage(9, this.assists, () => this.assists.serialize(writer));
+                writer.writeMessage(13, this.assists, () => this.assists.serialize(writer));
+            if (this.has_dispossessed)
+                writer.writeMessage(14, this.dispossessed, () => this.dispossessed.serialize(writer));
+            if (this.has_yellow_cards)
+                writer.writeMessage(15, this.yellow_cards, () => this.yellow_cards.serialize(writer));
+            if (this.has_red_card)
+                writer.writeMessage(16, this.red_card, () => this.red_card.serialize(writer));
+            if (this.has_yellow_red_card)
+                writer.writeMessage(17, this.yellow_red_card, () => this.yellow_red_card.serialize(writer));
+            if (this.has_penalties)
+                writer.writeMessage(18, this.penalties, () => this.penalties.serialize(writer));
+            if (this.has_crosses)
+                writer.writeMessage(19, this.crosses, () => this.crosses.serialize(writer));
+            if (this.has_passes)
+                writer.writeMessage(20, this.passes, () => this.passes.serialize(writer));
+            if (this.has_through_balls)
+                writer.writeMessage(21, this.through_balls, () => this.through_balls.serialize(writer));
+            if (this.has_duels)
+                writer.writeMessage(22, this.duels, () => this.duels.serialize(writer));
+            if (this.has_dribbles)
+                writer.writeMessage(23, this.dribbles, () => this.dribbles.serialize(writer));
+            if (this.has_long_balls_won)
+                writer.writeMessage(24, this.long_balls_won, () => this.long_balls_won.serialize(writer));
+            if (this.has_offsides)
+                writer.writeMessage(25, this.offsides, () => this.offsides.serialize(writer));
+            if (this.has_hit_woodwork)
+                writer.writeMessage(26, this.hit_woodwork, () => this.hit_woodwork.serialize(writer));
+            if (this.has_tackles)
+                writer.writeMessage(27, this.tackles, () => this.tackles.serialize(writer));
+            if (this.has_interceptions)
+                writer.writeMessage(28, this.interceptions, () => this.interceptions.serialize(writer));
+            if (this.has_clearances)
+                writer.writeMessage(29, this.clearances, () => this.clearances.serialize(writer));
+            if (this.has_clearances_off_line)
+                writer.writeMessage(30, this.clearances_off_line, () => this.clearances_off_line.serialize(writer));
+            if (this.has_touches)
+                writer.writeMessage(31, this.touches, () => this.touches.serialize(writer));
+            if (this.has_minutes_played)
+                writer.writeMessage(32, this.minutes_played, () => this.minutes_played.serialize(writer));
+            if (this.has_rating)
+                writer.writeMessage(33, this.rating, () => this.rating.serialize(writer));
+            if (this.has_own_goals)
+                writer.writeMessage(34, this.own_goals, () => this.own_goals.serialize(writer));
+            if (this.has_error_led_to_goal)
+                writer.writeMessage(35, this.error_led_to_goal, () => this.error_led_to_goal.serialize(writer));
+            if (this.has_created_at)
+                writer.writeMessage(36, this.created_at, () => this.created_at.serialize(writer));
+            if (this.has_updated_at)
+                writer.writeMessage(37, this.updated_at, () => this.updated_at.serialize(writer));
             if (!w)
                 return writer.getResultBuffer();
         }
@@ -538,28 +1180,112 @@ export namespace statistico {
                         message.player_id = reader.readUint64();
                         break;
                     case 2:
-                        message.team_id = reader.readUint64();
+                        message.season_id = reader.readUint64();
                         break;
                     case 3:
-                        message.fixture_id = reader.readUint64();
+                        message.team_id = reader.readUint64();
                         break;
                     case 4:
-                        message.is_substitute = reader.readBool();
+                        message.fixture_id = reader.readUint64();
                         break;
                     case 5:
-                        reader.readMessage(message.shots_total, () => message.shots_total = dependency_1.google.protobuf.Int32Value.deserialize(reader));
+                        message.player_name = reader.readString();
                         break;
                     case 6:
-                        reader.readMessage(message.shots_on_goal, () => message.shots_on_goal = dependency_1.google.protobuf.Int32Value.deserialize(reader));
+                        reader.readMessage(message.aerials_won, () => message.aerials_won = dependency_1.google.protobuf.Int32Value.deserialize(reader));
                         break;
                     case 7:
-                        reader.readMessage(message.goals_scored, () => message.goals_scored = dependency_1.google.protobuf.Int32Value.deserialize(reader));
+                        reader.readMessage(message.shots, () => message.shots = Shots.deserialize(reader));
                         break;
                     case 8:
-                        reader.readMessage(message.goals_conceded, () => message.goals_conceded = dependency_1.google.protobuf.Int32Value.deserialize(reader));
+                        reader.readMessage(message.goals, () => message.goals = Goals.deserialize(reader));
                         break;
                     case 9:
+                        reader.readMessage(message.fouls, () => message.fouls = Fouls.deserialize(reader));
+                        break;
+                    case 10:
+                        reader.readMessage(message.goal_keeper, () => message.goal_keeper = GoalKeeper.deserialize(reader));
+                        break;
+                    case 11:
+                        reader.readMessage(message.big_chances_created, () => message.big_chances_created = dependency_1.google.protobuf.Int32Value.deserialize(reader));
+                        break;
+                    case 12:
+                        reader.readMessage(message.big_chances_missed, () => message.big_chances_missed = dependency_1.google.protobuf.Int32Value.deserialize(reader));
+                        break;
+                    case 13:
                         reader.readMessage(message.assists, () => message.assists = dependency_1.google.protobuf.Int32Value.deserialize(reader));
+                        break;
+                    case 14:
+                        reader.readMessage(message.dispossessed, () => message.dispossessed = dependency_1.google.protobuf.Int32Value.deserialize(reader));
+                        break;
+                    case 15:
+                        reader.readMessage(message.yellow_cards, () => message.yellow_cards = dependency_1.google.protobuf.Int32Value.deserialize(reader));
+                        break;
+                    case 16:
+                        reader.readMessage(message.red_card, () => message.red_card = dependency_1.google.protobuf.Int32Value.deserialize(reader));
+                        break;
+                    case 17:
+                        reader.readMessage(message.yellow_red_card, () => message.yellow_red_card = dependency_1.google.protobuf.Int32Value.deserialize(reader));
+                        break;
+                    case 18:
+                        reader.readMessage(message.penalties, () => message.penalties = Penalties.deserialize(reader));
+                        break;
+                    case 19:
+                        reader.readMessage(message.crosses, () => message.crosses = Crosses.deserialize(reader));
+                        break;
+                    case 20:
+                        reader.readMessage(message.passes, () => message.passes = Passes.deserialize(reader));
+                        break;
+                    case 21:
+                        reader.readMessage(message.through_balls, () => message.through_balls = ThroughBalls.deserialize(reader));
+                        break;
+                    case 22:
+                        reader.readMessage(message.duels, () => message.duels = Duels.deserialize(reader));
+                        break;
+                    case 23:
+                        reader.readMessage(message.dribbles, () => message.dribbles = Dribbles.deserialize(reader));
+                        break;
+                    case 24:
+                        reader.readMessage(message.long_balls_won, () => message.long_balls_won = dependency_1.google.protobuf.Int32Value.deserialize(reader));
+                        break;
+                    case 25:
+                        reader.readMessage(message.offsides, () => message.offsides = dependency_1.google.protobuf.Int32Value.deserialize(reader));
+                        break;
+                    case 26:
+                        reader.readMessage(message.hit_woodwork, () => message.hit_woodwork = dependency_1.google.protobuf.Int32Value.deserialize(reader));
+                        break;
+                    case 27:
+                        reader.readMessage(message.tackles, () => message.tackles = dependency_1.google.protobuf.Int32Value.deserialize(reader));
+                        break;
+                    case 28:
+                        reader.readMessage(message.interceptions, () => message.interceptions = dependency_1.google.protobuf.Int32Value.deserialize(reader));
+                        break;
+                    case 29:
+                        reader.readMessage(message.clearances, () => message.clearances = dependency_1.google.protobuf.Int32Value.deserialize(reader));
+                        break;
+                    case 30:
+                        reader.readMessage(message.clearances_off_line, () => message.clearances_off_line = dependency_1.google.protobuf.Int32Value.deserialize(reader));
+                        break;
+                    case 31:
+                        reader.readMessage(message.touches, () => message.touches = dependency_1.google.protobuf.Int32Value.deserialize(reader));
+                        break;
+                    case 32:
+                        reader.readMessage(message.minutes_played, () => message.minutes_played = dependency_1.google.protobuf.Int32Value.deserialize(reader));
+                        break;
+                    case 33:
+                        reader.readMessage(message.rating, () => message.rating = dependency_1.google.protobuf.FloatValue.deserialize(reader));
+                        break;
+                    case 34:
+                        reader.readMessage(message.own_goals, () => message.own_goals = dependency_1.google.protobuf.Int32Value.deserialize(reader));
+                        break;
+                    case 35:
+                        reader.readMessage(message.error_led_to_goal, () => message.error_led_to_goal = dependency_1.google.protobuf.Int32Value.deserialize(reader));
+                        break;
+                    case 36:
+                        reader.readMessage(message.created_at, () => message.created_at = dependency_2.statistico.Date.deserialize(reader));
+                        break;
+                    case 37:
+                        reader.readMessage(message.updated_at, () => message.updated_at = dependency_2.statistico.Date.deserialize(reader));
                         break;
                     default: reader.skipField();
                 }
@@ -571,6 +1297,1304 @@ export namespace statistico {
         }
         static deserializeBinary(bytes: Uint8Array): PlayerStats {
             return PlayerStats.deserialize(bytes);
+        }
+    }
+    export class Shots extends pb_1.Message {
+        #one_of_decls: number[][] = [];
+        constructor(data?: any[] | {
+            total?: dependency_1.google.protobuf.Int32Value;
+            on_target?: dependency_1.google.protobuf.Int32Value;
+            off_target?: dependency_1.google.protobuf.Int32Value;
+            blocked?: dependency_1.google.protobuf.Int32Value;
+            stopped?: dependency_1.google.protobuf.Int32Value;
+        }) {
+            super();
+            pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [], this.#one_of_decls);
+            if (!Array.isArray(data) && typeof data == "object") {
+                if ("total" in data && data.total != undefined) {
+                    this.total = data.total;
+                }
+                if ("on_target" in data && data.on_target != undefined) {
+                    this.on_target = data.on_target;
+                }
+                if ("off_target" in data && data.off_target != undefined) {
+                    this.off_target = data.off_target;
+                }
+                if ("blocked" in data && data.blocked != undefined) {
+                    this.blocked = data.blocked;
+                }
+                if ("stopped" in data && data.stopped != undefined) {
+                    this.stopped = data.stopped;
+                }
+            }
+        }
+        get total() {
+            return pb_1.Message.getWrapperField(this, dependency_1.google.protobuf.Int32Value, 1) as dependency_1.google.protobuf.Int32Value;
+        }
+        set total(value: dependency_1.google.protobuf.Int32Value) {
+            pb_1.Message.setWrapperField(this, 1, value);
+        }
+        get has_total() {
+            return pb_1.Message.getField(this, 1) != null;
+        }
+        get on_target() {
+            return pb_1.Message.getWrapperField(this, dependency_1.google.protobuf.Int32Value, 2) as dependency_1.google.protobuf.Int32Value;
+        }
+        set on_target(value: dependency_1.google.protobuf.Int32Value) {
+            pb_1.Message.setWrapperField(this, 2, value);
+        }
+        get has_on_target() {
+            return pb_1.Message.getField(this, 2) != null;
+        }
+        get off_target() {
+            return pb_1.Message.getWrapperField(this, dependency_1.google.protobuf.Int32Value, 3) as dependency_1.google.protobuf.Int32Value;
+        }
+        set off_target(value: dependency_1.google.protobuf.Int32Value) {
+            pb_1.Message.setWrapperField(this, 3, value);
+        }
+        get has_off_target() {
+            return pb_1.Message.getField(this, 3) != null;
+        }
+        get blocked() {
+            return pb_1.Message.getWrapperField(this, dependency_1.google.protobuf.Int32Value, 4) as dependency_1.google.protobuf.Int32Value;
+        }
+        set blocked(value: dependency_1.google.protobuf.Int32Value) {
+            pb_1.Message.setWrapperField(this, 4, value);
+        }
+        get has_blocked() {
+            return pb_1.Message.getField(this, 4) != null;
+        }
+        get stopped() {
+            return pb_1.Message.getWrapperField(this, dependency_1.google.protobuf.Int32Value, 5) as dependency_1.google.protobuf.Int32Value;
+        }
+        set stopped(value: dependency_1.google.protobuf.Int32Value) {
+            pb_1.Message.setWrapperField(this, 5, value);
+        }
+        get has_stopped() {
+            return pb_1.Message.getField(this, 5) != null;
+        }
+        static fromObject(data: {
+            total?: ReturnType<typeof dependency_1.google.protobuf.Int32Value.prototype.toObject>;
+            on_target?: ReturnType<typeof dependency_1.google.protobuf.Int32Value.prototype.toObject>;
+            off_target?: ReturnType<typeof dependency_1.google.protobuf.Int32Value.prototype.toObject>;
+            blocked?: ReturnType<typeof dependency_1.google.protobuf.Int32Value.prototype.toObject>;
+            stopped?: ReturnType<typeof dependency_1.google.protobuf.Int32Value.prototype.toObject>;
+        }): Shots {
+            const message = new Shots({});
+            if (data.total != null) {
+                message.total = dependency_1.google.protobuf.Int32Value.fromObject(data.total);
+            }
+            if (data.on_target != null) {
+                message.on_target = dependency_1.google.protobuf.Int32Value.fromObject(data.on_target);
+            }
+            if (data.off_target != null) {
+                message.off_target = dependency_1.google.protobuf.Int32Value.fromObject(data.off_target);
+            }
+            if (data.blocked != null) {
+                message.blocked = dependency_1.google.protobuf.Int32Value.fromObject(data.blocked);
+            }
+            if (data.stopped != null) {
+                message.stopped = dependency_1.google.protobuf.Int32Value.fromObject(data.stopped);
+            }
+            return message;
+        }
+        toObject() {
+            const data: {
+                total?: ReturnType<typeof dependency_1.google.protobuf.Int32Value.prototype.toObject>;
+                on_target?: ReturnType<typeof dependency_1.google.protobuf.Int32Value.prototype.toObject>;
+                off_target?: ReturnType<typeof dependency_1.google.protobuf.Int32Value.prototype.toObject>;
+                blocked?: ReturnType<typeof dependency_1.google.protobuf.Int32Value.prototype.toObject>;
+                stopped?: ReturnType<typeof dependency_1.google.protobuf.Int32Value.prototype.toObject>;
+            } = {};
+            if (this.total != null) {
+                data.total = this.total.toObject();
+            }
+            if (this.on_target != null) {
+                data.on_target = this.on_target.toObject();
+            }
+            if (this.off_target != null) {
+                data.off_target = this.off_target.toObject();
+            }
+            if (this.blocked != null) {
+                data.blocked = this.blocked.toObject();
+            }
+            if (this.stopped != null) {
+                data.stopped = this.stopped.toObject();
+            }
+            return data;
+        }
+        serialize(): Uint8Array;
+        serialize(w: pb_1.BinaryWriter): void;
+        serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
+            const writer = w || new pb_1.BinaryWriter();
+            if (this.has_total)
+                writer.writeMessage(1, this.total, () => this.total.serialize(writer));
+            if (this.has_on_target)
+                writer.writeMessage(2, this.on_target, () => this.on_target.serialize(writer));
+            if (this.has_off_target)
+                writer.writeMessage(3, this.off_target, () => this.off_target.serialize(writer));
+            if (this.has_blocked)
+                writer.writeMessage(4, this.blocked, () => this.blocked.serialize(writer));
+            if (this.has_stopped)
+                writer.writeMessage(5, this.stopped, () => this.stopped.serialize(writer));
+            if (!w)
+                return writer.getResultBuffer();
+        }
+        static deserialize(bytes: Uint8Array | pb_1.BinaryReader): Shots {
+            const reader = bytes instanceof pb_1.BinaryReader ? bytes : new pb_1.BinaryReader(bytes), message = new Shots();
+            while (reader.nextField()) {
+                if (reader.isEndGroup())
+                    break;
+                switch (reader.getFieldNumber()) {
+                    case 1:
+                        reader.readMessage(message.total, () => message.total = dependency_1.google.protobuf.Int32Value.deserialize(reader));
+                        break;
+                    case 2:
+                        reader.readMessage(message.on_target, () => message.on_target = dependency_1.google.protobuf.Int32Value.deserialize(reader));
+                        break;
+                    case 3:
+                        reader.readMessage(message.off_target, () => message.off_target = dependency_1.google.protobuf.Int32Value.deserialize(reader));
+                        break;
+                    case 4:
+                        reader.readMessage(message.blocked, () => message.blocked = dependency_1.google.protobuf.Int32Value.deserialize(reader));
+                        break;
+                    case 5:
+                        reader.readMessage(message.stopped, () => message.stopped = dependency_1.google.protobuf.Int32Value.deserialize(reader));
+                        break;
+                    default: reader.skipField();
+                }
+            }
+            return message;
+        }
+        serializeBinary(): Uint8Array {
+            return this.serialize();
+        }
+        static deserializeBinary(bytes: Uint8Array): Shots {
+            return Shots.deserialize(bytes);
+        }
+    }
+    export class Goals extends pb_1.Message {
+        #one_of_decls: number[][] = [];
+        constructor(data?: any[] | {
+            scored?: dependency_1.google.protobuf.Int32Value;
+            conceded?: dependency_1.google.protobuf.Int32Value;
+        }) {
+            super();
+            pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [], this.#one_of_decls);
+            if (!Array.isArray(data) && typeof data == "object") {
+                if ("scored" in data && data.scored != undefined) {
+                    this.scored = data.scored;
+                }
+                if ("conceded" in data && data.conceded != undefined) {
+                    this.conceded = data.conceded;
+                }
+            }
+        }
+        get scored() {
+            return pb_1.Message.getWrapperField(this, dependency_1.google.protobuf.Int32Value, 1) as dependency_1.google.protobuf.Int32Value;
+        }
+        set scored(value: dependency_1.google.protobuf.Int32Value) {
+            pb_1.Message.setWrapperField(this, 1, value);
+        }
+        get has_scored() {
+            return pb_1.Message.getField(this, 1) != null;
+        }
+        get conceded() {
+            return pb_1.Message.getWrapperField(this, dependency_1.google.protobuf.Int32Value, 2) as dependency_1.google.protobuf.Int32Value;
+        }
+        set conceded(value: dependency_1.google.protobuf.Int32Value) {
+            pb_1.Message.setWrapperField(this, 2, value);
+        }
+        get has_conceded() {
+            return pb_1.Message.getField(this, 2) != null;
+        }
+        static fromObject(data: {
+            scored?: ReturnType<typeof dependency_1.google.protobuf.Int32Value.prototype.toObject>;
+            conceded?: ReturnType<typeof dependency_1.google.protobuf.Int32Value.prototype.toObject>;
+        }): Goals {
+            const message = new Goals({});
+            if (data.scored != null) {
+                message.scored = dependency_1.google.protobuf.Int32Value.fromObject(data.scored);
+            }
+            if (data.conceded != null) {
+                message.conceded = dependency_1.google.protobuf.Int32Value.fromObject(data.conceded);
+            }
+            return message;
+        }
+        toObject() {
+            const data: {
+                scored?: ReturnType<typeof dependency_1.google.protobuf.Int32Value.prototype.toObject>;
+                conceded?: ReturnType<typeof dependency_1.google.protobuf.Int32Value.prototype.toObject>;
+            } = {};
+            if (this.scored != null) {
+                data.scored = this.scored.toObject();
+            }
+            if (this.conceded != null) {
+                data.conceded = this.conceded.toObject();
+            }
+            return data;
+        }
+        serialize(): Uint8Array;
+        serialize(w: pb_1.BinaryWriter): void;
+        serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
+            const writer = w || new pb_1.BinaryWriter();
+            if (this.has_scored)
+                writer.writeMessage(1, this.scored, () => this.scored.serialize(writer));
+            if (this.has_conceded)
+                writer.writeMessage(2, this.conceded, () => this.conceded.serialize(writer));
+            if (!w)
+                return writer.getResultBuffer();
+        }
+        static deserialize(bytes: Uint8Array | pb_1.BinaryReader): Goals {
+            const reader = bytes instanceof pb_1.BinaryReader ? bytes : new pb_1.BinaryReader(bytes), message = new Goals();
+            while (reader.nextField()) {
+                if (reader.isEndGroup())
+                    break;
+                switch (reader.getFieldNumber()) {
+                    case 1:
+                        reader.readMessage(message.scored, () => message.scored = dependency_1.google.protobuf.Int32Value.deserialize(reader));
+                        break;
+                    case 2:
+                        reader.readMessage(message.conceded, () => message.conceded = dependency_1.google.protobuf.Int32Value.deserialize(reader));
+                        break;
+                    default: reader.skipField();
+                }
+            }
+            return message;
+        }
+        serializeBinary(): Uint8Array {
+            return this.serialize();
+        }
+        static deserializeBinary(bytes: Uint8Array): Goals {
+            return Goals.deserialize(bytes);
+        }
+    }
+    export class Fouls extends pb_1.Message {
+        #one_of_decls: number[][] = [];
+        constructor(data?: any[] | {
+            drawn?: dependency_1.google.protobuf.Int32Value;
+            committed?: dependency_1.google.protobuf.Int32Value;
+        }) {
+            super();
+            pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [], this.#one_of_decls);
+            if (!Array.isArray(data) && typeof data == "object") {
+                if ("drawn" in data && data.drawn != undefined) {
+                    this.drawn = data.drawn;
+                }
+                if ("committed" in data && data.committed != undefined) {
+                    this.committed = data.committed;
+                }
+            }
+        }
+        get drawn() {
+            return pb_1.Message.getWrapperField(this, dependency_1.google.protobuf.Int32Value, 1) as dependency_1.google.protobuf.Int32Value;
+        }
+        set drawn(value: dependency_1.google.protobuf.Int32Value) {
+            pb_1.Message.setWrapperField(this, 1, value);
+        }
+        get has_drawn() {
+            return pb_1.Message.getField(this, 1) != null;
+        }
+        get committed() {
+            return pb_1.Message.getWrapperField(this, dependency_1.google.protobuf.Int32Value, 2) as dependency_1.google.protobuf.Int32Value;
+        }
+        set committed(value: dependency_1.google.protobuf.Int32Value) {
+            pb_1.Message.setWrapperField(this, 2, value);
+        }
+        get has_committed() {
+            return pb_1.Message.getField(this, 2) != null;
+        }
+        static fromObject(data: {
+            drawn?: ReturnType<typeof dependency_1.google.protobuf.Int32Value.prototype.toObject>;
+            committed?: ReturnType<typeof dependency_1.google.protobuf.Int32Value.prototype.toObject>;
+        }): Fouls {
+            const message = new Fouls({});
+            if (data.drawn != null) {
+                message.drawn = dependency_1.google.protobuf.Int32Value.fromObject(data.drawn);
+            }
+            if (data.committed != null) {
+                message.committed = dependency_1.google.protobuf.Int32Value.fromObject(data.committed);
+            }
+            return message;
+        }
+        toObject() {
+            const data: {
+                drawn?: ReturnType<typeof dependency_1.google.protobuf.Int32Value.prototype.toObject>;
+                committed?: ReturnType<typeof dependency_1.google.protobuf.Int32Value.prototype.toObject>;
+            } = {};
+            if (this.drawn != null) {
+                data.drawn = this.drawn.toObject();
+            }
+            if (this.committed != null) {
+                data.committed = this.committed.toObject();
+            }
+            return data;
+        }
+        serialize(): Uint8Array;
+        serialize(w: pb_1.BinaryWriter): void;
+        serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
+            const writer = w || new pb_1.BinaryWriter();
+            if (this.has_drawn)
+                writer.writeMessage(1, this.drawn, () => this.drawn.serialize(writer));
+            if (this.has_committed)
+                writer.writeMessage(2, this.committed, () => this.committed.serialize(writer));
+            if (!w)
+                return writer.getResultBuffer();
+        }
+        static deserialize(bytes: Uint8Array | pb_1.BinaryReader): Fouls {
+            const reader = bytes instanceof pb_1.BinaryReader ? bytes : new pb_1.BinaryReader(bytes), message = new Fouls();
+            while (reader.nextField()) {
+                if (reader.isEndGroup())
+                    break;
+                switch (reader.getFieldNumber()) {
+                    case 1:
+                        reader.readMessage(message.drawn, () => message.drawn = dependency_1.google.protobuf.Int32Value.deserialize(reader));
+                        break;
+                    case 2:
+                        reader.readMessage(message.committed, () => message.committed = dependency_1.google.protobuf.Int32Value.deserialize(reader));
+                        break;
+                    default: reader.skipField();
+                }
+            }
+            return message;
+        }
+        serializeBinary(): Uint8Array {
+            return this.serialize();
+        }
+        static deserializeBinary(bytes: Uint8Array): Fouls {
+            return Fouls.deserialize(bytes);
+        }
+    }
+    export class GoalKeeper extends pb_1.Message {
+        #one_of_decls: number[][] = [];
+        constructor(data?: any[] | {
+            saves_total?: dependency_1.google.protobuf.Int32Value;
+            saves_inside_box?: dependency_1.google.protobuf.Int32Value;
+            goals_conceded?: dependency_1.google.protobuf.Int32Value;
+            punches?: dependency_1.google.protobuf.Int32Value;
+        }) {
+            super();
+            pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [], this.#one_of_decls);
+            if (!Array.isArray(data) && typeof data == "object") {
+                if ("saves_total" in data && data.saves_total != undefined) {
+                    this.saves_total = data.saves_total;
+                }
+                if ("saves_inside_box" in data && data.saves_inside_box != undefined) {
+                    this.saves_inside_box = data.saves_inside_box;
+                }
+                if ("goals_conceded" in data && data.goals_conceded != undefined) {
+                    this.goals_conceded = data.goals_conceded;
+                }
+                if ("punches" in data && data.punches != undefined) {
+                    this.punches = data.punches;
+                }
+            }
+        }
+        get saves_total() {
+            return pb_1.Message.getWrapperField(this, dependency_1.google.protobuf.Int32Value, 1) as dependency_1.google.protobuf.Int32Value;
+        }
+        set saves_total(value: dependency_1.google.protobuf.Int32Value) {
+            pb_1.Message.setWrapperField(this, 1, value);
+        }
+        get has_saves_total() {
+            return pb_1.Message.getField(this, 1) != null;
+        }
+        get saves_inside_box() {
+            return pb_1.Message.getWrapperField(this, dependency_1.google.protobuf.Int32Value, 2) as dependency_1.google.protobuf.Int32Value;
+        }
+        set saves_inside_box(value: dependency_1.google.protobuf.Int32Value) {
+            pb_1.Message.setWrapperField(this, 2, value);
+        }
+        get has_saves_inside_box() {
+            return pb_1.Message.getField(this, 2) != null;
+        }
+        get goals_conceded() {
+            return pb_1.Message.getWrapperField(this, dependency_1.google.protobuf.Int32Value, 3) as dependency_1.google.protobuf.Int32Value;
+        }
+        set goals_conceded(value: dependency_1.google.protobuf.Int32Value) {
+            pb_1.Message.setWrapperField(this, 3, value);
+        }
+        get has_goals_conceded() {
+            return pb_1.Message.getField(this, 3) != null;
+        }
+        get punches() {
+            return pb_1.Message.getWrapperField(this, dependency_1.google.protobuf.Int32Value, 4) as dependency_1.google.protobuf.Int32Value;
+        }
+        set punches(value: dependency_1.google.protobuf.Int32Value) {
+            pb_1.Message.setWrapperField(this, 4, value);
+        }
+        get has_punches() {
+            return pb_1.Message.getField(this, 4) != null;
+        }
+        static fromObject(data: {
+            saves_total?: ReturnType<typeof dependency_1.google.protobuf.Int32Value.prototype.toObject>;
+            saves_inside_box?: ReturnType<typeof dependency_1.google.protobuf.Int32Value.prototype.toObject>;
+            goals_conceded?: ReturnType<typeof dependency_1.google.protobuf.Int32Value.prototype.toObject>;
+            punches?: ReturnType<typeof dependency_1.google.protobuf.Int32Value.prototype.toObject>;
+        }): GoalKeeper {
+            const message = new GoalKeeper({});
+            if (data.saves_total != null) {
+                message.saves_total = dependency_1.google.protobuf.Int32Value.fromObject(data.saves_total);
+            }
+            if (data.saves_inside_box != null) {
+                message.saves_inside_box = dependency_1.google.protobuf.Int32Value.fromObject(data.saves_inside_box);
+            }
+            if (data.goals_conceded != null) {
+                message.goals_conceded = dependency_1.google.protobuf.Int32Value.fromObject(data.goals_conceded);
+            }
+            if (data.punches != null) {
+                message.punches = dependency_1.google.protobuf.Int32Value.fromObject(data.punches);
+            }
+            return message;
+        }
+        toObject() {
+            const data: {
+                saves_total?: ReturnType<typeof dependency_1.google.protobuf.Int32Value.prototype.toObject>;
+                saves_inside_box?: ReturnType<typeof dependency_1.google.protobuf.Int32Value.prototype.toObject>;
+                goals_conceded?: ReturnType<typeof dependency_1.google.protobuf.Int32Value.prototype.toObject>;
+                punches?: ReturnType<typeof dependency_1.google.protobuf.Int32Value.prototype.toObject>;
+            } = {};
+            if (this.saves_total != null) {
+                data.saves_total = this.saves_total.toObject();
+            }
+            if (this.saves_inside_box != null) {
+                data.saves_inside_box = this.saves_inside_box.toObject();
+            }
+            if (this.goals_conceded != null) {
+                data.goals_conceded = this.goals_conceded.toObject();
+            }
+            if (this.punches != null) {
+                data.punches = this.punches.toObject();
+            }
+            return data;
+        }
+        serialize(): Uint8Array;
+        serialize(w: pb_1.BinaryWriter): void;
+        serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
+            const writer = w || new pb_1.BinaryWriter();
+            if (this.has_saves_total)
+                writer.writeMessage(1, this.saves_total, () => this.saves_total.serialize(writer));
+            if (this.has_saves_inside_box)
+                writer.writeMessage(2, this.saves_inside_box, () => this.saves_inside_box.serialize(writer));
+            if (this.has_goals_conceded)
+                writer.writeMessage(3, this.goals_conceded, () => this.goals_conceded.serialize(writer));
+            if (this.has_punches)
+                writer.writeMessage(4, this.punches, () => this.punches.serialize(writer));
+            if (!w)
+                return writer.getResultBuffer();
+        }
+        static deserialize(bytes: Uint8Array | pb_1.BinaryReader): GoalKeeper {
+            const reader = bytes instanceof pb_1.BinaryReader ? bytes : new pb_1.BinaryReader(bytes), message = new GoalKeeper();
+            while (reader.nextField()) {
+                if (reader.isEndGroup())
+                    break;
+                switch (reader.getFieldNumber()) {
+                    case 1:
+                        reader.readMessage(message.saves_total, () => message.saves_total = dependency_1.google.protobuf.Int32Value.deserialize(reader));
+                        break;
+                    case 2:
+                        reader.readMessage(message.saves_inside_box, () => message.saves_inside_box = dependency_1.google.protobuf.Int32Value.deserialize(reader));
+                        break;
+                    case 3:
+                        reader.readMessage(message.goals_conceded, () => message.goals_conceded = dependency_1.google.protobuf.Int32Value.deserialize(reader));
+                        break;
+                    case 4:
+                        reader.readMessage(message.punches, () => message.punches = dependency_1.google.protobuf.Int32Value.deserialize(reader));
+                        break;
+                    default: reader.skipField();
+                }
+            }
+            return message;
+        }
+        serializeBinary(): Uint8Array {
+            return this.serialize();
+        }
+        static deserializeBinary(bytes: Uint8Array): GoalKeeper {
+            return GoalKeeper.deserialize(bytes);
+        }
+    }
+    export class Penalties extends pb_1.Message {
+        #one_of_decls: number[][] = [];
+        constructor(data?: any[] | {
+            scored?: dependency_1.google.protobuf.Int32Value;
+            missed?: dependency_1.google.protobuf.Int32Value;
+            saved?: dependency_1.google.protobuf.Int32Value;
+            committed?: dependency_1.google.protobuf.Int32Value;
+            won?: dependency_1.google.protobuf.Int32Value;
+        }) {
+            super();
+            pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [], this.#one_of_decls);
+            if (!Array.isArray(data) && typeof data == "object") {
+                if ("scored" in data && data.scored != undefined) {
+                    this.scored = data.scored;
+                }
+                if ("missed" in data && data.missed != undefined) {
+                    this.missed = data.missed;
+                }
+                if ("saved" in data && data.saved != undefined) {
+                    this.saved = data.saved;
+                }
+                if ("committed" in data && data.committed != undefined) {
+                    this.committed = data.committed;
+                }
+                if ("won" in data && data.won != undefined) {
+                    this.won = data.won;
+                }
+            }
+        }
+        get scored() {
+            return pb_1.Message.getWrapperField(this, dependency_1.google.protobuf.Int32Value, 1) as dependency_1.google.protobuf.Int32Value;
+        }
+        set scored(value: dependency_1.google.protobuf.Int32Value) {
+            pb_1.Message.setWrapperField(this, 1, value);
+        }
+        get has_scored() {
+            return pb_1.Message.getField(this, 1) != null;
+        }
+        get missed() {
+            return pb_1.Message.getWrapperField(this, dependency_1.google.protobuf.Int32Value, 2) as dependency_1.google.protobuf.Int32Value;
+        }
+        set missed(value: dependency_1.google.protobuf.Int32Value) {
+            pb_1.Message.setWrapperField(this, 2, value);
+        }
+        get has_missed() {
+            return pb_1.Message.getField(this, 2) != null;
+        }
+        get saved() {
+            return pb_1.Message.getWrapperField(this, dependency_1.google.protobuf.Int32Value, 3) as dependency_1.google.protobuf.Int32Value;
+        }
+        set saved(value: dependency_1.google.protobuf.Int32Value) {
+            pb_1.Message.setWrapperField(this, 3, value);
+        }
+        get has_saved() {
+            return pb_1.Message.getField(this, 3) != null;
+        }
+        get committed() {
+            return pb_1.Message.getWrapperField(this, dependency_1.google.protobuf.Int32Value, 4) as dependency_1.google.protobuf.Int32Value;
+        }
+        set committed(value: dependency_1.google.protobuf.Int32Value) {
+            pb_1.Message.setWrapperField(this, 4, value);
+        }
+        get has_committed() {
+            return pb_1.Message.getField(this, 4) != null;
+        }
+        get won() {
+            return pb_1.Message.getWrapperField(this, dependency_1.google.protobuf.Int32Value, 5) as dependency_1.google.protobuf.Int32Value;
+        }
+        set won(value: dependency_1.google.protobuf.Int32Value) {
+            pb_1.Message.setWrapperField(this, 5, value);
+        }
+        get has_won() {
+            return pb_1.Message.getField(this, 5) != null;
+        }
+        static fromObject(data: {
+            scored?: ReturnType<typeof dependency_1.google.protobuf.Int32Value.prototype.toObject>;
+            missed?: ReturnType<typeof dependency_1.google.protobuf.Int32Value.prototype.toObject>;
+            saved?: ReturnType<typeof dependency_1.google.protobuf.Int32Value.prototype.toObject>;
+            committed?: ReturnType<typeof dependency_1.google.protobuf.Int32Value.prototype.toObject>;
+            won?: ReturnType<typeof dependency_1.google.protobuf.Int32Value.prototype.toObject>;
+        }): Penalties {
+            const message = new Penalties({});
+            if (data.scored != null) {
+                message.scored = dependency_1.google.protobuf.Int32Value.fromObject(data.scored);
+            }
+            if (data.missed != null) {
+                message.missed = dependency_1.google.protobuf.Int32Value.fromObject(data.missed);
+            }
+            if (data.saved != null) {
+                message.saved = dependency_1.google.protobuf.Int32Value.fromObject(data.saved);
+            }
+            if (data.committed != null) {
+                message.committed = dependency_1.google.protobuf.Int32Value.fromObject(data.committed);
+            }
+            if (data.won != null) {
+                message.won = dependency_1.google.protobuf.Int32Value.fromObject(data.won);
+            }
+            return message;
+        }
+        toObject() {
+            const data: {
+                scored?: ReturnType<typeof dependency_1.google.protobuf.Int32Value.prototype.toObject>;
+                missed?: ReturnType<typeof dependency_1.google.protobuf.Int32Value.prototype.toObject>;
+                saved?: ReturnType<typeof dependency_1.google.protobuf.Int32Value.prototype.toObject>;
+                committed?: ReturnType<typeof dependency_1.google.protobuf.Int32Value.prototype.toObject>;
+                won?: ReturnType<typeof dependency_1.google.protobuf.Int32Value.prototype.toObject>;
+            } = {};
+            if (this.scored != null) {
+                data.scored = this.scored.toObject();
+            }
+            if (this.missed != null) {
+                data.missed = this.missed.toObject();
+            }
+            if (this.saved != null) {
+                data.saved = this.saved.toObject();
+            }
+            if (this.committed != null) {
+                data.committed = this.committed.toObject();
+            }
+            if (this.won != null) {
+                data.won = this.won.toObject();
+            }
+            return data;
+        }
+        serialize(): Uint8Array;
+        serialize(w: pb_1.BinaryWriter): void;
+        serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
+            const writer = w || new pb_1.BinaryWriter();
+            if (this.has_scored)
+                writer.writeMessage(1, this.scored, () => this.scored.serialize(writer));
+            if (this.has_missed)
+                writer.writeMessage(2, this.missed, () => this.missed.serialize(writer));
+            if (this.has_saved)
+                writer.writeMessage(3, this.saved, () => this.saved.serialize(writer));
+            if (this.has_committed)
+                writer.writeMessage(4, this.committed, () => this.committed.serialize(writer));
+            if (this.has_won)
+                writer.writeMessage(5, this.won, () => this.won.serialize(writer));
+            if (!w)
+                return writer.getResultBuffer();
+        }
+        static deserialize(bytes: Uint8Array | pb_1.BinaryReader): Penalties {
+            const reader = bytes instanceof pb_1.BinaryReader ? bytes : new pb_1.BinaryReader(bytes), message = new Penalties();
+            while (reader.nextField()) {
+                if (reader.isEndGroup())
+                    break;
+                switch (reader.getFieldNumber()) {
+                    case 1:
+                        reader.readMessage(message.scored, () => message.scored = dependency_1.google.protobuf.Int32Value.deserialize(reader));
+                        break;
+                    case 2:
+                        reader.readMessage(message.missed, () => message.missed = dependency_1.google.protobuf.Int32Value.deserialize(reader));
+                        break;
+                    case 3:
+                        reader.readMessage(message.saved, () => message.saved = dependency_1.google.protobuf.Int32Value.deserialize(reader));
+                        break;
+                    case 4:
+                        reader.readMessage(message.committed, () => message.committed = dependency_1.google.protobuf.Int32Value.deserialize(reader));
+                        break;
+                    case 5:
+                        reader.readMessage(message.won, () => message.won = dependency_1.google.protobuf.Int32Value.deserialize(reader));
+                        break;
+                    default: reader.skipField();
+                }
+            }
+            return message;
+        }
+        serializeBinary(): Uint8Array {
+            return this.serialize();
+        }
+        static deserializeBinary(bytes: Uint8Array): Penalties {
+            return Penalties.deserialize(bytes);
+        }
+    }
+    export class Crosses extends pb_1.Message {
+        #one_of_decls: number[][] = [];
+        constructor(data?: any[] | {
+            total?: dependency_1.google.protobuf.Int32Value;
+            accurate?: dependency_1.google.protobuf.Int32Value;
+        }) {
+            super();
+            pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [], this.#one_of_decls);
+            if (!Array.isArray(data) && typeof data == "object") {
+                if ("total" in data && data.total != undefined) {
+                    this.total = data.total;
+                }
+                if ("accurate" in data && data.accurate != undefined) {
+                    this.accurate = data.accurate;
+                }
+            }
+        }
+        get total() {
+            return pb_1.Message.getWrapperField(this, dependency_1.google.protobuf.Int32Value, 1) as dependency_1.google.protobuf.Int32Value;
+        }
+        set total(value: dependency_1.google.protobuf.Int32Value) {
+            pb_1.Message.setWrapperField(this, 1, value);
+        }
+        get has_total() {
+            return pb_1.Message.getField(this, 1) != null;
+        }
+        get accurate() {
+            return pb_1.Message.getWrapperField(this, dependency_1.google.protobuf.Int32Value, 2) as dependency_1.google.protobuf.Int32Value;
+        }
+        set accurate(value: dependency_1.google.protobuf.Int32Value) {
+            pb_1.Message.setWrapperField(this, 2, value);
+        }
+        get has_accurate() {
+            return pb_1.Message.getField(this, 2) != null;
+        }
+        static fromObject(data: {
+            total?: ReturnType<typeof dependency_1.google.protobuf.Int32Value.prototype.toObject>;
+            accurate?: ReturnType<typeof dependency_1.google.protobuf.Int32Value.prototype.toObject>;
+        }): Crosses {
+            const message = new Crosses({});
+            if (data.total != null) {
+                message.total = dependency_1.google.protobuf.Int32Value.fromObject(data.total);
+            }
+            if (data.accurate != null) {
+                message.accurate = dependency_1.google.protobuf.Int32Value.fromObject(data.accurate);
+            }
+            return message;
+        }
+        toObject() {
+            const data: {
+                total?: ReturnType<typeof dependency_1.google.protobuf.Int32Value.prototype.toObject>;
+                accurate?: ReturnType<typeof dependency_1.google.protobuf.Int32Value.prototype.toObject>;
+            } = {};
+            if (this.total != null) {
+                data.total = this.total.toObject();
+            }
+            if (this.accurate != null) {
+                data.accurate = this.accurate.toObject();
+            }
+            return data;
+        }
+        serialize(): Uint8Array;
+        serialize(w: pb_1.BinaryWriter): void;
+        serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
+            const writer = w || new pb_1.BinaryWriter();
+            if (this.has_total)
+                writer.writeMessage(1, this.total, () => this.total.serialize(writer));
+            if (this.has_accurate)
+                writer.writeMessage(2, this.accurate, () => this.accurate.serialize(writer));
+            if (!w)
+                return writer.getResultBuffer();
+        }
+        static deserialize(bytes: Uint8Array | pb_1.BinaryReader): Crosses {
+            const reader = bytes instanceof pb_1.BinaryReader ? bytes : new pb_1.BinaryReader(bytes), message = new Crosses();
+            while (reader.nextField()) {
+                if (reader.isEndGroup())
+                    break;
+                switch (reader.getFieldNumber()) {
+                    case 1:
+                        reader.readMessage(message.total, () => message.total = dependency_1.google.protobuf.Int32Value.deserialize(reader));
+                        break;
+                    case 2:
+                        reader.readMessage(message.accurate, () => message.accurate = dependency_1.google.protobuf.Int32Value.deserialize(reader));
+                        break;
+                    default: reader.skipField();
+                }
+            }
+            return message;
+        }
+        serializeBinary(): Uint8Array {
+            return this.serialize();
+        }
+        static deserializeBinary(bytes: Uint8Array): Crosses {
+            return Crosses.deserialize(bytes);
+        }
+    }
+    export class Passes extends pb_1.Message {
+        #one_of_decls: number[][] = [];
+        constructor(data?: any[] | {
+            total?: dependency_1.google.protobuf.Int32Value;
+            accurate?: dependency_1.google.protobuf.Int32Value;
+            accuracy?: dependency_1.google.protobuf.Int32Value;
+            key?: dependency_1.google.protobuf.Int32Value;
+            long?: dependency_1.google.protobuf.Int32Value;
+        }) {
+            super();
+            pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [], this.#one_of_decls);
+            if (!Array.isArray(data) && typeof data == "object") {
+                if ("total" in data && data.total != undefined) {
+                    this.total = data.total;
+                }
+                if ("accurate" in data && data.accurate != undefined) {
+                    this.accurate = data.accurate;
+                }
+                if ("accuracy" in data && data.accuracy != undefined) {
+                    this.accuracy = data.accuracy;
+                }
+                if ("key" in data && data.key != undefined) {
+                    this.key = data.key;
+                }
+                if ("long" in data && data.long != undefined) {
+                    this.long = data.long;
+                }
+            }
+        }
+        get total() {
+            return pb_1.Message.getWrapperField(this, dependency_1.google.protobuf.Int32Value, 1) as dependency_1.google.protobuf.Int32Value;
+        }
+        set total(value: dependency_1.google.protobuf.Int32Value) {
+            pb_1.Message.setWrapperField(this, 1, value);
+        }
+        get has_total() {
+            return pb_1.Message.getField(this, 1) != null;
+        }
+        get accurate() {
+            return pb_1.Message.getWrapperField(this, dependency_1.google.protobuf.Int32Value, 2) as dependency_1.google.protobuf.Int32Value;
+        }
+        set accurate(value: dependency_1.google.protobuf.Int32Value) {
+            pb_1.Message.setWrapperField(this, 2, value);
+        }
+        get has_accurate() {
+            return pb_1.Message.getField(this, 2) != null;
+        }
+        get accuracy() {
+            return pb_1.Message.getWrapperField(this, dependency_1.google.protobuf.Int32Value, 3) as dependency_1.google.protobuf.Int32Value;
+        }
+        set accuracy(value: dependency_1.google.protobuf.Int32Value) {
+            pb_1.Message.setWrapperField(this, 3, value);
+        }
+        get has_accuracy() {
+            return pb_1.Message.getField(this, 3) != null;
+        }
+        get key() {
+            return pb_1.Message.getWrapperField(this, dependency_1.google.protobuf.Int32Value, 4) as dependency_1.google.protobuf.Int32Value;
+        }
+        set key(value: dependency_1.google.protobuf.Int32Value) {
+            pb_1.Message.setWrapperField(this, 4, value);
+        }
+        get has_key() {
+            return pb_1.Message.getField(this, 4) != null;
+        }
+        get long() {
+            return pb_1.Message.getWrapperField(this, dependency_1.google.protobuf.Int32Value, 5) as dependency_1.google.protobuf.Int32Value;
+        }
+        set long(value: dependency_1.google.protobuf.Int32Value) {
+            pb_1.Message.setWrapperField(this, 5, value);
+        }
+        get has_long() {
+            return pb_1.Message.getField(this, 5) != null;
+        }
+        static fromObject(data: {
+            total?: ReturnType<typeof dependency_1.google.protobuf.Int32Value.prototype.toObject>;
+            accurate?: ReturnType<typeof dependency_1.google.protobuf.Int32Value.prototype.toObject>;
+            accuracy?: ReturnType<typeof dependency_1.google.protobuf.Int32Value.prototype.toObject>;
+            key?: ReturnType<typeof dependency_1.google.protobuf.Int32Value.prototype.toObject>;
+            long?: ReturnType<typeof dependency_1.google.protobuf.Int32Value.prototype.toObject>;
+        }): Passes {
+            const message = new Passes({});
+            if (data.total != null) {
+                message.total = dependency_1.google.protobuf.Int32Value.fromObject(data.total);
+            }
+            if (data.accurate != null) {
+                message.accurate = dependency_1.google.protobuf.Int32Value.fromObject(data.accurate);
+            }
+            if (data.accuracy != null) {
+                message.accuracy = dependency_1.google.protobuf.Int32Value.fromObject(data.accuracy);
+            }
+            if (data.key != null) {
+                message.key = dependency_1.google.protobuf.Int32Value.fromObject(data.key);
+            }
+            if (data.long != null) {
+                message.long = dependency_1.google.protobuf.Int32Value.fromObject(data.long);
+            }
+            return message;
+        }
+        toObject() {
+            const data: {
+                total?: ReturnType<typeof dependency_1.google.protobuf.Int32Value.prototype.toObject>;
+                accurate?: ReturnType<typeof dependency_1.google.protobuf.Int32Value.prototype.toObject>;
+                accuracy?: ReturnType<typeof dependency_1.google.protobuf.Int32Value.prototype.toObject>;
+                key?: ReturnType<typeof dependency_1.google.protobuf.Int32Value.prototype.toObject>;
+                long?: ReturnType<typeof dependency_1.google.protobuf.Int32Value.prototype.toObject>;
+            } = {};
+            if (this.total != null) {
+                data.total = this.total.toObject();
+            }
+            if (this.accurate != null) {
+                data.accurate = this.accurate.toObject();
+            }
+            if (this.accuracy != null) {
+                data.accuracy = this.accuracy.toObject();
+            }
+            if (this.key != null) {
+                data.key = this.key.toObject();
+            }
+            if (this.long != null) {
+                data.long = this.long.toObject();
+            }
+            return data;
+        }
+        serialize(): Uint8Array;
+        serialize(w: pb_1.BinaryWriter): void;
+        serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
+            const writer = w || new pb_1.BinaryWriter();
+            if (this.has_total)
+                writer.writeMessage(1, this.total, () => this.total.serialize(writer));
+            if (this.has_accurate)
+                writer.writeMessage(2, this.accurate, () => this.accurate.serialize(writer));
+            if (this.has_accuracy)
+                writer.writeMessage(3, this.accuracy, () => this.accuracy.serialize(writer));
+            if (this.has_key)
+                writer.writeMessage(4, this.key, () => this.key.serialize(writer));
+            if (this.has_long)
+                writer.writeMessage(5, this.long, () => this.long.serialize(writer));
+            if (!w)
+                return writer.getResultBuffer();
+        }
+        static deserialize(bytes: Uint8Array | pb_1.BinaryReader): Passes {
+            const reader = bytes instanceof pb_1.BinaryReader ? bytes : new pb_1.BinaryReader(bytes), message = new Passes();
+            while (reader.nextField()) {
+                if (reader.isEndGroup())
+                    break;
+                switch (reader.getFieldNumber()) {
+                    case 1:
+                        reader.readMessage(message.total, () => message.total = dependency_1.google.protobuf.Int32Value.deserialize(reader));
+                        break;
+                    case 2:
+                        reader.readMessage(message.accurate, () => message.accurate = dependency_1.google.protobuf.Int32Value.deserialize(reader));
+                        break;
+                    case 3:
+                        reader.readMessage(message.accuracy, () => message.accuracy = dependency_1.google.protobuf.Int32Value.deserialize(reader));
+                        break;
+                    case 4:
+                        reader.readMessage(message.key, () => message.key = dependency_1.google.protobuf.Int32Value.deserialize(reader));
+                        break;
+                    case 5:
+                        reader.readMessage(message.long, () => message.long = dependency_1.google.protobuf.Int32Value.deserialize(reader));
+                        break;
+                    default: reader.skipField();
+                }
+            }
+            return message;
+        }
+        serializeBinary(): Uint8Array {
+            return this.serialize();
+        }
+        static deserializeBinary(bytes: Uint8Array): Passes {
+            return Passes.deserialize(bytes);
+        }
+    }
+    export class ThroughBalls extends pb_1.Message {
+        #one_of_decls: number[][] = [];
+        constructor(data?: any[] | {
+            total?: dependency_1.google.protobuf.Int32Value;
+            won?: dependency_1.google.protobuf.Int32Value;
+        }) {
+            super();
+            pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [], this.#one_of_decls);
+            if (!Array.isArray(data) && typeof data == "object") {
+                if ("total" in data && data.total != undefined) {
+                    this.total = data.total;
+                }
+                if ("won" in data && data.won != undefined) {
+                    this.won = data.won;
+                }
+            }
+        }
+        get total() {
+            return pb_1.Message.getWrapperField(this, dependency_1.google.protobuf.Int32Value, 1) as dependency_1.google.protobuf.Int32Value;
+        }
+        set total(value: dependency_1.google.protobuf.Int32Value) {
+            pb_1.Message.setWrapperField(this, 1, value);
+        }
+        get has_total() {
+            return pb_1.Message.getField(this, 1) != null;
+        }
+        get won() {
+            return pb_1.Message.getWrapperField(this, dependency_1.google.protobuf.Int32Value, 2) as dependency_1.google.protobuf.Int32Value;
+        }
+        set won(value: dependency_1.google.protobuf.Int32Value) {
+            pb_1.Message.setWrapperField(this, 2, value);
+        }
+        get has_won() {
+            return pb_1.Message.getField(this, 2) != null;
+        }
+        static fromObject(data: {
+            total?: ReturnType<typeof dependency_1.google.protobuf.Int32Value.prototype.toObject>;
+            won?: ReturnType<typeof dependency_1.google.protobuf.Int32Value.prototype.toObject>;
+        }): ThroughBalls {
+            const message = new ThroughBalls({});
+            if (data.total != null) {
+                message.total = dependency_1.google.protobuf.Int32Value.fromObject(data.total);
+            }
+            if (data.won != null) {
+                message.won = dependency_1.google.protobuf.Int32Value.fromObject(data.won);
+            }
+            return message;
+        }
+        toObject() {
+            const data: {
+                total?: ReturnType<typeof dependency_1.google.protobuf.Int32Value.prototype.toObject>;
+                won?: ReturnType<typeof dependency_1.google.protobuf.Int32Value.prototype.toObject>;
+            } = {};
+            if (this.total != null) {
+                data.total = this.total.toObject();
+            }
+            if (this.won != null) {
+                data.won = this.won.toObject();
+            }
+            return data;
+        }
+        serialize(): Uint8Array;
+        serialize(w: pb_1.BinaryWriter): void;
+        serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
+            const writer = w || new pb_1.BinaryWriter();
+            if (this.has_total)
+                writer.writeMessage(1, this.total, () => this.total.serialize(writer));
+            if (this.has_won)
+                writer.writeMessage(2, this.won, () => this.won.serialize(writer));
+            if (!w)
+                return writer.getResultBuffer();
+        }
+        static deserialize(bytes: Uint8Array | pb_1.BinaryReader): ThroughBalls {
+            const reader = bytes instanceof pb_1.BinaryReader ? bytes : new pb_1.BinaryReader(bytes), message = new ThroughBalls();
+            while (reader.nextField()) {
+                if (reader.isEndGroup())
+                    break;
+                switch (reader.getFieldNumber()) {
+                    case 1:
+                        reader.readMessage(message.total, () => message.total = dependency_1.google.protobuf.Int32Value.deserialize(reader));
+                        break;
+                    case 2:
+                        reader.readMessage(message.won, () => message.won = dependency_1.google.protobuf.Int32Value.deserialize(reader));
+                        break;
+                    default: reader.skipField();
+                }
+            }
+            return message;
+        }
+        serializeBinary(): Uint8Array {
+            return this.serialize();
+        }
+        static deserializeBinary(bytes: Uint8Array): ThroughBalls {
+            return ThroughBalls.deserialize(bytes);
+        }
+    }
+    export class Duels extends pb_1.Message {
+        #one_of_decls: number[][] = [];
+        constructor(data?: any[] | {
+            total?: dependency_1.google.protobuf.Int32Value;
+            won?: dependency_1.google.protobuf.Int32Value;
+            lost?: dependency_1.google.protobuf.Int32Value;
+        }) {
+            super();
+            pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [], this.#one_of_decls);
+            if (!Array.isArray(data) && typeof data == "object") {
+                if ("total" in data && data.total != undefined) {
+                    this.total = data.total;
+                }
+                if ("won" in data && data.won != undefined) {
+                    this.won = data.won;
+                }
+                if ("lost" in data && data.lost != undefined) {
+                    this.lost = data.lost;
+                }
+            }
+        }
+        get total() {
+            return pb_1.Message.getWrapperField(this, dependency_1.google.protobuf.Int32Value, 1) as dependency_1.google.protobuf.Int32Value;
+        }
+        set total(value: dependency_1.google.protobuf.Int32Value) {
+            pb_1.Message.setWrapperField(this, 1, value);
+        }
+        get has_total() {
+            return pb_1.Message.getField(this, 1) != null;
+        }
+        get won() {
+            return pb_1.Message.getWrapperField(this, dependency_1.google.protobuf.Int32Value, 2) as dependency_1.google.protobuf.Int32Value;
+        }
+        set won(value: dependency_1.google.protobuf.Int32Value) {
+            pb_1.Message.setWrapperField(this, 2, value);
+        }
+        get has_won() {
+            return pb_1.Message.getField(this, 2) != null;
+        }
+        get lost() {
+            return pb_1.Message.getWrapperField(this, dependency_1.google.protobuf.Int32Value, 3) as dependency_1.google.protobuf.Int32Value;
+        }
+        set lost(value: dependency_1.google.protobuf.Int32Value) {
+            pb_1.Message.setWrapperField(this, 3, value);
+        }
+        get has_lost() {
+            return pb_1.Message.getField(this, 3) != null;
+        }
+        static fromObject(data: {
+            total?: ReturnType<typeof dependency_1.google.protobuf.Int32Value.prototype.toObject>;
+            won?: ReturnType<typeof dependency_1.google.protobuf.Int32Value.prototype.toObject>;
+            lost?: ReturnType<typeof dependency_1.google.protobuf.Int32Value.prototype.toObject>;
+        }): Duels {
+            const message = new Duels({});
+            if (data.total != null) {
+                message.total = dependency_1.google.protobuf.Int32Value.fromObject(data.total);
+            }
+            if (data.won != null) {
+                message.won = dependency_1.google.protobuf.Int32Value.fromObject(data.won);
+            }
+            if (data.lost != null) {
+                message.lost = dependency_1.google.protobuf.Int32Value.fromObject(data.lost);
+            }
+            return message;
+        }
+        toObject() {
+            const data: {
+                total?: ReturnType<typeof dependency_1.google.protobuf.Int32Value.prototype.toObject>;
+                won?: ReturnType<typeof dependency_1.google.protobuf.Int32Value.prototype.toObject>;
+                lost?: ReturnType<typeof dependency_1.google.protobuf.Int32Value.prototype.toObject>;
+            } = {};
+            if (this.total != null) {
+                data.total = this.total.toObject();
+            }
+            if (this.won != null) {
+                data.won = this.won.toObject();
+            }
+            if (this.lost != null) {
+                data.lost = this.lost.toObject();
+            }
+            return data;
+        }
+        serialize(): Uint8Array;
+        serialize(w: pb_1.BinaryWriter): void;
+        serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
+            const writer = w || new pb_1.BinaryWriter();
+            if (this.has_total)
+                writer.writeMessage(1, this.total, () => this.total.serialize(writer));
+            if (this.has_won)
+                writer.writeMessage(2, this.won, () => this.won.serialize(writer));
+            if (this.has_lost)
+                writer.writeMessage(3, this.lost, () => this.lost.serialize(writer));
+            if (!w)
+                return writer.getResultBuffer();
+        }
+        static deserialize(bytes: Uint8Array | pb_1.BinaryReader): Duels {
+            const reader = bytes instanceof pb_1.BinaryReader ? bytes : new pb_1.BinaryReader(bytes), message = new Duels();
+            while (reader.nextField()) {
+                if (reader.isEndGroup())
+                    break;
+                switch (reader.getFieldNumber()) {
+                    case 1:
+                        reader.readMessage(message.total, () => message.total = dependency_1.google.protobuf.Int32Value.deserialize(reader));
+                        break;
+                    case 2:
+                        reader.readMessage(message.won, () => message.won = dependency_1.google.protobuf.Int32Value.deserialize(reader));
+                        break;
+                    case 3:
+                        reader.readMessage(message.lost, () => message.lost = dependency_1.google.protobuf.Int32Value.deserialize(reader));
+                        break;
+                    default: reader.skipField();
+                }
+            }
+            return message;
+        }
+        serializeBinary(): Uint8Array {
+            return this.serialize();
+        }
+        static deserializeBinary(bytes: Uint8Array): Duels {
+            return Duels.deserialize(bytes);
+        }
+    }
+    export class Dribbles extends pb_1.Message {
+        #one_of_decls: number[][] = [];
+        constructor(data?: any[] | {
+            attempts?: dependency_1.google.protobuf.Int32Value;
+            success?: dependency_1.google.protobuf.Int32Value;
+            past?: dependency_1.google.protobuf.Int32Value;
+        }) {
+            super();
+            pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [], this.#one_of_decls);
+            if (!Array.isArray(data) && typeof data == "object") {
+                if ("attempts" in data && data.attempts != undefined) {
+                    this.attempts = data.attempts;
+                }
+                if ("success" in data && data.success != undefined) {
+                    this.success = data.success;
+                }
+                if ("past" in data && data.past != undefined) {
+                    this.past = data.past;
+                }
+            }
+        }
+        get attempts() {
+            return pb_1.Message.getWrapperField(this, dependency_1.google.protobuf.Int32Value, 1) as dependency_1.google.protobuf.Int32Value;
+        }
+        set attempts(value: dependency_1.google.protobuf.Int32Value) {
+            pb_1.Message.setWrapperField(this, 1, value);
+        }
+        get has_attempts() {
+            return pb_1.Message.getField(this, 1) != null;
+        }
+        get success() {
+            return pb_1.Message.getWrapperField(this, dependency_1.google.protobuf.Int32Value, 2) as dependency_1.google.protobuf.Int32Value;
+        }
+        set success(value: dependency_1.google.protobuf.Int32Value) {
+            pb_1.Message.setWrapperField(this, 2, value);
+        }
+        get has_success() {
+            return pb_1.Message.getField(this, 2) != null;
+        }
+        get past() {
+            return pb_1.Message.getWrapperField(this, dependency_1.google.protobuf.Int32Value, 3) as dependency_1.google.protobuf.Int32Value;
+        }
+        set past(value: dependency_1.google.protobuf.Int32Value) {
+            pb_1.Message.setWrapperField(this, 3, value);
+        }
+        get has_past() {
+            return pb_1.Message.getField(this, 3) != null;
+        }
+        static fromObject(data: {
+            attempts?: ReturnType<typeof dependency_1.google.protobuf.Int32Value.prototype.toObject>;
+            success?: ReturnType<typeof dependency_1.google.protobuf.Int32Value.prototype.toObject>;
+            past?: ReturnType<typeof dependency_1.google.protobuf.Int32Value.prototype.toObject>;
+        }): Dribbles {
+            const message = new Dribbles({});
+            if (data.attempts != null) {
+                message.attempts = dependency_1.google.protobuf.Int32Value.fromObject(data.attempts);
+            }
+            if (data.success != null) {
+                message.success = dependency_1.google.protobuf.Int32Value.fromObject(data.success);
+            }
+            if (data.past != null) {
+                message.past = dependency_1.google.protobuf.Int32Value.fromObject(data.past);
+            }
+            return message;
+        }
+        toObject() {
+            const data: {
+                attempts?: ReturnType<typeof dependency_1.google.protobuf.Int32Value.prototype.toObject>;
+                success?: ReturnType<typeof dependency_1.google.protobuf.Int32Value.prototype.toObject>;
+                past?: ReturnType<typeof dependency_1.google.protobuf.Int32Value.prototype.toObject>;
+            } = {};
+            if (this.attempts != null) {
+                data.attempts = this.attempts.toObject();
+            }
+            if (this.success != null) {
+                data.success = this.success.toObject();
+            }
+            if (this.past != null) {
+                data.past = this.past.toObject();
+            }
+            return data;
+        }
+        serialize(): Uint8Array;
+        serialize(w: pb_1.BinaryWriter): void;
+        serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
+            const writer = w || new pb_1.BinaryWriter();
+            if (this.has_attempts)
+                writer.writeMessage(1, this.attempts, () => this.attempts.serialize(writer));
+            if (this.has_success)
+                writer.writeMessage(2, this.success, () => this.success.serialize(writer));
+            if (this.has_past)
+                writer.writeMessage(3, this.past, () => this.past.serialize(writer));
+            if (!w)
+                return writer.getResultBuffer();
+        }
+        static deserialize(bytes: Uint8Array | pb_1.BinaryReader): Dribbles {
+            const reader = bytes instanceof pb_1.BinaryReader ? bytes : new pb_1.BinaryReader(bytes), message = new Dribbles();
+            while (reader.nextField()) {
+                if (reader.isEndGroup())
+                    break;
+                switch (reader.getFieldNumber()) {
+                    case 1:
+                        reader.readMessage(message.attempts, () => message.attempts = dependency_1.google.protobuf.Int32Value.deserialize(reader));
+                        break;
+                    case 2:
+                        reader.readMessage(message.success, () => message.success = dependency_1.google.protobuf.Int32Value.deserialize(reader));
+                        break;
+                    case 3:
+                        reader.readMessage(message.past, () => message.past = dependency_1.google.protobuf.Int32Value.deserialize(reader));
+                        break;
+                    default: reader.skipField();
+                }
+            }
+            return message;
+        }
+        serializeBinary(): Uint8Array {
+            return this.serialize();
+        }
+        static deserializeBinary(bytes: Uint8Array): Dribbles {
+            return Dribbles.deserialize(bytes);
         }
     }
     export class Lineup extends pb_1.Message {
@@ -832,8 +2856,8 @@ export namespace statistico {
                 path: "/statistico.PlayerStatsService/GetPlayerStatsForFixture",
                 requestStream: false,
                 responseStream: false,
-                requestSerialize: (message: dependency_2.statistico.FixtureRequest) => Buffer.from(message.serialize()),
-                requestDeserialize: (bytes: Buffer) => dependency_2.statistico.FixtureRequest.deserialize(new Uint8Array(bytes)),
+                requestSerialize: (message: dependency_3.statistico.FixtureRequest) => Buffer.from(message.serialize()),
+                requestDeserialize: (bytes: Buffer) => dependency_3.statistico.FixtureRequest.deserialize(new Uint8Array(bytes)),
                 responseSerialize: (message: PlayerStatsResponse) => Buffer.from(message.serialize()),
                 responseDeserialize: (bytes: Buffer) => PlayerStatsResponse.deserialize(new Uint8Array(bytes))
             },
@@ -841,8 +2865,8 @@ export namespace statistico {
                 path: "/statistico.PlayerStatsService/GetLineUpForFixture",
                 requestStream: false,
                 responseStream: false,
-                requestSerialize: (message: dependency_2.statistico.FixtureRequest) => Buffer.from(message.serialize()),
-                requestDeserialize: (bytes: Buffer) => dependency_2.statistico.FixtureRequest.deserialize(new Uint8Array(bytes)),
+                requestSerialize: (message: dependency_3.statistico.FixtureRequest) => Buffer.from(message.serialize()),
+                requestDeserialize: (bytes: Buffer) => dependency_3.statistico.FixtureRequest.deserialize(new Uint8Array(bytes)),
                 responseSerialize: (message: LineupResponse) => Buffer.from(message.serialize()),
                 responseDeserialize: (bytes: Buffer) => LineupResponse.deserialize(new Uint8Array(bytes))
             },
@@ -857,18 +2881,18 @@ export namespace statistico {
             }
         };
         [method: string]: grpc_1.UntypedHandleCall;
-        abstract GetPlayerStatsForFixture(call: grpc_1.ServerUnaryCall<dependency_2.statistico.FixtureRequest, PlayerStatsResponse>, callback: grpc_1.sendUnaryData<PlayerStatsResponse>): void;
-        abstract GetLineUpForFixture(call: grpc_1.ServerUnaryCall<dependency_2.statistico.FixtureRequest, LineupResponse>, callback: grpc_1.sendUnaryData<LineupResponse>): void;
+        abstract GetPlayerStatsForFixture(call: grpc_1.ServerUnaryCall<dependency_3.statistico.FixtureRequest, PlayerStatsResponse>, callback: grpc_1.sendUnaryData<PlayerStatsResponse>): void;
+        abstract GetLineUpForFixture(call: grpc_1.ServerUnaryCall<dependency_3.statistico.FixtureRequest, LineupResponse>, callback: grpc_1.sendUnaryData<LineupResponse>): void;
         abstract GetTeamSeasonPlayerStats(call: grpc_1.ServerWritableStream<TeamSeasonPlayStatsRequest, PlayerStats>): void;
     }
     export class PlayerStatsServiceClient extends grpc_1.makeGenericClientConstructor(UnimplementedPlayerStatsServiceService.definition, "PlayerStatsService", {}) {
         constructor(address: string, credentials: grpc_1.ChannelCredentials, options?: Partial<grpc_1.ChannelOptions>) {
             super(address, credentials, options);
         }
-        GetPlayerStatsForFixture: GrpcUnaryServiceInterface<dependency_2.statistico.FixtureRequest, PlayerStatsResponse> = (message: dependency_2.statistico.FixtureRequest, metadata: grpc_1.Metadata | grpc_1.CallOptions | grpc_1.requestCallback<PlayerStatsResponse>, options?: grpc_1.CallOptions | grpc_1.requestCallback<PlayerStatsResponse>, callback?: grpc_1.requestCallback<PlayerStatsResponse>): grpc_1.ClientUnaryCall => {
+        GetPlayerStatsForFixture: GrpcUnaryServiceInterface<dependency_3.statistico.FixtureRequest, PlayerStatsResponse> = (message: dependency_3.statistico.FixtureRequest, metadata: grpc_1.Metadata | grpc_1.CallOptions | grpc_1.requestCallback<PlayerStatsResponse>, options?: grpc_1.CallOptions | grpc_1.requestCallback<PlayerStatsResponse>, callback?: grpc_1.requestCallback<PlayerStatsResponse>): grpc_1.ClientUnaryCall => {
             return super.GetPlayerStatsForFixture(message, metadata, options, callback);
         };
-        GetLineUpForFixture: GrpcUnaryServiceInterface<dependency_2.statistico.FixtureRequest, LineupResponse> = (message: dependency_2.statistico.FixtureRequest, metadata: grpc_1.Metadata | grpc_1.CallOptions | grpc_1.requestCallback<LineupResponse>, options?: grpc_1.CallOptions | grpc_1.requestCallback<LineupResponse>, callback?: grpc_1.requestCallback<LineupResponse>): grpc_1.ClientUnaryCall => {
+        GetLineUpForFixture: GrpcUnaryServiceInterface<dependency_3.statistico.FixtureRequest, LineupResponse> = (message: dependency_3.statistico.FixtureRequest, metadata: grpc_1.Metadata | grpc_1.CallOptions | grpc_1.requestCallback<LineupResponse>, options?: grpc_1.CallOptions | grpc_1.requestCallback<LineupResponse>, callback?: grpc_1.requestCallback<LineupResponse>): grpc_1.ClientUnaryCall => {
             return super.GetLineUpForFixture(message, metadata, options, callback);
         };
         GetTeamSeasonPlayerStats: GrpcStreamServiceInterface<TeamSeasonPlayStatsRequest, PlayerStats> = (message: TeamSeasonPlayStatsRequest, metadata?: grpc_1.Metadata | grpc_1.CallOptions, options?: grpc_1.CallOptions): grpc_1.ClientReadableStream<PlayerStats> => {

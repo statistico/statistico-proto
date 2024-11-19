@@ -26,7 +26,7 @@ from google.protobuf import wrappers_pb2 as google_dot_protobuf_dot_wrappers__pb
 import requests_pb2 as requests__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\nteam.proto\x12\nstatistico\x1a\x1egoogle/protobuf/wrappers.proto\x1a\x0erequests.proto\"\x89\x02\n\x04Team\x12\n\n\x02id\x18\x01 \x01(\x04\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x30\n\nshort_code\x18\x03 \x01(\x0b\x32\x1c.google.protobuf.StringValue\x12\x12\n\ncountry_id\x18\x04 \x01(\x04\x12\x10\n\x08venue_id\x18\x05 \x01(\x04\x12\x34\n\x10is_national_team\x18\x06 \x01(\x0b\x32\x1a.google.protobuf.BoolValue\x12-\n\x07\x66ounded\x18\x07 \x01(\x0b\x32\x1c.google.protobuf.UInt64Value\x12*\n\x04logo\x18\x08 \x01(\x0b\x32\x1c.google.protobuf.StringValue\"2\n\x17\x43ompetitionTeamsRequest\x12\x17\n\x0f\x63ompetition_ids\x18\x01 \x03(\x04\"0\n\rTeamsResponse\x12\x1f\n\x05teams\x18\x01 \x03(\x0b\x32\x10.statistico.Team2\xf2\x01\n\x0bTeamService\x12:\n\x0bGetTeamByID\x12\x17.statistico.TeamRequest\x1a\x10.statistico.Team\"\x00\x12[\n\x17GetTeamsByCompetitionId\x12#.statistico.CompetitionTeamsRequest\x1a\x19.statistico.TeamsResponse\"\x00\x12J\n\x12GetTeamsBySeasonId\x12\x1e.statistico.SeasonTeamsRequest\x1a\x10.statistico.Team\"\x00\x30\x01\x42\x33Z1github.com/statistico/statistico-proto;statisticob\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\nteam.proto\x12\nstatistico\x1a\x1egoogle/protobuf/wrappers.proto\x1a\x0erequests.proto\"\xd3\x01\n\x04Team\x12\n\n\x02id\x18\x01 \x01(\x04\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x30\n\nshort_code\x18\x03 \x01(\x0b\x32\x1c.google.protobuf.StringValue\x12\x12\n\ncountry_id\x18\x04 \x01(\x04\x12\x10\n\x08venue_id\x18\x05 \x01(\x04\x12\x0c\n\x04type\x18\x06 \x01(\t\x12\x0e\n\x06gender\x18\x07 \x01(\t\x12-\n\x07\x66ounded\x18\x08 \x01(\x0b\x32\x1c.google.protobuf.UInt64Value\x12\x0c\n\x04logo\x18\t \x01(\t\"2\n\x17\x43ompetitionTeamsRequest\x12\x17\n\x0f\x63ompetition_ids\x18\x01 \x03(\x04\"0\n\rTeamsResponse\x12\x1f\n\x05teams\x18\x01 \x03(\x0b\x32\x10.statistico.Team2\xf2\x01\n\x0bTeamService\x12:\n\x0bGetTeamByID\x12\x17.statistico.TeamRequest\x1a\x10.statistico.Team\"\x00\x12[\n\x17GetTeamsByCompetitionId\x12#.statistico.CompetitionTeamsRequest\x1a\x19.statistico.TeamsResponse\"\x00\x12J\n\x12GetTeamsBySeasonId\x12\x1e.statistico.SeasonTeamsRequest\x1a\x10.statistico.Team\"\x00\x30\x01\x42\x33Z1github.com/statistico/statistico-proto;statisticob\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -35,11 +35,11 @@ if not _descriptor._USE_C_DESCRIPTORS:
   _globals['DESCRIPTOR']._loaded_options = None
   _globals['DESCRIPTOR']._serialized_options = b'Z1github.com/statistico/statistico-proto;statistico'
   _globals['_TEAM']._serialized_start=75
-  _globals['_TEAM']._serialized_end=340
-  _globals['_COMPETITIONTEAMSREQUEST']._serialized_start=342
-  _globals['_COMPETITIONTEAMSREQUEST']._serialized_end=392
-  _globals['_TEAMSRESPONSE']._serialized_start=394
-  _globals['_TEAMSRESPONSE']._serialized_end=442
-  _globals['_TEAMSERVICE']._serialized_start=445
-  _globals['_TEAMSERVICE']._serialized_end=687
+  _globals['_TEAM']._serialized_end=286
+  _globals['_COMPETITIONTEAMSREQUEST']._serialized_start=288
+  _globals['_COMPETITIONTEAMSREQUEST']._serialized_end=338
+  _globals['_TEAMSRESPONSE']._serialized_start=340
+  _globals['_TEAMSRESPONSE']._serialized_end=388
+  _globals['_TEAMSERVICE']._serialized_start=391
+  _globals['_TEAMSERVICE']._serialized_end=633
 # @@protoc_insertion_point(module_scope)

@@ -12,9 +12,9 @@ export namespace statistico {
         constructor(data?: any[] | {
             id?: number;
             name?: string;
-            is_cup?: boolean;
             country_id?: number;
-            logo?: string;
+            image_path?: string;
+            type?: string;
         }) {
             super();
             pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [], this.#one_of_decls);
@@ -25,14 +25,14 @@ export namespace statistico {
                 if ("name" in data && data.name != undefined) {
                     this.name = data.name;
                 }
-                if ("is_cup" in data && data.is_cup != undefined) {
-                    this.is_cup = data.is_cup;
-                }
                 if ("country_id" in data && data.country_id != undefined) {
                     this.country_id = data.country_id;
                 }
-                if ("logo" in data && data.logo != undefined) {
-                    this.logo = data.logo;
+                if ("image_path" in data && data.image_path != undefined) {
+                    this.image_path = data.image_path;
+                }
+                if ("type" in data && data.type != undefined) {
+                    this.type = data.type;
                 }
             }
         }
@@ -48,30 +48,30 @@ export namespace statistico {
         set name(value: string) {
             pb_1.Message.setField(this, 2, value);
         }
-        get is_cup() {
-            return pb_1.Message.getFieldWithDefault(this, 3, false) as boolean;
-        }
-        set is_cup(value: boolean) {
-            pb_1.Message.setField(this, 3, value);
-        }
         get country_id() {
-            return pb_1.Message.getFieldWithDefault(this, 4, 0) as number;
+            return pb_1.Message.getFieldWithDefault(this, 3, 0) as number;
         }
         set country_id(value: number) {
+            pb_1.Message.setField(this, 3, value);
+        }
+        get image_path() {
+            return pb_1.Message.getFieldWithDefault(this, 4, "") as string;
+        }
+        set image_path(value: string) {
             pb_1.Message.setField(this, 4, value);
         }
-        get logo() {
+        get type() {
             return pb_1.Message.getFieldWithDefault(this, 5, "") as string;
         }
-        set logo(value: string) {
+        set type(value: string) {
             pb_1.Message.setField(this, 5, value);
         }
         static fromObject(data: {
             id?: number;
             name?: string;
-            is_cup?: boolean;
             country_id?: number;
-            logo?: string;
+            image_path?: string;
+            type?: string;
         }): Competition {
             const message = new Competition({});
             if (data.id != null) {
@@ -80,14 +80,14 @@ export namespace statistico {
             if (data.name != null) {
                 message.name = data.name;
             }
-            if (data.is_cup != null) {
-                message.is_cup = data.is_cup;
-            }
             if (data.country_id != null) {
                 message.country_id = data.country_id;
             }
-            if (data.logo != null) {
-                message.logo = data.logo;
+            if (data.image_path != null) {
+                message.image_path = data.image_path;
+            }
+            if (data.type != null) {
+                message.type = data.type;
             }
             return message;
         }
@@ -95,9 +95,9 @@ export namespace statistico {
             const data: {
                 id?: number;
                 name?: string;
-                is_cup?: boolean;
                 country_id?: number;
-                logo?: string;
+                image_path?: string;
+                type?: string;
             } = {};
             if (this.id != null) {
                 data.id = this.id;
@@ -105,14 +105,14 @@ export namespace statistico {
             if (this.name != null) {
                 data.name = this.name;
             }
-            if (this.is_cup != null) {
-                data.is_cup = this.is_cup;
-            }
             if (this.country_id != null) {
                 data.country_id = this.country_id;
             }
-            if (this.logo != null) {
-                data.logo = this.logo;
+            if (this.image_path != null) {
+                data.image_path = this.image_path;
+            }
+            if (this.type != null) {
+                data.type = this.type;
             }
             return data;
         }
@@ -124,12 +124,12 @@ export namespace statistico {
                 writer.writeUint64(1, this.id);
             if (this.name.length)
                 writer.writeString(2, this.name);
-            if (this.is_cup != false)
-                writer.writeBool(3, this.is_cup);
             if (this.country_id != 0)
-                writer.writeUint64(4, this.country_id);
-            if (this.logo.length)
-                writer.writeString(5, this.logo);
+                writer.writeUint64(3, this.country_id);
+            if (this.image_path.length)
+                writer.writeString(4, this.image_path);
+            if (this.type.length)
+                writer.writeString(5, this.type);
             if (!w)
                 return writer.getResultBuffer();
         }
@@ -146,13 +146,13 @@ export namespace statistico {
                         message.name = reader.readString();
                         break;
                     case 3:
-                        message.is_cup = reader.readBool();
-                        break;
-                    case 4:
                         message.country_id = reader.readUint64();
                         break;
+                    case 4:
+                        message.image_path = reader.readString();
+                        break;
                     case 5:
-                        message.logo = reader.readString();
+                        message.type = reader.readString();
                         break;
                     default: reader.skipField();
                 }

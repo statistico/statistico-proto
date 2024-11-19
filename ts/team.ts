@@ -16,9 +16,10 @@ export namespace statistico {
             short_code?: dependency_1.google.protobuf.StringValue;
             country_id?: number;
             venue_id?: number;
-            is_national_team?: dependency_1.google.protobuf.BoolValue;
+            type?: string;
+            gender?: string;
             founded?: dependency_1.google.protobuf.UInt64Value;
-            logo?: dependency_1.google.protobuf.StringValue;
+            logo?: string;
         }) {
             super();
             pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [], this.#one_of_decls);
@@ -38,8 +39,11 @@ export namespace statistico {
                 if ("venue_id" in data && data.venue_id != undefined) {
                     this.venue_id = data.venue_id;
                 }
-                if ("is_national_team" in data && data.is_national_team != undefined) {
-                    this.is_national_team = data.is_national_team;
+                if ("type" in data && data.type != undefined) {
+                    this.type = data.type;
+                }
+                if ("gender" in data && data.gender != undefined) {
+                    this.gender = data.gender;
                 }
                 if ("founded" in data && data.founded != undefined) {
                     this.founded = data.founded;
@@ -82,32 +86,32 @@ export namespace statistico {
         set venue_id(value: number) {
             pb_1.Message.setField(this, 5, value);
         }
-        get is_national_team() {
-            return pb_1.Message.getWrapperField(this, dependency_1.google.protobuf.BoolValue, 6) as dependency_1.google.protobuf.BoolValue;
+        get type() {
+            return pb_1.Message.getFieldWithDefault(this, 6, "") as string;
         }
-        set is_national_team(value: dependency_1.google.protobuf.BoolValue) {
-            pb_1.Message.setWrapperField(this, 6, value);
+        set type(value: string) {
+            pb_1.Message.setField(this, 6, value);
         }
-        get has_is_national_team() {
-            return pb_1.Message.getField(this, 6) != null;
+        get gender() {
+            return pb_1.Message.getFieldWithDefault(this, 7, "") as string;
+        }
+        set gender(value: string) {
+            pb_1.Message.setField(this, 7, value);
         }
         get founded() {
-            return pb_1.Message.getWrapperField(this, dependency_1.google.protobuf.UInt64Value, 7) as dependency_1.google.protobuf.UInt64Value;
+            return pb_1.Message.getWrapperField(this, dependency_1.google.protobuf.UInt64Value, 8) as dependency_1.google.protobuf.UInt64Value;
         }
         set founded(value: dependency_1.google.protobuf.UInt64Value) {
-            pb_1.Message.setWrapperField(this, 7, value);
-        }
-        get has_founded() {
-            return pb_1.Message.getField(this, 7) != null;
-        }
-        get logo() {
-            return pb_1.Message.getWrapperField(this, dependency_1.google.protobuf.StringValue, 8) as dependency_1.google.protobuf.StringValue;
-        }
-        set logo(value: dependency_1.google.protobuf.StringValue) {
             pb_1.Message.setWrapperField(this, 8, value);
         }
-        get has_logo() {
+        get has_founded() {
             return pb_1.Message.getField(this, 8) != null;
+        }
+        get logo() {
+            return pb_1.Message.getFieldWithDefault(this, 9, "") as string;
+        }
+        set logo(value: string) {
+            pb_1.Message.setField(this, 9, value);
         }
         static fromObject(data: {
             id?: number;
@@ -115,9 +119,10 @@ export namespace statistico {
             short_code?: ReturnType<typeof dependency_1.google.protobuf.StringValue.prototype.toObject>;
             country_id?: number;
             venue_id?: number;
-            is_national_team?: ReturnType<typeof dependency_1.google.protobuf.BoolValue.prototype.toObject>;
+            type?: string;
+            gender?: string;
             founded?: ReturnType<typeof dependency_1.google.protobuf.UInt64Value.prototype.toObject>;
-            logo?: ReturnType<typeof dependency_1.google.protobuf.StringValue.prototype.toObject>;
+            logo?: string;
         }): Team {
             const message = new Team({});
             if (data.id != null) {
@@ -135,14 +140,17 @@ export namespace statistico {
             if (data.venue_id != null) {
                 message.venue_id = data.venue_id;
             }
-            if (data.is_national_team != null) {
-                message.is_national_team = dependency_1.google.protobuf.BoolValue.fromObject(data.is_national_team);
+            if (data.type != null) {
+                message.type = data.type;
+            }
+            if (data.gender != null) {
+                message.gender = data.gender;
             }
             if (data.founded != null) {
                 message.founded = dependency_1.google.protobuf.UInt64Value.fromObject(data.founded);
             }
             if (data.logo != null) {
-                message.logo = dependency_1.google.protobuf.StringValue.fromObject(data.logo);
+                message.logo = data.logo;
             }
             return message;
         }
@@ -153,9 +161,10 @@ export namespace statistico {
                 short_code?: ReturnType<typeof dependency_1.google.protobuf.StringValue.prototype.toObject>;
                 country_id?: number;
                 venue_id?: number;
-                is_national_team?: ReturnType<typeof dependency_1.google.protobuf.BoolValue.prototype.toObject>;
+                type?: string;
+                gender?: string;
                 founded?: ReturnType<typeof dependency_1.google.protobuf.UInt64Value.prototype.toObject>;
-                logo?: ReturnType<typeof dependency_1.google.protobuf.StringValue.prototype.toObject>;
+                logo?: string;
             } = {};
             if (this.id != null) {
                 data.id = this.id;
@@ -172,14 +181,17 @@ export namespace statistico {
             if (this.venue_id != null) {
                 data.venue_id = this.venue_id;
             }
-            if (this.is_national_team != null) {
-                data.is_national_team = this.is_national_team.toObject();
+            if (this.type != null) {
+                data.type = this.type;
+            }
+            if (this.gender != null) {
+                data.gender = this.gender;
             }
             if (this.founded != null) {
                 data.founded = this.founded.toObject();
             }
             if (this.logo != null) {
-                data.logo = this.logo.toObject();
+                data.logo = this.logo;
             }
             return data;
         }
@@ -197,12 +209,14 @@ export namespace statistico {
                 writer.writeUint64(4, this.country_id);
             if (this.venue_id != 0)
                 writer.writeUint64(5, this.venue_id);
-            if (this.has_is_national_team)
-                writer.writeMessage(6, this.is_national_team, () => this.is_national_team.serialize(writer));
+            if (this.type.length)
+                writer.writeString(6, this.type);
+            if (this.gender.length)
+                writer.writeString(7, this.gender);
             if (this.has_founded)
-                writer.writeMessage(7, this.founded, () => this.founded.serialize(writer));
-            if (this.has_logo)
-                writer.writeMessage(8, this.logo, () => this.logo.serialize(writer));
+                writer.writeMessage(8, this.founded, () => this.founded.serialize(writer));
+            if (this.logo.length)
+                writer.writeString(9, this.logo);
             if (!w)
                 return writer.getResultBuffer();
         }
@@ -228,13 +242,16 @@ export namespace statistico {
                         message.venue_id = reader.readUint64();
                         break;
                     case 6:
-                        reader.readMessage(message.is_national_team, () => message.is_national_team = dependency_1.google.protobuf.BoolValue.deserialize(reader));
+                        message.type = reader.readString();
                         break;
                     case 7:
-                        reader.readMessage(message.founded, () => message.founded = dependency_1.google.protobuf.UInt64Value.deserialize(reader));
+                        message.gender = reader.readString();
                         break;
                     case 8:
-                        reader.readMessage(message.logo, () => message.logo = dependency_1.google.protobuf.StringValue.deserialize(reader));
+                        reader.readMessage(message.founded, () => message.founded = dependency_1.google.protobuf.UInt64Value.deserialize(reader));
+                        break;
+                    case 9:
+                        message.logo = reader.readString();
                         break;
                     default: reader.skipField();
                 }

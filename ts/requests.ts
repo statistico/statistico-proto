@@ -754,10 +754,11 @@ export namespace statistico {
         #one_of_decls: number[][] = [];
         constructor(data?: any[] | {
             season_ids?: number[];
-            limit?: dependency_4.google.protobuf.UInt64Value;
+            team_id?: dependency_4.google.protobuf.UInt64Value;
             date_before?: dependency_4.google.protobuf.StringValue;
             date_after?: dependency_4.google.protobuf.StringValue;
             sort?: dependency_4.google.protobuf.StringValue;
+            limit?: dependency_4.google.protobuf.UInt64Value;
         }) {
             super();
             pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [1], this.#one_of_decls);
@@ -765,8 +766,8 @@ export namespace statistico {
                 if ("season_ids" in data && data.season_ids != undefined) {
                     this.season_ids = data.season_ids;
                 }
-                if ("limit" in data && data.limit != undefined) {
-                    this.limit = data.limit;
+                if ("team_id" in data && data.team_id != undefined) {
+                    this.team_id = data.team_id;
                 }
                 if ("date_before" in data && data.date_before != undefined) {
                     this.date_before = data.date_before;
@@ -777,6 +778,9 @@ export namespace statistico {
                 if ("sort" in data && data.sort != undefined) {
                     this.sort = data.sort;
                 }
+                if ("limit" in data && data.limit != undefined) {
+                    this.limit = data.limit;
+                }
             }
         }
         get season_ids() {
@@ -785,13 +789,13 @@ export namespace statistico {
         set season_ids(value: number[]) {
             pb_1.Message.setField(this, 1, value);
         }
-        get limit() {
+        get team_id() {
             return pb_1.Message.getWrapperField(this, dependency_4.google.protobuf.UInt64Value, 2) as dependency_4.google.protobuf.UInt64Value;
         }
-        set limit(value: dependency_4.google.protobuf.UInt64Value) {
+        set team_id(value: dependency_4.google.protobuf.UInt64Value) {
             pb_1.Message.setWrapperField(this, 2, value);
         }
-        get has_limit() {
+        get has_team_id() {
             return pb_1.Message.getField(this, 2) != null;
         }
         get date_before() {
@@ -821,19 +825,29 @@ export namespace statistico {
         get has_sort() {
             return pb_1.Message.getField(this, 5) != null;
         }
+        get limit() {
+            return pb_1.Message.getWrapperField(this, dependency_4.google.protobuf.UInt64Value, 6) as dependency_4.google.protobuf.UInt64Value;
+        }
+        set limit(value: dependency_4.google.protobuf.UInt64Value) {
+            pb_1.Message.setWrapperField(this, 6, value);
+        }
+        get has_limit() {
+            return pb_1.Message.getField(this, 6) != null;
+        }
         static fromObject(data: {
             season_ids?: number[];
-            limit?: ReturnType<typeof dependency_4.google.protobuf.UInt64Value.prototype.toObject>;
+            team_id?: ReturnType<typeof dependency_4.google.protobuf.UInt64Value.prototype.toObject>;
             date_before?: ReturnType<typeof dependency_4.google.protobuf.StringValue.prototype.toObject>;
             date_after?: ReturnType<typeof dependency_4.google.protobuf.StringValue.prototype.toObject>;
             sort?: ReturnType<typeof dependency_4.google.protobuf.StringValue.prototype.toObject>;
+            limit?: ReturnType<typeof dependency_4.google.protobuf.UInt64Value.prototype.toObject>;
         }): FixtureSearchRequest {
             const message = new FixtureSearchRequest({});
             if (data.season_ids != null) {
                 message.season_ids = data.season_ids;
             }
-            if (data.limit != null) {
-                message.limit = dependency_4.google.protobuf.UInt64Value.fromObject(data.limit);
+            if (data.team_id != null) {
+                message.team_id = dependency_4.google.protobuf.UInt64Value.fromObject(data.team_id);
             }
             if (data.date_before != null) {
                 message.date_before = dependency_4.google.protobuf.StringValue.fromObject(data.date_before);
@@ -844,21 +858,25 @@ export namespace statistico {
             if (data.sort != null) {
                 message.sort = dependency_4.google.protobuf.StringValue.fromObject(data.sort);
             }
+            if (data.limit != null) {
+                message.limit = dependency_4.google.protobuf.UInt64Value.fromObject(data.limit);
+            }
             return message;
         }
         toObject() {
             const data: {
                 season_ids?: number[];
-                limit?: ReturnType<typeof dependency_4.google.protobuf.UInt64Value.prototype.toObject>;
+                team_id?: ReturnType<typeof dependency_4.google.protobuf.UInt64Value.prototype.toObject>;
                 date_before?: ReturnType<typeof dependency_4.google.protobuf.StringValue.prototype.toObject>;
                 date_after?: ReturnType<typeof dependency_4.google.protobuf.StringValue.prototype.toObject>;
                 sort?: ReturnType<typeof dependency_4.google.protobuf.StringValue.prototype.toObject>;
+                limit?: ReturnType<typeof dependency_4.google.protobuf.UInt64Value.prototype.toObject>;
             } = {};
             if (this.season_ids != null) {
                 data.season_ids = this.season_ids;
             }
-            if (this.limit != null) {
-                data.limit = this.limit.toObject();
+            if (this.team_id != null) {
+                data.team_id = this.team_id.toObject();
             }
             if (this.date_before != null) {
                 data.date_before = this.date_before.toObject();
@@ -869,6 +887,9 @@ export namespace statistico {
             if (this.sort != null) {
                 data.sort = this.sort.toObject();
             }
+            if (this.limit != null) {
+                data.limit = this.limit.toObject();
+            }
             return data;
         }
         serialize(): Uint8Array;
@@ -877,14 +898,16 @@ export namespace statistico {
             const writer = w || new pb_1.BinaryWriter();
             if (this.season_ids.length)
                 writer.writePackedUint64(1, this.season_ids);
-            if (this.has_limit)
-                writer.writeMessage(2, this.limit, () => this.limit.serialize(writer));
+            if (this.has_team_id)
+                writer.writeMessage(2, this.team_id, () => this.team_id.serialize(writer));
             if (this.has_date_before)
                 writer.writeMessage(3, this.date_before, () => this.date_before.serialize(writer));
             if (this.has_date_after)
                 writer.writeMessage(4, this.date_after, () => this.date_after.serialize(writer));
             if (this.has_sort)
                 writer.writeMessage(5, this.sort, () => this.sort.serialize(writer));
+            if (this.has_limit)
+                writer.writeMessage(6, this.limit, () => this.limit.serialize(writer));
             if (!w)
                 return writer.getResultBuffer();
         }
@@ -898,7 +921,7 @@ export namespace statistico {
                         message.season_ids = reader.readPackedUint64();
                         break;
                     case 2:
-                        reader.readMessage(message.limit, () => message.limit = dependency_4.google.protobuf.UInt64Value.deserialize(reader));
+                        reader.readMessage(message.team_id, () => message.team_id = dependency_4.google.protobuf.UInt64Value.deserialize(reader));
                         break;
                     case 3:
                         reader.readMessage(message.date_before, () => message.date_before = dependency_4.google.protobuf.StringValue.deserialize(reader));
@@ -908,6 +931,9 @@ export namespace statistico {
                         break;
                     case 5:
                         reader.readMessage(message.sort, () => message.sort = dependency_4.google.protobuf.StringValue.deserialize(reader));
+                        break;
+                    case 6:
+                        reader.readMessage(message.limit, () => message.limit = dependency_4.google.protobuf.UInt64Value.deserialize(reader));
                         break;
                     default: reader.skipField();
                 }

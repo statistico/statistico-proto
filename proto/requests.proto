@@ -52,8 +52,8 @@ message FixtureRequest {
 message FixtureSearchRequest {
     // A filter to limit the results returned associated to a specific season
     repeated uint64 season_ids = 1;
-    // The number of results to return.
-    google.protobuf.UInt64Value limit = 2;
+    // A filter to limit the results return to a specific team
+    google.protobuf.UInt64Value team_id = 2;
     // A filter to return Results before a specific date
     // RFC3339 formatted string i.e "2006-01-02T15:04:05Z07:00"
     google.protobuf.StringValue date_before = 3;
@@ -62,6 +62,8 @@ message FixtureSearchRequest {
     google.protobuf.StringValue date_after = 4;
     // Order the date column to return results in specific order
     google.protobuf.StringValue sort = 5;
+    // The number of results to return.
+    google.protobuf.UInt64Value limit = 6;
 }
 
 message HistoricalResultRequest {

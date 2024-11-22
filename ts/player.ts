@@ -496,8 +496,8 @@ export namespace statistico {
     }
     export abstract class UnimplementedPlayerServiceService {
         static definition = {
-            GetPlayer: {
-                path: "/statistico.PlayerService/GetPlayer",
+            GetPlayerByID: {
+                path: "/statistico.PlayerService/GetPlayerByID",
                 requestStream: false,
                 responseStream: false,
                 requestSerialize: (message: PlayerRequest) => Buffer.from(message.serialize()),
@@ -507,14 +507,14 @@ export namespace statistico {
             }
         };
         [method: string]: grpc_1.UntypedHandleCall;
-        abstract GetPlayer(call: grpc_1.ServerUnaryCall<PlayerRequest, Player>, callback: grpc_1.sendUnaryData<Player>): void;
+        abstract GetPlayerByID(call: grpc_1.ServerUnaryCall<PlayerRequest, Player>, callback: grpc_1.sendUnaryData<Player>): void;
     }
     export class PlayerServiceClient extends grpc_1.makeGenericClientConstructor(UnimplementedPlayerServiceService.definition, "PlayerService", {}) {
         constructor(address: string, credentials: grpc_1.ChannelCredentials, options?: Partial<grpc_1.ChannelOptions>) {
             super(address, credentials, options);
         }
-        GetPlayer: GrpcUnaryServiceInterface<PlayerRequest, Player> = (message: PlayerRequest, metadata: grpc_1.Metadata | grpc_1.CallOptions | grpc_1.requestCallback<Player>, options?: grpc_1.CallOptions | grpc_1.requestCallback<Player>, callback?: grpc_1.requestCallback<Player>): grpc_1.ClientUnaryCall => {
-            return super.GetPlayer(message, metadata, options, callback);
+        GetPlayerByID: GrpcUnaryServiceInterface<PlayerRequest, Player> = (message: PlayerRequest, metadata: grpc_1.Metadata | grpc_1.CallOptions | grpc_1.requestCallback<Player>, options?: grpc_1.CallOptions | grpc_1.requestCallback<Player>, callback?: grpc_1.requestCallback<Player>): grpc_1.ClientUnaryCall => {
+            return super.GetPlayerByID(message, metadata, options, callback);
         };
     }
 }

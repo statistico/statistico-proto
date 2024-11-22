@@ -8,7 +8,7 @@ import "google/protobuf/wrappers.proto";
 import "common.proto";
 
 service PlayerService {
-  rpc GetPlayer(PlayerRequest) returns (Player) {}
+  rpc GetPlayerByID(PlayerRequest) returns (Player) {}
 }
 
 message PlayerRequest {

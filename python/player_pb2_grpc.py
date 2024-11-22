@@ -34,8 +34,8 @@ class PlayerServiceStub(object):
         Args:
             channel: A grpc.Channel.
         """
-        self.GetPlayer = channel.unary_unary(
-                '/statistico.PlayerService/GetPlayer',
+        self.GetPlayerByID = channel.unary_unary(
+                '/statistico.PlayerService/GetPlayerByID',
                 request_serializer=player__pb2.PlayerRequest.SerializeToString,
                 response_deserializer=player__pb2.Player.FromString,
                 _registered_method=True)
@@ -44,7 +44,7 @@ class PlayerServiceStub(object):
 class PlayerServiceServicer(object):
     """Missing associated documentation comment in .proto file."""
 
-    def GetPlayer(self, request, context):
+    def GetPlayerByID(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -53,8 +53,8 @@ class PlayerServiceServicer(object):
 
 def add_PlayerServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
-            'GetPlayer': grpc.unary_unary_rpc_method_handler(
-                    servicer.GetPlayer,
+            'GetPlayerByID': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetPlayerByID,
                     request_deserializer=player__pb2.PlayerRequest.FromString,
                     response_serializer=player__pb2.Player.SerializeToString,
             ),
@@ -70,7 +70,7 @@ class PlayerService(object):
     """Missing associated documentation comment in .proto file."""
 
     @staticmethod
-    def GetPlayer(request,
+    def GetPlayerByID(request,
             target,
             options=(),
             channel_credentials=None,
@@ -83,7 +83,7 @@ class PlayerService(object):
         return grpc.experimental.unary_unary(
             request,
             target,
-            '/statistico.PlayerService/GetPlayer',
+            '/statistico.PlayerService/GetPlayerByID',
             player__pb2.PlayerRequest.SerializeToString,
             player__pb2.Player.FromString,
             options,

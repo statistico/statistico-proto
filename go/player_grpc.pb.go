@@ -19,14 +19,14 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	PlayerService_GetPlayer_FullMethodName = "/statistico.PlayerService/GetPlayer"
+	PlayerService_GetPlayerByID_FullMethodName = "/statistico.PlayerService/GetPlayerByID"
 )
 
 // PlayerServiceClient is the client API for PlayerService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type PlayerServiceClient interface {
-	GetPlayer(ctx context.Context, in *PlayerRequest, opts ...grpc.CallOption) (*Player, error)
+	GetPlayerByID(ctx context.Context, in *PlayerRequest, opts ...grpc.CallOption) (*Player, error)
 }
 
 type playerServiceClient struct {
@@ -37,10 +37,10 @@ func NewPlayerServiceClient(cc grpc.ClientConnInterface) PlayerServiceClient {
 	return &playerServiceClient{cc}
 }
 
-func (c *playerServiceClient) GetPlayer(ctx context.Context, in *PlayerRequest, opts ...grpc.CallOption) (*Player, error) {
+func (c *playerServiceClient) GetPlayerByID(ctx context.Context, in *PlayerRequest, opts ...grpc.CallOption) (*Player, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(Player)
-	err := c.cc.Invoke(ctx, PlayerService_GetPlayer_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, PlayerService_GetPlayerByID_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -51,7 +51,7 @@ func (c *playerServiceClient) GetPlayer(ctx context.Context, in *PlayerRequest, 
 // All implementations must embed UnimplementedPlayerServiceServer
 // for forward compatibility.
 type PlayerServiceServer interface {
-	GetPlayer(context.Context, *PlayerRequest) (*Player, error)
+	GetPlayerByID(context.Context, *PlayerRequest) (*Player, error)
 	mustEmbedUnimplementedPlayerServiceServer()
 }
 
@@ -62,8 +62,8 @@ type PlayerServiceServer interface {
 // pointer dereference when methods are called.
 type UnimplementedPlayerServiceServer struct{}
 
-func (UnimplementedPlayerServiceServer) GetPlayer(context.Context, *PlayerRequest) (*Player, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetPlayer not implemented")
+func (UnimplementedPlayerServiceServer) GetPlayerByID(context.Context, *PlayerRequest) (*Player, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetPlayerByID not implemented")
 }
 func (UnimplementedPlayerServiceServer) mustEmbedUnimplementedPlayerServiceServer() {}
 func (UnimplementedPlayerServiceServer) testEmbeddedByValue()                       {}
@@ -86,20 +86,20 @@ func RegisterPlayerServiceServer(s grpc.ServiceRegistrar, srv PlayerServiceServe
 	s.RegisterService(&PlayerService_ServiceDesc, srv)
 }
 
-func _PlayerService_GetPlayer_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _PlayerService_GetPlayerByID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(PlayerRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(PlayerServiceServer).GetPlayer(ctx, in)
+		return srv.(PlayerServiceServer).GetPlayerByID(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: PlayerService_GetPlayer_FullMethodName,
+		FullMethod: PlayerService_GetPlayerByID_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PlayerServiceServer).GetPlayer(ctx, req.(*PlayerRequest))
+		return srv.(PlayerServiceServer).GetPlayerByID(ctx, req.(*PlayerRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -112,8 +112,8 @@ var PlayerService_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*PlayerServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "GetPlayer",
-			Handler:    _PlayerService_GetPlayer_Handler,
+			MethodName: "GetPlayerByID",
+			Handler:    _PlayerService_GetPlayerByID_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

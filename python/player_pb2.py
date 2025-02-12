@@ -22,11 +22,10 @@ _runtime_version.ValidateProtobufRuntimeVersion(
 _sym_db = _symbol_database.Default()
 
 
-from google.protobuf import wrappers_pb2 as google_dot_protobuf_dot_wrappers__pb2
 import common_pb2 as common__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0cplayer.proto\x12\nstatistico\x1a\x1egoogle/protobuf/wrappers.proto\x1a\x0c\x63ommon.proto\"\"\n\rPlayerRequest\x12\x11\n\tplayer_id\x18\x01 \x01(\x04\"\xc7\x02\n\x06Player\x12\n\n\x02id\x18\x01 \x01(\x04\x12\x12\n\ncountry_id\x18\x02 \x01(\x04\x12\x16\n\x0enationality_id\x18\x03 \x01(\x04\x12\x13\n\x0b\x63ommon_name\x18\x04 \x01(\t\x12\x12\n\nfirst_name\x18\x05 \x01(\t\x12\x11\n\tlast_name\x18\x06 \x01(\t\x12\x0c\n\x04name\x18\x07 \x01(\t\x12\x14\n\x0c\x64isplay_name\x18\x08 \x01(\t\x12\x12\n\nimage_path\x18\t \x01(\t\x12\x0e\n\x06height\x18\n \x01(\x05\x12\x0e\n\x06weight\x18\x0b \x01(\x05\x12\x15\n\rdate_of_birth\x18\x0c \x01(\t\x12\x0e\n\x06gender\x18\r \x01(\t\x12$\n\ncreated_at\x18\x0e \x01(\x0b\x32\x10.statistico.Date\x12$\n\nupdated_at\x18\x0f \x01(\x0b\x32\x10.statistico.Date2Q\n\rPlayerService\x12@\n\rGetPlayerByID\x12\x19.statistico.PlayerRequest\x1a\x12.statistico.Player\"\x00\x42\x33Z1github.com/statistico/statistico-proto;statisticob\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0cplayer.proto\x12\nstatistico\x1a\x0c\x63ommon.proto\"\"\n\rPlayerRequest\x12\x11\n\tplayer_id\x18\x01 \x01(\x04\"\xc7\x02\n\x06Player\x12\n\n\x02id\x18\x01 \x01(\x04\x12\x12\n\ncountry_id\x18\x02 \x01(\x04\x12\x16\n\x0enationality_id\x18\x03 \x01(\x04\x12\x13\n\x0b\x63ommon_name\x18\x04 \x01(\t\x12\x12\n\nfirst_name\x18\x05 \x01(\t\x12\x11\n\tlast_name\x18\x06 \x01(\t\x12\x0c\n\x04name\x18\x07 \x01(\t\x12\x14\n\x0c\x64isplay_name\x18\x08 \x01(\t\x12\x12\n\nimage_path\x18\t \x01(\t\x12\x0e\n\x06height\x18\n \x01(\x05\x12\x0e\n\x06weight\x18\x0b \x01(\x05\x12\x15\n\rdate_of_birth\x18\x0c \x01(\t\x12\x0e\n\x06gender\x18\r \x01(\t\x12$\n\ncreated_at\x18\x0e \x01(\x0b\x32\x10.statistico.Date\x12$\n\nupdated_at\x18\x0f \x01(\x0b\x32\x10.statistico.Date2Q\n\rPlayerService\x12@\n\rGetPlayerByID\x12\x19.statistico.PlayerRequest\x1a\x12.statistico.Player\"\x00\x42\x33Z1github.com/statistico/statistico-proto;statisticob\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -34,10 +33,10 @@ _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'player_pb2', _globals)
 if not _descriptor._USE_C_DESCRIPTORS:
   _globals['DESCRIPTOR']._loaded_options = None
   _globals['DESCRIPTOR']._serialized_options = b'Z1github.com/statistico/statistico-proto;statistico'
-  _globals['_PLAYERREQUEST']._serialized_start=74
-  _globals['_PLAYERREQUEST']._serialized_end=108
-  _globals['_PLAYER']._serialized_start=111
-  _globals['_PLAYER']._serialized_end=438
-  _globals['_PLAYERSERVICE']._serialized_start=440
-  _globals['_PLAYERSERVICE']._serialized_end=521
+  _globals['_PLAYERREQUEST']._serialized_start=42
+  _globals['_PLAYERREQUEST']._serialized_end=76
+  _globals['_PLAYER']._serialized_start=79
+  _globals['_PLAYER']._serialized_end=406
+  _globals['_PLAYERSERVICE']._serialized_start=408
+  _globals['_PLAYERSERVICE']._serialized_end=489
 # @@protoc_insertion_point(module_scope)

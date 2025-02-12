@@ -3,8 +3,7 @@
  * compiler version: 3.21.12
  * source: player.proto
  * git: https://github.com/thesayyn/protoc-gen-ts */
-import * as dependency_1 from "./google/protobuf/wrappers";
-import * as dependency_2 from "./common";
+import * as dependency_1 from "./common";
 import * as pb_1 from "google-protobuf";
 import * as grpc_1 from "@grpc/grpc-js";
 export namespace statistico {
@@ -91,8 +90,8 @@ export namespace statistico {
             weight?: number;
             date_of_birth?: string;
             gender?: string;
-            created_at?: dependency_2.statistico.Date;
-            updated_at?: dependency_2.statistico.Date;
+            created_at?: dependency_1.statistico.Date;
+            updated_at?: dependency_1.statistico.Date;
         }) {
             super();
             pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [], this.#one_of_decls);
@@ -223,18 +222,18 @@ export namespace statistico {
             pb_1.Message.setField(this, 13, value);
         }
         get created_at() {
-            return pb_1.Message.getWrapperField(this, dependency_2.statistico.Date, 14) as dependency_2.statistico.Date;
+            return pb_1.Message.getWrapperField(this, dependency_1.statistico.Date, 14) as dependency_1.statistico.Date;
         }
-        set created_at(value: dependency_2.statistico.Date) {
+        set created_at(value: dependency_1.statistico.Date) {
             pb_1.Message.setWrapperField(this, 14, value);
         }
         get has_created_at() {
             return pb_1.Message.getField(this, 14) != null;
         }
         get updated_at() {
-            return pb_1.Message.getWrapperField(this, dependency_2.statistico.Date, 15) as dependency_2.statistico.Date;
+            return pb_1.Message.getWrapperField(this, dependency_1.statistico.Date, 15) as dependency_1.statistico.Date;
         }
-        set updated_at(value: dependency_2.statistico.Date) {
+        set updated_at(value: dependency_1.statistico.Date) {
             pb_1.Message.setWrapperField(this, 15, value);
         }
         get has_updated_at() {
@@ -254,8 +253,8 @@ export namespace statistico {
             weight?: number;
             date_of_birth?: string;
             gender?: string;
-            created_at?: ReturnType<typeof dependency_2.statistico.Date.prototype.toObject>;
-            updated_at?: ReturnType<typeof dependency_2.statistico.Date.prototype.toObject>;
+            created_at?: ReturnType<typeof dependency_1.statistico.Date.prototype.toObject>;
+            updated_at?: ReturnType<typeof dependency_1.statistico.Date.prototype.toObject>;
         }): Player {
             const message = new Player({});
             if (data.id != null) {
@@ -298,10 +297,10 @@ export namespace statistico {
                 message.gender = data.gender;
             }
             if (data.created_at != null) {
-                message.created_at = dependency_2.statistico.Date.fromObject(data.created_at);
+                message.created_at = dependency_1.statistico.Date.fromObject(data.created_at);
             }
             if (data.updated_at != null) {
-                message.updated_at = dependency_2.statistico.Date.fromObject(data.updated_at);
+                message.updated_at = dependency_1.statistico.Date.fromObject(data.updated_at);
             }
             return message;
         }
@@ -320,8 +319,8 @@ export namespace statistico {
                 weight?: number;
                 date_of_birth?: string;
                 gender?: string;
-                created_at?: ReturnType<typeof dependency_2.statistico.Date.prototype.toObject>;
-                updated_at?: ReturnType<typeof dependency_2.statistico.Date.prototype.toObject>;
+                created_at?: ReturnType<typeof dependency_1.statistico.Date.prototype.toObject>;
+                updated_at?: ReturnType<typeof dependency_1.statistico.Date.prototype.toObject>;
             } = {};
             if (this.id != null) {
                 data.id = this.id;
@@ -453,10 +452,10 @@ export namespace statistico {
                         message.gender = reader.readString();
                         break;
                     case 14:
-                        reader.readMessage(message.created_at, () => message.created_at = dependency_2.statistico.Date.deserialize(reader));
+                        reader.readMessage(message.created_at, () => message.created_at = dependency_1.statistico.Date.deserialize(reader));
                         break;
                     case 15:
-                        reader.readMessage(message.updated_at, () => message.updated_at = dependency_2.statistico.Date.deserialize(reader));
+                        reader.readMessage(message.updated_at, () => message.updated_at = dependency_1.statistico.Date.deserialize(reader));
                         break;
                     default: reader.skipField();
                 }

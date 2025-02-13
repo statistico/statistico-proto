@@ -5,7 +5,6 @@
  * git: https://github.com/thesayyn/protoc-gen-ts */
 import * as dependency_1 from "./common";
 import * as dependency_2 from "./requests";
-import * as dependency_3 from "./google/protobuf/wrappers";
 import * as pb_1 from "google-protobuf";
 import * as grpc_1 from "@grpc/grpc-js";
 export namespace statistico {
@@ -379,10 +378,8 @@ export namespace statistico {
     export class Runner extends pb_1.Message {
         #one_of_decls: number[][] = [];
         constructor(data?: any[] | {
-            id?: number;
-            name?: dependency_3.google.protobuf.StringValue;
-            label?: string;
-            value?: dependency_3.google.protobuf.FloatValue;
+            id?: string;
+            name?: string;
             back_odds?: ExchangeOdds;
         }) {
             super();
@@ -394,61 +391,35 @@ export namespace statistico {
                 if ("name" in data && data.name != undefined) {
                     this.name = data.name;
                 }
-                if ("label" in data && data.label != undefined) {
-                    this.label = data.label;
-                }
-                if ("value" in data && data.value != undefined) {
-                    this.value = data.value;
-                }
                 if ("back_odds" in data && data.back_odds != undefined) {
                     this.back_odds = data.back_odds;
                 }
             }
         }
         get id() {
-            return pb_1.Message.getFieldWithDefault(this, 1, 0) as number;
+            return pb_1.Message.getFieldWithDefault(this, 1, "") as string;
         }
-        set id(value: number) {
+        set id(value: string) {
             pb_1.Message.setField(this, 1, value);
         }
         get name() {
-            return pb_1.Message.getWrapperField(this, dependency_3.google.protobuf.StringValue, 2) as dependency_3.google.protobuf.StringValue;
+            return pb_1.Message.getFieldWithDefault(this, 2, "") as string;
         }
-        set name(value: dependency_3.google.protobuf.StringValue) {
-            pb_1.Message.setWrapperField(this, 2, value);
-        }
-        get has_name() {
-            return pb_1.Message.getField(this, 2) != null;
-        }
-        get label() {
-            return pb_1.Message.getFieldWithDefault(this, 3, "") as string;
-        }
-        set label(value: string) {
-            pb_1.Message.setField(this, 3, value);
-        }
-        get value() {
-            return pb_1.Message.getWrapperField(this, dependency_3.google.protobuf.FloatValue, 4) as dependency_3.google.protobuf.FloatValue;
-        }
-        set value(value: dependency_3.google.protobuf.FloatValue) {
-            pb_1.Message.setWrapperField(this, 4, value);
-        }
-        get has_value() {
-            return pb_1.Message.getField(this, 4) != null;
+        set name(value: string) {
+            pb_1.Message.setField(this, 2, value);
         }
         get back_odds() {
-            return pb_1.Message.getWrapperField(this, ExchangeOdds, 5) as ExchangeOdds;
+            return pb_1.Message.getWrapperField(this, ExchangeOdds, 3) as ExchangeOdds;
         }
         set back_odds(value: ExchangeOdds) {
-            pb_1.Message.setWrapperField(this, 5, value);
+            pb_1.Message.setWrapperField(this, 3, value);
         }
         get has_back_odds() {
-            return pb_1.Message.getField(this, 5) != null;
+            return pb_1.Message.getField(this, 3) != null;
         }
         static fromObject(data: {
-            id?: number;
-            name?: ReturnType<typeof dependency_3.google.protobuf.StringValue.prototype.toObject>;
-            label?: string;
-            value?: ReturnType<typeof dependency_3.google.protobuf.FloatValue.prototype.toObject>;
+            id?: string;
+            name?: string;
             back_odds?: ReturnType<typeof ExchangeOdds.prototype.toObject>;
         }): Runner {
             const message = new Runner({});
@@ -456,13 +427,7 @@ export namespace statistico {
                 message.id = data.id;
             }
             if (data.name != null) {
-                message.name = dependency_3.google.protobuf.StringValue.fromObject(data.name);
-            }
-            if (data.label != null) {
-                message.label = data.label;
-            }
-            if (data.value != null) {
-                message.value = dependency_3.google.protobuf.FloatValue.fromObject(data.value);
+                message.name = data.name;
             }
             if (data.back_odds != null) {
                 message.back_odds = ExchangeOdds.fromObject(data.back_odds);
@@ -471,23 +436,15 @@ export namespace statistico {
         }
         toObject() {
             const data: {
-                id?: number;
-                name?: ReturnType<typeof dependency_3.google.protobuf.StringValue.prototype.toObject>;
-                label?: string;
-                value?: ReturnType<typeof dependency_3.google.protobuf.FloatValue.prototype.toObject>;
+                id?: string;
+                name?: string;
                 back_odds?: ReturnType<typeof ExchangeOdds.prototype.toObject>;
             } = {};
             if (this.id != null) {
                 data.id = this.id;
             }
             if (this.name != null) {
-                data.name = this.name.toObject();
-            }
-            if (this.label != null) {
-                data.label = this.label;
-            }
-            if (this.value != null) {
-                data.value = this.value.toObject();
+                data.name = this.name;
             }
             if (this.back_odds != null) {
                 data.back_odds = this.back_odds.toObject();
@@ -498,16 +455,12 @@ export namespace statistico {
         serialize(w: pb_1.BinaryWriter): void;
         serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
             const writer = w || new pb_1.BinaryWriter();
-            if (this.id != 0)
-                writer.writeUint64(1, this.id);
-            if (this.has_name)
-                writer.writeMessage(2, this.name, () => this.name.serialize(writer));
-            if (this.label.length)
-                writer.writeString(3, this.label);
-            if (this.has_value)
-                writer.writeMessage(4, this.value, () => this.value.serialize(writer));
+            if (this.id.length)
+                writer.writeString(1, this.id);
+            if (this.name.length)
+                writer.writeString(2, this.name);
             if (this.has_back_odds)
-                writer.writeMessage(5, this.back_odds, () => this.back_odds.serialize(writer));
+                writer.writeMessage(3, this.back_odds, () => this.back_odds.serialize(writer));
             if (!w)
                 return writer.getResultBuffer();
         }
@@ -518,18 +471,12 @@ export namespace statistico {
                     break;
                 switch (reader.getFieldNumber()) {
                     case 1:
-                        message.id = reader.readUint64();
+                        message.id = reader.readString();
                         break;
                     case 2:
-                        reader.readMessage(message.name, () => message.name = dependency_3.google.protobuf.StringValue.deserialize(reader));
+                        message.name = reader.readString();
                         break;
                     case 3:
-                        message.label = reader.readString();
-                        break;
-                    case 4:
-                        reader.readMessage(message.value, () => message.value = dependency_3.google.protobuf.FloatValue.deserialize(reader));
-                        break;
-                    case 5:
                         reader.readMessage(message.back_odds, () => message.back_odds = ExchangeOdds.deserialize(reader));
                         break;
                     default: reader.skipField();

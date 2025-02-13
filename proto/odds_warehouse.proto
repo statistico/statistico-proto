@@ -6,7 +6,6 @@ option go_package = "github.com/statistico/statistico-proto;statistico";
 
 import "common.proto";
 import "requests.proto";
-import "google/protobuf/wrappers.proto";
 
 service OddsWarehouseService {
   rpc GetExchangeOdds(ExchangeOddsRequest) returns (stream ExchangeOdds) {}
@@ -32,9 +31,7 @@ message Market {
 }
 
 message Runner {
-  uint64 id = 1;
-  google.protobuf.StringValue name = 2;
-  string label = 3;
-  google.protobuf.FloatValue value = 4;
-  ExchangeOdds back_odds = 5;
+  string id = 1;
+  string name = 2;
+  ExchangeOdds back_odds = 3;
 }
